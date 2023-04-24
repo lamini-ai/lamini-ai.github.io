@@ -36,7 +36,6 @@ llm = LLM(
     config={
         "production": {
             "key": "<API-KEY-HERE>",
-            "url": "https://api.powerml.co",
         }
     },
 )

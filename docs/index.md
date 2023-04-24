@@ -18,7 +18,7 @@ Check if your installation was done correctly, by importing the LLM engine in yo
 
 ## Setup your keys
 
-Go to [https://powerml.co](https://powerml.co).  Log in to get your API key and purchase credits.
+Go to [https://lamini.ai](https://lamini.ai).  Log in to get your API key and purchase credits.
 
 Create `~/.powerml/configure_llama.yaml` and put a key in it.
 

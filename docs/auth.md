@@ -2,7 +2,7 @@
 
 Welcome to Llama's exciting and secure world of authentication!
 
-To access Llama's services, you'll need an API key, which you can retrieve from your [Llama account page](https://app.powerml.co). This API key is your secret, so be sure not to share it with anyone or expose it in any client-side code.
+To access Llama's services, you'll need an API key, which you can retrieve from your [Llama account page](https://app.lamini.ai). This API key is your secret, so be sure not to share it with anyone or expose it in any client-side code.
 
 To keep your API key safe, production requests should always be routed through your own backend server, where your API key can be securely loaded from an environment variable or key management service.
 
@@ -16,7 +16,7 @@ Llama offers several ways to provide your API key:
 
 Ready to configure your Llama API key? It's easy-peasy! Create a secret config file and put your key in it to get started.
 
-First, navigate to your [Llama account page](https://app.powerml.co) to retrieve your unique API key. Remember to keep this key a secret and don't expose it in any client-side code or share it with others.
+First, navigate to your [Llama account page](https://app.lamini.ai) to retrieve your unique API key. Remember to keep this key a secret and don't expose it in any client-side code or share it with others.
 
 Next, create a `~/.powerml/configure_llama.yaml` file and place your key in it, like so:
 
@@ -45,7 +45,6 @@ llm = LLM(
     config={
         "production": {
             "key": "<YOUR-KEY-HERE>",
-            "url": "https://api.powerml.co",
         }
     },
 )
@@ -65,11 +64,11 @@ Authorization: Bearer <YOUR-KEY-HERE>
 
 ### Create an account
 
-Yo, listen up! Creating an account with Llama is easy peasy, lemon squeezy. All you need is a Gmail address to sign in with [Google single sign-on](https://app.powerml.co), and voila! We'll set up an account and token for you in no time.
+Yo, listen up! Creating an account with Llama is easy peasy, lemon squeezy. All you need is a Gmail address to sign in with [Google single sign-on](https://app.lamini.co), and voila! We'll set up an account and token for you in no time.
 
 ### Organizations
 
-If you're running a large organization and need to manage multiple users on the same account, you should totally hit us up for an enterprise account. Just [sign up](https://powerml.co/contact) and we'll get you sorted.
+If you're running a large organization and need to manage multiple users on the same account, you should totally hit us up for an enterprise account. Just [sign up](https://lamini.ai/contact) and we'll get you sorted.
 
 ## Google Colab
 

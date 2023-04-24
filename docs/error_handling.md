@@ -37,7 +37,7 @@ class AdAspects(Type):
 
 ## Timeout error
 
-These errors can occur if a request takes too long to process or if the server is unable to fulfill a request due to internal issues or resource constraints. Resource constraints can occur if the server has too little available memory, disk space, or other resources to process a request. Usually request to powerml api expires after 240 secs.
+These errors can occur if a request takes too long to process or if the server is unable to fulfill a request due to internal issues or resource constraints. Resource constraints can occur if the server has too little available memory, disk space, or other resources to process a request. Usually request to lamini api expires after 240 secs.
 You can try following solutions:
 
 1. Using PowerML batching interface, you can learn more about it [here](batching.md)
