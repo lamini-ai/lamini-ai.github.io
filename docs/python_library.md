@@ -1,6 +1,6 @@
 # Python library
 
-Llama is a Python package designed to build Language Learning Models (LLMs) for natural language processing tasks. It provides an engine for creating and running your own LLMs. With Llama, you can train language models on large text corpora and improve them following your guidelines, which can then be used for generating and extracting text.
+Llama is a Python package designed to build Large Language Models (LLMs) for natural language processing tasks. It provides an engine for creating and running your own LLMs. With Llama, you can train language models on large text corpora and improve them following your guidelines, which can then be used for generating and extracting text.
 
 ## Input and output types
 
