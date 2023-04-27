@@ -2,13 +2,13 @@
 
 ## Installation
 
-Llama can be installed using pip, the package manager for Python. To install Llama, open a command prompt and type:
+Lamini can be installed using pip, the package manager for Python. To install Lamini, open a command prompt and type:
 
 ```sh
-pip install llama-llm
+pip install lamini
 ```
 
-This will download and install the latest version of Llama and its dependencies.
+This will download and install the latest version of Lamini and its dependencies.
 
 Check if your installation was done correctly, by importing the LLM engine in your python interpreter.
 
@@ -18,7 +18,7 @@ Check if your installation was done correctly, by importing the LLM engine in yo
 
 ## Setup your keys
 
-Go to [https://lamini.ai](https://lamini.ai).  Log in to get your API key and purchase credits.
+Go to [https://lamini.ai](https://lamini.ai). Log in to get your API key and purchase credits.
 
 Create `~/.powerml/configure_llama.yaml` and put a key in it.
 
@@ -49,7 +49,6 @@ Now you're on your way to using the LLM engine on your specific use case!
 
 ## Try an example
 
-- [Marketing Copy Generation in Google Colab](https://colab.research.google.com/drive/1Ij5xATu0DDtQNimvhzxyP--ttPO-TFES)
+-   [Marketing Copy Generation in Google Colab](https://colab.research.google.com/drive/1Ij5xATu0DDtQNimvhzxyP--ttPO-TFES)
 
-- [Tweet Generation in Google Colab](https://powerml.co/tweet)
-
+-   [Tweet Generation in Google Colab](https://powerml.co/tweet)

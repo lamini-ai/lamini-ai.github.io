@@ -1,6 +1,6 @@
 # Python library
 
-Llama is a Python package designed to build Large Language Models (LLMs) for natural language processing tasks. It provides an engine for creating and running your own LLMs. With Llama, you can train language models on large text corpora and improve them following your guidelines, which can then be used for generating and extracting text.
+Lamini is a Python package designed to build Large Language Models (LLMs) for natural language processing tasks. It provides an engine for creating and running your own LLMs. With Lamini, you can train language models on large text corpora and improve them following your guidelines, which can then be used for generating and extracting text.
 
 ## Input and output types
 
@@ -57,6 +57,7 @@ llama_story = llm(llama_animal, output_type=Story)
 You have data on different inputs and outputs, and in some cases, you have pairs of inputs and outputs that you want the LLM to model after.
 
 Getting data of good inputs:
+
 ```python
 llama_animal = Animal(name="Larry", n_legs=4)
 centipede_animal = Animal(name="Cici", n_legs=100)
@@ -65,6 +66,7 @@ my_data = [llama_animal, centipede_animal]
 ```
 
 Getting data of a good input-output pair:
+
 ```python
 dog_animal = Animal(name="Nacho", n_legs=4)
 dog_speed = Story(story="There once was a cute doggo named Nacho. She was a golden retriever who liked to run. All four of her paws were adorable.")
@@ -73,11 +75,13 @@ my_data.append([dog_animal, dog_speed])
 ```
 
 Now add all that data to your LLM:
+
 ```python
 llm.add_data(my_data)
 ```
 
 With the same call to the LLM engine, it should now produce a story that is more aligned with your data.
+
 ```python
 llama_story = llm(llama_animal, output_type=Story)
 ```

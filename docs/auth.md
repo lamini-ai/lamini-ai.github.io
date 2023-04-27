@@ -1,22 +1,22 @@
 # Authentication
 
-Welcome to Llama's exciting and secure world of authentication!
+Welcome to Lamini's exciting and secure world of authentication!
 
-To access Llama's services, you'll need an API key, which you can retrieve from your [Llama account page](https://app.lamini.ai). This API key is your secret, so be sure not to share it with anyone or expose it in any client-side code.
+To access Lamini's services, you'll need an API key, which you can retrieve from your [Lamini account page](https://app.lamini.ai). This API key is your secret, so be sure not to share it with anyone or expose it in any client-side code.
 
 To keep your API key safe, production requests should always be routed through your own backend server, where your API key can be securely loaded from an environment variable or key management service.
 
-Llama offers several ways to provide your API key:
+Lamini offers several ways to provide your API key:
 
- * [Config file](#config-file)
- * [Python API](#python-api)
- * [Authorization HTTP header](#authorization-http-header)
+-   [Config file](#config-file)
+-   [Python API](#python-api)
+-   [Authorization HTTP header](#authorization-http-header)
 
 ### Config file
 
-Ready to configure your Llama API key? It's easy-peasy! Create a secret config file and put your key in it to get started.
+Ready to configure your Lamini API key? It's easy-peasy! Create a secret config file and put your key in it to get started.
 
-First, navigate to your [Llama account page](https://app.lamini.ai) to retrieve your unique API key. Remember to keep this key a secret and don't expose it in any client-side code or share it with others.
+First, navigate to your [Lamini account page](https://app.lamini.ai) to retrieve your unique API key. Remember to keep this key a secret and don't expose it in any client-side code or share it with others.
 
 Next, create a `~/.powerml/configure_llama.yaml` file and place your key in it, like so:
 
@@ -25,11 +25,11 @@ production:
     key: "<YOUR-KEY-HERE>"
 ```
 
-The best part? The [Llama python package](https://pypi.org/project/llama-llm) will automatically load your key from this config file for you, so you don't have to worry about it.
+The best part? The [Lamini python package](https://pypi.org/project/lamini) will automatically load your key from this config file for you, so you don't have to worry about it.
 
-If you're running Llama in a docker container, make sure to copy/mount this file inside the container.
+If you're running Lamini in a docker container, make sure to copy/mount this file inside the container.
 
-Configuring your Llama API key has never been so easy!
+Configuring your Lamini API key has never been so easy!
 
 ### Python API
 
@@ -54,7 +54,7 @@ After you've set up, it's time to flex your coding skills by making some epic ca
 
 ### Authorization HTTP header
 
-All Llama REST API requests should include your API key in an Authorization HTTP header as follows:
+All Lamini REST API requests should include your API key in an Authorization HTTP header as follows:
 
 ```
 Authorization: Bearer <YOUR-KEY-HERE>
@@ -64,7 +64,7 @@ Authorization: Bearer <YOUR-KEY-HERE>
 
 ### Create an account
 
-Yo, listen up! Creating an account with Llama is easy peasy, lemon squeezy. All you need is a Gmail address to sign in with [Google single sign-on](https://app.lamini.co), and voila! We'll set up an account and token for you in no time.
+Yo, listen up! Creating an account with Lamini is easy peasy, lemon squeezy. All you need is a Gmail address to sign in with [Google single sign-on](https://app.lamini.co), and voila! We'll set up an account and token for you in no time.
 
 ### Organizations
 
@@ -75,7 +75,7 @@ If you're running a large organization and need to manage multiple users on the 
 We got your back when it comes to integrating with Google Colab, no sweat. Say goodbye to storing your API key in a notebook, and say hello to our effortless snippet for automatic login:
 
 ```python
-# @title Setup: Authenticate with Google & install the open-source [Llama library](https://pypi.org/project/llama-llm) to use LLMs easily
+# @title Setup: Authenticate with Google & install the open-source [Lamini library](https://pypi.org/project/lamini) to use LLMs easily
 %%capture
 
 from google.colab import auth
@@ -90,7 +90,7 @@ def authenticate_powerml():
   return powerml_token_response.json()['token']
 
 production_token = authenticate_powerml()
-!pip install --upgrade --force-reinstall --ignore-installed llama-llm
+!pip install --upgrade --force-reinstall --ignore-installed lamini
 
 keys_dir_path = '/root/.powerml'
 os.makedirs(keys_dir_path, exist_ok=True)
@@ -104,7 +104,7 @@ This code snippet stores your API key in the production_token variable and write
 
 ## Comparison of authentication methods
 
-Authentication methods can be a real head-scratcher, especially if you're new to the game. But fear not, my fellow memers! Llama has got you covered with three different authentication methods: config file, Python API, and Authorization HTTP header.
+Authentication methods can be a real head-scratcher, especially if you're new to the game. But fear not, my fellow memers! Lamini has got you covered with three different authentication methods: config file, Python API, and Authorization HTTP header.
 
 ### Config file
 
@@ -119,4 +119,3 @@ If you need flexibility and scalability for large-scale applications, the Python
 The Authorization HTTP header method is for the big boys, the ones with larger-scale apps and stringent security requirements. This method is secure because the API key isn't stored in plain text, but it requires additional implementation effort to set up correctly. Plus, managing and rotating API keys can be a real pain in the butt.
 
 In the end, you'll have to weigh the pros and cons of each method to determine which one is the best fit for your needs. Just remember, always keep your API key safe and secure like a secret meme stash.
-

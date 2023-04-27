@@ -3,13 +3,14 @@
 Eliminate errors with our comprehensive error handling documentation
 
 ## Internal Server 500 error
+
 Internal server errors are errors on our server. These are our problems, so report these! They are usually caused by a misconfigured server, or an issue with the server's resources.
 
 Here are some ways in which you can resolve Internal Server 500 error:
 
-1. Update the llama-llm python package to the most recent version: Make sure that you are using supported python version. Supported python version are 3.7 to 3.11.
+1. Update the lamini python package to the most recent version: Make sure that you are using supported python version. Supported python version are 3.7 to 3.11.
 
-    1. Download the most recent python client from [Llama python package](https://pypi.org/project/llama-llm).
+    1. Download the most recent python client from [Lamini python package](https://pypi.org/project/lamini).
 
     2. You can update your Python version by downloading the latest version from the [Python website](https://www.python.org/downloads/) and running the installer.
 
@@ -20,8 +21,10 @@ Here are some ways in which you can resolve Internal Server 500 error:
 ```sh
     [user_defined_type_name] : [python_data_type] = Context("")
 ```
+
 Be sure to include the Context. This helps the LLM understand your types in natural language.
 Example:
+
 ```python
 from llama import Type, Context
 
@@ -32,8 +35,6 @@ class AdAspects(Type):
   subject: str = Context("subject or topic of the message")
   goal: str = Context("goal of this marketing campaign and message")
 ```
-
-
 
 ## Timeout error
 
