@@ -1,6 +1,6 @@
 # Walkthrough Example
 
-## Import Llama and initialize an LLM engine
+## Import Lamini and initialize an LLM engine
 
 ```python
 from llama import LLM
@@ -32,6 +32,7 @@ class AdCopy(Type):
 ## Run the LLM
 
 ### Generate ad copy from different aspects you want
+
 ```python
 aspects = AdAspects(
     tone="bold and bright, but not arrogant",
@@ -50,6 +51,7 @@ print(f"Ad copy: {ad_copy}")
 ```
 
 _Output:_
+
 ```sh
 > title='Delicious Asian Meals Without Going to a Restaurant | Omsom'
   description="Try Omsom's delicious Asian sauces, aromatics, and home-cooked seasonings and meal packs. Easily cook delicious meals at home for your family."
@@ -85,6 +87,7 @@ print(f"Ad aspects: {ad_aspects}")
 ```
 
 _Output:_
+
 ```sh
 > tone='Exciting and proud'
   product_features=[
@@ -108,6 +111,7 @@ print(f"Ad copy after improving: {ad_copy}")
 ```
 
 _Output:_
+
 ```sh
 > Ad copy after improving:
   title='Delicious Asian Meals From Omsom 🍱'
@@ -141,10 +145,8 @@ ad_copy = llm(input=aspects, output_type=AdCopy)
 print(f"Ad copy after adding data: {ad_copy}")
 ```
 
-
 <details>
   <summary>Code for <code>get_my_marketing_data()</code></summary>
-
 
 ```python
 def get_my_marketing_data():
@@ -291,10 +293,11 @@ def get_my_marketing_data():
     ],
 ]
 ```
+
 </details>
 
-
 _Output:_
+
 ```sh
 > Ad copy after adding data:
   title='🥢 Delicious Asian Meals at Home with Omsom - Key Product Feature 🥢 | Omsom'
@@ -316,6 +319,6 @@ Coming soon to the docs :)
 
 ## Additional examples in public notebooks
 
-- [Marketing Copy Generation in Google Colab](https://colab.research.google.com/drive/1Ij5xATu0DDtQNimvhzxyP--ttPO-TFES)
+-   [Marketing Copy Generation in Google Colab](https://colab.research.google.com/drive/1Ij5xATu0DDtQNimvhzxyP--ttPO-TFES)
 
-- [Tweet Generation in Google Colab](https://powerml.co/tweet)
+-   [Tweet Generation in Google Colab](https://powerml.co/tweet)
