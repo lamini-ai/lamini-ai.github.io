@@ -1,6 +1,6 @@
 # Walkthrough Example
 
-## Import Lamini and initialize an LLM engine
+## Import the LLM engine from the llama module
 
 ```python
 from llama import LLM

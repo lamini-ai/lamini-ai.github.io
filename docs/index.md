@@ -10,7 +10,7 @@ pip install lamini
 
 This will download and install the latest version of Lamini and its dependencies.
 
-Check if your installation was done correctly, by importing the LLM engine in your python interpreter.
+Check if your installation was done correctly, by importing the LLM engine (called `llama`) in your python interpreter. Fun fact: Lamini is the tribe of which llamas are a part, so you can import the module `llama` to work with the LLM engine.
 
 ```python
 >> from llama import LLM
@@ -18,7 +18,7 @@ Check if your installation was done correctly, by importing the LLM engine in yo
 
 ## Setup your keys
 
-Go to [https://lamini.ai](https://lamini.ai). Log in to get your API key and purchase credits.
+Go to [https://lamini.ai](https://lamini.ai). Log in to get your API key and purchase credits (under the Account tab).
 
 Create `~/.powerml/configure_llama.yaml` and put a key in it.
 
@@ -46,6 +46,8 @@ llm(test, output_type=Test)
 ```
 
 Now you're on your way to using the LLM engine on your specific use case!
+
+To play with different types in an interface, you can log in at [https://lamini.ai](https://lamini.ai) and use the playground there. 
 
 ## Try an example
 

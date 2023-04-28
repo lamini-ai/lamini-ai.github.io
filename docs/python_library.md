@@ -2,6 +2,8 @@
 
 Lamini is a Python package designed to build Large Language Models (LLMs) for natural language processing tasks. It provides an engine for creating and running your own LLMs. With Lamini, you can train language models on large text corpora and improve them following your guidelines, which can then be used for generating and extracting text.
 
+Lamini is the tribe of which llamas are a part. You will be importing the `llama` module in order to work with the LLM engine.
+
 ## Input and output types
 
 First, you want to construct some data types: (1) input types as arguments into the LLM and (2) output types as return values from the LLM.
@@ -21,6 +23,9 @@ llama_animal = Animal(name="Larry", n_legs=4)
 ```
 
 Each `Type` requires at least one attribute, such as `name` and `n_legs` here. They can be anything you would like. Be sure to add a `Context` field to each attribute, with a natural language description of the attribute. That is required to tell the model what you mean by each attribute.
+
+Note: to play with different types in a user interface, you can log in at [https://lamini.ai](https://lamini.ai) and find a playground to run LLMs with different types. 
+
 
 ## Running the LLM
 

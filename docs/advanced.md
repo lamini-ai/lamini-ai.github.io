@@ -4,7 +4,7 @@ Now that you've got the basics, it's time to power up your llama!
 
 ## Generate Varied Output
 
-In the Lamini walkthrough, you generated ad copy using the below:
+In the [walkthrough example](./example.md), you generated ad copy using the below:
 
 ```python
 class AdAspects(Type):
