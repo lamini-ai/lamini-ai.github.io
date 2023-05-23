@@ -1,11 +1,13 @@
-# Walkthrough Example
+# Question Answer Model
+
+In this walkthrough, we'll build a working question answer model to demonstrate how one might use Lamini to gain quick insight into a library of documentation. Here, we've specialized this walkthrough to target our own python library.
 
 ## Import the LLM engine from the llama module
 
 ```python
 from llama import LLM
 
-llm = LLM(name="marketing")
+llm = LLM(name="QA")
 ```
 
 ## Define the LLM interface
@@ -13,305 +15,148 @@ llm = LLM(name="marketing")
 Define the input and output types. Be sure to include the `Context`. This helps
 the LLM understand your types in natural language.
 
+In this example, the input is the function we would like to generate documentation for, and the output is the documentation for that function.
+
 ```python
 from llama import Type, Context
 
-class AdAspects(Type):
-  tone: str = Context("tone of the marketing copy")
-  product_features: list = Context("product features to promote")
-  audience: str = Context("target audience for the message")
-  subject: str = Context("subject or topic of the message")
-  goal: str = Context("goal of this marketing campaign and message")
+# Input
+class Question(Type):
+    question: str = Context("question about the function")
 
-class AdCopy(Type):
-  title: str = Context("google ad title tag")
-  description: str = Context("google ad description")
-  keywords: list = Context("keywords for the search engine")
+
+# Output
+class Answer(Type):
+    inputs: list = Context("list of inputs to the function")
+    outputs: list = Context("list of outputs from the function")
+    description: str = Context("function description in 2 to 5 lines")
+
+```
+
+A general LLM will not have any information about our library, but we can also pass our own data (more on that below) for it to learn from! Let's add a type for that as well:
+
+```python
+
+# Documentation
+class Function(Type):
+    name: str = Context("name of the function")
+    code: str = Context("text for the python code in the function")
 ```
 
 ## Run the LLM
 
-### Generate ad copy from different aspects you want
+Now that we've got our types, you can ask questions about your documentation. Here we've simply copied code from the `lamini` library into a function object. Then, let's pass a function name in as a Question object.
 
 ```python
-aspects = AdAspects(
-    tone="bold and bright, but not arrogant",
-    product_features=[
-        'asian sauces and aromatics',
-        'home-cooked seasonings and meal packs that can be easily cooked at home'
-    ],
-    audience="suburban families",
-    subject="delicious asian meals without going to a restaurant",
-    goal="get suburban moms and dads to try buy their first omsom pack or free tasting kit"
+question = Question(question='LLM.add_data')
+function = Function(
+    name='__init__',
+    code='def __init__(self, builder, name):\n        self.builder = builder\n        self.name = name\n        self.main = Function(program=self, name="main")\n        self.functions = {"main": self.main}\n        self.examples = []'
 )
+llm.add_data([function])
+answer = llm(input=Question(question=question), output_type=Answer)
 
-ad_copy = llm(input=aspects, output_type=AdCopy)
-
-print(f"Ad copy: {ad_copy}")
+print(answer)
 ```
 
 _Output:_
 
-```sh
-> title='Delicious Asian Meals Without Going to a Restaurant | Omsom'
-  description="Try Omsom's delicious Asian sauces, aromatics, and home-cooked seasonings and meal packs. Easily cook delicious meals at home for your family."
-  keywords=[
-    'Asian sauces',
-    'Aromatics',
-    'Home-cooked seasonings',
-    'Meal packs',
-    'Delicious meals',
-    'Suburban families',
-    'Omsom'
-    ]
-```
+````python
+> inputs=['name (string)', 'model_name (string, optional)', 'config (dict, optional)']
+  outputs=['- program (Program)', 'current_function (Function)', 'value_cache (dict)', 'model_name (str, optional)', 'edit_config (function, optional)']
+  description='The LLM.__init__ function initializes a LanguageModel object with a name, model_name, and optional configuration. It also creates a Program object and sets the current_function to the main function of the program. The value_cache is also initialized as a dictionary. The model_name is optional and can be set using the edit_config function.\n\nRelevant task information:\n\nname: __init__\n\ncode:\n```python\ndef __init__(self, name,\n```</s>'
 
-### Extract ad aspects from the copy you already have
+````
+
+Whoa! Documentation about our Library!
+
+## Train the LLM on more data
+
+In this next step, we can pass our entire library as a list of function objects into the model.
 
 ```python
-ad_copy = AdCopy(
-    title="Omsom | Proud, loud Asian home cooking",
-    description="An Omsom starter is a pantry shortcut for a specific Asian dish, combining all the sauces, aromatics, and seasonings you need.",
-    keywords=[
-        "asian sauces",
-        "asian food",
-        "home-cooked asian meals",
-        "home-cooked seasonings",
-        "at home"
-    ]
-)
+data = get_entire_library()
 
-ad_aspects = llm(input=ad_copy, output_type=AdAspects)
+question = Question(question='LLM.add_data')
 
-print(f"Ad aspects: {ad_aspects}")
-```
+answer = llm(input=question, output_type=Answer)
 
-_Output:_
-
-```sh
-> tone='Exciting and proud'
-  product_features=[
-    'Ready-made sauces and seasonings',
-    'Variety of Asian dishes',
-    'Easy to use'
-    ]
-  audience='Home cooks looking for an easy way to make Asian dishes'
-  subject='Proud, loud Asian home cooking'
-  goal="To encourage home cooks to try out Asian dishes with the help of Omsom's ready-made sauces and seasonings."
-```
-
-## Improve the LLM with feedback
-
-```python
-llm.improve(on="keywords", to="cite specific {product_features}")
-
-ad_copy = llm(input=aspects, output_type=AdCopy)
-
-print(f"Ad copy after improving: {ad_copy}")
-```
-
-_Output:_
-
-```sh
-> Ad copy after improving:
-  title='Delicious Asian Meals From Omsom 🍱'
-  description="Try Omsom's delicious Asian sauces, aromatics, and home-cooked seasonings and meal packs. Easily cook delicious meals at home for your family. 🍲"
-  keywords=[
-    'Asian sauces',
-    'Aromatics',
-    'Home-cooked seasonings',
-    'Meal packs',
-    'Delicious meals',
-    'Suburban families',
-    'Omsom',
-    'Emojis',
-    'Gluten-free',
-    'Vegan-friendly',
-    'Low-sodium',
-    'No-MSG'
-  ]
-```
-
-## Train the LLM on your data
-
-```python
-# In the format of [[AdAspects, AdCopy], [AdAspects, AdCopy], ...]
-data = get_my_marketing_data()
-
-llm.add_data(data)
-
-ad_copy = llm(input=aspects, output_type=AdCopy)
-
-print(f"Ad copy after adding data: {ad_copy}")
+formatted_docs = format_docs(question, answer)
+print(f"Documentation generated by model:\n {formatted_docs}")
 ```
 
 <details>
-  <summary>Code for <code>get_my_marketing_data()</code></summary>
+  <summary>Code for <code>get_entire_library()</code> </summary>
 
 ```python
-def get_my_marketing_data():
-    return [
-    [
-    AdAspects(
-        tone='Exciting and modern',
-        product_features=['Made from oak', 'Variety of meats and cheeses', 'Perfect for entertaining'],
-        audience='Home chefs and entertainers',
-        subject='Elevate your entertaining with charcuterie boards',
-        goal='To showcase the versatility and convenience of charcuterie boards as an entertaining option.',
-    ),
-    AdCopy(
-        title='🧀 Charcuterie Boards Made from Oak | Boardsy',
-        description='Get the perfect charcuterie board made from oak for your next gathering. Our key product feature is charcuterie boards made from oak. Shop now with Brand Name.',
-        keywords=['charcuterie boards', 'oak', 'key product feature'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Celebratory',
-        product_features=['Anniversary messages', 'Customizable messages', 'Personalized messages'],
-        audience='Couples celebrating anniversaries',
-        subject='Celebrate Your Anniversary with a Special Message',
-        goal='To encourage couples to celebrate their anniversaries with a special message.',
-    ),
-    AdCopy(
-        title='🎉 Anniversary Messages - Key Product Feature 🎉 | Hollamark',
-        description='Celebrate your special day with our key product feature - anniversary messages. Send heartfelt wishes to your loved ones with our unique and personalized messages from Brand Name.',
-        keywords=['anniversary messages', 'key product feature', 'personalized messages', 'heartfelt wishes'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Exciting and enthusiastic',
-        product_features=['Unique flavor combinations', 'All-natural ingredients', 'Hand-crafted in small batches'],
-        audience='Home cooks and foodies',
-        subject='Unlocking the flavors of the world',
-        goal='To introduce customers to the unique flavor combinations of artisanal spice blends and encourage them to explore new culinary experiences.',
-    ),
-    AdCopy(
-        title='🌶️ Artisanal Spices - Spice Blends Key Product Feature 🌶️ | Shop Now with Artisanal Spices!',
-        description='Discover the unique flavors of artisanal spice blends with our key product feature. Shop now with Artisanal Spices! 🛒',
-        keywords=['artisanal spices', 'artisanal spice blends', 'key product feature', 'unique flavors', 'shop now', 'emojis'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Exciting and energetic',
-        product_features=['Comfort', 'Durability', 'Breathability', 'Stylish design'],
-        audience='Active women',
-        subject='Look and feel your best with yoga pants',
-        goal='To promote the benefits of yoga pants and encourage active women to purchase them.',
-    ),
-    AdCopy(
-        title='🧘‍♀️ Zennn Yoga Pants - Key Product Feature 🧘‍♀️',
-        description='Get the perfect fit and feel with Zennn\'s key product feature - yoga pants. Shop now for the best selection and prices.',
-        keywords=['yoga pants', 'key product feature', 'perfect fit', 'best selection', 'best prices'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Exciting and informative',
-        product_features=['Perfect recipes for keto dieters', 'Easy to follow instructions', 'Nutritional information for each recipe'],
-        audience='Keto dieters looking for meal ideas',
-        subject='Delicious Keto Recipes',
-        goal='To promote the key product feature of perfect recipes, keto and encourage keto dieters to try the recipes.',
-    ),
-    AdCopy(
-        title='🍽 Perfect Recipes for Keto Dieters - Key Product Feature 🥗 | Saladmania',
-        description='Get the perfect recipes for your keto diet with our key product feature. Enjoy delicious meals and stay on track with your diet. 🍽 | Brand Name',
-        keywords=['perfect recipes', 'keto diet', 'key product feature', 'delicious meals'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Fun and exciting',
-        product_features=['Unique flavors', 'Variety of toppings', 'Customizable options'],
-        audience='Young adults and families',
-        subject='Enjoy delicious ice cream at the microcreamery',
-        goal='To increase awareness of the microcreamery and encourage customers to visit and try the unique flavors and toppings.',
-    ),
-    AdCopy(
-        title='🍦 Delicious Ice Cream from Microcreamery - Key Product Feature 🍦',
-        description='Enjoy delicious ice cream from Microcreamery, with a key product feature that sets it apart from the competition. 🍦',
-        keywords=['ice cream, microcreamery, key product feature, delicious, emojis, Microcreamery, brand name'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Exciting and Innovative',
-        product_features=['Easy to use interface', 'Comprehensive data tracking', 'Automated reporting', 'Customizable settings'],
-        audience='Ohio-based software developers',
-        subject='Unlocking the Potential of Ohio Statewide Software Leagues',
-        goal='To showcase the features of Ohio statewide software leagues and demonstrate how they can help software developers maximize their potential.',
-    ),
-    AdCopy(
-        title='🎮 Ohio Statewide Software Leagues - Key Product Feature | Ohio Statewide',
-        description='Get the most out of your software with Ohio Statewide Software Leagues. Our key product feature is designed to help you 🚀 maximize your software\'s potential. | Ohio Statewide',
-        keywords=['Ohio Statewide Software Leagues', 'Key Product Feature', 'Software Leagues', 'Maximize Software Potential', 'Ohio Statewide'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Inspirational',
-        product_features=['Variety of scripts', 'Professional guidance', 'Access to industry professionals'],
-        audience='Actors and actresses',
-        subject='Unlocking Your Potential as an Actor or Actress',
-        goal='To inspire and motivate actors and actresses to reach their full potential through practice theater scripts.',
-    ),
-    AdCopy(
-        title='🎭 Practice Theater Scripts for Actors & Actresses by Brand Name 🎭',
-        description='Get the best 🎭 practice theater scripts for actors and actresses from Brand Name. Improve your performance with our selection of scripts.',
-        keywords=['practice theater scripts', 'theater scripts for actors', 'theater scripts for actresses', 'improve performance', 'theater scripts'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Inspirational',
-        product_features=['High intensity interval training', 'Strength training', 'Cardio workouts', 'Nutrition advice'],
-        audience='Men aged 18-35',
-        subject='Get Fit and Healthy with Mens Health Workouts',
-        goal='To inspire men to take control of their health and fitness through mens health workouts.',
-    ),
-    AdCopy(
-        title='💪 Mens Health Workouts - Get Fit Now! | Mens Health',
-        description='Get fit now with Mens Health Workouts. Get the best results with our tailored programs and expert advice. | Mens Health',
-        keywords=['mens health workouts', 'fitness', 'exercise', 'get fit', 'mens health'],
-    ),
-    ],
-    [
-    AdAspects(
-        tone='Informative and helpful',
-        product_features=['Easy to use', 'Accurate calculations', 'Comprehensive loan comparison', 'Customizable repayment plans'],
-        audience='College students and recent graduates',
-        subject='Student loan calculators',
-        goal='To inform college students and recent graduates of the benefits of using student loan calculators to compare and customize their loan repayment plans.',
-    ),
-    AdCopy(
-        title='🤓 ABC Financial - Get the Best Student Loan Calculators 🤓',
-        description='Get the best student loan calculators from ABC Financial to help you manage your finances. Our key product feature helps you make the right decisions. 🤓',
-        keywords=['student loan calculators', 'ABC Financial', 'key product feature', 'student loan calculator', 'loan calculator', 'student loan repayment calculator', 'student loan repayment'],
-    ),
-    ],
-]
+def get_entire_library():
+    return [Function(name='__init__', code='def __init__(self, program, name, input_arguments=[]):\n        self.name = name\n        self.program = program\n        self.operations = []\n\n        for index, argument in enumerate(input_arguments):\n            self.add_operation(GetArgumentOperation(argument, index))'), Function(name='__init__', code='def __init__(self, builder, name):\n        self.builder = builder\n        self.name = name\n        self.main = Function(program=self, name="main")\n        self.functions = {"main": self.main}\n        self.examples = []'), Function(name='cosine_similarity', code='def cosine_similarity(X, Y=None, dense_output=True):\n    """Compute cosine similarity between samples in X and Y.\n\n    Cosine similarity, or the cosine kernel, computes similarity as the\n    normalized dot product of X and Y:\n\n        K(X, Y) = <X, Y> / (||X||*||Y||)\n\n    On L2-normalized data, this function is equivalent to linear_kernel.\n\n    Read more in the :ref:`User Guide <cosine_similarity>`.\n\n    Parameters\n    ----------\n    X : {ndarray, sparse matrix} of shape (n_samples_X, n_features)\n        Input data.\n\n    Y : {ndarray, sparse matrix} of shape (n_samples_Y, n_features), \\\n            default=None\n        Input data. If ``None``, the output will be the pairwise\n        similarities between all samples in ``X``.\n\n    dense_output : bool, default=True\n        Whether to return dense output even when the input is sparse. If\n        ``False``, the output is sparse if both input arrays are sparse.\n\n        .. versionadded:: 0.17\n           parameter ``dense_output`` for dense output.\n\n    Returns\n    -------\n    kernel matrix : ndarray of shape (n_samples_X, n_samples_Y)\n        Returns the cosine similarity between samples in X and Y.\n    """\n    # to avoid recursive import\n\n    X, Y = check_pairwise_arrays(X, Y)\n\n    X_normalized = normalize(X, copy=True)\n    if X is Y:\n        Y_normalized = X_normalized\n    else:\n        Y_normalized = normalize(Y, copy=True)\n\n    K = safe_sparse_dot(X_normalized, Y_normalized.T, dense_output=dense_output)\n\n    return K'), Function(name='_compute_value', code='def _compute_value(self):\n        # check in the builper value cache\n        if self._index in self._function.program.builder.value_cache:\n            returned_value = self._function.program.builder.value_cache[self._index]["data"]\n        else:\n            params = {\n                "program": self._function.program.to_dict(),\n                "requested_values": [self._index],\n            }\n            response = query_run_program(params)\n\n            response.raise_for_status()\n\n            # update the cache\n            self._function.program.builder.value_cache.update(response.json())\n\n            returned_value = response.json()[str(self._index)]["data"]\n\n        if issubclass(self._type, BaseSpecification):\n            self._data = self._type.parse_obj(returned_value)\n        else:\n            self._data = self._type(returned_value)'), Function(name='rewrite_dict_type', code='def rewrite_dict_type(input_value):\n    assert isinstance(input_value, BaseSpecification)\n    return json.loads(type(input_value).schema_json())'), Function(name='__init__', code='def __init__(self, type, data=None):\n        self._type = type\n        self._data = data\n        self._function = None\n        self._index = None'), Function(name='get_field', code='def get_field(self, value, field_name):\n        return self.current_function.add_operation(\n            GetFieldOperation(\n                value, value._type._get_field_type(field_name), field_name)\n        )'), Function(name='gen_value', code='def gen_value(value: Value):\n    value._compute_value()\n    return value._data'), Function(name='add_data', code='def add_data(self, data=[]):\n        self.program.add_data(examples=data)'), Function(name='__init__', code='def __init__(self, input_value, output_type):\n        super().__init__(output_type)\n        self._input_value = input_value'), Function(name='add_metric', code='def add_metric(self, metric):\n        new_operation = self.current_function.add_operation(\n            MetricOperation(metric.input, metric.get_metric_type())\n        )\n\n        return new_operation'), Function(name='_to_dict', code='def _to_dict(self):\n        if isinstance(self._input_value, Value):\n            input_value = self._input_value._index\n        else:\n            input_value = {\n                "data": self._input_value.dict(),\n                "type": json.loads(type(self._input_value).schema_json()),\n            }\n\n        return {\n            "name": "CallOperation",\n            "function_name": self._target_function.name,\n            "input_value": input_value,\n            "type": type_to_dict(self._type)\n        }'), Function(name='gen_multiple_values', code='def gen_multiple_values(values: List[Value]):\n    # Assume that all values have the same program\n    # TODO: fix a bug where the first value in the list is not the right value due to improve.\n    program = values[0]._function.program.to_dict()\n    params = {\n        "program": program,\n        "requested_values": [v._index for v in values],\n    }\n    response = query_run_program(params)\n    response.raise_for_status()\n    for i, v in enumerate(values):\n        index = v._index\n        response_val = response.json()[str(index)]\n        if isinstance(response_val["data"], list):\n            v._data = []\n            for d in response_val["data"]:\n                v._data.append(v._type.parse_obj(d))\n        else:\n            v._data = v._type.parse_obj(response_val["data"])\n    # Update cache once\n    values[0]._function.program.builder.value_cache.update(response.json())\n    return [value._data for value in values]'), Function(name='improve', code='def improve(self, on: str, to: str, good_examples=[], bad_examples=[], temperature=0.0):\n\n        new_operation = self.current_function.add_operation(\n            FeedbackOperation(\n                on=on, to=to, good_examples=good_examples, bad_examples=bad_examples, temperature=temperature\n            )\n        )\n\n        return new_operation'), Function(name='metrics', code='def metrics(self):\n        requested_values = [\n            op._index for op in self.program.functions["main"].operations\n        ]\n\n        params = {\n            "program": self.program.to_dict(),\n            "requested_values": requested_values,\n        }\n        response = query_run_program(params)\n        response.raise_for_status()\n\n        data = [response[str(index)]["data"] for index in requested_values]\n\n        return data'), Function(name='__init__', code='def __init__(self, fit: bool):\n        self.fit = fit # TODO: Change to add_data (?)'), Function(name='query_run_program', code='def query_run_program(params):\n    key, url = get_url_and_key()\n    resp = powerml_run_program(params, url, key)\n    return resp'), Function(name='_to_dict', code='def _to_dict(self):\n        return {\n            "name": "FeedbackOperation",\n            "on": self._on,\n            "to": self._to,\n            "good_examples": [value_to_dict(example) for example in self._good_examples],\n            "bad_examples": [value_to_dict(example) for example in self._bad_examples],\n            "temperature": self._temperature,\n            "type": json.loads(self._type.schema_json()),\n        }'), Function(name='get_metric_type', code='def get_metric_type(self):\n        return MatchResult'), Function(name='function', code='def function(self, function):\n        signature = inspect.signature(function)\n        input_types = [\n            value.annotation for value in signature.parameters.values()]\n\n        main = self.current_function\n        new_function = Function(\n            program=self.program, name=function.__name__, input_arguments=input_types\n        )\n        self.program.functions[new_function.name] = new_function\n        self.current_function = new_function\n        output_value = function(*new_function.operations)\n        self.current_function.add_operation(ReturnOperation(output_value))\n        self.current_function = main\n\n        return Lambda(self, new_function, output_value)'), Function(name='fuzzy_is_duplicate', code='def fuzzy_is_duplicate(embedding, reference_embeddings, threshold=0.99):\n    if embedding is None:\n        return True\n    if not reference_embeddings:\n        return False\n    similarities = [\n        cosine_similarity(embedding, reference_embedding)\n        for reference_embedding in reference_embeddings\n    ]\n\n    most_similar_index = np.argmax(similarities)\n\n    return similarities[most_similar_index] > threshold'), Function(name='__call__', code='def __call__(self, input, output_type, *args, **kwargs):\n        if isinstance(input, list):\n            values = self.add_model(\n                input, output_type, *args, **kwargs)\n            results = run_all(values)\n            if isinstance(results[0], list):\n                return [value for sublist in results for value in sublist]\n            return results\n        else:\n            value = self.add_model(\n                input, output_type, *args, **kwargs)\n            return run(value)'), Function(name='make_metric', code='def make_metric(\n        self, input: Type, metric_type: type, fit: bool = True, higher_is_better=True\n    ):\n        new_operation = self.current_function.add_operation(\n            MetricOperation(input, metric_type)\n        )\n\n        return new_operation'), Function(name='type_to_dict', code='def type_to_dict(type):\n    if issubclass(type, BaseSpecification):\n        return json.loads(type.schema_json())\n\n    return str(type)'), Function(name='__init__', code='def __init__(self, output_value):\n        super().__init__(get_type(output_value))\n        self._output_value = output_value'), Function(name='value_to_dict', code='def value_to_dict(input_value):\n    if isinstance(input_value, Value):\n        # type Value is e.g. a return value of calling llm()\n        return {\n            "index": input_value._index,\n            "type": type_to_dict(input_value._type),\n        }\n\n    return {\n        "data": rewrite_dict_data(input_value),\n        "type": rewrite_dict_type(input_value),\n    }'), Function(name='Context', code='def Context(description: str):\n    return Field(description=description)'), Function(name='powerml_run_program', code='@tenacity.retry(stop=tenacity.stop_after_attempt(3))\ndef powerml_run_program(params, url, key):\n    headers = {\n        \'Content-Type\': \'application/json\',\n        \'Authorization\': \'Bearer \' + key,\n    }\n    response = requests.post(\n        url=url + "/v1/run_llama_program",\n        headers=headers,\n        json=params)\n    if response.status_code != 200:\n        try:\n            description = response.json()\n        except BaseException:\n            description = response.status_code\n        finally:\n            print(f"API error {description}. Retrying...")\n            raise Exception(f"API error {description}")\n    return response'), Function(name='__getattribute__', code='def __getattribute__(self, name):\n        if name.find("_") == 0:\n            if name != "_value":\n                return super().__getattribute__(name)\n\n        # fix access to private fields\n        members = inspect.getmembers(Type)\n        for member_name, member in members:\n            if member_name == "__dict__":\n                value = member["_value"].__get__(self)\n\n        if name == "_value":\n            return value\n\n        if name in self.__dict__:\n            return value._get_field(name)\n\n        return super().__getattribute__(name)'), Function(name='__str__', code='def __str__(self):\n        if self._data is None:\n            raise Exception(\n                "Value Access Error: must compute value before acessing")\n\n        return str(self._data)'), Function(name='__gt__', code='def __gt__(self, other):\n        if self._data is None:\n            raise Exception(\n                "Value Access Error: must compute value before acessing")\n\n        if isinstance(other, Value):\n            other = other._get_data()\n\n        return self._data > other'), Function(name='home_yaml_config', code='def home_yaml_config():\n    home = os.path.expanduser("~")\n    home_config_path = os.path.join(home, ".powerml/configure_llama.yaml")\n    if os.path.exists(home_config_path):\n        yaml_config = config.config_from_yaml(\n            home_config_path, read_from_file=True)\n    else:\n        yaml_config = config.config_from_dict({})\n    return yaml_config'), Function(name='__init__', code="def __init__(self, *args, **kwargs):\n        if any_values(args, kwargs):\n            unvalidated = super().construct(*args, **kwargs)\n            object.__setattr__(self, '__dict__', unvalidated.__dict__)\n            object.__setattr__(self, '__fields_set__', unvalidated.__fields_set__)\n        else:\n            super().__init__(*args, **kwargs)\n\n        self._value = Value(type(self), data=self)"), Function(name='sample', code="def sample(self, input, output_type, n=1, max_similarity=0.99, *args, **kwargs):\n        input_value = input\n        if self.model_name is not None:\n            kwargs['model_name'] = self.model_name\n        new_operations = []\n        cache_len = 5  # NOTE: should use actual cache length\n        max_iter = cache_len\n        temperature = 0.7  # NOTE: should use actual random temperature\n        random = True\n        attributes = [attribute for attribute,\n                      field in output_type.__fields__.items() if field.type_ == str]\n        attribute_embeddings = {attribute: [None, []]\n                                for attribute in attributes}\n        for _ in range(n):\n            new_operation = None\n            attribute_embeddings = {attribute: [\n                None, embeddings[1]] for attribute, embeddings in attribute_embeddings.items()}\n            j = 0\n            while any([fuzzy_is_duplicate(attribute_embedding, attribute_reference_embeddings, max_similarity)\n                       for attribute_embedding, attribute_reference_embeddings in attribute_embeddings.values()]) or fuzzy_is_duplicate(\n                list(attribute_embeddings.values())[0][0], [\n                    attribute_embedding for attribute_embedding, _ in list(attribute_embeddings.values())[1:]], max_similarity):\n                if j == max_iter:\n                    max_iter += cache_len\n                    random = False\n                    temperature += 0.1  # NOTE: this could be set differently\n                new_operation = self.current_function.add_operation(\n                    LlamaOperation(input_value, output_type, random=random,\n                                   temperature=temperature, *args, **kwargs)\n                )\n                new_operation = run(new_operation)\n                for attribute in attributes:\n                    attribute_embeddings[attribute][0] = query_run_embedding(\n                        getattr(new_operation, attribute))\n                j += 1\n            if j == max_iter:\n                continue\n            for attribute_embedding, attribute_reference_embeddings in attribute_embeddings.values():\n                attribute_reference_embeddings.append(attribute_embedding)\n            if not new_operation:\n                new_operation = self.current_function.add_operation(\n                    LlamaOperation(input_value, output_type, random=random,\n                                   temperature=temperature, *args, **kwargs)\n                )\n                new_operation = run(new_operation)\n            new_operations.append(new_operation)\n\n        return new_operations"), Function(name='_get_input', code='def _get_input(self, *args, **kwargs):\n        # TODO: support more than one input LLM arg\n\n        if len(args) > 0:\n            return args[0]\n\n        return next(iter(kwargs.values()))'), Function(name='rewrite_dict_data', code='def rewrite_dict_data(input_value):\n    if isinstance(input_value, Value):\n        assert False\n        return input_value._index\n    elif isinstance(input_value, BaseSpecification):\n        input_value = input_value.dict()\n        for key, value in input_value.items():\n            input_value[key] = rewrite_dict_data(value)\n\n    return input_value'), Function(name='get_url_and_key', code='def get_url_and_key():\n    cfg = get_config()\n    environment = os.environ.get("LLAMA_ENVIRONMENT")\n    if environment == "LOCAL":\n        key = \'test_token\'\n        if \'local\' in cfg:\n            if \'key\' in cfg["local"]:\n                key = cfg[\'local.key\']\n        url = "http://localhost:5001"\n    elif environment == "STAGING":\n        key = cfg[\'staging.key\']\n        url = \'https://api.staging.powerml.co\'\n    else:\n        key = cfg[\'production.key\']\n        url = \'https://api.powerml.co\'\n    return (key, url)'), Function(name='_to_dict', code='def _to_dict(self):\n        input_value = type_to_dict(self._input_value)\n        return {\n            "name": "GetElementOperation",\n            "input_value": input_value,\n            "type": type_to_dict(self._type),\n            "element_index": self._element_index,\n        }'), Function(name='run_all', code='def gen_multiple_values(values: List[Value]):\n    # Assume that all values have the same program\n    # TODO: fix a bug where the first value in the list is not the right value due to improve.\n    program = values[0]._function.program.to_dict()\n    params = {\n        "program": program,\n        "requested_values": [v._index for v in values],\n    }\n    response = query_run_program(params)\n    response.raise_for_status()\n    for i, v in enumerate(values):\n        index = v._index\n        response_val = response.json()[str(index)]\n        if isinstance(response_val["data"], list):\n            v._data = []\n            for d in response_val["data"]:\n                v._data.append(v._type.parse_obj(d))\n        else:\n            v._data = v._type.parse_obj(response_val["data"])\n    # Update cache once\n    values[0]._function.program.builder.value_cache.update(response.json())\n    return [value._data for value in values]'), Function(name='add_metric', code='def add_metric(self, metric):\n        self.add_operation(metric)'), Function(name='add_call', code='def add_call(self, function, input_value, output_value):\n        new_operation = self.current_function.add_operation(\n            CallOperation(function, input_value, output_value)\n        )\n\n        result = new_operation\n\n        if isinstance(output_value, tuple):\n            result = []\n\n            for index, value in enumerate(output_value):\n                result.append(\n                    self.current_function.add_operation(\n                        GetElementOperation(new_operation, value.type, index)\n                    )\n                )\n\n        return result'), Function(name='run', code='def gen_value(value: Value):\n    value._compute_value()\n    return value._data'), Function(name='__repr__', code='def __repr__(self):\n        return str(self)'), Function(name='_get_attribute_raw', code='def _get_attribute_raw(self, name):\n        return getattr(self, name)'), Function(name='__init__', code='def __init__(self, on, to, good_examples=[], bad_examples=[], temperature=0.0):\n        super().__init__(FeedbackType)\n        self._on = on\n        self._to = to\n        self._good_examples = good_examples\n        self._bad_examples = bad_examples\n        self._temperature = temperature'), Function(name='get_config', code='def get_config():\n    global global_config\n    assert global_config is not None\n    return global_config'), Function(name='_get_field', code='def _get_field(self, name):\n        if self._data is None:\n            raise Exception(\n                "Value Access Error: must compute value before acessing")\n\n        return self._data._get_attribute_raw(name)'), Function(name='__init__', code='def __init__(self, input_value, type, element_index):\n        super().__init__(type)\n        self._element_index = element_index\n        self._input_value = input_value'), Function(name='parallel', code='def parallel(self, function):\n        return self.function(function=function)'), Function(name='__init__', code='def __init__(self, type, input_value_index):\n        super().__init__(type)\n        self._input_value_index = input_value_index'), Function(name='__call__', code='def __call__(self, *args, **kwargs):\n        input_value = self._get_input(*args, **kwargs)\n        return self.builder.add_call(self.function, input_value, self.output_value)'), Function(name='__getattribute__', code='def __getattribute__(self, name):\n        if name.find("_") == 0:\n            return super().__getattribute__(name)\n\n        return self._function.program.builder.get_field(self, name)'), Function(name='any_values', code='def any_values(args, kwargs):\n    for arg in args:\n        if isinstance(arg, Value):\n            return True\n\n    for arg in kwargs.values():\n        if isinstance(arg, Value):\n            return True\n\n    return False'), Function(name='__float__', code='def __float__(self):\n        if self._data is None:\n            raise Exception(\n                "Value Access Error: must compute value before acessing")\n\n        return float(self._data)'), Function(name='__init__', code='def __init__(self, input_value: Value, output_type: type, field_name: str):\n        super().__init__(output_type)\n        self._field_name = field_name\n        self._input_value = input_value'), Function(name='__init__', code='def __init__(self, builder: Builder, function: Function, output_value: Type):\n        self.output_value = output_value\n        self.builder = builder\n        self.function = function'), Function(name='_get_data', code='def _get_data(self):\n        if self._data is None:\n            raise Exception(\n                "Value Access Error: must compute value before acessing")\n\n        return self._data'), Function(name='__init__', code='def __init__(self, a, b):\n        self.input = Match(a=a, b=b)\n\n        print("match", self.input)'), Function(name='_to_dict', code='def _to_dict(self):\n        input_value = value_to_dict(self._input_value)\n        return {\n            "name": "LlamaOperation",\n            "input_value": input_value,\n            "type": json.loads(self._type.schema_json()),\n            "args": self._args\n        }'), Function(name='add_data', code='def add_data(self, examples):\n        if isinstance(examples, list):\n            self.examples.extend(examples)\n        else:\n            # singleton\n            self.examples.append(examples)'), Function(name='powerml_run_embedding', code='def powerml_run_embedding(params, url, key):\n    headers = {\n        \'Content-Type\': \'application/json\',\n        \'Authorization\': \'Bearer \' + key,\n    }\n    response = requests.post(\n        url=url + "/v1/embedding",\n        headers=headers,\n        json=params)\n    if response.status_code != 200:\n        try:\n            description = response.json()\n            print(description)\n        except BaseException:\n            description = response.status_code\n        finally:\n            raise Exception(f"API error {description}")\n    return response'), Function(name='to_dict', code='def to_dict(self):\n        dict_object = {\n            "name": self.name,\n            "operations": [operation._to_dict() for operation in self.operations]\n        }\n        return dict_object'), Function(name='setup_config', code='def setup_config(dictionary={}):\n    global global_config\n    global_config = config.ConfigurationSet(\n        config.config_from_dict(dictionary),\n        config.config_from_env(\n            prefix="POWERML", separator="__", lowercase_keys=True),\n        home_yaml_config(),\n    )\n    return global_config'), Function(name='json_loads', code='def loads(s, *, cls=None, object_hook=None, parse_float=None,\n        parse_int=None, parse_constant=None, object_pairs_hook=None, **kw):\n    """Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance\n    containing a JSON document) to a Python object.\n\n    ``object_hook`` is an optional function that will be called with the\n    result of any object literal decode (a ``dict``). The return value of\n    ``object_hook`` will be used instead of the ``dict``. This feature\n    can be used to implement custom decoders (e.g. JSON-RPC class hinting).\n\n    ``object_pairs_hook`` is an optional function that will be called with the\n    result of any object literal decoded with an ordered list of pairs.  The\n    return value of ``object_pairs_hook`` will be used instead of the ``dict``.\n    This feature can be used to implement custom decoders.  If ``object_hook``\n    is also defined, the ``object_pairs_hook`` takes priority.\n\n    ``parse_float``, if specified, will be called with the string\n    of every JSON float to be decoded. By default this is equivalent to\n    float(num_str). This can be used to use another datatype or parser\n    for JSON floats (e.g. decimal.Decimal).\n\n    ``parse_int``, if specified, will be called with the string\n    of every JSON int to be decoded. By default this is equivalent to\n    int(num_str). This can be used to use another datatype or parser\n    for JSON integers (e.g. float).\n\n    ``parse_constant``, if specified, will be called with one of the\n    following strings: -Infinity, Infinity, NaN.\n    This can be used to raise an exception if invalid JSON numbers\n    are encountered.\n\n    To use a custom ``JSONDecoder`` subclass, specify it with the ``cls``\n    kwarg; otherwise ``JSONDecoder`` is used.\n    """\n    if isinstance(s, str):\n        if s.startswith(\'\\ufeff\'):\n            raise JSONDecodeError("Unexpected UTF-8 BOM (decode using utf-8-sig)",\n                                  s, 0)\n    else:\n        if not isinstance(s, (bytes, bytearray)):\n            raise TypeError(f\'the JSON object must be str, bytes or bytearray, \'\n                            f\'not {s.__class__.__name__}\')\n        s = s.decode(detect_encoding(s), \'surrogatepass\')\n\n    if (cls is None and object_hook is None and\n            parse_int is None and parse_float is None and\n            parse_constant is None and object_pairs_hook is None and not kw):\n        return _default_decoder.decode(s)\n    if cls is None:\n        cls = JSONDecoder\n    if object_hook is not None:\n        kw[\'object_hook\'] = object_hook\n    if object_pairs_hook is not None:\n        kw[\'object_pairs_hook\'] = object_pairs_hook\n    if parse_float is not None:\n        kw[\'parse_float\'] = parse_float\n    if parse_int is not None:\n        kw[\'parse_int\'] = parse_int\n    if parse_constant is not None:\n        kw[\'parse_constant\'] = parse_constant\n    return cls(**kw).decode(s)'), Function(name='get_type', code='def get_type(output_value):\n    if isinstance(output_value, tuple):\n        return (value.type for value in output_value)\n\n    return output_value._type'), Function(name='fit', code='def fit(self, examples=[]):\n        self.add_data(examples)'), Function(name='__int__', code='def __int__(self):\n        if self._data is None:\n            raise Exception(\n                "Value Access Error: must compute value before acessing")\n\n        return int(self._data)'), Function(name='__init__', code='def __init__(self, name, model_name=None, config={}):\n        self.program = Program(self, name)\n        self.current_function = self.program.main\n        self.value_cache = {}\n        self.model_name = model_name\n        edit_config(config)'), Function(name='_to_dict', code='def _to_dict(self):\n        input_value = value_to_dict(self._input_value)\n        return {\n            "name": "GetFieldOperation",\n            "input_value": input_value,\n            "type": type_to_dict(self._type),\n            "field_name": self._field_name,\n        }'), Function(name='_to_dict', code='def _to_dict(self):\n        input_value_list = []\n        for val in self._input_value:\n            input_value = value_to_dict(val)\n            input_value_list.append(input_value)\n        return {\n            "name": "BatchLlamaOperation",\n            "input_value": input_value_list,\n            "type": json.loads(self._type.schema_json()),\n            "args": self._args\n        }'), Function(name='_get_attribute_raw', code='def _get_attribute_raw(self, name):\n        return super().__getattribute__(name)'), Function(name='to_dict', code='def to_dict(self):\n        input_value = value_to_dict(self._input_value)\n\n        return {\n            "name": "MetricOperation",\n            "input_value": input_value,\n            "type": json.loads(self._type.schema_json()),\n        }'), Function(name='add_model', code="def add_model(self, input, output_type, *args, **kwargs):\n        if isinstance(input, list):\n            def partition(l, n):\n                for i in range(0, len(l), n):\n                    yield l[i:i + n]\n            chunks = list(partition(input, 20))\n            if self.model_name is not None:\n                kwargs['model_name'] = self.model_name\n            operations = []\n            for chunk in chunks:\n                new_operation = self.current_function.add_operation(\n                    BatchLlamaOperation(chunk, output_type, *args, **kwargs)\n                )\n                operations.append(new_operation)\n            return operations\n        else:\n            if self.model_name is not None:\n                kwargs['model_name'] = self.model_name\n            new_operation = self.current_function.add_operation(\n                LlamaOperation(input, output_type, *args, **kwargs)\n            )\n            return new_operation"), Function(name='edit_config', code='def edit_config(dictionary={}):\n    global global_config\n    if global_config is None:\n        global_config = setup_config(dictionary)\n    else:\n        global_config.update(\n            config.config_from_dict(dictionary))\n    return global_config'), Function(name='_to_dict', code='def _to_dict(self):\n        return {\n            "name": "GetArgumentOperation",\n            "input_value": {\n                "index": self._input_value_index,\n                "type": type_to_dict(self._type)\n            }\n        }'), Function(name='query_run_embedding', code="def query_run_embedding(prompt, config={}):\n    params = {\n        'prompt': prompt\n    }\n    edit_config(config)\n    key, url = get_url_and_key()\n    resp = powerml_run_embedding(params, url, key)\n    return np.reshape(resp.json()['embedding'], (1, -1))"), Function(name='add_operation', code='def add_operation(self, operation):\n        operation._index = len(self.operations)\n        operation._function = self\n\n        self.operations.append(operation)\n\n        return operation'), Function(name='json_dumps', code='def dumps(obj, *, skipkeys=False, ensure_ascii=True, check_circular=True,\n        allow_nan=True, cls=None, indent=None, separators=None,\n        default=None, sort_keys=False, **kw):\n    """Serialize ``obj`` to a JSON formatted ``str``.\n\n    If ``skipkeys`` is true then ``dict`` keys that are not basic types\n    (``str``, ``int``, ``float``, ``bool``, ``None``) will be skipped\n    instead of raising a ``TypeError``.\n\n    If ``ensure_ascii`` is false, then the return value can contain non-ASCII\n    characters if they appear in strings contained in ``obj``. Otherwise, all\n    such characters are escaped in JSON strings.\n\n    If ``check_circular`` is false, then the circular reference check\n    for container types will be skipped and a circular reference will\n    result in an ``RecursionError`` (or worse).\n\n    If ``allow_nan`` is false, then it will be a ``ValueError`` to\n    serialize out of range ``float`` values (``nan``, ``inf``, ``-inf``) in\n    strict compliance of the JSON specification, instead of using the\n    JavaScript equivalents (``NaN``, ``Infinity``, ``-Infinity``).\n\n    If ``indent`` is a non-negative integer, then JSON array elements and\n    object members will be pretty-printed with that indent level. An indent\n    level of 0 will only insert newlines. ``None`` is the most compact\n    representation.\n\n    If specified, ``separators`` should be an ``(item_separator, key_separator)``\n    tuple.  The default is ``(\', \', \': \')`` if *indent* is ``None`` and\n    ``(\',\', \': \')`` otherwise.  To get the most compact JSON representation,\n    you should specify ``(\',\', \':\')`` to eliminate whitespace.\n\n    ``default(obj)`` is a function that should return a serializable version\n    of obj or raise TypeError. The default simply raises TypeError.\n\n    If *sort_keys* is true (default: ``False``), then the output of\n    dictionaries will be sorted by key.\n\n    To use a custom ``JSONEncoder`` subclass (e.g. one that overrides the\n    ``.default()`` method to serialize additional types), specify it with\n    the ``cls`` kwarg; otherwise ``JSONEncoder`` is used.\n\n    """\n    # cached encoder\n    if (not skipkeys and ensure_ascii and\n        check_circular and allow_nan and\n        cls is None and indent is None and separators is None and\n        default is None and not sort_keys and not kw):\n        return _default_encoder.encode(obj)\n    if cls is None:\n        cls = JSONEncoder\n    return cls(\n        skipkeys=skipkeys, ensure_ascii=ensure_ascii,\n        check_circular=check_circular, allow_nan=allow_nan, indent=indent,\n        separators=separators, default=default, sort_keys=sort_keys,\n        **kw).encode(obj)'), Function(name='__init__', code='def __init__(self, input_value, output_type, *args, **kwargs):\n        super().__init__(output_type)\n        self._input_value = input_value\n        self._args = {\n            "args": args,\n            "kwargs": kwargs\n        }'), Function(name='get_type', code='def get_type(output_value):\n    if isinstance(output_value, tuple):\n        return (value._type for value in output_value)\n\n    return output_value._type'), Function(name='__init__', code='def __init__(self, target_function, input_value, output_value):\n        super().__init__(get_type(output_value))\n        self._target_function = target_function\n        self._input_value = input_value'), Function(name='_to_dict', code='def _to_dict(self):\n        if isinstance(self._output_value, tuple):\n            output_value = [value_to_dict(value) for value in self._output_value]\n        else:\n            output_value = value_to_dict(self._output_value)\n\n        return {\n            "name": "ReturnOperation",\n            "output_value": output_value,\n        }'), Function(name='to_dict', code='def to_dict(self):\n        examples = []\n        for example in self.examples:\n            if isinstance(example, list): \n                # Related information in a list together\n                examples_i = []\n                for example_i in example:\n                    examples_i.append(value_to_dict(example_i))\n                examples.append(examples_i)\n            else:\n                # Singleton type\n                examples.append(value_to_dict(example))\n        dict_object = {\n            "name": self.name,\n            "functions": {\n                name: function.to_dict() for name, function in self.functions.items()\n            },\n            "examples": examples,\n        }\n        return dict_object'), Function(name='__getitem__', code='def __getitem__(self, name):\n        return getattr(self, name)')]
+
+
 ```
 
 </details>
 
+<details>
+  <summary>Code for <code>format_docs()</code> </summary>
+
+```python
+SEPARATOR = "\n\n"
+def format_docs(question, answer):
+    docstring = f"Function:{SEPARATOR}{question}{SEPARATOR}"
+    docstring += f"Inputs:{SEPARATOR}"
+    for input in answer.inputs:
+        docstring += f"{input}{SEPARATOR}"
+    docstring += f"Outputs:{SEPARATOR}"
+    for output in answer.outputs:
+        docstring += f"{output}{SEPARATOR}"
+    docstring += f"Description:{SEPARATOR}{answer.description}"
+    return docstring
+```
+
+</details>
 _Output:_
 
-```sh
-> Ad copy after adding data:
-  title='🥢 Delicious Asian Meals at Home with Omsom - Key Product Feature 🥢 | Omsom'
-  description="Get delicious Asian meals at home with Omsom's key product feature. Enjoy the flavors of Asia without going to a restaurant. 🥢 | Omsom"
-  keywords=[
-    'Asian meals',
-    'Key product feature',
-    'Asian sauces',
-    'Aromatics',
-    'Home-cooked seasonings',
-    'Meal packs',
-    'Omsom',
-  ]
-```
+````python
+Function:
+
+LLM.__init__
+
+Inputs:
+
+name (string)
+
+model_name (string, optional)
+
+config (dict, optional)
+
+Outputs:
+
+- program (Program)
+
+current_function (Function)
+
+value_cache (dict)
+
+model_name (str, optional)
+
+edit_config (function, optional)
+
+Description:
+
+The LLM.__init__ function initializes a LanguageModel object with a name, model_name, and optional configuration. It also creates a Program object and sets the current_function to the main function of the program. The value_cache is also initialized as a dictionary. The model_name is optional and can be set using the edit_config function.
+
+Relevant task information:
+
+name: __init__
+
+code:
+```python
+def __init__(self, name,
+```</s>
+````
+
+If you want to see how we generated an entire list of Function objects, that python code is available in a notebook here: [Question Answer in Google Colab](https://colab.research.google.com/drive/1Ymp7WT8ZZGFY-d0LeGoZZRQnD7j1ahWg?usp=sharing)
 
 ## More advanced training
 
