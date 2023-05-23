@@ -5,7 +5,7 @@ Adds data to the LLM.
 ```python
 llm.add_data(my_data)
 
-llm.add_data([my_data, my_other_data, ...]
+llm.add_data([my_data, my_other_data, ...])
 
 llm.add_data([[input_data, output_data], [more_input_data, more_output_data], ...])
 ```
