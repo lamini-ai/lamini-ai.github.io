@@ -59,3 +59,4 @@ nav:
           - get_job_results: LLM/get_job_results.md
           - cancel_job: LLM/cancel_job.md
           - sample: LLM/sample.md
+    - API: api.md
