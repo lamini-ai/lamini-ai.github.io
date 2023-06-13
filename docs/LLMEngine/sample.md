@@ -1,9 +1,10 @@
-# LLM.sample
+# LLMEngine.sample
 
 Generate a list of unique outputs.
 
 ```python
-job = LLM.sample(input, output_type, n, *args, **kwargs)
+llm = LLMEngine(id="example")
+job = llm.sample(input, output_type, n, *args, **kwargs)
 ```
 
 ## Parameters

@@ -38,10 +38,10 @@ Feeling new to coding? Don't worry, we've got you covered with our awesome Pytho
 To get started, simply import our API client and initialize it with your API key:
 
 ```python
-from llama import LLM
+from llama import LLMEngine
 
-llm = LLM(
-    name="marketing",
+llm = LLMEngine(
+    id="marketing",
     config={
         "production": {
             "key": "<YOUR-KEY-HERE>",

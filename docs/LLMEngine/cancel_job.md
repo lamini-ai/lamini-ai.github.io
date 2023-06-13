@@ -1,9 +1,10 @@
-# llama.LLM.cancel_job
+# llama.LLMEngine.cancel_job
 
 Cancel a job
 
 ```python
-LLM.cancel_job(job_id)
+llm = LLMEngine(id="example")
+llm.cancel_job(job_id)
 ```
 
 ## Parameters

@@ -1,13 +1,13 @@
-# llama.LLM.add_data
+# llama.LLMEngine.set_data
 
-Adds data to the LLM.
+Adds data to the LLMEngine.
 
 ```python
-llm.add_data(my_data)
+llm.set_data(my_data)
 
-llm.add_data([my_data, my_other_data, ...])
+llm.set_data([my_data, my_other_data, ...])
 
-llm.add_data([[input_data, output_data], [more_input_data, more_output_data], ...])
+llm.set_data([[input_data, output_data], [more_input_data, more_output_data], ...])
 ```
 
 ## Parameters
@@ -27,5 +27,5 @@ dog_speed = Speed(speed=30.0)
 
 my_data.append([dog_animal, dog_speed])
 
-llm.add_data(my_data)
+llm.set_data(my_data)
 ```

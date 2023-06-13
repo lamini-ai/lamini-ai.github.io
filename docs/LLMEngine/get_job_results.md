@@ -1,9 +1,10 @@
-# llama.LLM.get_job_results
+# llama.LLMEngine.get_job_results
 
 Get the job results
 
 ```python
-status = LLM.get_job_results(job_id, output_type)
+llm = LLMEngine(id="example")
+status = llm.get_job_results(job_id, output_type)
 ```
 
 ## Parameters

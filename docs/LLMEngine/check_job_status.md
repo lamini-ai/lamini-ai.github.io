@@ -1,9 +1,10 @@
-# llama.LLM.check_job_status
+# llama.LLMEngine.check_job_status
 
 Check the status of a job
 
 ```python
-status = LLM.check_job_status(job_id)
+llm = LLMEngine(id="example")
+status = llm.check_job_status(job_id)
 ```
 
 ## Parameters

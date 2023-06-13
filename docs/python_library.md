@@ -6,7 +6,7 @@ Lamini is the tribe of which llamas are a part. You will be importing the `llama
 
 ## Input and output types
 
-First, you want to construct some data types: (1) input types as arguments into the LLM and (2) output types as return values from the LLM.
+First, you want to construct some data types: (1) input types as arguments into the LLM and (2) output types as return values from the LLMEngine.
 
 You can use the `Type` and `Context` classes in the library create them.
 
@@ -24,19 +24,18 @@ llama_animal = Animal(name="Larry", n_legs=4)
 
 Each `Type` requires at least one attribute, such as `name` and `n_legs` here. They can be anything you would like. Be sure to add a `Context` field to each attribute, with a natural language description of the attribute. That is required to tell the model what you mean by each attribute.
 
-Note: to play with different types in a user interface, you can log in at [https://lamini.ai](https://lamini.ai) and find a playground to run LLMs with different types. 
-
+Note: to play with different types in a user interface, you can log in at [https://lamini.ai](https://lamini.ai) and find a playground to run LLMs with different types.
 
 ## Running the LLM
 
 Next, you want to instantiate your LLM engine with `LLM`.
 
 ```python
-llm = LLM(name="animal_stories")
+llm = LLMEngine(id="animal_stories")
 
 # If you want to use a different base model or add your config options here
-llm = LLM(
-    name="my_llm_name",
+llm = LLMEngine(
+    id="my_llm_name",
     model_name="chat-gpt",
     config={
         "production": {
@@ -46,7 +45,7 @@ llm = LLM(
 )
 ```
 
-Now, you can now run your LLM.
+Now, you can now run your LLMEngine.
 
 ```python
 # Define an output type
@@ -82,7 +81,7 @@ my_data.append([dog_animal, dog_speed])
 Now add all that data to your LLM:
 
 ```python
-llm.add_data(my_data)
+llm.set_data(my_data)
 ```
 
 With the same call to the LLM engine, it should now produce a story that is more aligned with your data.
@@ -125,9 +124,9 @@ my_data.append([dog_animal, dog_speed])
 Instantiate the LLM engine, add data, add improvements (as many as you like), and run the LLM engine.
 
 ```python
-llm = LLM(name="animal_stories")
+llm = LLMEngine(id="animal_stories")
 
-llm.add_data(my_data)
+llm.set_data(my_data)
 llm.improve(on="story", to="specify the number of legs in a subtle way")
 
 story = llm(llama_animal, output_type=Story)

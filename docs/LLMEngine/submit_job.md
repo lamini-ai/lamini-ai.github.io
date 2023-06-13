@@ -1,9 +1,10 @@
-# llama.LLM.submit_job
+# llama.LLMEngine.submit_job
 
 Submits a job for processing.
 
 ```python
-job = LLM.submit_job(input, output_type, *args, **kwargs)
+llm = LLMEngine(id="example")
+job = llm.submit_job(input, output_type, *args, **kwargs)
 ```
 
 ## Parameters

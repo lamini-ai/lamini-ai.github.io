@@ -49,14 +49,15 @@ nav:
     - Batching: batching.md
     - Error Handling: error_handling.md
     - Advanced: advanced.md
-    - LLM:
-          - __init__: LLM/__init__.md
-          - __call__: LLM/__call__.md
-          - add_data: LLM/add_data.md
-          - improve: LLM/improve.md
-          - submit_job: LLM/submit_job.md
-          - check_job_status: LLM/check_job_status.md
-          - get_job_results: LLM/get_job_results.md
-          - cancel_job: LLM/cancel_job.md
-          - sample: LLM/sample.md
-    - API: api.md
+    - LLMEngine:
+          - __init__: LLMEngine/__init__.md
+          - __call__: LLMEngine/__call__.md
+          - set_data: LLMEngine/set_data.md
+          - improve: LLMEngine/improve.md
+          - submit_job: LLMEngine/submit_job.md
+          - check_job_status: LLMEngine/check_job_status.md
+          - get_job_results: LLMEngine/get_job_results.md
+          - cancel_job: LLMEngine/cancel_job.md
+          - sample: LLMEngine/sample.md
+    - API:
+          - completions: API/completions.md

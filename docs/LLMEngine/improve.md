@@ -1,4 +1,4 @@
-# llama.LLM.improve
+# llama.LLMEngine.improve
 
 Improves the LLM to produce better output, following your natural language criteria.
 

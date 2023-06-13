@@ -1,8 +1,9 @@
-# llama.LLM.\_\_call\_\_
+# llama.LLMEngine.\_\_call\_\_
 
 Runs the instantiated LLM engine.
 
 ```
+llm = LLMEngine(id="example")
 llm(input, output_type, input_type)
 ```
 
@@ -19,7 +20,7 @@ output: `<class 'llama.Type>` - output of the LLM, based on `input`, in the type
 ## Example
 
 ```python
-llm = LLM(name="my_llm_name")
+llm = LLMEngine(id="my_llm_name")
 
 my_output = llm(my_input, output_type=MyOutputType)
 ```

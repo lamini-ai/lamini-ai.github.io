@@ -5,7 +5,7 @@ is the best way to do so. This interface is not constrained by our API timeout.
 Results are made available at set intervals as portions of the job are completed.
 
 ```
-llm = LLM(name="batch_example")
+llm = LLMEngine(id="batch_example")
 ```
 
 ## Submitting a job
