@@ -44,7 +44,9 @@ markdown_extensions:
 nav:
     - Getting Started: index.md
     - Authentication: auth.md
-    - Question Answer Model: example.md
+    - Examples:
+          - Question Answer Model: Examples/playground_example.md
+          - Code Guru Model: Examples/code_guru.md
     - Python Library: python_library.md
     - Batching: batching.md
     - Error Handling: error_handling.md

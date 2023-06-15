@@ -1,4 +1,4 @@
-# Question Answer Model
+# Code Guru Model
 
 In this walkthrough, we'll build a working question answer model to demonstrate how one might use Lamini to gain quick insight into a library of documentation. Here, we've specialized this walkthrough to target our own python library.
 
@@ -7,7 +7,7 @@ In this walkthrough, we'll build a working question answer model to demonstrate 
 ```python
 from llama import LLMEngine
 
-llm = LLMEngine(id="QA")
+llm = LLMEngine(id="code_QA")
 ```
 
 ## Define the LLM interface
@@ -155,15 +155,3 @@ code:
 def __init__(self, name,
 ```</s>
 ````
-
-If you want to see how we generated an entire list of Function objects, that python code is available in a notebook here: [Question Answer in Google Colab](https://colab.research.google.com/drive/1Ymp7WT8ZZGFY-d0LeGoZZRQnD7j1ahWg?usp=sharing)
-
-## More advanced training
-
-Coming soon to the docs :)
-
-## Additional examples in public notebooks
-
--   [Marketing Copy Generation in Google Colab](https://colab.research.google.com/drive/1Ij5xATu0DDtQNimvhzxyP--ttPO-TFES)
-
--   [Tweet Generation in Google Colab](https://powerml.co/tweet)
