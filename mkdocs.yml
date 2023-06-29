@@ -1,58 +1,64 @@
 site_name: ""
 
 theme:
-    name: material
-    features:
-        - content.code.copy
-        - navigation.instant
-        - navigation.tracking
-    logo: assets/logo.png
-    palette:
-        # Palette toggle for automatic mode
-        - media: "(prefers-color-scheme)"
-          toggle:
-              icon: material/brightness-auto
-              name: Switch to light mode
+  name: material
+  features:
+    - content.code.copy
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+  logo: assets/logo.png
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
 
-        # Palette toggle for light mode
-        - media: "(prefers-color-scheme: light)"
-          scheme: default
-          toggle:
-              icon: material/brightness-7
-              name: Switch to dark mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
 
-        # Palette toggle for dark mode
-        - media: "(prefers-color-scheme: dark)"
-          scheme: slate
-          toggle:
-              icon: material/brightness-4
-              name: Switch to system preference
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
 
 extra_css:
-    - stylesheets/extra.css
+  - stylesheets/extra.css
 
 markdown_extensions:
-    - pymdownx.highlight:
-          anchor_linenums: true
-          line_spans: __span
-          pygments_lang_class: true
-    - pymdownx.inlinehilite
-    - pymdownx.snippets
-    - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 # Page tree
 nav:
-    - Getting Started: index.md
-    - Authentication: auth.md
-    - Examples:
-          - Question Answer Model: Examples/playground_example.md
-          - Code Guru Model: Examples/code_guru.md
-    - Python Library: python_library.md
-    - Batching: batching.md
-    - Error Handling: error_handling.md
-    - Filters: filters.md
-    - Advanced: advanced.md
-    - LLMEngine:
+  - Getting Started: index.md
+  - Authentication: auth.md
+  - Examples:
+      - Question Answer Model: Examples/playground_example.md
+      - Code Guru Model: Examples/code_guru.md
+  - Filters: filters.md
+  - API:
+      - Completions: API/completions.md
+      - Data: API/data.md
+  - Python Library:
+      - Usage: python_library.md
+      - Batched Completions: batching.md
+      - Error Handling: error_handling.md
+      - Advanced: advanced.md
+      - Filters: filters.md
+      - LLMEngine Class Docs:
           - __init__: LLMEngine/__init__.md
           - __call__: LLMEngine/__call__.md
           - set_data: LLMEngine/set_data.md
@@ -62,5 +68,3 @@ nav:
           - get_job_results: LLMEngine/get_job_results.md
           - cancel_job: LLMEngine/cancel_job.md
           - sample: LLMEngine/sample.md
-    - API:
-          - completions: API/completions.md
