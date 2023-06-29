@@ -1,4 +1,4 @@
-# Filters
+# Dataset Filters
 
 Clean your data with our dataset filters, or add your own custom ones! Here is an example of how to do so:
 

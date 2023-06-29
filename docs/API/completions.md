@@ -13,29 +13,29 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 
 ```json
 {
-    “id”: “APIExample”,
-    “model_name”: "openaccess-ai-collective/wizard-mega-13b",
-    “input_type”: {
-        “title”: “Question”,
-        “properties”: {
-            “question”: {
-                “description”: “A question”,
-                “type”: “string”
-            }
-        }
-    },
-    “output_type”: {
-        “title”: “Answer”,
-        “properties”: {
-            “answer”: {
-                “description”: “An answer to the question”,
-                “type”: “string”
-            }
-        }
-    },
-    “input_value”: {
-        “question”: “What’s the hottest day of the year?”
+  "id": "APIExample",
+  "model_name": "openaccess-ai-collective/wizard-mega-13b",
+  "input_type": {
+    "title": "Question",
+    "properties": {
+      "question": {
+        "description": "A question",
+        "type": "string"
+      }
     }
+  },
+  "output_type": {
+    "title": "Answer",
+    "properties": {
+      "answer": {
+        "description": "An answer to the question",
+        "type": "string"
+      }
+    }
+  },
+  "input_value": {
+    "question": "What’s the hottest day of the year?"
+  }
 }
 ```
 
@@ -46,11 +46,11 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 - `input_type: dict`: Type Schema of the input. Input type must be a dictionary with format
   ```
   {
-      “title”: <TYPE_NAME>,
-      “properties”: {
+      "title": <TYPE_NAME>,
+      "properties": {
           <FIELD_NAME>: {
-              “description”: <FIELD_DESCRIPTION>,
-              “type”: “string” | “integer” | “number” | “boolean”
+              "description": <FIELD_DESCRIPTION>,
+              "type": "string" | "integer" | "number" | "boolean"
           }, ...
       }
   }
@@ -59,7 +59,7 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 - `input_value: dict`: An Input Datapoint. Input value must be a dictionary with format
   ```
   {
-      <FIELD_NAME>: “Brainstorm 20 compelling headlines for a Facebook ad promoting the Best Business Financing Options for [Business Owners]. Format the output as a table.“,
+      <FIELD_NAME>: "Brainstorm 20 compelling headlines for a Facebook ad promoting the Best Business Financing Options for [Business Owners]. Format the output as a table.",
       ...
   }
   ```
@@ -74,7 +74,7 @@ The response will contain an answer to the provided question.
 
 ```json
 {
-    “answer”: “The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months.”
+  "answer": "The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months."
 }
 ```
 
@@ -84,31 +84,31 @@ The response will contain an answer to the provided question.
 
 ```bash
 curl --location ‘https://api.powerml.co/v1/lamini/completions’ \
---header ‘Authorization: Bearer <LAMINI_API_KEY>` \
+--header ‘Authorization: Bearer YOUR_TOKEN` \
 --header ‘Content-Type: application/json’ \
 --data ‘{
-    “id”: “LaminiTest”,
-    “model_name”: “text-davinci-003",
-    “input_type”: {
-        “title”: “Question”,
-        “properties”: {
-            “question”: {
-                “description”: “A question”,
-                “type”: “string”
+    "id": "LaminiTest",
+    "model_name": "text-davinci-003",
+    "input_type": {
+        "title": "Question",
+        "properties": {
+            "question": {
+                "description": "A question",
+                "type": "string"
             }
         }
     },
-    “output_type”: {
-        “title”: “Answer”,
-        “properties”: {
-            “answer”: {
-                “description”: “An answer to the question”,
-                “type”: “string”
+    "output_type": {
+        "title": "Answer",
+        "properties": {
+            "answer": {
+                "description": "An answer to the question",
+                "type": "string"
             }
         }
     },
-    “input_value”: {
-        “question”: “What’\’’s the hottest day of the year?”
+    "input_value": {
+        "question": "What’\’’s the hottest day of the year?"
     }
 }'
 ```
@@ -117,6 +117,6 @@ curl --location ‘https://api.powerml.co/v1/lamini/completions’ \
 
 ```json
 {
-    “answer”: “The hottest day of the year varies depending on location, but typically falls in the summer months.”
+  "answer": "The hottest day of the year varies depending on location, but typically falls in the summer months."
 }
 ```

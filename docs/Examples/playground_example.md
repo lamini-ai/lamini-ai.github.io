@@ -73,8 +73,8 @@ def get_documentation():
     It took OpenAI months with an incredible ML team to fine-tune and run RLHF on their base GPT-3 model that was available for years — creating what became ChatGPT. This training process is only accessible to large ML teams, often with PhDs in AI.
 
     Technical leaders at Fortune 500 companies have told us:
-    “Our team of 10 machine learning engineers hit the OpenAI fine-tuning API, but our model got worse — help!”
-    “I don’t know how to make the best use of my data — I’ve exhausted all the prompt magic we can summon from tutorials online.”
+    "Our team of 10 machine learning engineers hit the OpenAI fine-tuning API, but our model got worse — help!"
+    "I don’t know how to make the best use of my data — I’ve exhausted all the prompt magic we can summon from tutorials online."
 
     That’s why we’re building Lamini: to give every developer the superpowers that took the world from GPT-3 to ChatGPT.
     Rapidly train LLMs from any base model
