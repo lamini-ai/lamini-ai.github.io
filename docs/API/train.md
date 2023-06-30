@@ -1,6 +1,6 @@
 # POST `/v1/lamini/train`
 
-Use this API endpoint to submit a training job. This will train a model using the data you've provided through the `/v1/lamini/data` api, or through adding data to an `id` using the python package's [save_data api](/LLMEngine/save_data/).
+Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v1/lamini/data` api, or through adding data to an `id` using the python package's [save_data api](/LLMEngine/save_data/). The response will include a job id and the status of the job. You can monitor the job at https://app.lamini.ai/train.
 
 ### Request
 
@@ -25,10 +25,12 @@ Use this API endpoint to submit a training job. This will train a model using th
 
 ## Response:
 
+The response will include a job id and the status of the job. You can monitor the job at https://app.lamini.ai/train. There are a number of statuses possible, each representing a different stage in the training process.
+
 ```
 {
-    "job_id": ""
-    "status": ""
+    "job_id": "<JOB_ID>",
+    "status": "SCHEDULED" | "CREATED" | "LOADING DATA" | "TRAINING MODEL" | "EVALUATING MODEL" | "SAVING MODEL" | "COMPLETED" | "FAILED"
 }
 ```
 
@@ -50,6 +52,7 @@ curl --location 'https://api.powerml.co/v1/lamini/train' \
 
 ```json
 {
-  "dataset": 7587574322307826093
+  "job_id": "1512",
+  "status": "SCHEDULED"
 }
 ```
