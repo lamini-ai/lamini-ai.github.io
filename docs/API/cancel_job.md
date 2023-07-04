@@ -1,6 +1,6 @@
 # POST `/v1/lamini/train/jobs/{job_id}/cancel`
 
-Cancel a scheduled or running training job.
+Cancel a scheduled or running training job. This functionality is also accesible through the `train` tab at https://app.lamini.ai/train
 
 ## Request
 
