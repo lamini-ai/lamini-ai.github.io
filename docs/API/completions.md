@@ -34,7 +34,7 @@ This endpoint allows you to make a POST request to obtain a model completion. In
     }
   },
   "input_value": {
-    "question": "What’s the hottest day of the year?"
+    "question": "What is the hottest day of the year?"
   }
 }
 ```
@@ -83,10 +83,10 @@ The response will contain an answer to the provided question.
 ## Request
 
 ```bash
-curl --location ‘https://api.powerml.co/v1/lamini/completions’ \
---header ‘Authorization: Bearer YOUR_TOKEN` \
---header ‘Content-Type: application/json’ \
---data ‘{
+curl --location 'https://api.powerml.co/v1/lamini/completions' \
+--header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Content-Type: application/json' \
+--data '{
     "id": "LaminiTest",
     "model_name": "text-davinci-003",
     "input_type": {
@@ -108,7 +108,7 @@ curl --location ‘https://api.powerml.co/v1/lamini/completions’ \
         }
     },
     "input_value": {
-        "question": "What’\’’s the hottest day of the year?"
+        "question": "What is the hottest day of the year?"
     }
 }'
 ```
