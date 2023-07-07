@@ -52,7 +52,11 @@ nav:
   - REST API:
       - Completions: API/completions.md
       - Data: API/data.md
-    #   - Train: API/train.md
+      - Delete Data: API/delete_data.md
+      - Train: API/train.md
+      - Training Status: API/train_job_status.md
+      - Cancel Training: API/train_job_cancel.md
+      - Eval Results: API/eval_results.md
   - Python Library:
       - Usage: python_library.md
       - Batched Completions: batching.md
@@ -63,7 +67,7 @@ nav:
           - __init__: LLMEngine/__init__.md
           - __call__: LLMEngine/__call__.md
           - save_data: LLMEngine/save_data.md
-          # - train: LLMEngine/train.md
+          - train: LLMEngine/train.md
           - improve: LLMEngine/improve.md
           - submit_job: LLMEngine/submit_job.md
           - check_job_status: LLMEngine/check_job_status.md

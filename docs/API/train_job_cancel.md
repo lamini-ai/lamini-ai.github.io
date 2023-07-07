@@ -1,6 +1,6 @@
-# POST `/v1/lamini/train/jobs/{job_id}/cancel`
+# POST `/v1/lamini/train/jobs/{job_id}/eval`
 
-Cancel a scheduled or running training job. This functionality is also accesible through the `train` tab at https://app.lamini.ai/train
+Cancel a scheduled or running training job. You can also see these results by going to the `train` tab at [https://app.lamini.ai/train](https://app.lamini.ai/train)
 
 ## Request
 
@@ -26,12 +26,12 @@ The response will contain an answer to the provided question.
 
 # Example
 
-This example cancels the training job with the ID `440`. The request is authenticated using the `test_token` bearer token.
+This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
 
 ## Request
 
 ```bash
-curl --location --request POST 'https://api.powerml.co/v1/lamini/train/jobs/440/cancel' \
+curl --location --request POST 'https://api.powerml.co/v1/lamini/train/jobs/418/cancel' \
 --header 'Authorization: Bearer YOUR_TOKEN' \
 --header 'Content-Type: application/json'
 ```
@@ -40,6 +40,6 @@ curl --location --request POST 'https://api.powerml.co/v1/lamini/train/jobs/440/
 
 ```json
 {
-  "message": "cancelled 440"
+  "message": "cancelled 418"
 }
 ```

@@ -1,6 +1,6 @@
 # POST `/v1/lamini/train`
 
-Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v1/lamini/data` api, or through adding data to an `id` using the python package's [save_data api](/LLMEngine/save_data/). The response will include a job id and the status of the job. You can monitor the job at https://app.lamini.ai/train.
+Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v1/lamini/data` api, or through adding data to an `id` using the python package's [save_data api](/LLMEngine/save_data/). The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ### Request
 
@@ -20,12 +20,12 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 ## Parameters:
 
-- id (string): The `id` corresponding to the dataset you'd like to finetune with.
-- model_name (string): The base model you'd like to finetune.
+- id (string): The `id` corresponding to the dataset you'd like to train with.
+- model_name (string): The base model you'd like to train.
 
 ## Response:
 
-The response will include a job id and the status of the job. You can monitor the job at https://app.lamini.ai/train. There are a number of statuses possible, each representing a different stage in the training process.
+The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train). There are a number of statuses possible, each representing a different stage in the training process.
 
 ```
 {

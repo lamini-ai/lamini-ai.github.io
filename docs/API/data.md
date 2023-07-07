@@ -1,6 +1,6 @@
 # POST `/v1/lamini/data`
 
-Use this API endpoint to persist data for any model, finetuned or otherwise, based on the `id` provided.
+Use this API endpoint to persist data for any model, trained or otherwise, based on the `id` provided.
 When you query a model with the same `id`, we'll use that data if it's relevant to your query.
 When finetuning a model, we'll use all the relevant data provided.
 

@@ -41,8 +41,8 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 
 ## Parameters
 
-- `id: string`: An id which will allow you to iterate on finetuned models
-- `model_name: string`: The name of your base or finetuned model. This can be any openai or huggingface model name.
+- `id: string`: An id which will allow you to iterate on trained models
+- `model_name: string`: The name of your base or trained model. This can be any openai or huggingface model name.
 - `input_type: dict`: Type Schema of the input. Input type must be a dictionary with format
   ```
   {

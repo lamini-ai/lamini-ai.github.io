@@ -1,6 +1,6 @@
 # llama.LLMEngine.train
 
-Train a LLM. This function will submit a training job and continuously poll until the job is completed.
+Train a LLM. This function will submit a training job and continuously poll until the job is completed. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ```python
 llm = LLMEngine(id="example")
