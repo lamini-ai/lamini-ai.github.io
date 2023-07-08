@@ -4,22 +4,29 @@ Get the training evaluation results for a completed training job. You can also s
 
 ## Request
 
-- HTTP Method: `GET`
-- Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/eval`
-- Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
-- Parameters:
-  - `{job_id}` - The unique identifier of the completed training job.
+HTTP Method: `GET`
+
+Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/eval`
+
+Headers:
+
+- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Content-Type: application/json`
+
+Parameters:
+
+- `{job_id}` - The unique identifier of the completed training job.
 
 ## Response
 
 The response will be the evaluation results for a completed training job.
 
-- Success Status Code: 200
-- Body (JSON):
-  - `job_id` - ID of the training job
-  - `eval_results` - A dictionary of prompt to completions.
+Success Status Code: 200
+
+Body (JSON):
+
+- `job_id` - ID of the training job
+- `eval_results` - A dictionary of prompt to completions.
 
 # Example
 

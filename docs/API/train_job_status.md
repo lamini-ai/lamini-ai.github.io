@@ -4,24 +4,29 @@ Get the status of a training job. You can also see these results by going to the
 
 ## Request
 
-- HTTP Method: `GET`
-- Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}`
-- Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
-- Parameters:
-  - `{job_id}` - The unique identifier of the training job to be cancelled.
+HTTP Method: `GET`
+
+Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}`
+
+Headers:
+
+- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Content-Type: application/json`
+
+Parameters:
+
+- `{job_id}` - The unique identifier of the training job to be cancelled.
 
 ## Response
 
 The response will contain the job id, job status, job start time, and model name.
 
-- Success Status Code: 200
-- Body (JSON):
-  - `job_id`: The job id
-  - `status`: "SCHEDULED" | "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "CANCELED" | "FAILED"
-  - `start_time`: Start time of the object
-  - `model_name`: The finetuned model name, available after model is saved
+Body (JSON):
+
+- `job_id`: The job id
+- `status`: "SCHEDULED" | "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "CANCELED" | "FAILED"
+- `start_time`: Start time of the object
+- `model_name`: The finetuned model name, available after model is saved
 
 # Example
 

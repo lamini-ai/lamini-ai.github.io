@@ -4,14 +4,18 @@ Use this API endpoint to persist data for any model, trained or otherwise, based
 When you query a model with the same `id`, we'll use that data if it's relevant to your query.
 When finetuning a model, we'll use all the relevant data provided.
 
-### Request
+## Request
 
-- HTTP Method: POST
-- URL: `https://api.powerml.co/v1/lamini/data`
-- Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
-- Example Body (JSON):
+HTTP Method: POST
+
+URL: `https://api.powerml.co/v1/lamini/data`
+
+Headers:
+
+- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Content-Type: application/json`
+
+Example Body (JSON):
 
 ```json
 {
@@ -36,7 +40,7 @@ When finetuning a model, we'll use all the relevant data provided.
 }
 ```
 
-#### Parameters:
+## Parameters:
 
 - `model_name: string`: The name of your model
 - `data: list`: A list of datapoints available to the model all formatted in the same way. We expect the format to be as follows:
@@ -61,12 +65,11 @@ When finetuning a model, we'll use all the relevant data provided.
   }
   ```
 
-### Response
+## Response
 
 The response is the dataset ID.
 
-- Success Status Code: 200
-- Body (JSON):
+Body (JSON):
 
 ```json
 {
@@ -74,9 +77,9 @@ The response is the dataset ID.
 }
 ```
 
-### Example
+# Example
 
-#### Request
+## Request
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/data' \

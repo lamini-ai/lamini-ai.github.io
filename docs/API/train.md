@@ -2,7 +2,7 @@
 
 Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v1/lamini/data` api, or through adding data to an `id` using the python package's [save_data api](/LLMEngine/save_data/). The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
-### Request
+## Request
 
 - HTTP Method: POST
 - URL: `https://api.powerml.co/v1/lamini/train`
@@ -34,9 +34,9 @@ The response will include a job id and the status of the job. You can monitor th
 }
 ```
 
-### Example
+# Example
 
-#### Request
+## Request
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/train' \
@@ -48,7 +48,7 @@ curl --location 'https://api.powerml.co/v1/lamini/train' \
 }'
 ```
 
-#### Response
+## Response
 
 ```json
 {

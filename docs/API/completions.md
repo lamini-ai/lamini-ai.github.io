@@ -4,12 +4,16 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 
 ## Request
 
-- HTTP Method: POST
-- URL: `https://api.powerml.co/v1/lamini/completions`
-- Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
-- Example Body (JSON):
+HTTP Method: POST
+
+URL: `https://api.powerml.co/v1/lamini/completions`
+
+Headers:
+
+- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Content-Type: application/json`
+
+Example Body (JSON):
 
 ```json
 {
@@ -68,9 +72,9 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 
 The response will contain an answer to the provided question.
 
-- Success Status Code: 200
-- Body (JSON):
-  - Output will be formatted as specified by the `output_type` argument passed in above.
+Body (JSON):
+
+- Output will be formatted as specified by the `output_type` argument passed in above.
 
 ```json
 {

@@ -4,21 +4,26 @@ Cancel a scheduled or running training job. You can also see these results by go
 
 ## Request
 
-- HTTP Method: `POST`
-- Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/cancel`
-- Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
-- Parameters:
-  - `{job_id}` - The unique identifier of the training job to be cancelled.
+HTTP Method: `POST`
+
+Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/cancel`
+
+Headers:
+
+- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Content-Type: application/json`
+
+Parameters:
+
+- `{job_id}` - The unique identifier of the training job to be cancelled.
 
 ## Response
 
 The response will contain an answer to the provided question.
 
-- Success Status Code: 200
-- Body (JSON):
-  - `message` - A message describing whether the job was successfully cancelled or not
+Body (JSON):
+
+- `message` - A message describing whether the job was successfully cancelled or not
 
 ```json
 { "message": "cancelled {payload['job_id']}" }
