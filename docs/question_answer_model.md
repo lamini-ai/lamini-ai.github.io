@@ -1,68 +1,8 @@
-# Getting Started
-
-## Installation
-
-Lamini can be installed using pip, the package manager for Python. To install Lamini, open a command prompt and type:
-
-```sh
-pip install lamini
-```
-
-This will download and install the latest version of Lamini and its dependencies.
-
-Check if your installation was done correctly, by importing the LLM engine (called `llama`) in your python interpreter. Fun fact: Lamini is the tribe of which llamas are a part, so you can import the module `llama` to work with the LLM engine.
-
-```python
->> from llama import LLMEngine
-```
-
-## Setup your keys
-
-Go to [https://lamini.ai](https://lamini.ai). Log in to get your API key and purchase credits (under the Account tab).
-
-Create `~/.powerml/configure_llama.yaml` and put a key in it.
-
-```sh
-production:
-    key: "<YOUR-KEY-HERE>"
-```
-
-Another option is to pass in your production key to the config parameter of the `LLMEngine` class
-
-```python
-llm = LLMEngine(
-    id="example_llm",
-    config={"production.key": "<YOUR-KEY-HERE>"}
-    )
-```
-
-See the [Authentication](/auth) page for more advanced options.
-
-### Basic test
-
-Run the LLM engine with a basic test to see if installation and authentication were set up correctly.
-
-```python
-from llama import LLMEngine, Type, Context
-
-class Test(Type):
-    test_string: str = Context("just a test")
-
-llm = LLMEngine(id="my_test")
-
-test = Test(test_string="testing 123")
-llm(test, output_type=Test)
-```
-
-Now you're on your way to using the LLM engine on your specific use case!
-
-To play with different types in an interface, you can log in at [https://lamini.ai](https://lamini.ai) and use the playground there.
-
-## QuestionAnswerModel
+# QuestionAnswerModel
 
 The `QuestionAnswerModel` class is designed for running and training a question answering model. It provides methods to interact with the model and manage data loading and training.
 
-### Ask the Model a Question
+## Ask the Model a Question
 
 ```python
 from llama import QuestionAnswerModel
@@ -72,7 +12,7 @@ model = QuestionAnswerModel()
 model = model.get_answer("How can I add data to Lamini?")
 ```
 
-### Adding Data to a Model
+## Adding Data to a Model
 
 There are many ways to add data to the QuestionAnswerModel.
 
@@ -93,7 +33,7 @@ model.load_question_answer(data)
 
 Alternatively, QuestionAnswerModel provides several utility methods which will import similarly formatted data from jsonlines files, csv files, and pandas dataframes.
 
-### Training the Model
+## Training the Model
 
 After you've added data, you can now train a model. Once the training is complete, you can view the eval results.
 Training is done on Lamini servers and you can track the training job's progress at [https://app.lamini.ai/train](https://app.lamini.ai/train)
@@ -111,6 +51,113 @@ answer = model.get_answer("How can I add data to Lamini?")
 print(answer)
 ```
 
-## Try an example
+## Class Definition
 
-- Colab Link: [Lamini: Finetuning For Free](https://colab.research.google.com/drive/1QMeGzR9FnhNJJFmcHtm9RhFP3vrwIkFn?usp=sharing)
+```python
+class QuestionAnswerModel:
+    """A class for running and training a question answering model"""
+
+    def __init__(self, model_name: str = "EleutherAI/pythia-410m-deduped"):
+        """
+        Initializes a new instance of the QuestionAnswerModel.
+
+        Args:
+            model_name (str): The name of the question answering model to use. Default is "EleutherAI/pythia-410m-deduped".
+        """
+```
+
+### Methods Reference
+
+#### `get_answer(self, question: str) -> str`
+
+Get the answer to a single question.
+
+Args:
+
+- `question` (str): The question to be answered.
+
+Returns:
+
+- `answer` (str): The answer to the question.
+
+#### `get_answers(self, questions: List[str]) -> List[str]`
+
+Get answers to a batch of questions.
+
+Args:
+
+- `questions` (List[str]): A list of questions.
+
+Returns:
+
+- `answers` (List[str]): A list of answers corresponding to the input questions. The order of answers matches the order of questions.
+
+#### `load_documents(self, documents: List[str])`
+
+Load a list of document strings into the question answering model.
+
+Args:
+
+- `documents` (List[str]): A list of document strings.
+
+#### `load_documents_from_jsonlines(self, file_path: str)`
+
+Load a jsonlines file with documents into the question answering model. Each line in the file must be a JSON object with a "document" key.
+
+Args:
+
+- `file_path` (str): The path to the jsonlines file.
+
+#### `load_question_answer(self, data)`
+
+Load a list of JSON objects with question-answer pairs into the question answering model. Each object must have "question" and "answer" as keys.
+
+Args:
+
+- `data` (List[dict]): A list of dictionaries representing question-answer pairs.
+
+#### `load_question_answer_from_jsonlines(self, file_path: str)`
+
+Load a jsonlines file with question-answer pairs into the question answering model. Each line in the file must be a JSON object with "question" and "answer" as keys.
+
+Args:
+
+- `file_path` (str): The path to the jsonlines file.
+
+#### `load_question_from_dataframe(self, df: pd.DataFrame)`
+
+Load a pandas DataFrame with question-answer pairs into the question answering model. Each row must have "question" as a key.
+
+Args:
+
+- `df` (pd.DataFrame): The pandas DataFrame containing the question-answer pairs.
+
+#### `load_question_answer_from_csv(self, file_path: str)`
+
+Load a CSV file with question-answer pairs into the question answering model. Each row must have "question" and "answer" as keys.
+
+Args:
+
+- `file_path` (str): The path to the CSV file.
+
+#### `clear_data(self)`
+
+Clear the data from the question answering model, including loaded documents and question-answer pairs.
+
+#### `train(self, verbose: bool = False)`
+
+Train the question answering model on the loaded data. This function blocks until training is complete.
+
+Args:
+
+- `verbose` (bool): Whether to print verbose training progress. Default is False.
+
+#### `get_eval_results(self) -> List`
+
+Get the evaluation results of the trained question answering model.
+
+Returns:
+
+- `eval_results` (List): A list of evaluation results.
+
+Please note that this documentation assumes the presence of relevant imports (e.g., `List`, `str`, `pd`) and required external dependencies like the `LLMEngine` class and other libraries.

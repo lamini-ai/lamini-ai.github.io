@@ -45,6 +45,7 @@ markdown_extensions:
 nav:
   - Getting Started: index.md
   - Authentication: auth.md
+  - Question Answer Model: question_answer_model.md
   - Notebook Examples: notebooks.md
   - Walkthroughs:
       - Question Answer Walkthrough: Examples/playground_example.md
@@ -60,6 +61,7 @@ nav:
       - Eval Results: API/eval_results.md
   - Python Library:
       - Usage: python_library.md
+      - Question Answer Model: question_answer_model.md
       - Batched Completions: batching.md
       - Error Handling: error_handling.md
       - Filters: filters.md
