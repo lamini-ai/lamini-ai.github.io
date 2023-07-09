@@ -4,12 +4,16 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 ## Request
 
-- HTTP Method: POST
-- URL: `https://api.powerml.co/v1/lamini/train`
-- Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
-- Example Body (JSON):
+**HTTP Method:** POST
+
+**URL:** `https://api.powerml.co/v1/lamini/train`
+
+**Headers:**
+
+- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Content-Type: application/json`
+
+**Example Body (JSON):**
 
 ```json
 {
@@ -34,9 +38,9 @@ The response will include a job id and the status of the job. You can monitor th
 }
 ```
 
-# Example
+## Example
 
-## Request
+### Request
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/train' \
@@ -48,7 +52,7 @@ curl --location 'https://api.powerml.co/v1/lamini/train' \
 }'
 ```
 
-## Response
+### Response
 
 ```json
 {

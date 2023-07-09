@@ -45,9 +45,10 @@ markdown_extensions:
 nav:
   - Getting Started: index.md
   - Authentication: auth.md
-  - Examples:
-      - Question Answer Model: Examples/playground_example.md
-      - Code Guru Model: Examples/code_guru.md
+  - Notebook Examples: notebooks.md
+  - Walkthroughs:
+      - Question Answer Walkthrough: Examples/playground_example.md
+      - Code Guru Walkthrough: Examples/code_guru.md
   - Dataset Filters: filters.md
   - REST API:
       - Completions: API/completions.md

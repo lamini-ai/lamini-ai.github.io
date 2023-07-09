@@ -6,16 +6,16 @@ When finetuning a model, we'll use all the relevant data provided.
 
 ## Request
 
-HTTP Method: POST
+**HTTP Method:** POST
 
-URL: `https://api.powerml.co/v1/lamini/data`
+**URL:** `https://api.powerml.co/v1/lamini/data`
 
-Headers:
+**Headers:**
 
 - `Authorization: Bearer <LAMINI_API_KEY>`
 - `Content-Type: application/json`
 
-Example Body (JSON):
+**Example Body (JSON):**
 
 ```json
 {
@@ -40,7 +40,7 @@ Example Body (JSON):
 }
 ```
 
-## Parameters:
+## Parameters
 
 - `model_name: string`: The name of your model
 - `data: list`: A list of datapoints available to the model all formatted in the same way. We expect the format to be as follows:
@@ -69,7 +69,7 @@ Example Body (JSON):
 
 The response is the dataset ID.
 
-Body (JSON):
+**Body (JSON):**
 
 ```json
 {
@@ -77,9 +77,9 @@ Body (JSON):
 }
 ```
 
-# Example
+## Example
 
-## Request
+### Request
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/data' \
@@ -107,7 +107,7 @@ curl --location 'https://api.powerml.co/v1/lamini/data' \
 }'
 ```
 
-#### Response
+### Response
 
 ```json
 {

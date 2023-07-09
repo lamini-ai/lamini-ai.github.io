@@ -4,16 +4,16 @@ Delete data associated with the provided Lamini Engine id.
 
 ## Request
 
-HTTP Method: `GET`
+**HTTP Method:** `POST`
 
-Path: `https://api.powerml.co/v1/lamini/delete_data`
+**Path:** `https://api.powerml.co/v1/lamini/delete_data`
 
-Headers:
+**Headers:**
 
 - `Authorization: Bearer <LAMINI_API_KEY>`
 - `Content-Type: application/json`
 
-Body (JSON):
+**Body (JSON):**
 
 - `id` - The Lamini Engine id you'd like to clear data from.
 
@@ -21,18 +21,18 @@ Body (JSON):
 
 The response will contain the job id, job status, job start time, and model name.
 
-Body (JSON):
+**Body (JSON):**
 
 - `deleted`: The number of datasets deleted.
 
-# Example
+## Example
 
 This example deletes data associated with id `APIExample`.
 
-## Request
+### Request
 
 ```bash
-curl --location --request GET 'https://api.powerml.co/v1/lamini/delete_data' \
+curl --location --request POST 'https://api.powerml.co/v1/lamini/delete_data' \
 --header 'Authorization: Bearer YOUR_TOKEN' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -40,7 +40,7 @@ curl --location --request GET 'https://api.powerml.co/v1/lamini/delete_data' \
 }'
 ```
 
-## Response
+### Response
 
 ```json
 {

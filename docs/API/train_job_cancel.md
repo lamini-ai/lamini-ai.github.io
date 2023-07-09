@@ -1,27 +1,25 @@
-# POST `/v1/lamini/train/jobs/{job_id}/eval`
+# POST `/v1/lamini/train/jobs/{job_id}/cancel`
 
 Cancel a scheduled or running training job. You can also see these results by going to the `train` tab at [https://app.lamini.ai/train](https://app.lamini.ai/train)
 
 ## Request
 
-HTTP Method: `POST`
+**HTTP Method:** `POST`
 
-Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/cancel`
+**Path:** `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/cancel`
 
-Headers:
+**Headers:**
 
 - `Authorization: Bearer <LAMINI_API_KEY>`
 - `Content-Type: application/json`
 
-Parameters:
+**Parameters:**
 
 - `{job_id}` - The unique identifier of the training job to be cancelled.
 
 ## Response
 
-The response will contain an answer to the provided question.
-
-Body (JSON):
+**Body (JSON):**
 
 - `message` - A message describing whether the job was successfully cancelled or not
 
@@ -29,11 +27,11 @@ Body (JSON):
 { "message": "cancelled {payload['job_id']}" }
 ```
 
-# Example
+## Example
 
 This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
 
-## Request
+### Request
 
 ```bash
 curl --location --request POST 'https://api.powerml.co/v1/lamini/train/jobs/418/cancel' \
@@ -41,7 +39,7 @@ curl --location --request POST 'https://api.powerml.co/v1/lamini/train/jobs/418/
 --header 'Content-Type: application/json'
 ```
 
-## Response
+### Response
 
 ```json
 {

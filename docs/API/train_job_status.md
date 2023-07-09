@@ -4,16 +4,16 @@ Get the status of a training job. You can also see these results by going to the
 
 ## Request
 
-HTTP Method: `GET`
+**HTTP Method:** `GET`
 
-Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}`
+**Path:** `https://api.powerml.co/v1/lamini/train/jobs/{job_id}`
 
-Headers:
+**Headers:**
 
 - `Authorization: Bearer <LAMINI_API_KEY>`
 - `Content-Type: application/json`
 
-Parameters:
+**Parameters:**
 
 - `{job_id}` - The unique identifier of the training job to be cancelled.
 
@@ -21,18 +21,18 @@ Parameters:
 
 The response will contain the job id, job status, job start time, and model name.
 
-Body (JSON):
+**Body (JSON):**
 
 - `job_id`: The job id
 - `status`: "SCHEDULED" | "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "CANCELED" | "FAILED"
 - `start_time`: Start time of the object
 - `model_name`: The finetuned model name, available after model is saved
 
-# Example
+## Example
 
 This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
 
-## Request
+### Request
 
 ```bash
 curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418' \
@@ -40,7 +40,7 @@ curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418' 
 --header 'Content-Type: application/json'
 ```
 
-## Response
+### Response
 
 ```json
 {

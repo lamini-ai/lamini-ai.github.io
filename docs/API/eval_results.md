@@ -4,16 +4,16 @@ Get the training evaluation results for a completed training job. You can also s
 
 ## Request
 
-HTTP Method: `GET`
+**HTTP Method:** GET
 
-Path: `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/eval`
+**Path:** `https://api.powerml.co/v1/lamini/train/jobs/{job_id}/eval`
 
-Headers:
+**Headers:**
 
 - `Authorization: Bearer <LAMINI_API_KEY>`
 - `Content-Type: application/json`
 
-Parameters:
+**Parameters:**
 
 - `{job_id}` - The unique identifier of the completed training job.
 
@@ -21,18 +21,16 @@ Parameters:
 
 The response will be the evaluation results for a completed training job.
 
-Success Status Code: 200
-
-Body (JSON):
+**Body (JSON):**
 
 - `job_id` - ID of the training job
 - `eval_results` - A dictionary of prompt to completions.
 
-# Example
+## Example
 
 This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
 
-## Request
+### Request
 
 ```bash
 curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418/eval' \
@@ -40,7 +38,7 @@ curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418/e
 --header 'Content-Type: application/json'
 ```
 
-## Response
+### Response
 
 ```json
 {
