@@ -1,0 +1,1078 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../question_answer_walkthrough/">
+      
+      
+        <link rel="next" href="../../filters/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+    
+    
+      
+        <title>Code Guru Walkthrough - </title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-guru-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="" class="md-header__button md-logo" aria-label="" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code Guru Walkthrough
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="" class="md-nav__button md-logo" aria-label="" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebook Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Walkthroughs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Walkthroughs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../question_answer_walkthrough/" class="md-nav__link">
+        Question Answer Walkthrough
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Code Guru Walkthrough
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Code Guru Walkthrough
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#import-the-llm-engine-from-the-llama-module" class="md-nav__link">
+    Import the LLM engine from the llama module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-the-llm-interface" class="md-nav__link">
+    Define the LLM interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-llm" class="md-nav__link">
+    Run the LLM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-the-llm-on-more-data" class="md-nav__link">
+    Train the LLM on more data
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filters/" class="md-nav__link">
+        Dataset Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          REST API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          REST API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/completions/" class="md-nav__link">
+        Completions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/data/" class="md-nav__link">
+        Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/delete_data/" class="md-nav__link">
+        Delete Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/train/" class="md-nav__link">
+        Train
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/train_job_status/" class="md-nav__link">
+        Training Status
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/train_job_cancel/" class="md-nav__link">
+        Cancel Training
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/eval_results/" class="md-nav__link">
+        Eval Results
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Python Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Python Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_library/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../question_answer_model/" class="md-nav__link">
+        QuestionAnswerModel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../batching/" class="md-nav__link">
+        Batched Completions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../error_handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+          LLMEngine Class Docs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_6">
+          <span class="md-nav__icon md-icon"></span>
+          LLMEngine Class Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/__init__/" class="md-nav__link">
+        __init__
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/__call__/" class="md-nav__link">
+        __call__
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/save_data/" class="md-nav__link">
+        save_data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/train/" class="md-nav__link">
+        train
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/eval/" class="md-nav__link">
+        eval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/improve/" class="md-nav__link">
+        improve
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/submit_job/" class="md-nav__link">
+        submit_job
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/check_job_status/" class="md-nav__link">
+        check_job_status
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/get_job_results/" class="md-nav__link">
+        get_job_results
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/cancel_job/" class="md-nav__link">
+        cancel_job
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/sample/" class="md-nav__link">
+        sample
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#import-the-llm-engine-from-the-llama-module" class="md-nav__link">
+    Import the LLM engine from the llama module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-the-llm-interface" class="md-nav__link">
+    Define the LLM interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-llm" class="md-nav__link">
+    Run the LLM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-the-llm-on-more-data" class="md-nav__link">
+    Train the LLM on more data
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="code-guru-model">Code Guru Model</h1>
+<p>In this walkthrough, we'll build a working question answer model to demonstrate how one might use Lamini to gain quick insight into a library of documentation. Here, we've specialized this walkthrough to target our own python library.</p>
+<h2 id="import-the-llm-engine-from-the-llama-module">Import the LLM engine from the llama module</h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">llama</span> <span class="kn">import</span> <span class="n">LLMEngine</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">llm</span> <span class="o">=</span> <span class="n">LLMEngine</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;code_QA&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="define-the-llm-interface">Define the LLM interface</h2>
+<p>Define the input and output types. Be sure to include the <code>Context</code>. This helps
+the LLM understand your types in natural language.</p>
+<p>In this example, the input is the function we would like to generate documentation for, and the output is the documentation for that function.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">llama</span> <span class="kn">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Context</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Input</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">Type</span><span class="p">):</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;question about the function&quot;</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Output</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">class</span> <span class="nc">Answer</span><span class="p">(</span><span class="n">Type</span><span class="p">):</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">inputs</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;list of inputs to the function&quot;</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">outputs</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;list of outputs from the function&quot;</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;function description in 2 to 5 lines&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>A general LLM will not have any information about our library, but we can also pass our own data (more on that below) for it to learn from! Let's add a type for that as well:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Documentation</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">class</span> <span class="nc">Function</span><span class="p">(</span><span class="n">Type</span><span class="p">):</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;name of the function&quot;</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;text for the python code in the function&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="run-the-llm">Run the LLM</h2>
+<p>Now that we've got our types, you can ask questions about your documentation. Here we've simply copied code from the <code>lamini</code> library into a function object. Then, let's pass a function name in as a Question object.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">question</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;LLMEngine.save_data&#39;</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">function</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, builder, name):</span><span class="se">\n</span><span class="s1">        self.builder = builder</span><span class="se">\n</span><span class="s1">        self.name = name</span><span class="se">\n</span><span class="s1">        self.main = Function(program=self, name=&quot;main&quot;)</span><span class="se">\n</span><span class="s1">        self.functions = {&quot;main&quot;: self.main}</span><span class="se">\n</span><span class="s1">        self.examples = []&#39;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">llm</span><span class="o">.</span><span class="n">save_data</span><span class="p">([</span><span class="n">function</span><span class="p">])</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">Question</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">),</span> <span class="n">output_type</span><span class="o">=</span><span class="n">Answer</span><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</span></code></pre></div>
+<p><em>Output:</em></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&gt;</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name (string)&#39;</span><span class="p">,</span> <span class="s1">&#39;model_name (string, optional)&#39;</span><span class="p">,</span> <span class="s1">&#39;config (dict, optional)&#39;</span><span class="p">]</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;- program (Program)&#39;</span><span class="p">,</span> <span class="s1">&#39;current_function (Function)&#39;</span><span class="p">,</span> <span class="s1">&#39;value_cache (dict)&#39;</span><span class="p">,</span> <span class="s1">&#39;model_name (str, optional)&#39;</span><span class="p">,</span> <span class="s1">&#39;edit_config (function, optional)&#39;</span><span class="p">]</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The LLMEngine.__init__ function initializes a LanguageModel object with a name, model_name, and optional configuration. It also creates a Program object and sets the current_function to the main function of the program. The value_cache is also initialized as a dictionary. The model_name is optional and can be set using the edit_config function.</span><span class="se">\n\n</span><span class="s1">Relevant task information:</span><span class="se">\n\n</span><span class="s1">name: __init__</span><span class="se">\n\n</span><span class="s1">code:</span><span class="se">\n</span><span class="s1">```python</span><span class="se">\n</span><span class="s1">def __init__(self, name,</span><span class="se">\n</span><span class="s1">```&lt;/s&gt;&#39;</span>
+</span></code></pre></div>
+<p>Whoa! Documentation about our Library!</p>
+<h2 id="train-the-llm-on-more-data">Train the LLM on more data</h2>
+<p>In this next step, we can pass our entire library as a list of function objects into the model.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">data</span> <span class="o">=</span> <span class="n">get_entire_library</span><span class="p">()</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">question</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;LLMEngine.save_data&#39;</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="n">Answer</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">formatted_docs</span> <span class="o">=</span> <span class="n">format_docs</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Documentation generated by model:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">formatted_docs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<details>
+  <summary>Code for <code>get_entire_library()</code> </summary>
+
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">get_entire_library</span><span class="p">():</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, program, name, input_arguments=[]):</span><span class="se">\n</span><span class="s1">        self.name = name</span><span class="se">\n</span><span class="s1">        self.program = program</span><span class="se">\n</span><span class="s1">        self.operations = []</span><span class="se">\n\n</span><span class="s1">        for index, argument in enumerate(input_arguments):</span><span class="se">\n</span><span class="s1">            self.add_operation(GetArgumentOperation(argument, index))&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, builder, name):</span><span class="se">\n</span><span class="s1">        self.builder = builder</span><span class="se">\n</span><span class="s1">        self.name = name</span><span class="se">\n</span><span class="s1">        self.main = Function(program=self, name=&quot;main&quot;)</span><span class="se">\n</span><span class="s1">        self.functions = {&quot;main&quot;: self.main}</span><span class="se">\n</span><span class="s1">        self.examples = []&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;cosine_similarity&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def cosine_similarity(X, Y=None, dense_output=True):</span><span class="se">\n</span><span class="s1">    &quot;&quot;&quot;Compute cosine similarity between samples in X and Y.</span><span class="se">\n\n</span><span class="s1">    Cosine similarity, or the cosine kernel, computes similarity as the</span><span class="se">\n</span><span class="s1">    normalized dot product of X and Y:</span><span class="se">\n\n</span><span class="s1">        K(X, Y) = &lt;X, Y&gt; / (||X||*||Y||)</span><span class="se">\n\n</span><span class="s1">    On L2-normalized data, this function is equivalent to linear_kernel.</span><span class="se">\n\n</span><span class="s1">    Read more in the :ref:`User Guide &lt;cosine_similarity&gt;`.</span><span class="se">\n\n</span><span class="s1">    Parameters</span><span class="se">\n</span><span class="s1">    ----------</span><span class="se">\n</span><span class="s1">    X : {ndarray, sparse matrix} of shape (n_samples_X, n_features)</span><span class="se">\n</span><span class="s1">        Input data.</span><span class="se">\n\n</span><span class="s1">    Y : {ndarray, sparse matrix} of shape (n_samples_Y, n_features), </span><span class="se">\\\n</span><span class="s1">            default=None</span><span class="se">\n</span><span class="s1">        Input data. If ``None``, the output will be the pairwise</span><span class="se">\n</span><span class="s1">        similarities between all samples in ``X``.</span><span class="se">\n\n</span><span class="s1">    dense_output : bool, default=True</span><span class="se">\n</span><span class="s1">        Whether to return dense output even when the input is sparse. If</span><span class="se">\n</span><span class="s1">        ``False``, the output is sparse if both input arrays are sparse.</span><span class="se">\n\n</span><span class="s1">        .. versionadded:: 0.17</span><span class="se">\n</span><span class="s1">           parameter ``dense_output`` for dense output.</span><span class="se">\n\n</span><span class="s1">    Returns</span><span class="se">\n</span><span class="s1">    -------</span><span class="se">\n</span><span class="s1">    kernel matrix : ndarray of shape (n_samples_X, n_samples_Y)</span><span class="se">\n</span><span class="s1">        Returns the cosine similarity between samples in X and Y.</span><span class="se">\n</span><span class="s1">    &quot;&quot;&quot;</span><span class="se">\n</span><span class="s1">    # to avoid recursive import</span><span class="se">\n\n</span><span class="s1">    X, Y = check_pairwise_arrays(X, Y)</span><span class="se">\n\n</span><span class="s1">    X_normalized = normalize(X, copy=True)</span><span class="se">\n</span><span class="s1">    if X is Y:</span><span class="se">\n</span><span class="s1">        Y_normalized = X_normalized</span><span class="se">\n</span><span class="s1">    else:</span><span class="se">\n</span><span class="s1">        Y_normalized = normalize(Y, copy=True)</span><span class="se">\n\n</span><span class="s1">    K = safe_sparse_dot(X_normalized, Y_normalized.T, dense_output=dense_output)</span><span class="se">\n\n</span><span class="s1">    return K&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_compute_value&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _compute_value(self):</span><span class="se">\n</span><span class="s1">        # check in the builper value cache</span><span class="se">\n</span><span class="s1">        if self._index in self._function.program.builder.value_cache:</span><span class="se">\n</span><span class="s1">            returned_value = self._function.program.builder.value_cache[self._index][&quot;data&quot;]</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            params = {</span><span class="se">\n</span><span class="s1">                &quot;program&quot;: self._function.program.to_dict(),</span><span class="se">\n</span><span class="s1">                &quot;requested_values&quot;: [self._index],</span><span class="se">\n</span><span class="s1">            }</span><span class="se">\n</span><span class="s1">            response = query_run_program(params)</span><span class="se">\n\n</span><span class="s1">            response.raise_for_status()</span><span class="se">\n\n</span><span class="s1">            # update the cache</span><span class="se">\n</span><span class="s1">            self._function.program.builder.value_cache.update(response.json())</span><span class="se">\n\n</span><span class="s1">            returned_value = response.json()[str(self._index)][&quot;data&quot;]</span><span class="se">\n\n</span><span class="s1">        if issubclass(self._type, BaseSpecification):</span><span class="se">\n</span><span class="s1">            self._data = self._type.parse_obj(returned_value)</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            self._data = self._type(returned_value)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;rewrite_dict_type&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def rewrite_dict_type(input_value):</span><span class="se">\n</span><span class="s1">    assert isinstance(input_value, BaseSpecification)</span><span class="se">\n</span><span class="s1">    return json.loads(type(input_value).schema_json())&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, type, data=None):</span><span class="se">\n</span><span class="s1">        self._type = type</span><span class="se">\n</span><span class="s1">        self._data = data</span><span class="se">\n</span><span class="s1">        self._function = None</span><span class="se">\n</span><span class="s1">        self._index = None&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_field&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def get_field(self, value, field_name):</span><span class="se">\n</span><span class="s1">        return self.current_function.add_operation(</span><span class="se">\n</span><span class="s1">            GetFieldOperation(</span><span class="se">\n</span><span class="s1">                value, value._type._get_field_type(field_name), field_name)</span><span class="se">\n</span><span class="s1">        )&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;gen_value&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def gen_value(value: Value):</span><span class="se">\n</span><span class="s1">    value._compute_value()</span><span class="se">\n</span><span class="s1">    return value._data&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;save_data&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def save_data(self, data=[]):</span><span class="se">\n</span><span class="s1">        self.program.save_data(examples=data)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, input_value, output_type):</span><span class="se">\n</span><span class="s1">        super().__init__(output_type)</span><span class="se">\n</span><span class="s1">        self._input_value = input_value&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_metric&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def add_metric(self, metric):</span><span class="se">\n</span><span class="s1">        new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s1">            MetricOperation(metric.input, metric.get_metric_type())</span><span class="se">\n</span><span class="s1">        )</span><span class="se">\n\n</span><span class="s1">        return new_operation&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        if isinstance(self._input_value, Value):</span><span class="se">\n</span><span class="s1">            input_value = self._input_value._index</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            input_value = {</span><span class="se">\n</span><span class="s1">                &quot;data&quot;: self._input_value.dict(),</span><span class="se">\n</span><span class="s1">                &quot;type&quot;: json.loads(type(self._input_value).schema_json()),</span><span class="se">\n</span><span class="s1">            }</span><span class="se">\n\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;CallOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;function_name&quot;: self._target_function.name,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: input_value,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: type_to_dict(self._type)</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;gen_multiple_values&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def gen_multiple_values(values: List[Value]):</span><span class="se">\n</span><span class="s1">    # Assume that all values have the same program</span><span class="se">\n</span><span class="s1">    # TODO: fix a bug where the first value in the list is not the right value due to improve.</span><span class="se">\n</span><span class="s1">    program = values[0]._function.program.to_dict()</span><span class="se">\n</span><span class="s1">    params = {</span><span class="se">\n</span><span class="s1">        &quot;program&quot;: program,</span><span class="se">\n</span><span class="s1">        &quot;requested_values&quot;: [v._index for v in values],</span><span class="se">\n</span><span class="s1">    }</span><span class="se">\n</span><span class="s1">    response = query_run_program(params)</span><span class="se">\n</span><span class="s1">    response.raise_for_status()</span><span class="se">\n</span><span class="s1">    for i, v in enumerate(values):</span><span class="se">\n</span><span class="s1">        index = v._index</span><span class="se">\n</span><span class="s1">        response_val = response.json()[str(index)]</span><span class="se">\n</span><span class="s1">        if isinstance(response_val[&quot;data&quot;], list):</span><span class="se">\n</span><span class="s1">            v._data = []</span><span class="se">\n</span><span class="s1">            for d in response_val[&quot;data&quot;]:</span><span class="se">\n</span><span class="s1">                v._data.append(v._type.parse_obj(d))</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            v._data = v._type.parse_obj(response_val[&quot;data&quot;])</span><span class="se">\n</span><span class="s1">    # Update cache once</span><span class="se">\n</span><span class="s1">    values[0]._function.program.builder.value_cache.update(response.json())</span><span class="se">\n</span><span class="s1">    return [value._data for value in values]&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;improve&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def improve(self, on: str, to: str, good_examples=[], bad_examples=[], temperature=0.0):</span><span class="se">\n\n</span><span class="s1">        new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s1">            FeedbackOperation(</span><span class="se">\n</span><span class="s1">                on=on, to=to, good_examples=good_examples, bad_examples=bad_examples, temperature=temperature</span><span class="se">\n</span><span class="s1">            )</span><span class="se">\n</span><span class="s1">        )</span><span class="se">\n\n</span><span class="s1">        return new_operation&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;metrics&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def metrics(self):</span><span class="se">\n</span><span class="s1">        requested_values = [</span><span class="se">\n</span><span class="s1">            op._index for op in self.program.functions[&quot;main&quot;].operations</span><span class="se">\n</span><span class="s1">        ]</span><span class="se">\n\n</span><span class="s1">        params = {</span><span class="se">\n</span><span class="s1">            &quot;program&quot;: self.program.to_dict(),</span><span class="se">\n</span><span class="s1">            &quot;requested_values&quot;: requested_values,</span><span class="se">\n</span><span class="s1">        }</span><span class="se">\n</span><span class="s1">        response = query_run_program(params)</span><span class="se">\n</span><span class="s1">        response.raise_for_status()</span><span class="se">\n\n</span><span class="s1">        data = [response[str(index)][&quot;data&quot;] for index in requested_values]</span><span class="se">\n\n</span><span class="s1">        return data&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, fit: bool):</span><span class="se">\n</span><span class="s1">        self.fit = fit # TODO: Change to save_data (?)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;query_run_program&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def query_run_program(params):</span><span class="se">\n</span><span class="s1">    key, url = get_url_and_key()</span><span class="se">\n</span><span class="s1">    resp = powerml_run_program(params, url, key)</span><span class="se">\n</span><span class="s1">    return resp&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;FeedbackOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;on&quot;: self._on,</span><span class="se">\n</span><span class="s1">            &quot;to&quot;: self._to,</span><span class="se">\n</span><span class="s1">            &quot;good_examples&quot;: [value_to_dict(example) for example in self._good_examples],</span><span class="se">\n</span><span class="s1">            &quot;bad_examples&quot;: [value_to_dict(example) for example in self._bad_examples],</span><span class="se">\n</span><span class="s1">            &quot;temperature&quot;: self._temperature,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: json.loads(self._type.schema_json()),</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_metric_type&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def get_metric_type(self):</span><span class="se">\n</span><span class="s1">        return MatchResult&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;function&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def function(self, function):</span><span class="se">\n</span><span class="s1">        signature = inspect.signature(function)</span><span class="se">\n</span><span class="s1">        input_types = [</span><span class="se">\n</span><span class="s1">            value.annotation for value in signature.parameters.values()]</span><span class="se">\n\n</span><span class="s1">        main = self.current_function</span><span class="se">\n</span><span class="s1">        new_function = Function(</span><span class="se">\n</span><span class="s1">            program=self.program, name=function.__name__, input_arguments=input_types</span><span class="se">\n</span><span class="s1">        )</span><span class="se">\n</span><span class="s1">        self.program.functions[new_function.name] = new_function</span><span class="se">\n</span><span class="s1">        self.current_function = new_function</span><span class="se">\n</span><span class="s1">        output_value = function(*new_function.operations)</span><span class="se">\n</span><span class="s1">        self.current_function.add_operation(ReturnOperation(output_value))</span><span class="se">\n</span><span class="s1">        self.current_function = main</span><span class="se">\n\n</span><span class="s1">        return Lambda(self, new_function, output_value)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fuzzy_is_duplicate&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def fuzzy_is_duplicate(embedding, reference_embeddings, threshold=0.99):</span><span class="se">\n</span><span class="s1">    if embedding is None:</span><span class="se">\n</span><span class="s1">        return True</span><span class="se">\n</span><span class="s1">    if not reference_embeddings:</span><span class="se">\n</span><span class="s1">        return False</span><span class="se">\n</span><span class="s1">    similarities = [</span><span class="se">\n</span><span class="s1">        cosine_similarity(embedding, reference_embedding)</span><span class="se">\n</span><span class="s1">        for reference_embedding in reference_embeddings</span><span class="se">\n</span><span class="s1">    ]</span><span class="se">\n\n</span><span class="s1">    most_similar_index = np.argmax(similarities)</span><span class="se">\n\n</span><span class="s1">    return similarities[most_similar_index] &gt; threshold&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__call__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __call__(self, input, output_type, *args, **kwargs):</span><span class="se">\n</span><span class="s1">        if isinstance(input, list):</span><span class="se">\n</span><span class="s1">            values = self.add_model(</span><span class="se">\n</span><span class="s1">                input, output_type, *args, **kwargs)</span><span class="se">\n</span><span class="s1">            results = run_all(values)</span><span class="se">\n</span><span class="s1">            if isinstance(results[0], list):</span><span class="se">\n</span><span class="s1">                return [value for sublist in results for value in sublist]</span><span class="se">\n</span><span class="s1">            return results</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            value = self.add_model(</span><span class="se">\n</span><span class="s1">                input, output_type, *args, **kwargs)</span><span class="se">\n</span><span class="s1">            return run(value)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;make_metric&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def make_metric(</span><span class="se">\n</span><span class="s1">        self, input: Type, metric_type: type, fit: bool = True, higher_is_better=True</span><span class="se">\n</span><span class="s1">    ):</span><span class="se">\n</span><span class="s1">        new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s1">            MetricOperation(input, metric_type)</span><span class="se">\n</span><span class="s1">        )</span><span class="se">\n\n</span><span class="s1">        return new_operation&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;type_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def type_to_dict(type):</span><span class="se">\n</span><span class="s1">    if issubclass(type, BaseSpecification):</span><span class="se">\n</span><span class="s1">        return json.loads(type.schema_json())</span><span class="se">\n\n</span><span class="s1">    return str(type)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, output_value):</span><span class="se">\n</span><span class="s1">        super().__init__(get_type(output_value))</span><span class="se">\n</span><span class="s1">        self._output_value = output_value&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;value_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def value_to_dict(input_value):</span><span class="se">\n</span><span class="s1">    if isinstance(input_value, Value):</span><span class="se">\n</span><span class="s1">        # type Value is e.g. a return value of calling llm()</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;index&quot;: input_value._index,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: type_to_dict(input_value._type),</span><span class="se">\n</span><span class="s1">        }</span><span class="se">\n\n</span><span class="s1">    return {</span><span class="se">\n</span><span class="s1">        &quot;data&quot;: rewrite_dict_data(input_value),</span><span class="se">\n</span><span class="s1">        &quot;type&quot;: rewrite_dict_type(input_value),</span><span class="se">\n</span><span class="s1">    }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Context&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def Context(description: str):</span><span class="se">\n</span><span class="s1">    return Field(description=description)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;powerml_run_program&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;@tenacity.retry(stop=tenacity.stop_after_attempt(3))</span><span class="se">\n</span><span class="s1">def powerml_run_program(params, url, key):</span><span class="se">\n</span><span class="s1">    headers = {</span><span class="se">\n</span><span class="s1">        </span><span class="se">\&#39;</span><span class="s1">Content-Type</span><span class="se">\&#39;</span><span class="s1">: </span><span class="se">\&#39;</span><span class="s1">application/json</span><span class="se">\&#39;</span><span class="s1">,</span><span class="se">\n</span><span class="s1">        </span><span class="se">\&#39;</span><span class="s1">Authorization</span><span class="se">\&#39;</span><span class="s1">: </span><span class="se">\&#39;</span><span class="s1">Bearer </span><span class="se">\&#39;</span><span class="s1"> + key,</span><span class="se">\n</span><span class="s1">    }</span><span class="se">\n</span><span class="s1">    response = requests.post(</span><span class="se">\n</span><span class="s1">        url=url + &quot;/v1/run_llama_program&quot;,</span><span class="se">\n</span><span class="s1">        headers=headers,</span><span class="se">\n</span><span class="s1">        json=params)</span><span class="se">\n</span><span class="s1">    if response.status_code != 200:</span><span class="se">\n</span><span class="s1">        try:</span><span class="se">\n</span><span class="s1">            description = response.json()</span><span class="se">\n</span><span class="s1">        except BaseException:</span><span class="se">\n</span><span class="s1">            description = response.status_code</span><span class="se">\n</span><span class="s1">        finally:</span><span class="se">\n</span><span class="s1">            print(f&quot;API error </span><span class="si">{description}</span><span class="s1">. Retrying...&quot;)</span><span class="se">\n</span><span class="s1">            raise Exception(f&quot;API error </span><span class="si">{description}</span><span class="s1">&quot;)</span><span class="se">\n</span><span class="s1">    return response&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __getattribute__(self, name):</span><span class="se">\n</span><span class="s1">        if name.find(&quot;_&quot;) == 0:</span><span class="se">\n</span><span class="s1">            if name != &quot;_value&quot;:</span><span class="se">\n</span><span class="s1">                return super().__getattribute__(name)</span><span class="se">\n\n</span><span class="s1">        # fix access to private fields</span><span class="se">\n</span><span class="s1">        members = inspect.getmembers(Type)</span><span class="se">\n</span><span class="s1">        for member_name, member in members:</span><span class="se">\n</span><span class="s1">            if member_name == &quot;__dict__&quot;:</span><span class="se">\n</span><span class="s1">                value = member[&quot;_value&quot;].__get__(self)</span><span class="se">\n\n</span><span class="s1">        if name == &quot;_value&quot;:</span><span class="se">\n</span><span class="s1">            return value</span><span class="se">\n\n</span><span class="s1">        if name in self.__dict__:</span><span class="se">\n</span><span class="s1">            return value._get_field(name)</span><span class="se">\n\n</span><span class="s1">        return super().__getattribute__(name)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __str__(self):</span><span class="se">\n</span><span class="s1">        if self._data is None:</span><span class="se">\n</span><span class="s1">            raise Exception(</span><span class="se">\n</span><span class="s1">                &quot;Value Access Error: must compute value before acessing&quot;)</span><span class="se">\n\n</span><span class="s1">        return str(self._data)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __gt__(self, other):</span><span class="se">\n</span><span class="s1">        if self._data is None:</span><span class="se">\n</span><span class="s1">            raise Exception(</span><span class="se">\n</span><span class="s1">                &quot;Value Access Error: must compute value before acessing&quot;)</span><span class="se">\n\n</span><span class="s1">        if isinstance(other, Value):</span><span class="se">\n</span><span class="s1">            other = other._get_data()</span><span class="se">\n\n</span><span class="s1">        return self._data &gt; other&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;home_yaml_config&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def home_yaml_config():</span><span class="se">\n</span><span class="s1">    home = os.path.expanduser(&quot;~&quot;)</span><span class="se">\n</span><span class="s1">    home_config_path = os.path.join(home, &quot;.powerml/configure_llama.yaml&quot;)</span><span class="se">\n</span><span class="s1">    if os.path.exists(home_config_path):</span><span class="se">\n</span><span class="s1">        yaml_config = config.config_from_yaml(</span><span class="se">\n</span><span class="s1">            home_config_path, read_from_file=True)</span><span class="se">\n</span><span class="s1">    else:</span><span class="se">\n</span><span class="s1">        yaml_config = config.config_from_dict(</span><span class="si">{}</span><span class="s1">)</span><span class="se">\n</span><span class="s1">    return yaml_config&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;def __init__(self, *args, **kwargs):</span><span class="se">\n</span><span class="s2">        if any_values(args, kwargs):</span><span class="se">\n</span><span class="s2">            unvalidated = super().construct(*args, **kwargs)</span><span class="se">\n</span><span class="s2">            object.__setattr__(self, &#39;__dict__&#39;, unvalidated.__dict__)</span><span class="se">\n</span><span class="s2">            object.__setattr__(self, &#39;__fields_set__&#39;, unvalidated.__fields_set__)</span><span class="se">\n</span><span class="s2">        else:</span><span class="se">\n</span><span class="s2">            super().__init__(*args, **kwargs)</span><span class="se">\n\n</span><span class="s2">        self._value = Value(type(self), data=self)&quot;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;def sample(self, input, output_type, n=1, max_similarity=0.99, *args, **kwargs):</span><span class="se">\n</span><span class="s2">        input_value = input</span><span class="se">\n</span><span class="s2">        if self.model_name is not None:</span><span class="se">\n</span><span class="s2">            kwargs[&#39;model_name&#39;] = self.model_name</span><span class="se">\n</span><span class="s2">        new_operations = []</span><span class="se">\n</span><span class="s2">        cache_len = 5  # NOTE: should use actual cache length</span><span class="se">\n</span><span class="s2">        max_iter = cache_len</span><span class="se">\n</span><span class="s2">        temperature = 0.7  # NOTE: should use actual random temperature</span><span class="se">\n</span><span class="s2">        random = True</span><span class="se">\n</span><span class="s2">        attributes = [attribute for attribute,</span><span class="se">\n</span><span class="s2">                      field in output_type.__fields__.items() if field.type_ == str]</span><span class="se">\n</span><span class="s2">        attribute_embeddings = {attribute: [None, []]</span><span class="se">\n</span><span class="s2">                                for attribute in attributes}</span><span class="se">\n</span><span class="s2">        for _ in range(n):</span><span class="se">\n</span><span class="s2">            new_operation = None</span><span class="se">\n</span><span class="s2">            attribute_embeddings = {attribute: [</span><span class="se">\n</span><span class="s2">                None, embeddings[1]] for attribute, embeddings in attribute_embeddings.items()}</span><span class="se">\n</span><span class="s2">            j = 0</span><span class="se">\n</span><span class="s2">            while any([fuzzy_is_duplicate(attribute_embedding, attribute_reference_embeddings, max_similarity)</span><span class="se">\n</span><span class="s2">                       for attribute_embedding, attribute_reference_embeddings in attribute_embeddings.values()]) or fuzzy_is_duplicate(</span><span class="se">\n</span><span class="s2">                list(attribute_embeddings.values())[0][0], [</span><span class="se">\n</span><span class="s2">                    attribute_embedding for attribute_embedding, _ in list(attribute_embeddings.values())[1:]], max_similarity):</span><span class="se">\n</span><span class="s2">                if j == max_iter:</span><span class="se">\n</span><span class="s2">                    max_iter += cache_len</span><span class="se">\n</span><span class="s2">                    random = False</span><span class="se">\n</span><span class="s2">                    temperature += 0.1  # NOTE: this could be set differently</span><span class="se">\n</span><span class="s2">                new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s2">                    LlamaOperation(input_value, output_type, random=random,</span><span class="se">\n</span><span class="s2">                                   temperature=temperature, *args, **kwargs)</span><span class="se">\n</span><span class="s2">                )</span><span class="se">\n</span><span class="s2">                new_operation = run(new_operation)</span><span class="se">\n</span><span class="s2">                for attribute in attributes:</span><span class="se">\n</span><span class="s2">                    attribute_embeddings[attribute][0] = query_run_embedding(</span><span class="se">\n</span><span class="s2">                        getattr(new_operation, attribute))</span><span class="se">\n</span><span class="s2">                j += 1</span><span class="se">\n</span><span class="s2">            if j == max_iter:</span><span class="se">\n</span><span class="s2">                continue</span><span class="se">\n</span><span class="s2">            for attribute_embedding, attribute_reference_embeddings in attribute_embeddings.values():</span><span class="se">\n</span><span class="s2">                attribute_reference_embeddings.append(attribute_embedding)</span><span class="se">\n</span><span class="s2">            if not new_operation:</span><span class="se">\n</span><span class="s2">                new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s2">                    LlamaOperation(input_value, output_type, random=random,</span><span class="se">\n</span><span class="s2">                                   temperature=temperature, *args, **kwargs)</span><span class="se">\n</span><span class="s2">                )</span><span class="se">\n</span><span class="s2">                new_operation = run(new_operation)</span><span class="se">\n</span><span class="s2">            new_operations.append(new_operation)</span><span class="se">\n\n</span><span class="s2">        return new_operations&quot;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_get_input&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _get_input(self, *args, **kwargs):</span><span class="se">\n</span><span class="s1">        # TODO: support more than one input LLM arg</span><span class="se">\n\n</span><span class="s1">        if len(args) &gt; 0:</span><span class="se">\n</span><span class="s1">            return args[0]</span><span class="se">\n\n</span><span class="s1">        return next(iter(kwargs.values()))&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;rewrite_dict_data&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def rewrite_dict_data(input_value):</span><span class="se">\n</span><span class="s1">    if isinstance(input_value, Value):</span><span class="se">\n</span><span class="s1">        assert False</span><span class="se">\n</span><span class="s1">        return input_value._index</span><span class="se">\n</span><span class="s1">    elif isinstance(input_value, BaseSpecification):</span><span class="se">\n</span><span class="s1">        input_value = input_value.dict()</span><span class="se">\n</span><span class="s1">        for key, value in input_value.items():</span><span class="se">\n</span><span class="s1">            input_value[key] = rewrite_dict_data(value)</span><span class="se">\n\n</span><span class="s1">    return input_value&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_url_and_key&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def get_url_and_key():</span><span class="se">\n</span><span class="s1">    cfg = get_config()</span><span class="se">\n</span><span class="s1">    environment = os.environ.get(&quot;LLAMA_ENVIRONMENT&quot;)</span><span class="se">\n</span><span class="s1">    if environment == &quot;LOCAL&quot;:</span><span class="se">\n</span><span class="s1">        key = </span><span class="se">\&#39;</span><span class="s1">YOUR_TOKEN</span><span class="se">\&#39;\n</span><span class="s1">        if </span><span class="se">\&#39;</span><span class="s1">local</span><span class="se">\&#39;</span><span class="s1"> in cfg:</span><span class="se">\n</span><span class="s1">            if </span><span class="se">\&#39;</span><span class="s1">key</span><span class="se">\&#39;</span><span class="s1"> in cfg[&quot;local&quot;]:</span><span class="se">\n</span><span class="s1">                key = cfg[</span><span class="se">\&#39;</span><span class="s1">local.key</span><span class="se">\&#39;</span><span class="s1">]</span><span class="se">\n</span><span class="s1">        url = &quot;http://localhost:5001&quot;</span><span class="se">\n</span><span class="s1">    elif environment == &quot;STAGING&quot;:</span><span class="se">\n</span><span class="s1">        key = cfg[</span><span class="se">\&#39;</span><span class="s1">staging.key</span><span class="se">\&#39;</span><span class="s1">]</span><span class="se">\n</span><span class="s1">        url = </span><span class="se">\&#39;</span><span class="s1">https://api.staging.powerml.co</span><span class="se">\&#39;\n</span><span class="s1">    else:</span><span class="se">\n</span><span class="s1">        key = cfg[</span><span class="se">\&#39;</span><span class="s1">production.key</span><span class="se">\&#39;</span><span class="s1">]</span><span class="se">\n</span><span class="s1">        url = </span><span class="se">\&#39;</span><span class="s1">https://api.powerml.co</span><span class="se">\&#39;\n</span><span class="s1">    return (key, url)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        input_value = type_to_dict(self._input_value)</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;GetElementOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: input_value,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: type_to_dict(self._type),</span><span class="se">\n</span><span class="s1">            &quot;element_index&quot;: self._element_index,</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;run_all&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def gen_multiple_values(values: List[Value]):</span><span class="se">\n</span><span class="s1">    # Assume that all values have the same program</span><span class="se">\n</span><span class="s1">    # TODO: fix a bug where the first value in the list is not the right value due to improve.</span><span class="se">\n</span><span class="s1">    program = values[0]._function.program.to_dict()</span><span class="se">\n</span><span class="s1">    params = {</span><span class="se">\n</span><span class="s1">        &quot;program&quot;: program,</span><span class="se">\n</span><span class="s1">        &quot;requested_values&quot;: [v._index for v in values],</span><span class="se">\n</span><span class="s1">    }</span><span class="se">\n</span><span class="s1">    response = query_run_program(params)</span><span class="se">\n</span><span class="s1">    response.raise_for_status()</span><span class="se">\n</span><span class="s1">    for i, v in enumerate(values):</span><span class="se">\n</span><span class="s1">        index = v._index</span><span class="se">\n</span><span class="s1">        response_val = response.json()[str(index)]</span><span class="se">\n</span><span class="s1">        if isinstance(response_val[&quot;data&quot;], list):</span><span class="se">\n</span><span class="s1">            v._data = []</span><span class="se">\n</span><span class="s1">            for d in response_val[&quot;data&quot;]:</span><span class="se">\n</span><span class="s1">                v._data.append(v._type.parse_obj(d))</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            v._data = v._type.parse_obj(response_val[&quot;data&quot;])</span><span class="se">\n</span><span class="s1">    # Update cache once</span><span class="se">\n</span><span class="s1">    values[0]._function.program.builder.value_cache.update(response.json())</span><span class="se">\n</span><span class="s1">    return [value._data for value in values]&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_metric&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def add_metric(self, metric):</span><span class="se">\n</span><span class="s1">        self.add_operation(metric)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_call&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def add_call(self, function, input_value, output_value):</span><span class="se">\n</span><span class="s1">        new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s1">            CallOperation(function, input_value, output_value)</span><span class="se">\n</span><span class="s1">        )</span><span class="se">\n\n</span><span class="s1">        result = new_operation</span><span class="se">\n\n</span><span class="s1">        if isinstance(output_value, tuple):</span><span class="se">\n</span><span class="s1">            result = []</span><span class="se">\n\n</span><span class="s1">            for index, value in enumerate(output_value):</span><span class="se">\n</span><span class="s1">                result.append(</span><span class="se">\n</span><span class="s1">                    self.current_function.add_operation(</span><span class="se">\n</span><span class="s1">                        GetElementOperation(new_operation, value.type, index)</span><span class="se">\n</span><span class="s1">                    )</span><span class="se">\n</span><span class="s1">                )</span><span class="se">\n\n</span><span class="s1">        return result&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def gen_value(value: Value):</span><span class="se">\n</span><span class="s1">    value._compute_value()</span><span class="se">\n</span><span class="s1">    return value._data&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __repr__(self):</span><span class="se">\n</span><span class="s1">        return str(self)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_get_attribute_raw&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _get_attribute_raw(self, name):</span><span class="se">\n</span><span class="s1">        return getattr(self, name)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, on, to, good_examples=[], bad_examples=[], temperature=0.0):</span><span class="se">\n</span><span class="s1">        super().__init__(FeedbackType)</span><span class="se">\n</span><span class="s1">        self._on = on</span><span class="se">\n</span><span class="s1">        self._to = to</span><span class="se">\n</span><span class="s1">        self._good_examples = good_examples</span><span class="se">\n</span><span class="s1">        self._bad_examples = bad_examples</span><span class="se">\n</span><span class="s1">        self._temperature = temperature&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_config&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def get_config():</span><span class="se">\n</span><span class="s1">    global global_config</span><span class="se">\n</span><span class="s1">    assert global_config is not None</span><span class="se">\n</span><span class="s1">    return global_config&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_get_field&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _get_field(self, name):</span><span class="se">\n</span><span class="s1">        if self._data is None:</span><span class="se">\n</span><span class="s1">            raise Exception(</span><span class="se">\n</span><span class="s1">                &quot;Value Access Error: must compute value before acessing&quot;)</span><span class="se">\n\n</span><span class="s1">        return self._data._get_attribute_raw(name)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, input_value, type, element_index):</span><span class="se">\n</span><span class="s1">        super().__init__(type)</span><span class="se">\n</span><span class="s1">        self._element_index = element_index</span><span class="se">\n</span><span class="s1">        self._input_value = input_value&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;parallel&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def parallel(self, function):</span><span class="se">\n</span><span class="s1">        return self.function(function=function)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, type, input_value_index):</span><span class="se">\n</span><span class="s1">        super().__init__(type)</span><span class="se">\n</span><span class="s1">        self._input_value_index = input_value_index&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__call__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __call__(self, *args, **kwargs):</span><span class="se">\n</span><span class="s1">        input_value = self._get_input(*args, **kwargs)</span><span class="se">\n</span><span class="s1">        return self.builder.add_call(self.function, input_value, self.output_value)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __getattribute__(self, name):</span><span class="se">\n</span><span class="s1">        if name.find(&quot;_&quot;) == 0:</span><span class="se">\n</span><span class="s1">            return super().__getattribute__(name)</span><span class="se">\n\n</span><span class="s1">        return self._function.program.builder.get_field(self, name)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;any_values&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def any_values(args, kwargs):</span><span class="se">\n</span><span class="s1">    for arg in args:</span><span class="se">\n</span><span class="s1">        if isinstance(arg, Value):</span><span class="se">\n</span><span class="s1">            return True</span><span class="se">\n\n</span><span class="s1">    for arg in kwargs.values():</span><span class="se">\n</span><span class="s1">        if isinstance(arg, Value):</span><span class="se">\n</span><span class="s1">            return True</span><span class="se">\n\n</span><span class="s1">    return False&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__float__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __float__(self):</span><span class="se">\n</span><span class="s1">        if self._data is None:</span><span class="se">\n</span><span class="s1">            raise Exception(</span><span class="se">\n</span><span class="s1">                &quot;Value Access Error: must compute value before acessing&quot;)</span><span class="se">\n\n</span><span class="s1">        return float(self._data)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, input_value: Value, output_type: type, field_name: str):</span><span class="se">\n</span><span class="s1">        super().__init__(output_type)</span><span class="se">\n</span><span class="s1">        self._field_name = field_name</span><span class="se">\n</span><span class="s1">        self._input_value = input_value&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, builder: Builder, function: Function, output_value: Type):</span><span class="se">\n</span><span class="s1">        self.output_value = output_value</span><span class="se">\n</span><span class="s1">        self.builder = builder</span><span class="se">\n</span><span class="s1">        self.function = function&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_get_data&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _get_data(self):</span><span class="se">\n</span><span class="s1">        if self._data is None:</span><span class="se">\n</span><span class="s1">            raise Exception(</span><span class="se">\n</span><span class="s1">                &quot;Value Access Error: must compute value before acessing&quot;)</span><span class="se">\n\n</span><span class="s1">        return self._data&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, a, b):</span><span class="se">\n</span><span class="s1">        self.input = Match(a=a, b=b)</span><span class="se">\n\n</span><span class="s1">        print(&quot;match&quot;, self.input)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        input_value = value_to_dict(self._input_value)</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;LlamaOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: input_value,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: json.loads(self._type.schema_json()),</span><span class="se">\n</span><span class="s1">            &quot;args&quot;: self._args</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;save_data&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def save_data(self, examples):</span><span class="se">\n</span><span class="s1">        if isinstance(examples, list):</span><span class="se">\n</span><span class="s1">            self.examples.extend(examples)</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            # singleton</span><span class="se">\n</span><span class="s1">            self.examples.append(examples)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;powerml_run_embedding&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def powerml_run_embedding(params, url, key):</span><span class="se">\n</span><span class="s1">    headers = {</span><span class="se">\n</span><span class="s1">        </span><span class="se">\&#39;</span><span class="s1">Content-Type</span><span class="se">\&#39;</span><span class="s1">: </span><span class="se">\&#39;</span><span class="s1">application/json</span><span class="se">\&#39;</span><span class="s1">,</span><span class="se">\n</span><span class="s1">        </span><span class="se">\&#39;</span><span class="s1">Authorization</span><span class="se">\&#39;</span><span class="s1">: </span><span class="se">\&#39;</span><span class="s1">Bearer </span><span class="se">\&#39;</span><span class="s1"> + key,</span><span class="se">\n</span><span class="s1">    }</span><span class="se">\n</span><span class="s1">    response = requests.post(</span><span class="se">\n</span><span class="s1">        url=url + &quot;/v1/embedding&quot;,</span><span class="se">\n</span><span class="s1">        headers=headers,</span><span class="se">\n</span><span class="s1">        json=params)</span><span class="se">\n</span><span class="s1">    if response.status_code != 200:</span><span class="se">\n</span><span class="s1">        try:</span><span class="se">\n</span><span class="s1">            description = response.json()</span><span class="se">\n</span><span class="s1">            print(description)</span><span class="se">\n</span><span class="s1">        except BaseException:</span><span class="se">\n</span><span class="s1">            description = response.status_code</span><span class="se">\n</span><span class="s1">        finally:</span><span class="se">\n</span><span class="s1">            raise Exception(f&quot;API error </span><span class="si">{description}</span><span class="s1">&quot;)</span><span class="se">\n</span><span class="s1">    return response&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def to_dict(self):</span><span class="se">\n</span><span class="s1">        dict_object = {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: self.name,</span><span class="se">\n</span><span class="s1">            &quot;operations&quot;: [operation._to_dict() for operation in self.operations]</span><span class="se">\n</span><span class="s1">        }</span><span class="se">\n</span><span class="s1">        return dict_object&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;setup_config&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def setup_config(dictionary=</span><span class="si">{}</span><span class="s1">):</span><span class="se">\n</span><span class="s1">    global global_config</span><span class="se">\n</span><span class="s1">    global_config = config.ConfigurationSet(</span><span class="se">\n</span><span class="s1">        config.config_from_dict(dictionary),</span><span class="se">\n</span><span class="s1">        config.config_from_env(</span><span class="se">\n</span><span class="s1">            prefix=&quot;POWERML&quot;, separator=&quot;__&quot;, lowercase_keys=True),</span><span class="se">\n</span><span class="s1">        home_yaml_config(),</span><span class="se">\n</span><span class="s1">    )</span><span class="se">\n</span><span class="s1">    return global_config&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;json_loads&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def loads(s, *, cls=None, object_hook=None, parse_float=None,</span><span class="se">\n</span><span class="s1">        parse_int=None, parse_constant=None, object_pairs_hook=None, **kw):</span><span class="se">\n</span><span class="s1">    &quot;&quot;&quot;Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance</span><span class="se">\n</span><span class="s1">    containing a JSON document) to a Python object.</span><span class="se">\n\n</span><span class="s1">    ``object_hook`` is an optional function that will be called with the</span><span class="se">\n</span><span class="s1">    result of any object literal decode (a ``dict``). The return value of</span><span class="se">\n</span><span class="s1">    ``object_hook`` will be used instead of the ``dict``. This feature</span><span class="se">\n</span><span class="s1">    can be used to implement custom decoders (e.g. JSON-RPC class hinting).</span><span class="se">\n\n</span><span class="s1">    ``object_pairs_hook`` is an optional function that will be called with the</span><span class="se">\n</span><span class="s1">    result of any object literal decoded with an ordered list of pairs.  The</span><span class="se">\n</span><span class="s1">    return value of ``object_pairs_hook`` will be used instead of the ``dict``.</span><span class="se">\n</span><span class="s1">    This feature can be used to implement custom decoders.  If ``object_hook``</span><span class="se">\n</span><span class="s1">    is also defined, the ``object_pairs_hook`` takes priority.</span><span class="se">\n\n</span><span class="s1">    ``parse_float``, if specified, will be called with the string</span><span class="se">\n</span><span class="s1">    of every JSON float to be decoded. By default this is equivalent to</span><span class="se">\n</span><span class="s1">    float(num_str). This can be used to use another datatype or parser</span><span class="se">\n</span><span class="s1">    for JSON floats (e.g. decimal.Decimal).</span><span class="se">\n\n</span><span class="s1">    ``parse_int``, if specified, will be called with the string</span><span class="se">\n</span><span class="s1">    of every JSON int to be decoded. By default this is equivalent to</span><span class="se">\n</span><span class="s1">    int(num_str). This can be used to use another datatype or parser</span><span class="se">\n</span><span class="s1">    for JSON integers (e.g. float).</span><span class="se">\n\n</span><span class="s1">    ``parse_constant``, if specified, will be called with one of the</span><span class="se">\n</span><span class="s1">    following strings: -Infinity, Infinity, NaN.</span><span class="se">\n</span><span class="s1">    This can be used to raise an exception if invalid JSON numbers</span><span class="se">\n</span><span class="s1">    are encountered.</span><span class="se">\n\n</span><span class="s1">    To use a custom ``JSONDecoder`` subclass, specify it with the ``cls``</span><span class="se">\n</span><span class="s1">    kwarg; otherwise ``JSONDecoder`` is used.</span><span class="se">\n</span><span class="s1">    &quot;&quot;&quot;</span><span class="se">\n</span><span class="s1">    if isinstance(s, str):</span><span class="se">\n</span><span class="s1">        if s.startswith(</span><span class="se">\&#39;\\</span><span class="s1">ufeff</span><span class="se">\&#39;</span><span class="s1">):</span><span class="se">\n</span><span class="s1">            raise JSONDecodeError(&quot;Unexpected UTF-8 BOM (decode using utf-8-sig)&quot;,</span><span class="se">\n</span><span class="s1">                                  s, 0)</span><span class="se">\n</span><span class="s1">    else:</span><span class="se">\n</span><span class="s1">        if not isinstance(s, (bytes, bytearray)):</span><span class="se">\n</span><span class="s1">            raise TypeError(f</span><span class="se">\&#39;</span><span class="s1">the JSON object must be str, bytes or bytearray, </span><span class="se">\&#39;\n</span><span class="s1">                            f</span><span class="se">\&#39;</span><span class="s1">not </span><span class="si">{s.__class__.__name__}</span><span class="se">\&#39;</span><span class="s1">)</span><span class="se">\n</span><span class="s1">        s = s.decode(detect_encoding(s), </span><span class="se">\&#39;</span><span class="s1">surrogatepass</span><span class="se">\&#39;</span><span class="s1">)</span><span class="se">\n\n</span><span class="s1">    if (cls is None and object_hook is None and</span><span class="se">\n</span><span class="s1">            parse_int is None and parse_float is None and</span><span class="se">\n</span><span class="s1">            parse_constant is None and object_pairs_hook is None and not kw):</span><span class="se">\n</span><span class="s1">        return _default_decoder.decode(s)</span><span class="se">\n</span><span class="s1">    if cls is None:</span><span class="se">\n</span><span class="s1">        cls = JSONDecoder</span><span class="se">\n</span><span class="s1">    if object_hook is not None:</span><span class="se">\n</span><span class="s1">        kw[</span><span class="se">\&#39;</span><span class="s1">object_hook</span><span class="se">\&#39;</span><span class="s1">] = object_hook</span><span class="se">\n</span><span class="s1">    if object_pairs_hook is not None:</span><span class="se">\n</span><span class="s1">        kw[</span><span class="se">\&#39;</span><span class="s1">object_pairs_hook</span><span class="se">\&#39;</span><span class="s1">] = object_pairs_hook</span><span class="se">\n</span><span class="s1">    if parse_float is not None:</span><span class="se">\n</span><span class="s1">        kw[</span><span class="se">\&#39;</span><span class="s1">parse_float</span><span class="se">\&#39;</span><span class="s1">] = parse_float</span><span class="se">\n</span><span class="s1">    if parse_int is not None:</span><span class="se">\n</span><span class="s1">        kw[</span><span class="se">\&#39;</span><span class="s1">parse_int</span><span class="se">\&#39;</span><span class="s1">] = parse_int</span><span class="se">\n</span><span class="s1">    if parse_constant is not None:</span><span class="se">\n</span><span class="s1">        kw[</span><span class="se">\&#39;</span><span class="s1">parse_constant</span><span class="se">\&#39;</span><span class="s1">] = parse_constant</span><span class="se">\n</span><span class="s1">    return cls(**kw).decode(s)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_type&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def get_type(output_value):</span><span class="se">\n</span><span class="s1">    if isinstance(output_value, tuple):</span><span class="se">\n</span><span class="s1">        return (value.type for value in output_value)</span><span class="se">\n\n</span><span class="s1">    return output_value._type&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def fit(self, examples=[]):</span><span class="se">\n</span><span class="s1">        self.save_data(examples)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__int__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __int__(self):</span><span class="se">\n</span><span class="s1">        if self._data is None:</span><span class="se">\n</span><span class="s1">            raise Exception(</span><span class="se">\n</span><span class="s1">                &quot;Value Access Error: must compute value before acessing&quot;)</span><span class="se">\n\n</span><span class="s1">        return int(self._data)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, name, model_name=None, config=</span><span class="si">{}</span><span class="s1">):</span><span class="se">\n</span><span class="s1">        self.program = Program(self, name)</span><span class="se">\n</span><span class="s1">        self.current_function = self.program.main</span><span class="se">\n</span><span class="s1">        self.value_cache = </span><span class="si">{}</span><span class="se">\n</span><span class="s1">        self.model_name = model_name</span><span class="se">\n</span><span class="s1">        edit_config(config)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        input_value = value_to_dict(self._input_value)</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;GetFieldOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: input_value,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: type_to_dict(self._type),</span><span class="se">\n</span><span class="s1">            &quot;field_name&quot;: self._field_name,</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        input_value_list = []</span><span class="se">\n</span><span class="s1">        for val in self._input_value:</span><span class="se">\n</span><span class="s1">            input_value = value_to_dict(val)</span><span class="se">\n</span><span class="s1">            input_value_list.append(input_value)</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;BatchLlamaOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: input_value_list,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: json.loads(self._type.schema_json()),</span><span class="se">\n</span><span class="s1">            &quot;args&quot;: self._args</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_get_attribute_raw&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _get_attribute_raw(self, name):</span><span class="se">\n</span><span class="s1">        return super().__getattribute__(name)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def to_dict(self):</span><span class="se">\n</span><span class="s1">        input_value = value_to_dict(self._input_value)</span><span class="se">\n\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;MetricOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: input_value,</span><span class="se">\n</span><span class="s1">            &quot;type&quot;: json.loads(self._type.schema_json()),</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_model&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;def add_model(self, input, output_type, *args, **kwargs):</span><span class="se">\n</span><span class="s2">        if isinstance(input, list):</span><span class="se">\n</span><span class="s2">            def partition(l, n):</span><span class="se">\n</span><span class="s2">                for i in range(0, len(l), n):</span><span class="se">\n</span><span class="s2">                    yield l[i:i + n]</span><span class="se">\n</span><span class="s2">            chunks = list(partition(input, 20))</span><span class="se">\n</span><span class="s2">            if self.model_name is not None:</span><span class="se">\n</span><span class="s2">                kwargs[&#39;model_name&#39;] = self.model_name</span><span class="se">\n</span><span class="s2">            operations = []</span><span class="se">\n</span><span class="s2">            for chunk in chunks:</span><span class="se">\n</span><span class="s2">                new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s2">                    BatchLlamaOperation(chunk, output_type, *args, **kwargs)</span><span class="se">\n</span><span class="s2">                )</span><span class="se">\n</span><span class="s2">                operations.append(new_operation)</span><span class="se">\n</span><span class="s2">            return operations</span><span class="se">\n</span><span class="s2">        else:</span><span class="se">\n</span><span class="s2">            if self.model_name is not None:</span><span class="se">\n</span><span class="s2">                kwargs[&#39;model_name&#39;] = self.model_name</span><span class="se">\n</span><span class="s2">            new_operation = self.current_function.add_operation(</span><span class="se">\n</span><span class="s2">                LlamaOperation(input, output_type, *args, **kwargs)</span><span class="se">\n</span><span class="s2">            )</span><span class="se">\n</span><span class="s2">            return new_operation&quot;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;edit_config&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def edit_config(dictionary=</span><span class="si">{}</span><span class="s1">):</span><span class="se">\n</span><span class="s1">    global global_config</span><span class="se">\n</span><span class="s1">    if global_config is None:</span><span class="se">\n</span><span class="s1">        global_config = setup_config(dictionary)</span><span class="se">\n</span><span class="s1">    else:</span><span class="se">\n</span><span class="s1">        global_config.update(</span><span class="se">\n</span><span class="s1">            config.config_from_dict(dictionary))</span><span class="se">\n</span><span class="s1">    return global_config&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;GetArgumentOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;input_value&quot;: {</span><span class="se">\n</span><span class="s1">                &quot;index&quot;: self._input_value_index,</span><span class="se">\n</span><span class="s1">                &quot;type&quot;: type_to_dict(self._type)</span><span class="se">\n</span><span class="s1">            }</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;query_run_embedding&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;def query_run_embedding(prompt, config=</span><span class="si">{}</span><span class="s2">):</span><span class="se">\n</span><span class="s2">    params = {</span><span class="se">\n</span><span class="s2">        &#39;prompt&#39;: prompt</span><span class="se">\n</span><span class="s2">    }</span><span class="se">\n</span><span class="s2">    edit_config(config)</span><span class="se">\n</span><span class="s2">    key, url = get_url_and_key()</span><span class="se">\n</span><span class="s2">    resp = powerml_run_embedding(params, url, key)</span><span class="se">\n</span><span class="s2">    return np.reshape(resp.json()[&#39;embedding&#39;], (1, -1))&quot;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;add_operation&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def add_operation(self, operation):</span><span class="se">\n</span><span class="s1">        operation._index = len(self.operations)</span><span class="se">\n</span><span class="s1">        operation._function = self</span><span class="se">\n\n</span><span class="s1">        self.operations.append(operation)</span><span class="se">\n\n</span><span class="s1">        return operation&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;json_dumps&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def dumps(obj, *, skipkeys=False, ensure_ascii=True, check_circular=True,</span><span class="se">\n</span><span class="s1">        allow_nan=True, cls=None, indent=None, separators=None,</span><span class="se">\n</span><span class="s1">        default=None, sort_keys=False, **kw):</span><span class="se">\n</span><span class="s1">    &quot;&quot;&quot;Serialize ``obj`` to a JSON formatted ``str``.</span><span class="se">\n\n</span><span class="s1">    If ``skipkeys`` is true then ``dict`` keys that are not basic types</span><span class="se">\n</span><span class="s1">    (``str``, ``int``, ``float``, ``bool``, ``None``) will be skipped</span><span class="se">\n</span><span class="s1">    instead of raising a ``TypeError``.</span><span class="se">\n\n</span><span class="s1">    If ``ensure_ascii`` is false, then the return value can contain non-ASCII</span><span class="se">\n</span><span class="s1">    characters if they appear in strings contained in ``obj``. Otherwise, all</span><span class="se">\n</span><span class="s1">    such characters are escaped in JSON strings.</span><span class="se">\n\n</span><span class="s1">    If ``check_circular`` is false, then the circular reference check</span><span class="se">\n</span><span class="s1">    for container types will be skipped and a circular reference will</span><span class="se">\n</span><span class="s1">    result in an ``RecursionError`` (or worse).</span><span class="se">\n\n</span><span class="s1">    If ``allow_nan`` is false, then it will be a ``ValueError`` to</span><span class="se">\n</span><span class="s1">    serialize out of range ``float`` values (``nan``, ``inf``, ``-inf``) in</span><span class="se">\n</span><span class="s1">    strict compliance of the JSON specification, instead of using the</span><span class="se">\n</span><span class="s1">    JavaScript equivalents (``NaN``, ``Infinity``, ``-Infinity``).</span><span class="se">\n\n</span><span class="s1">    If ``indent`` is a non-negative integer, then JSON array elements and</span><span class="se">\n</span><span class="s1">    object members will be pretty-printed with that indent level. An indent</span><span class="se">\n</span><span class="s1">    level of 0 will only insert newlines. ``None`` is the most compact</span><span class="se">\n</span><span class="s1">    representation.</span><span class="se">\n\n</span><span class="s1">    If specified, ``separators`` should be an ``(item_separator, key_separator)``</span><span class="se">\n</span><span class="s1">    tuple.  The default is ``(</span><span class="se">\&#39;</span><span class="s1">, </span><span class="se">\&#39;</span><span class="s1">, </span><span class="se">\&#39;</span><span class="s1">: </span><span class="se">\&#39;</span><span class="s1">)`` if *indent* is ``None`` and</span><span class="se">\n</span><span class="s1">    ``(</span><span class="se">\&#39;</span><span class="s1">,</span><span class="se">\&#39;</span><span class="s1">, </span><span class="se">\&#39;</span><span class="s1">: </span><span class="se">\&#39;</span><span class="s1">)`` otherwise.  To get the most compact JSON representation,</span><span class="se">\n</span><span class="s1">    you should specify ``(</span><span class="se">\&#39;</span><span class="s1">,</span><span class="se">\&#39;</span><span class="s1">, </span><span class="se">\&#39;</span><span class="s1">:</span><span class="se">\&#39;</span><span class="s1">)`` to eliminate whitespace.</span><span class="se">\n\n</span><span class="s1">    ``default(obj)`` is a function that should return a serializable version</span><span class="se">\n</span><span class="s1">    of obj or raise TypeError. The default simply raises TypeError.</span><span class="se">\n\n</span><span class="s1">    If *sort_keys* is true (default: ``False``), then the output of</span><span class="se">\n</span><span class="s1">    dictionaries will be sorted by key.</span><span class="se">\n\n</span><span class="s1">    To use a custom ``JSONEncoder`` subclass (e.g. one that overrides the</span><span class="se">\n</span><span class="s1">    ``.default()`` method to serialize additional types), specify it with</span><span class="se">\n</span><span class="s1">    the ``cls`` kwarg; otherwise ``JSONEncoder`` is used.</span><span class="se">\n\n</span><span class="s1">    &quot;&quot;&quot;</span><span class="se">\n</span><span class="s1">    # cached encoder</span><span class="se">\n</span><span class="s1">    if (not skipkeys and ensure_ascii and</span><span class="se">\n</span><span class="s1">        check_circular and allow_nan and</span><span class="se">\n</span><span class="s1">        cls is None and indent is None and separators is None and</span><span class="se">\n</span><span class="s1">        default is None and not sort_keys and not kw):</span><span class="se">\n</span><span class="s1">        return _default_encoder.encode(obj)</span><span class="se">\n</span><span class="s1">    if cls is None:</span><span class="se">\n</span><span class="s1">        cls = JSONEncoder</span><span class="se">\n</span><span class="s1">    return cls(</span><span class="se">\n</span><span class="s1">        skipkeys=skipkeys, ensure_ascii=ensure_ascii,</span><span class="se">\n</span><span class="s1">        check_circular=check_circular, allow_nan=allow_nan, indent=indent,</span><span class="se">\n</span><span class="s1">        separators=separators, default=default, sort_keys=sort_keys,</span><span class="se">\n</span><span class="s1">        **kw).encode(obj)&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, input_value, output_type, *args, **kwargs):</span><span class="se">\n</span><span class="s1">        super().__init__(output_type)</span><span class="se">\n</span><span class="s1">        self._input_value = input_value</span><span class="se">\n</span><span class="s1">        self._args = {</span><span class="se">\n</span><span class="s1">            &quot;args&quot;: args,</span><span class="se">\n</span><span class="s1">            &quot;kwargs&quot;: kwargs</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get_type&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def get_type(output_value):</span><span class="se">\n</span><span class="s1">    if isinstance(output_value, tuple):</span><span class="se">\n</span><span class="s1">        return (value._type for value in output_value)</span><span class="se">\n\n</span><span class="s1">    return output_value._type&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __init__(self, target_function, input_value, output_value):</span><span class="se">\n</span><span class="s1">        super().__init__(get_type(output_value))</span><span class="se">\n</span><span class="s1">        self._target_function = target_function</span><span class="se">\n</span><span class="s1">        self._input_value = input_value&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;_to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def _to_dict(self):</span><span class="se">\n</span><span class="s1">        if isinstance(self._output_value, tuple):</span><span class="se">\n</span><span class="s1">            output_value = [value_to_dict(value) for value in self._output_value]</span><span class="se">\n</span><span class="s1">        else:</span><span class="se">\n</span><span class="s1">            output_value = value_to_dict(self._output_value)</span><span class="se">\n\n</span><span class="s1">        return {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: &quot;ReturnOperation&quot;,</span><span class="se">\n</span><span class="s1">            &quot;output_value&quot;: output_value,</span><span class="se">\n</span><span class="s1">        }&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;to_dict&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def to_dict(self):</span><span class="se">\n</span><span class="s1">        examples = []</span><span class="se">\n</span><span class="s1">        for example in self.examples:</span><span class="se">\n</span><span class="s1">            if isinstance(example, list): </span><span class="se">\n</span><span class="s1">                # Related information in a list together</span><span class="se">\n</span><span class="s1">                examples_i = []</span><span class="se">\n</span><span class="s1">                for example_i in example:</span><span class="se">\n</span><span class="s1">                    examples_i.append(value_to_dict(example_i))</span><span class="se">\n</span><span class="s1">                examples.append(examples_i)</span><span class="se">\n</span><span class="s1">            else:</span><span class="se">\n</span><span class="s1">                # Singleton type</span><span class="se">\n</span><span class="s1">                examples.append(value_to_dict(example))</span><span class="se">\n</span><span class="s1">        dict_object = {</span><span class="se">\n</span><span class="s1">            &quot;name&quot;: self.name,</span><span class="se">\n</span><span class="s1">            &quot;functions&quot;: {</span><span class="se">\n</span><span class="s1">                name: function.to_dict() for name, function in self.functions.items()</span><span class="se">\n</span><span class="s1">            },</span><span class="se">\n</span><span class="s1">            &quot;examples&quot;: examples,</span><span class="se">\n</span><span class="s1">        }</span><span class="se">\n</span><span class="s1">        return dict_object&#39;</span><span class="p">),</span> <span class="n">Function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s1">&#39;def __getitem__(self, name):</span><span class="se">\n</span><span class="s1">        return getattr(self, name)&#39;</span><span class="p">)]</span>
+</span></code></pre></div>
+
+</details>
+
+<details>
+  <summary>Code for <code>format_docs()</code> </summary>
+
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">SEPARATOR</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span> <span class="nf">format_docs</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">docstring</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Function:</span><span class="si">{</span><span class="n">SEPARATOR</span><span class="si">}{</span><span class="n">question</span><span class="si">}{</span><span class="n">SEPARATOR</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">docstring</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Inputs:</span><span class="si">{</span><span class="n">SEPARATOR</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">answer</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="n">docstring</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">input</span><span class="si">}{</span><span class="n">SEPARATOR</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">docstring</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Outputs:</span><span class="si">{</span><span class="n">SEPARATOR</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">answer</span><span class="o">.</span><span class="n">outputs</span><span class="p">:</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="n">docstring</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output</span><span class="si">}{</span><span class="n">SEPARATOR</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="n">docstring</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Description:</span><span class="si">{</span><span class="n">SEPARATOR</span><span class="si">}{</span><span class="n">answer</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="k">return</span> <span class="n">docstring</span>
+</span></code></pre></div>
+
+</details>
+<p><em>Output:</em></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Function</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">LLMEngine</span><span class="o">.</span><span class="fm">__init__</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">Inputs</span><span class="p">:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">name</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">model_name</span> <span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">optional</span><span class="p">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">config</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">optional</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="n">Outputs</span><span class="p">:</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="o">-</span> <span class="n">program</span> <span class="p">(</span><span class="n">Program</span><span class="p">)</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="n">current_function</span> <span class="p">(</span><span class="n">Function</span><span class="p">)</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="n">value_cache</span> <span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="n">model_name</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">optional</span><span class="p">)</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="n">edit_config</span> <span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">optional</span><span class="p">)</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="n">Description</span><span class="p">:</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="n">The</span> <span class="n">LLMEngine</span><span class="o">.</span><span class="fm">__init__</span> <span class="n">function</span> <span class="n">initializes</span> <span class="n">a</span> <span class="n">LanguageModel</span> <span class="nb">object</span> <span class="k">with</span> <span class="n">a</span> <span class="n">name</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="ow">and</span> <span class="n">optional</span> <span class="n">configuration</span><span class="o">.</span> <span class="n">It</span> <span class="n">also</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">Program</span> <span class="nb">object</span> <span class="ow">and</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">current_function</span> <span class="n">to</span> <span class="n">the</span> <span class="n">main</span> <span class="n">function</span> <span class="n">of</span> <span class="n">the</span> <span class="n">program</span><span class="o">.</span> <span class="n">The</span> <span class="n">value_cache</span> <span class="ow">is</span> <span class="n">also</span> <span class="n">initialized</span> <span class="k">as</span> <span class="n">a</span> <span class="n">dictionary</span><span class="o">.</span> <span class="n">The</span> <span class="n">model_name</span> <span class="ow">is</span> <span class="n">optional</span> <span class="ow">and</span> <span class="n">can</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">using</span> <span class="n">the</span> <span class="n">edit_config</span> <span class="n">function</span><span class="o">.</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="n">Relevant</span> <span class="n">task</span> <span class="n">information</span><span class="p">:</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="n">name</span><span class="p">:</span> <span class="fm">__init__</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="n">code</span><span class="p">:</span>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="err">```</span><span class="n">python</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span>
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="err">```</span><span class="o">&lt;/</span><span class="n">s</span><span class="o">&gt;</span>
+</span></code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.instant", "navigation.tracking", "navigation.expand"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

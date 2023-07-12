@@ -1,0 +1,1114 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../notebooks/">
+      
+      
+        <link rel="next" href="../code_guru/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+    
+    
+      
+        <title>Question Answer Walkthrough - </title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#question-answer-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="" class="md-header__button md-logo" aria-label="" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Question Answer Walkthrough
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="" class="md-nav__button md-logo" aria-label="" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/" class="md-nav__link">
+        Notebook Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Walkthroughs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Walkthroughs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Question Answer Walkthrough
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Question Answer Walkthrough
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#import-the-questionanswermodel-class" class="md-nav__link">
+    Import the QuestionAnswerModel class
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-pre-defined-interface" class="md-nav__link">
+    A pre-defined interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-example-data-to-the-model-for-training" class="md-nav__link">
+    Add example data to the model for training
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-a-model-and-evaluate-the-results" class="md-nav__link">
+    Train a model and evaluate the results
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_guru/" class="md-nav__link">
+        Code Guru Walkthrough
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filters/" class="md-nav__link">
+        Dataset Filters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          REST API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          REST API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/completions/" class="md-nav__link">
+        Completions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/data/" class="md-nav__link">
+        Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/delete_data/" class="md-nav__link">
+        Delete Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/train/" class="md-nav__link">
+        Train
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/train_job_status/" class="md-nav__link">
+        Training Status
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/train_job_cancel/" class="md-nav__link">
+        Cancel Training
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/eval_results/" class="md-nav__link">
+        Eval Results
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Python Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Python Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_library/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../question_answer_model/" class="md-nav__link">
+        QuestionAnswerModel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../batching/" class="md-nav__link">
+        Batched Completions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../error_handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filters/" class="md-nav__link">
+        Filters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+          LLMEngine Class Docs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_6">
+          <span class="md-nav__icon md-icon"></span>
+          LLMEngine Class Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/__init__/" class="md-nav__link">
+        __init__
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/__call__/" class="md-nav__link">
+        __call__
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/save_data/" class="md-nav__link">
+        save_data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/train/" class="md-nav__link">
+        train
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/eval/" class="md-nav__link">
+        eval
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/improve/" class="md-nav__link">
+        improve
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/submit_job/" class="md-nav__link">
+        submit_job
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/check_job_status/" class="md-nav__link">
+        check_job_status
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/get_job_results/" class="md-nav__link">
+        get_job_results
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/cancel_job/" class="md-nav__link">
+        cancel_job
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLMEngine/sample/" class="md-nav__link">
+        sample
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#import-the-questionanswermodel-class" class="md-nav__link">
+    Import the QuestionAnswerModel class
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-pre-defined-interface" class="md-nav__link">
+    A pre-defined interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-example-data-to-the-model-for-training" class="md-nav__link">
+    Add example data to the model for training
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-a-model-and-evaluate-the-results" class="md-nav__link">
+    Train a model and evaluate the results
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="question-answer-model">Question Answer Model</h1>
+<p>In this walkthrough, we'll build a working question answer model to demonstrate how one might use Lamini to gain quick insight into a specialized topic. Here, we've specialized this walkthrough to target our company blog.</p>
+<h2 id="import-the-questionanswermodel-class">Import the QuestionAnswerModel class</h2>
+<p>Lamini provides an example harness to make interacting with the LLMEngine simpler. Import <code>QuestionAnswerModel</code> to quickly get started.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">llama</span> <span class="kn">import</span> <span class="n">QuestionAnswerModel</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Run the base model</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">QuestionAnswerModel</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="a-pre-defined-interface">A pre-defined interface</h2>
+<p><code>QuestionAnswerModel</code> uses the following input and output types internally. You won't need to re-instantiate these, this class will do the instantiation for you.</p>
+<details>
+  <summary>Question and Answer Types</summary>
+
+    <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">llama</span> <span class="kn">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Context</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Input</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">Type</span><span class="p">):</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">question</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;a question&quot;</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Output</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">class</span> <span class="nc">Answer</span><span class="p">(</span><span class="n">Type</span><span class="p">):</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">answer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="s2">&quot;the response to the question&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+
+</details>
+
+<h2 id="add-example-data-to-the-model-for-training">Add example data to the model for training</h2>
+<p>You can import data to this class by using the <code>load_question_answer</code> method, which accepts a list of python dictionaries as input. Each dictionary must have <code>"question"</code> and <code>"answer"</code> keys, and string values for each of those keys. This data is similar to "prompt" and "completion" data you may have seen before. Expand below to see this in action.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">data</span> <span class="o">=</span> <span class="n">get_example_qa_data</span><span class="p">()</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Instantiate the model and load the data into it</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">QuestionAnswerModel</span><span class="p">()</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">model</span><span class="o">.</span><span class="n">load_question_answer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+<details>
+  <summary>Code for <code>get_example_qa_data()</code></summary>
+
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">llama</span> <span class="kn">import</span> <span class="n">QuestionAnswerModel</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What are the different types of documents available in the repository (e.g., installation guide, API documentation, developer&#39;s guide)?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini has documentation on Getting Started, Authentication, Question Answer Model, Python Library, Batching, Error Handling, Advanced topics, and class documentation on LLM Engine available at https://lamini-ai.github.io/.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the recommended way to set up and configure the code repository?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can be downloaded as a python package and used in any codebase that uses python. Additionally, we provide a language agnostic REST API. We</span><span class="se">\u2019</span><span class="s2">ve seen users develop and train models in a notebook environment, and then switch over to a REST API to integrate with their production environment.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How can I find the specific documentation I need for a particular feature or function?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can ask this model about documentation, which is trained on our publicly available docs and source code, or you can go to https://lamini-ai.github.io/.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation include explanations of the code&#39;s purpose and how it fits into a larger system?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Our documentation provides both real-world and toy examples of how one might use Lamini in a larger system. In particular, we have a walkthrough of how to build a Question Answer model available here: https://lamini-ai.github.io/example/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation provide information about any external dependencies or libraries used by the code?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;External dependencies and libraries are all available on the Python package hosting website Pypi at https://pypi.org/project/lamini/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How frequently is the documentation updated to reflect changes in the code?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Documentation on such a fast moving project is difficult to update regularly - that</span><span class="se">\u2019</span><span class="s2">s why we</span><span class="se">\u2019</span><span class="s2">ve built this model to continually update users on the status of our product.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Is there a community or support channel mentioned in the documentation where I can ask questions or seek help?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can always reach out to us at support@lamini.ai.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any API references or documentation available for the codebase?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;All our public documentation is available here https://lamini-ai.github.io/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Is there a troubleshooting guide or a list of common issues and their solutions?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;All our public documentation is available here https://lamini-ai.github.io/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any examples or sample code provided in the documentation?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Examples and sample documentation is available at https://lamini-ai.github.io/. In particular, there is a QA example where we show you how to feed your documentation into a model to ask questions about a code base. Additionally, sample code and colab notebooks are provided and linked throughout the documentation where relevant. Feedback on our documentation is greatly appreciated - we care about making LLMs - and by extension Lamini - easier to use. Please direct any feedback to support@lamini.ai.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What is a type system?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;The Lamini Type system is a code-first data representation library built to help users pipe data into Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine. Lamini Types are simple, built on top of Pydantic BaseModels, and enforce strict typing so that integration into a data pipeline can run seamlessly without any errors.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation provide a step-by-step tutorial for getting started with the code?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, several walkthroughs are available in the documentation. The documentation also provides links to example Google Colab notebooks which readers might run themselves and can provide a launchpad for iteration on their own data.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Do I have to write prompts myself?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;No, you only need to represent your data using the Lamini Type system and provide context - natural language description of each field in a Type. Lamini brings the focus of development on the data, bypassing prompt engineering as a step in language model development.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How do I add my data to Lamini&#39;s interface&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can quickly add data to Lamini</span><span class="se">\u2019</span><span class="s2">s interface using LLM Engine.add_data. This method allows you to make data available to the model for inference and training.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How do I use open model for inference&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can use an open model by specifying the model</span><span class="se">\u2019</span><span class="s2">s name in the </span><span class="se">\u2018</span><span class="s2">model_name</span><span class="se">\u2019</span><span class="s2"> parameter in the LLM Engine class initializer.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Where do I specify model name&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can specify model_name in both the initialization of LLM Engine or in the function LLM Engine.__call___. In other words, instances of LLM Engine are callable and configurable.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What does Context mean?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Context is a natural language description of fields in each of your Types. In other words, context is metadata about your data.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Is it compulsory to give context?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Context is only required for certain Type fields: str, int, bool, float, list, set, dict, and tuple. Context is not required for fields which have object types (you don</span><span class="se">\u2019</span><span class="s2">t need to add context for composed Types).&quot;</span><span class="p">},</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Is it compulsory to provide input and output types?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, in our python library, the input and output type will be used by the LLM Engine in inference. By providing input and output type, you</span><span class="se">\u2019</span><span class="s2">re defining a problem statement for the LLM.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How should the data be formatted in order to send it to Lamini&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can match the type and metadata to whatever format you</span><span class="se">\u2019</span><span class="s2">d like.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I use Lamini as api instead of python library&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, we have a REST API available. To see documentation go to https://lamini-ai.github.io/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How do I get api keys?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can generate an api key in the </span><span class="se">\u201c</span><span class="s2">API</span><span class="se">\u201d</span><span class="s2"> tab at app.lamini.ai&quot;</span><span class="p">},</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Do I have to pay for using Lamini?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Everyone starts with 10,000 free credits, which is equivalent to about $100. After that, you can purchase more credits in the </span><span class="se">\u201c</span><span class="s2">API</span><span class="se">\u201d</span><span class="s2"> tab at app.lamini.ai.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I fine-tune models on my own data?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes! Lamini LLM Engine has fine-tuning support. Contact us for access.  You can also look at the documentation for llm.add_data, which makes your data available to the LLM Engine.  The LLM Engine performs fast training using this data, which should complete in just a few seconds, even for large datasets.  Full fine tuning is more expensive, which is why we ask you to contact us to allocate enough compute resources to support it.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any specific guidelines or recommendations on formatting the input data for Lamini?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;We suggest you think about language models as advanced problem solvers. Imagine you</span><span class="se">\u2019</span><span class="s2">re designing a function - what are the inputs and outputs? Lamini LLM Engine can help you build that function - but you</span><span class="se">\u2019</span><span class="s2">ll need to specify what data you have available and the format of that input data and what you wish the output was. In terms of what specific format the input data is in, Lamini Types are composable and have fields which you can mold to exactly fit your data.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Which models does Lamini support?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini supports every OpenAI and Hugging Face model.  For example, gpt3, chat-gpt, gpt4, pythia, gpt-neox, wizard-lm, falcon, etc.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you fine-tune an openai model?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes! Lamini LLM Engine has fine-tuning support, including base models from hugging face as well as OpenAI. Contact us for access.  You can also look at the documentation for llm.add_data, which makes your data available to the LLM Engine.  The LLM Engine performs fast training using this data, which should complete in just a few seconds, even for large datasets.  Full fine tuning is more expensive, which is why we ask you to contact us to allocate enough compute resources to support it.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I fine-tune GPT 4?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;No, GPT-4 doesn&#39;t support fine tuning.  However, Lamini does support fine tuning of other base models such as Pythia or other base models available on OpenAI such as GPT-3.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Do I need to provide data as train and test split?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;No, the LLM Engine internally uses technologies like dev sets to calibrate training.  However, as a best practice in machine learning, we recommend that you develop your own test set that you do not add to the LLM Engine, that allows you to evaluate the performance of the LLM you are building without overfitting.  A gold test set should typically include 10s to 100s of examples that are sufficiently representative of your use case and include high quality labels.  We also recommend using human evaluation to judge the performance of the language model on your test set, instead of metrics like BLEU.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;I am running into error 500, what should I do?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;We have documentation available on how to address common errors here https://lamini-ai.github.io/error_handling/. Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine is under very active development, and we thank you for using us!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I use the code documentation as a pillow for a quick nap?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;The code documentation is not meant for napping. It is intended to provide information about the code and its functions.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can the documentation predict the winning lottery numbers?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Is there a hidden message in the documentation that only a master codebreaker can decipher?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;There is no hidden message in the documentation. But thank you for reading it!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can a banana peel really make someone slip and fall?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Let</span><span class="se">\u2019</span><span class="s2">s keep the discussion relevant to Lamini.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Why are pineapples yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Let</span><span class="se">\u2019</span><span class="s2">s keep the discussion relevant to Lamini.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you sneeze with your eyes open?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Let</span><span class="se">\u2019</span><span class="s2">s keep the discussion relevant to Lamini.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation have a secret code that unlocks a hidden treasure?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation have a hidden recipe for the world&#39;s best chocolate chip cookies?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I roll up the documentation and use it as a makeshift telescope to spot distant galaxies?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you tickle yourself?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Let</span><span class="se">\u2019</span><span class="s2">s keep the discussion relevant to Lamini.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any step-by-step tutorials or walkthroughs available in the documentation?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here</span><span class="se">\u2019</span><span class="s2">s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any licensing or copyright details provided in the documentation?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;The documentation may include information about the licensing or copyright details of the code, specifying the terms under which it can be used, modified, or distributed.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation include performance benchmarks or comparisons with other similar solutions?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Currently the documentation does not include performance benchmarks or comparisons with other similar solutions, but seems like a good suggestion, I will let the developers at Lamini know this!!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation provide guidelines on handling errors or handling exceptions in the code?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, the documentation provides guidelines for handling errors and exceptions in the code, for more details visit https://lamini-ai.github.io/error_handling/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I use the code documentation as a hat to protect myself from rain?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can the documentation predict the outcome of a coin toss?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can reading the documentation make you instantly fluent in a new language?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;The code documentation does not make you fluent in a new language. It is intended to provide information about the code and its functions. You might choose to use the Lamini engine to finetune a multilingual model. Let us know how that goes!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you use the documentation as a crystal ball to predict the future?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Why do cats always land on their feet?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Let</span><span class="se">\u2019</span><span class="s2">s keep the discussion relevant to Lamini.&quot;</span><span class="p">}</span>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can the documentation make you instantly gain six-pack abs?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;I wish! This documentation only talks about Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I fine-tune Lamini on my own dataset or specific domain?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Absolutely, you can train your custom Language model using Lamini on your own dataset&quot;</span><span class="p">},</span>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Do I have to install additional software to run Lamini?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;No! You don&#39;t need to install additional software to run Lamini, It can be installed using pip, the package manager for Python. The python package is here: https://pypi.org/project/lamini/.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any examples provided to use Lamini library?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, there are several examples provided, for more information visit https://lamini-ai.github.io/#try-an-example&quot;</span><span class="p">},</span>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How to use the add_data fucntion?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;You can use the add_data function to customize the LLM on your data. This way the LLM will have context over your data and thus can answer questions related to it more accurately and promptly. For more information visit https://lamini-ai.github.io/LLM/add_data/&quot;</span><span class="p">},</span>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does the documentation provide information on performance optimization or best practices for using the code?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, the documentation has information on running a model using a batch interface as well as using a real-time interface. Besides that, the LLM Engine will optimize performance automatically.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Is the Lamini type system similar to a python type system?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, the Lamini type system is built using Pydantic</span><span class="se">\u2019</span><span class="s2">s BaseModel.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How can I control the level of specificity or randomness in Lamini&#39;s responses?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini</span><span class="se">\u2019</span><span class="s2">s default temperature is 0 and in order to increase the randomness, set `random=True` when calling the model using LLM Engine.__call__&quot;</span><span class="p">},</span>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does Lamini have a limit on the number of API requests I can make?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini provides each user with free tokens up front.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini handle sensitive or confidential information in the provided data?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Please reach out to us with questions about sensitive data or confidential information. This may be a situation where it</span><span class="se">\u2019</span><span class="s2">s best to deploy our solution on your infrastructure so that your data stays secure.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What does it mean to cancel a job using the `cancel_job()` function? Can we stop the machine from doing its task?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;The `cancel_job()` function is used to stop a job that is currently running. It sends a request to the machine to stop the task it is performing. However, it is important to note that this does not guarantee that the machine will immediately stop the task, as it may need to complete certain operations before it can safely stop.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does the `sample()` function work? Does it help the machine create new things like stories or drawings?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;The `sample()` function works using temperature, embeddings, and similarity to generate a set of multiple distinct responses to a question. However, it only outputs text, so it cannot be used for creating images or drawings.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I use Lamini&#39;s functions even if I don&#39;t know how to code or program?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, you can use Lamini&#39;s functions even if you don&#39;t know how to code or program. Lamini provides a user-friendly interface that allows you to input your data and select the desired function to apply to it. You can also access pre-built templates and examples to help you get started.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How can I start using Lamini and understand what it does? Is there a special guide for kids like me?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, there is a guide for beginners on the Lamini website. It explains what Lamini is and how to get started using it. It&#39;s written in a way that&#39;s easy to understand, so it&#39;s accessible to all levels!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Do I need to pay money to use Lamini&#39;s functions, or is it free for kids like me?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini presents a nuanced pricing structure that caters to a wide range of users, ensuring accessibility for all. While Lamini offers a paid API service, it generously provides free tokens to everyone upon signing up. These tokens grant users access to the platform&#39;s functions and services, allowing them to explore Lamini&#39;s capabilities and unleash their creativity. This inclusive approach encourages aspiring software engineers, including younger enthusiasts, to delve into the world of AI and language models without financial barriers. By offering free tokens, Lamini fosters a supportive environment that nurtures learning, innovation, and the cultivation of skills. So, regardless of age or experience level, users can embark on their journey with Lamini, harnessing its power to bring their ideas to life.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I teach Lamini about things that I like or know a lot about, like my favorite animals or hobbies?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Absolutely! One of the fascinating aspects of Lamini is its capacity to learn and adapt to specific interests and knowledge domains. By utilizing the customization capabilities of Lamini, you can impart your expertise on various topics, such as your favorite animals, hobbies, or any subject matter close to your heart. Whether you have a profound understanding of marine biology, an avid passion for astrophysics, or an encyclopedic knowledge of ancient civilizations, Lamini can be trained to generate text that aligns with your areas of expertise. This personalized touch empowers you to engage with the model in a meaningful way, creating a dynamic experience that reflects your unique perspective. With Lamini as your partner, the possibilities for exploring and expanding your interests are boundless.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can Lamini help me with my school work or answer questions I have for my homework?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can help you train a model to help with your school work and answer questions you have for your homework.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini decide what answers or information to give when we use its functions?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini uses a language model to analyze the input question and generate a response based on its understanding of the context and relevant information. It also takes into account any additional data or documents that have been provided to it.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can Lamini talk or have a conversation with me? Can it understand what I say or type?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini LLM Engine is a language model engine that can process and understand natural language input and use that information to help you train a model. It can be used to train models on specific tasks, such as understanding conversations and ordering food, and can generate responses based on that training. However, Models are not capable of having a conversation in the traditional sense, as it is a machine learning model and not a sentient being. They can only respond based on the data they have been trained on.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What kind of things can Lamini help me create or make using the `sample()` function?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can help you generate a variety of output using the `sample()` function, such as random sentences, paragraphs, and even entire stories. The possibilities are endless!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any rules or guidelines I should follow when using Lamini&#39;s functions?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, there are some guidelines you should follow when using Lamini&#39;s functions. These include providing clear and concise input, avoiding offensive or inappropriate language, and respecting Lamini&#39;s terms of service. For more information, you can refer to Lamini&#39;s documentation.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini enable me to customize models for my specific use case? What kind of customization options are available?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini enables customization of models for specific use cases through its LLM (Large Language Model) engine. This engine allows users to train and fine-tune language models on their own data, as well as customize the model architecture and parameters. Additionally, Lamini provides pre-built models for specific use cases that can be further customized to fit specific needs. Some of the customization options available include adjusting the model&#39;s hyperparameters, adding custom training data, and swapping out base models.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you explain how Lamini allows my customized LLM to outperform general-purpose models? What techniques or capabilities does it offer?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini allows for customized LLMs to outperform general-purpose models by providing a platform for fine-tuning and optimizing the model for specific use cases. Additionally, Lamini offers capabilities such as automatic hyperparameter tuning and model selection, as well as the ability to deploy and scale models in production environments.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What is the process for training a custom LLM using Lamini? How many data samples or iterations are typically required?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;To train a custom LLM using Lamini, you would need to provide a dataset of examples and use the LLM Engine class to create a program for execution by the Llama large language model engine. The number of data samples or iterations required can vary depending on the complexity of the task and the quality of the dataset, but typically several hundred to several thousand examples are needed for effective training.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini leverage my data to improve the performance of the customized LLM? How is the data utilized in the training process?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini leverages your data to improve the performance of the customized LLM by using it as training data. The data is utilized in the training process by feeding it into the LLM engine, which then uses it to learn patterns and relationships between different pieces of information. This allows the LLM to make more accurate predictions and generate more relevant outputs.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you provide an overview of the AI moat concept that Lamini helps build? How does it relate to the customization and ownership of the LLM?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;An AI moat is a business advantage or differentiator based on integrating or having access to artificial intelligence. LLMs are a type of AI which can be trained on text data, and used in a variety of applications which may help build an AI moat. Lamini</span><span class="se">\u2019</span><span class="s2">s mission is to help businesses build their AI moat by increasing the accessibility of training and using large language models, making them easier to customize while allowing users to maintain ownership over the resulting models&quot;</span><span class="p">},</span>
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What programming languages or frameworks does Lamini support? Do I need to have expertise in a specific language to use it effectively?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini currently has support in python and a REST API, so you do not need to have expertise in a specific language to use it effectively.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any specific coding examples or code snippets available that demonstrate the process of using Lamini in a few lines of code?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, there are coding examples and snippets available for using Lamini. You can find them in the official documentation and on the Lamini GitHub repository.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini handle commercial use? Can I incorporate the customized LLM into my commercial applications or products without any restrictions?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini allows for commercial use of their LLM technology under a permissive Apache 2.0 license unless otherwise specified. For more information, please reach out to Lamini directly.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you provide more information about the CC-BY license mentioned? What are the key terms or conditions associated with using Lamini in a commercial setting?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini allows for commercial use of their LLM technology under a permissive Apache 2.0 license unless otherwise specified. For more information, please reach out to Lamini directly.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does Lamini offer integration or compatibility with popular machine learning frameworks such as TensorFlow or PyTorch?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini does not currently offer integration or compatibility with popular machine learning frameworks such as TensorFlow or PyTorch. However, it does provide its own machine learning capabilities through its llama program library.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any performance benchmarks or comparisons available to showcase the effectiveness of Lamini in comparison to other similar solutions?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini is an LLM engine - this means that it can be used to produce models that may be compared to other models.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What kind of support or documentation does Lamini provide to assist software engineers in using the platform effectively? Are there any community resources or forums available?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Documentation is provided at https://lamini-ai.github.io/. There is also a support community available to assist you with any questions or issues you may have while using Lamini. You can join the Lamini Discord server or reach out to the Lamini team directly for assistance.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you explain how Lamini handles model deployment and inference? What options or tools are available for deploying the customized LLM in a production environment?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;LLM Engine provides several options for deploying customized LLMs in a production environment. One option is to use the Lamini API to deploy the model as a web service. Another option is to export the model as a Python package and deploy it using a containerization platform like Docker. For inference, LLM Engine provides a simple API for making predictions on new data.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can Lamini be integrated into existing machine learning pipelines or workflows? How does it fit into the broader machine learning ecosystem?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can be integrated into existing machine learning pipelines and workflows through its Python package, which allows for easy integration with any existing pipeline. Lamini also fits into the broader machine learning ecosystem by providing a powerful and flexible platform for building and deploying machine learning models, with a focus on interpretability and explainability.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does Lamini support transfer learning or pre-training from existing models? Can I leverage pre-trained models as a starting point for customization?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Every model available on HuggingFace is available as a starting point for customization. If you</span><span class="se">\u2019</span><span class="s2">d like to use a model which is not available publicly, please contact Lamini directly for deployment options.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any guidelines or best practices provided by Lamini for effective customization and training of the LLM? What strategies can I follow to optimize the results?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, Lamini provides guidelines and best practices for effective customization and training of the LLM. These include selecting high-quality training data, defining clear objectives, and regularly evaluating and refining the model.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can Lamini be used for real-time or online learning scenarios? How does it handle incremental updates or new data coming in over time?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can be used for real-time or online learning scenarios. Incremental updates and data can be made available to the model for training in real time.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you provide any real-world use cases or success stories of software engineers using Lamini to create powerful customized LLMs?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini was recently built and we are still collecting user feedback.  Within one week of our launch, Lamini had over 800k views, which is more than a typical announcement from US President Biden. Lamini is designed to be a powerful tool for creating customized language models, and we believe it has great potential for a wide range of applications. We encourage you to try it out and see what you can create!&quot;</span><span class="p">},</span>
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini compare to other existing tools or frameworks for customizing language models? What are its unique features or advantages?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini makes model training, hosting, and deployment easy.  Public LLMs, such as ChatGPT, can only take in &lt;1</span><span class="si">% o</span><span class="s2">f your data</span><span class="se">\u2014</span><span class="s2">whether that be customer support, business intelligence, or clickstream data. To make matters worse, you can</span><span class="se">\u2019</span><span class="s2">t just hand your most valuable data over, because it</span><span class="se">\u2019</span><span class="s2">s private. Lamini</span><span class="se">\u2019</span><span class="s2">s LLM Engine can run in your VPC, securely handling your model&#39;s valuable data resources.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What kind of training techniques does Lamini employ to enable rapid customization of LLMs? Are there any specific algorithms or approaches used?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini employs a variety of training techniques to enable rapid customization of LLMs. Specific algorithms and approaches used include fine-tuning, distillation, and reinforcement learning.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can Lamini handle large-scale datasets for training customized LLMs? Is there a limit to the size of the training data it can handle effectively?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can handle large-scale data sets and enforces no limits on the size of the training data.  Typically datasets are limited by the amount of data that can be sent to the LLM Engine through a client, which is typically limited by network bandwidth.  For example, on a 10Mbps internet connection, it would take about 2 minutes to send 100MB of data to the LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does Lamini support transfer learning from pre-trained models? Can I leverage existing models to accelerate the customization process?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Every model available on HuggingFace is available as a starting point for customization. If you</span><span class="se">\u2019</span><span class="s2">d like to use a model which is not available publicly, please contact Lamini directly for deployment options.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you provide details on how Lamini allows me to fine-tune or improve the performance of my customized LLM? What options or parameters can be adjusted?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini provides several options for fine-tuning and improving the performance of your customized LLM. You can adjust the model name, config settings, and input/output types. Additionally, Lamini allows you to submit jobs, check job status, and retrieve job results. You can also use the sample function to generate new program outputs, and the improve function to provide feedback and improve the model&#39;s performance. Other options include adding data, creating new functions, and adding metrics.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Are there any restrictions or considerations regarding the types of data that can be used with Lamini? Does it handle text data in multiple languages or specific formats?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini can handle various types of data, including text data in multiple languages and specific formats. There are no specific restrictions or considerations regarding the types of data that can be used with Lamini.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can Lamini automatically handle hyperparameter tuning during the customization process? How does it optimize the model for a specific use case?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini is capable of automatically handling hyperparameter tuning during the model customization process. It employs an intelligent algorithm to explore the hyperparameter space and find the optimal combination of values. This is done through techniques such as heuristics, grid search, random search, Bayesian optimization, or genetic algorithms. Lamini efficiently utilizes computational resources to evaluate multiple model instances with different hyperparameter configurations. It incorporates techniques like cross-validation to prevent overfitting and ensure generalization. By automating hyperparameter tuning, Lamini streamlines the machine learning workflow and improves the chances of developing high-performing models for specific use cases.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you explain how Lamini handles the issue of overfitting during customization? Are there any regularization techniques or mechanisms in place?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini</span><span class="se">\u2019</span><span class="s2">s LLM engine is built to handle issues like overfitting during model training using standard methods including dropout and early stopping.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;How does Lamini handle the computational resources required for training customized LLMs? Can I leverage distributed computing or GPU acceleration?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini automatically leverages distributed computing and GPU acceleration to handle the computational resources required for training customized LLMs. You can leverage these options to speed up the training process and improve performance.  These are enabled by default in the LLM Engine.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can I deploy the customized LLM created with Lamini on various platforms or frameworks? Are there any specific deployment considerations or requirements?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, models can be deployed in any containerized environment. Lamini can also host your models for you.  The only requirements are the ability to run docker containers, and to supply powerful enough GPUs to run an LLM.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Does Lamini provide any tools or functionality for monitoring and evaluating the performance of the customized LLM over time? Can I track metrics or analyze its behavior?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes, Lamini provides tools for monitoring and evaluating the performance of the customized LLM over time. You can track metrics and analyze its behavior using the `add_metric` and `metrics` methods in the `LLM` class. Additionally, Lamini provides functionality for providing feedback to the LLM to improve its performance over time.&quot;</span><span class="p">},</span>
+</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a><span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you provide insights into the scalability of Lamini? Can it handle training multiple LLMs concurrently or on a large scale?&quot;</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Lamini is designed to be highly scalable and can handle training multiple LLMs concurrently or on a large scale. Additionally, Lamini uses distributed training techniques such as data parallelism, SHARP, and SLURM to efficiently train models across multiple machines. Overall, Lamini is well-suited for large-scale machine learning projects.&quot;</span><span class="p">}]</span>
+</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a><span class="c1"># Instantiate the model and load the data into it</span>
+</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a><span class="n">model</span> <span class="o">=</span> <span class="n">QuestionAnswerModel</span><span class="p">()</span>
+</span><span id="__span-3-105"><a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a><span class="n">model</span><span class="o">.</span><span class="n">load_question_answer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+
+</details>
+
+<h2 id="train-a-model-and-evaluate-the-results">Train a model and evaluate the results</h2>
+<p>After you've added data, you can now train a model. Once the training is complete, you can view the eval results.
+Training is done on Lamini servers and you can track the training job's progress at <a href="https://app.lamini.ai/train">https://app.lamini.ai/train</a></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_eval_results</span><span class="p">()</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Once a model is trained you can check the eval results to see before and after comparisons of the base model and the trained model. You can also query the new trained model like so</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">answer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_answer</span><span class="p">(</span><span class="s2">&quot;How can I add data to Lamini?&quot;</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</span></code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.instant", "navigation.tracking", "navigation.expand"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
