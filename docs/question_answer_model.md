@@ -92,22 +92,6 @@ Returns:
 
 - `answers` (List[str]): A list of answers corresponding to the input questions. The order of answers matches the order of questions.
 
-#### `load_documents(self, documents: List[str])`
-
-Load a list of document strings into the question answering model.
-
-Args:
-
-- `documents` (List[str]): A list of document strings.
-
-#### `load_documents_from_jsonlines(self, file_path: str)`
-
-Load a jsonlines file with documents into the question answering model. Each line in the file must be a JSON object with a "document" key.
-
-Args:
-
-- `file_path` (str): The path to the jsonlines file.
-
 #### `load_question_answer(self, data)`
 
 Load a list of JSON objects with question-answer pairs into the question answering model. Each object must have "question" and "answer" as keys.

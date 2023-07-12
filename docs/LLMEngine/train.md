@@ -10,4 +10,8 @@ results = llm.train()
 
 ## Returns
 
-results: `list` - a list of input output pairs resulting from the evaluation of the trained model against the test set.
+results: `dict` - a dictionary object with fields `job_id` and `model_name` which can be used to fetch eval results or used to query the finetuned model. In order to query the finetuned model you need to use the new `model_name`
+
+```python
+my_output = llm(my_input, output_type=MyOutputType, model_name=results['model_name'])
+```
