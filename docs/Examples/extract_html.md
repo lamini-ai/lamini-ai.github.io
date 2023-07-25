@@ -2,12 +2,12 @@
 
 In this walkthrough, you'll build an LLM that can extract HTML form elements. Feel free to also run the [Colab notebook](https://colab.research.google.com/drive/1cn5AaWAsn6oOjz8bbo5JN9m893vmguCh).
 
-## Import the LLM engine from the llama module
+## Import the LLM engine from the llama module, The Pythia 410M-parameter model is the largest on the free-tier to train for free :)
 
 ```python
 from llama import LLMEngine
 
-llm = LLMEngine(id="extract_html", model_name="EleutherAI/pythia-410m-v0") # largest free-tier model :)
+llm = LLMEngine(id="extract_html", model_name="EleutherAI/pythia-410m-v0") 
 ```
 
 ## Define the LLM interface
@@ -164,20 +164,27 @@ def get_data():
 ```
 
 </details>
-```
+
 
 ## Train the LLM on this data
 After you've added data, you can now train a model. Once the training is complete, you can view the eval results.
 
-Training on free-tier is done here on Lamini servers (but if you're on enterprise tier, this can be done on your servers) and you can track the training job's progress at [https://app.lamini.ai/train](https://app.lamini.ai/train)
+Training on free-tier is done here on Lamini servers (but if you're on enterprise tier, this can be done on your servers) and you can track the training job's progress at [this training interface](https://app.lamini.ai/train). Once it's done, you can view evaluation results and play with it on a playground, on the same page.
 
 ```python
 results = model.train()
-eval_results = model.get_eval_results(results['job_id'])
-print(eval_results)
 ```
 
-Once a model is trained you can check the eval results to see before and after comparisons of the base model and the trained model. You can also query the new trained model like so
+Once a model is trained you can check the eval results to see before and after comparisons of the base model and the trained model. 
+
+```python
+model.get_eval_results(results['job_id'])
+```
+
+You can also query the new trained model like so:
+
+</details>
+  <summary>Instantiate an<code>html form</code> to use as (test) input.</summary>
 
 ```python
 html = Input(html_dom="""<!DOCTYPE html>
@@ -204,9 +211,16 @@ html = Input(html_dom="""<!DOCTYPE html>
         </div>
     </form>
 """
+```
+</details>
+
+Now run the `html` form into the finetuned model.
+```python
 extracted = model(html)
 print(extracted)
 ```
+
+See the extracted output!
 
 _Output:_
 

@@ -1,5 +1,5 @@
 site_name: ""
-site_url: "https://lamini-ai.github.io/"
+site_url: "https://lamini-ai.github.io"
 
 theme:
   name: material
@@ -9,6 +9,7 @@ theme:
     - navigation.tracking
     - navigation.expand
   logo: assets/logo.png
+  favicon: assets/favicon.png
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
