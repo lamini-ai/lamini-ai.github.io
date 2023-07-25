@@ -1,4 +1,5 @@
 site_name: ""
+site_url: "https://lamini-ai.github.io/"
 
 theme:
   name: material
@@ -49,6 +50,8 @@ nav:
   - Walkthroughs:
       - Question Answer Walkthrough: Examples/question_answer_walkthrough.md
       - Code Guru Walkthrough: Examples/code_guru.md
+      - Extract HTML Walkthrough: Examples/extract_html.md
+      # - Agent routing: Examples/code_guru.md
   - Dataset Filters: filters.md
   - REST API:
       - Completions: API/completions.md

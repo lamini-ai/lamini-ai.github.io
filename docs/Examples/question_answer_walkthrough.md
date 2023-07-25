@@ -52,9 +52,8 @@ model.load_question_answer(data)
   <summary>Code for <code>get_example_qa_data()</code></summary>
 
 ```python
-from llama import QuestionAnswerModel
-
-data = [{"question": "What are the different types of documents available in the repository (e.g., installation guide, API documentation, developer's guide)?", "answer": "Lamini has documentation on Getting Started, Authentication, Question Answer Model, Python Library, Batching, Error Handling, Advanced topics, and class documentation on LLM Engine available at https://lamini-ai.github.io/."},
+def get_example_qa_data():
+  data = [{"question": "What are the different types of documents available in the repository (e.g., installation guide, API documentation, developer's guide)?", "answer": "Lamini has documentation on Getting Started, Authentication, Question Answer Model, Python Library, Batching, Error Handling, Advanced topics, and class documentation on LLM Engine available at https://lamini-ai.github.io/."},
 {"question": "What is the recommended way to set up and configure the code repository?", "answer": "Lamini can be downloaded as a python package and used in any codebase that uses python. Additionally, we provide a language agnostic REST API. We\u2019ve seen users develop and train models in a notebook environment, and then switch over to a REST API to integrate with their production environment."},
 {"question": "How can I find the specific documentation I need for a particular feature or function?", "answer": "You can ask this model about documentation, which is trained on our publicly available docs and source code, or you can go to https://lamini-ai.github.io/."},
 {"question": "Does the documentation include explanations of the code's purpose and how it fits into a larger system?", "answer": "Our documentation provides both real-world and toy examples of how one might use Lamini in a larger system. In particular, we have a walkthrough of how to build a Question Answer model available here: https://lamini-ai.github.io/example/"},
@@ -154,9 +153,7 @@ data = [{"question": "What are the different types of documents available in the
 {"question": "Can I deploy the customized LLM created with Lamini on various platforms or frameworks? Are there any specific deployment considerations or requirements?", "answer": "Yes, models can be deployed in any containerized environment. Lamini can also host your models for you.  The only requirements are the ability to run docker containers, and to supply powerful enough GPUs to run an LLM."},
 {"question": "Does Lamini provide any tools or functionality for monitoring and evaluating the performance of the customized LLM over time? Can I track metrics or analyze its behavior?", "answer": "Yes, Lamini provides tools for monitoring and evaluating the performance of the customized LLM over time. You can track metrics and analyze its behavior using the `add_metric` and `metrics` methods in the `LLM` class. Additionally, Lamini provides functionality for providing feedback to the LLM to improve its performance over time."},
 {"question": "Can you provide insights into the scalability of Lamini? Can it handle training multiple LLMs concurrently or on a large scale?", "answer": "Lamini is designed to be highly scalable and can handle training multiple LLMs concurrently or on a large scale. Additionally, Lamini uses distributed training techniques such as data parallelism, SHARP, and SLURM to efficiently train models across multiple machines. Overall, Lamini is well-suited for large-scale machine learning projects."}]
-# Instantiate the model and load the data into it
-model = QuestionAnswerModel()
-model.load_question_answer(data)
+  return data
 ```
 
 </details>
