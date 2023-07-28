@@ -54,6 +54,7 @@ nav:
       - Extract HTML Walkthrough: Examples/extract_html.md
       # - Agent routing: Examples/code_guru.md
   - Dataset Filters: filters.md
+  - Dataset Augmenters: augmenters.md
   - REST API:
       - Completions: API/completions.md
       - Data: API/data.md
