@@ -136,12 +136,14 @@ Args:
 
 - `verbose` (bool): Whether to print verbose training progress. Default is False.
 
-#### `get_eval_results(self) -> List`
+#### `evaluate(self) -> dict
 
 Get the evaluation results of the trained question answering model.
 
 Returns:
 
-- `eval_results` (List): A list of evaluation results.
+- `evaluation` (List): A dict of evaluation results.
+
+Also, sets the `self.evaluation` attribute to the evaluation results.
 
 Please note that this documentation assumes the presence of relevant imports (e.g., `List`, `str`, `pd`) and required external dependencies like the `LLMEngine` class and other libraries.
