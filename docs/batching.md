@@ -13,7 +13,7 @@ llm = LLMEngine(id="batch_example")
 Begin by submitting a job for processing. Upon submission, a job id will be returned.
 
 ```python
-job = llm.submit_job(self, input, output_type, *args, **kwargs)
+job = llm.submit_inference_job(self, input, output_type, *args, **kwargs)
 ```
 
 ## Checking the status of a job

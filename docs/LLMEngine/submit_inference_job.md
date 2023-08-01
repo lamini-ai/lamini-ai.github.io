@@ -1,10 +1,10 @@
-# llama.LLMEngine.submit_job
+# llama.LLMEngine.submit_inference_job
 
 Submits a job for processing.
 
 ```python
 llm = LLMEngine(id="example")
-job = llm.submit_job(input, output_type, *args, **kwargs)
+job = llm.submit_inference_job(input, output_type, *args, **kwargs)
 ```
 
 ## Parameters

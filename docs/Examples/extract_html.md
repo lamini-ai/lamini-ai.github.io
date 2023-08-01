@@ -2,7 +2,7 @@
 
 In this walkthrough, you'll build an LLM that can extract HTML form elements. Feel free to also run the [Colab notebook](https://colab.research.google.com/drive/1cn5AaWAsn6oOjz8bbo5JN9m893vmguCh).
 
-## Import the LLM engine from the llama module, The Pythia 410M-parameter model is the largest on the free-tier to train for free :)
+## Import the LLM engine from the llama module
 
 ```python
 from llama import LLMEngine
@@ -10,12 +10,12 @@ from llama import LLMEngine
 llm = LLMEngine(id="extract_html", model_name="EleutherAI/pythia-410m-v0") 
 ```
 
+The Pythia 410M-parameter model is the largest on the free-tier to train for free :)
+
 ## Define the LLM interface
 
 Define the input and output types. Be sure to include the `Context`. This helps
 the LLM understand your types in natural language.
-
-In this example, the input is the function we would like to generate documentation for, and the output is the documentation for that function.
 
 ```python
 from llama import Type, Context
@@ -178,7 +178,8 @@ results = model.train()
 Once a model is trained you can check the eval results to see before and after comparisons of the base model and the trained model. 
 
 ```python
-model.get_eval_results(results['job_id'])
+evaluation = model.evaluate()
+print(evaluation)
 ```
 
 You can also query the new trained model like so:

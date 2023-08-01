@@ -75,9 +75,9 @@ nav:
           - __call__: LLMEngine/__call__.md
           - save_data: LLMEngine/save_data.md
           - train: LLMEngine/train.md
-          - eval: LLMEngine/eval.md
+          - evaluate: LLMEngine/evaluate.md
           - improve: LLMEngine/improve.md
-          - submit_job: LLMEngine/submit_job.md
+          - submit_inference_job: LLMEngine/submit_inference_job.md
           - check_job_status: LLMEngine/check_job_status.md
           - get_job_results: LLMEngine/get_job_results.md
           - cancel_job: LLMEngine/cancel_job.md

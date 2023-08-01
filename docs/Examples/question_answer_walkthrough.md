@@ -165,8 +165,8 @@ Training is done on Lamini servers and you can track the training job's progress
 
 ```python
 model.train()
-results = model.get_eval_results()
-print(results)
+model.evaluate()
+print(model.evaluation)
 ```
 
 Once a model is trained you can check the eval results to see before and after comparisons of the base model and the trained model. You can also query the new trained model like so
