@@ -40,7 +40,7 @@ Training is done on Lamini servers and you can track the training job's progress
 
 ```python
 model.train()
-results = model.get_eval_results()
+results = model.evaluate()
 print(results)
 ```
 
@@ -110,7 +110,7 @@ Args:
 
 #### `load_question_from_dataframe(self, df: pd.DataFrame)`
 
-Load a pandas DataFrame with question-answer pairs into the question answering model. Each row must have "question" as a key.
+Load a pandas DataFrame with question-answer pairs into the question answering model. Each row must have "question" and "answer" as keys.
 
 Args:
 

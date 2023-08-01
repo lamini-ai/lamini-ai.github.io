@@ -147,7 +147,7 @@ class InputOutputRunner:
         Args:
             input_type (Type): The type of the input to the model.
             output_type (Type): The type of the output from the model.
-            model_name (str): The name of the question answering model to use. Default is "EleutherAI/pythia-410m-deduped".
+            model_name (str): The name of the input-output model to use. Default is "EleutherAI/pythia-410m-deduped".
         """
 ```
 
@@ -240,11 +240,11 @@ Args:
 
 #### `clear_data(self)`
 
-Clear the data from the question answering model, including loaded documents and question-answer pairs.
+Clear the data from the input-output model, including loaded documents and input-output pairs.
 
 #### `train(self, verbose: bool = False)`
 
-Train the question answering model on the loaded data. This function blocks until training is complete.
+Train the input-output model on the loaded data. This function blocks until training is complete.
 
 Args:
 
@@ -252,7 +252,7 @@ Args:
 
 #### `evaluate(self) -> dict
 
-Get the evaluation results of the trained question answering model.
+Get the evaluation results of the trained input-output model.
 
 Returns:
 
