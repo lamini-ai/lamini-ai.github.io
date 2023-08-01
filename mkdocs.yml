@@ -52,6 +52,7 @@ nav:
       - Question Answer Walkthrough: Examples/question_answer_walkthrough.md
       - Code Guru Walkthrough: Examples/code_guru.md
       - Extract HTML Walkthrough: Examples/extract_html.md
+      - Article Writer Walkthrough: Examples/write_article.md
       # - Agent routing: Examples/code_guru.md
   - Dataset Filters: filters.md
   - Dataset Augmenters: augmenters.md
@@ -66,6 +67,8 @@ nav:
   - Python Library:
       - Usage: python_library.md
       - QuestionAnswerModel: question_answer_model.md
+      - BasicModelRunner: basic_model_runner.md
+      - InputOutputRunner: input_output_runner.md
       - Batched Completions: batching.md
       - Error Handling: error_handling.md
       - Filters: filters.md

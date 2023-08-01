@@ -19,17 +19,12 @@ model = model(Input(instruction="Tell me how to add data to Lamini"))
 
 ## Adding data to the model
 
-There are many ways to add data to the InputOutputRunner. Here are all the ways:
+There are many ways to add data to the `InputOutputRunner`. The most common way is to `load_data`. This loads data from a list of Input and Output type pairs, e.g. `[[Input, Output], [Input, Output], ...]`
 
-`load_data` - Load data from a list of Input and Output type pairs, e.g. [[Input, Output], [Input, Output], ...]
-`load_data_from_paired_dicts` - Load data from a list of paired dictionaries, e.g. [{"input": Input, "output": Output}, {"input": Input, "output": Output}, ...]
-`load_data_from_paired_lists` - Load data from a list of paired lists, e.g. [[input_dict, output_dict], [input_dict, output_dict], ...]
-`load_data_from_dataframe` - Load data from a pandas DataFrame, with "input-" and "output-" prefix columns, e.g. ["input-instruction", "input-is_question", "output-response", "output-is_positive"]
-`load_data_from_paired_dataframes` - Load data from a list of paired DataFrames, e.g. input_df and output_df
-`load_data_from_jsonlines` - Load data from a jsonlines file, with "input-" and "output-" prefix keys, e.g. {"input-instruction": "What kind of exercise is good for me?", "input-is_question": 1, "output-response": "Running", "output-is_positive": 1}
-`load_data_from_paired_jsonlines` - Load data from two jsonlines files, e.g. input_file_path and output_file_path
-`load_data_from_csv` - Load data from a csv file, with "input-" and "output-" prefix columns, e.g. ["input-instruction", "input-is_question", "output-response", "output-is_positive"]
-`load_data_from_paired_csvs` - Load data from two csv files, e.g. input_file_path and output_file_path
+Alternatively, `InputOutputRunner` provides several utility methods which will import similarly formatted data from jsonlines files, csv files, and pandas dataframes. See below for an exhaustive list of methods.
+
+<details>
+  <summary>See code examples for loading data</summary>
 
 ```python
 model.load_data(
@@ -39,6 +34,7 @@ model.load_data(
     ]]
 )
 
+# `load_data_from_paired_dicts` - Load data from a list of paired dictionaries, e.g. `[{"input": Input, "output": Output}, {"input": Input, "output": Output}, ...]`
 model.load_data_from_paired_dicts(
     [
         {
@@ -55,6 +51,8 @@ model.load_data_from_paired_dicts(
     ]
 )
 
+
+# `load_data_from_paired_lists` - Load data from a list of paired lists, e.g. `[[input_dict, output_dict], [input_dict, output_dict], ...]`
 model.load_data_from_paired_lists(
     [
         [
@@ -81,9 +79,11 @@ model.load_data_from_paired_lists(
 )
 
 # DataFrame with "input-" and "output-" prefix columns, matching the types above
+# `load_data_from_dataframe` - Load data from a pandas DataFrame, with `input-` and `output-` prefix columns, e.g. `["input-instruction", "input-is_question", "output-response", "output-is_positive"]`
 df = pd.DataFrrom_dataframe(df, verbose=True)
 
 # Two separate dataframes, one for input and one for output
+# `load_data_from_paired_dataframes` - Load data from a list of paired DataFrames, e.g. input_df and output_df
 input_df = pd.DataFrame([
     {
         "instruction": "What kind of exercise is good for me?",
@@ -107,14 +107,24 @@ output_df = pd.DataFrame([
 model.load_data_from_paired_dataframes(input_df, output_df, verbose=True)
 
 # Test loading data from a jsonlines file, two formats
+# `load_data_from_jsonlines` - Load data from a jsonlines file, with `input-` and `output-` prefix keys, e.g. `{"input-instruction": "What kind of exercise is good for me?", "input-is_question": 1, "output-response": "Running", "output-is_positive": 1}`
 model.load_data_from_jsonlines("tests/input_output_runner_data_flattened.jsonl", verbose=True)
 model.load_data_from_jsonlines("tests/input_output_runner_data.jsonl", verbose=True)
+
+# Other ways:
+
+# `load_data_from_paired_jsonlines` - Load data from two jsonlines files, e.g. `input_file_path` and `output_file_path`
+
+# `load_data_from_csv` - Load data from a csv file, with "input-" and "output-" prefix columns, e.g. `["input-instruction", "input-is_question", "output-response", "output-is_positive"]`
+
+# `load_data_from_paired_csvs` - Load data from two csv files, e.g. `input_file_path` and `output_file_path`
 ```
+</details>
 
 ## Training the Model
 
 After you've added data, you can now train a model. Once the training is complete, you can view the eval results.
-Training is done on Lamini servers and you can track the training job's progress at [https://app.lamini.ai/train](https://app.lamini.ai/train)
+Training is done on Lamini servers and you can track the training job's progress at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ```python
 model.train()
@@ -153,7 +163,7 @@ class InputOutputRunner:
 
 ### Methods Reference
 
-#### `__call__(self, inputs: Union[Type, List[Type]]) -> Union[Type`, List[Type`]]
+#### `__call__(self, inputs: Union[Type, List[Type]]) -> Union[Type', List[Type']]`
 
 Get the output to a single input, or list of inputs.
 
@@ -164,6 +174,7 @@ Args:
 Returns:
 
 - `output(s)` (str): The corresponding output(s) to the input(s).
+
 
 #### `load_data(self, data)`
 
@@ -178,7 +189,7 @@ Args:
 
 Load a jsonlines file with each line:
 - a json object of the form {"input": input_dict, "output": output_dict}
-- or, flattened json object with input- and output- prefixes, e.g. {"input-key1": input_value1, "input-key2": input_value2, "output-key1": output_value1, "output-key2": output_value2}
+- or, flattened json object with input- and output- prefixes, e.g. `{"input-key1": input_value1, "input-key2": input_value2, "output-key1": output_value1, "output-key2": output_value2}`
 
 Args:
 

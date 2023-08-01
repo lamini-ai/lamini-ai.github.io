@@ -14,7 +14,7 @@ output = model("How can I add data to Lamini?")
 
 ## Adding data to a model
 
-There are many ways to add data to the BasicModelRunner.
+There are many ways to add data to the `BasicModelRunner`.
 
 The easiest way is just through dictionaries of input-output pairs, using the method `load_data`:
 
@@ -36,7 +36,7 @@ data = [
 ]
 ```
 
-Alternatively, BasicModelRunner provides several utility methods which will import similarly formatted data from jsonlines files, csv files, and pandas dataframes. See below for an exhaustive list of methods.
+Alternatively, `BasicModelRunner` provides several utility methods which will import similarly formatted data from jsonlines files, csv files, and pandas dataframes. See below for an exhaustive list of methods.
 
 ## Training the model
 
@@ -72,7 +72,7 @@ class BasicModelRunner:
 
 ### Methods Reference
 
-#### `__call__(self, input: Union[str, List[str]]) -> Union[str`, List[str`]]
+#### `__call__(self, input: Union[str, List[str]]) -> Union[str', List[str']]`
 
 Get the output to a single input or list of inputs (batched).
 
