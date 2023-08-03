@@ -92,7 +92,7 @@ Args:
 
 - `data` (List[dict]): A list of dictionaries representing input-output pairs.
 
-#### load_data_from_jsonlines(self, file_path: str)`
+#### `load_data_from_jsonlines(self, file_path: str)`
 
 Load a jsonlines file with input-output pairs into the model. Each line in the file must be a JSON object with "input" and "output" as keys.
 
@@ -100,7 +100,7 @@ Args:
 
 - `file_path` (str): The path to the jsonlines file.
 
-#### load_data_from_dataframe(self, df: pd.DataFrame)`
+#### `load_data_from_dataframe(self, df: pd.DataFrame)`
 
 Load a pandas DataFrame with input-output pairs into the model. Each row must have "input" and "output" as keys.
 
