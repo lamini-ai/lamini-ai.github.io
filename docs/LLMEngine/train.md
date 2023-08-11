@@ -2,10 +2,18 @@
 
 Train a LLM. This function will submit a training job and continuously poll until the job is completed. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
+We can choose to persist the data (additive) across multiple `save_data` calls and then train on the accumulated data.
 ```python
 llm = LLMEngine(id="example")
 llm.save_data(data)
 results = llm.train()
+```
+
+Or, if you specify the data as an argument to `llama.LLMEngine.train` then Lamini will train *only* on that data.
+
+```python
+llm = LLMEngine(id="example")
+results = llm.train(data)
 ```
 
 ## Returns

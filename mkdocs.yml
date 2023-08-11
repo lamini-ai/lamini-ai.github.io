@@ -54,9 +54,9 @@ nav:
       - Code Guru Walkthrough: Examples/code_guru.md
       - Extract HTML Walkthrough: Examples/extract_html.md
       - Article Writer Walkthrough: Examples/write_article.md
-      # - Agent routing: Examples/code_guru.md
-  - Dataset Filters: filters.md
-  - Dataset Augmenters: augmenters.md
+  - Concepts:
+      - Model Runners: Concepts/model_runner.md
+      - Prompt Templates: Concepts/prompt_templates.md
   - REST API:
       - Completions: API/completions.md
       - Data: API/data.md
@@ -67,13 +67,16 @@ nav:
       - Eval Results: API/eval_results.md
   - Python Library:
       - Usage: python_library.md
-      - QuestionAnswerModel: question_answer_model.md
-      - BasicModelRunner: basic_model_runner.md
-      - InputOutputRunner: input_output_runner.md
+      - Runner Classes:
+          - LlamaV2Runner: runners/llama_v2_runner.md
+          - QuestionAnswerModel: runners/question_answer_model.md
+          - AutocompleteRunner: runners/autocomplete_runner.md
+          - BasicModelRunner: runners/basic_model_runner.md
+          - InputOutputRunner: runners/input_output_runner.md
       - Batched Completions: batching.md
       - Error Handling: error_handling.md
-      - Filters: filters.md
-      # - Advanced: advanced.md
+      - Dataset Filters: filters.md
+      - Dataset Augmenters: augmenters.md
       - LLMEngine Class Docs:
           - __init__: LLMEngine/__init__.md
           - __call__: LLMEngine/__call__.md
