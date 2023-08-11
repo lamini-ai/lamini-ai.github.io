@@ -44,7 +44,7 @@ The response will include a job id and the status of the job. You can monitor th
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/train' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "LaminiTest",

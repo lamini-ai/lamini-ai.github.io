@@ -20,18 +20,18 @@ Get a list of running jobs and statuses. You can also see these results by going
 - `message` - A message describing whether the job was successfully cancelled or not
 
 ```json
-{ "message": "cancelled {payload['job_id']}" }
+{ "message": "cancelled 418" }
 ```
 
 ## Example
 
-This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
+This example cancels the training job with the ID `418`. The request is authenticated using the `LAMINI_API_KEY` bearer token.
 
 ### Request
 
 ```bash
 curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json'
 ```
 

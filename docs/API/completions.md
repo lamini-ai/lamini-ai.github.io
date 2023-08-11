@@ -86,11 +86,11 @@ This endpoint allows you to make a POST request to obtain a model completion. In
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/completions' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "LaminiTest",
-    "model_name": "text-davinci-003",
+    "model_name": "352b52d9f194debbf8258bf7763176d3812579bc59ecc80f0f24d8a7c7bf7658",
     "input_type": {
         "title": "Question",
         "properties": {
@@ -110,7 +110,7 @@ curl --location 'https://api.powerml.co/v1/lamini/completions' \
         }
     },
     "input_value": {
-        "question": "What is the hottest day of the year?"
+        "question": "What is Lamini?"
     }
 }'
 ```
@@ -119,6 +119,6 @@ curl --location 'https://api.powerml.co/v1/lamini/completions' \
 
 ```json
 {
-  "answer": "The hottest day of the year varies depending on location, but typically falls in the summer months."
+  "answer": "Lamini is a Python package that provides a simple interface for training and using language models. It uses the Large Language Model (LLM) engine from the llama library to interface with the model."
 }
 ```

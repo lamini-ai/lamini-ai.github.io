@@ -28,15 +28,24 @@ The response will contain the job id, job status, job start time, and model name
 - `start_time`: Start time of the object
 - `model_name`: The finetuned model name, available after model is saved
 
+#### While Training
+```
+{"job_id":2514,"status":"TRAINING MODEL","start_time":"2023-08-09T19:42:46.857931","model_name":null,"custom_model_name":null}
+```
+
+### When Completed
+```
+{"job_id":2514,"status":"COMPLETED","start_time":"2023-08-09T19:42:46.857931","model_name":"3aa98c32d6e9b10f93cd50023cd4befff2085705c32adedb73d4dc217592ef78","custom_model_name":""}
+```
 ## Example
 
-This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
+This example cancels the training job with the ID `418`. The request is authenticated using the `LAMINI_API_KEY` bearer token.
 
 ### Request
 
 ```bash
 curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json'
 ```
 

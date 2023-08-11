@@ -49,6 +49,7 @@ nav:
   - Authentication: auth.md
   - Notebook Examples: notebooks.md
   - Walkthroughs:
+      - LlamaV2 Walkthrough: Examples/llama_v2_example.md
       - Question Answer Walkthrough: Examples/question_answer_walkthrough.md
       - Code Guru Walkthrough: Examples/code_guru.md
       - Extract HTML Walkthrough: Examples/extract_html.md

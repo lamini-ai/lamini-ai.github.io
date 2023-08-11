@@ -33,7 +33,7 @@ This example deletes data associated with id `APIExample`.
 
 ```bash
 curl --location --request POST 'https://api.powerml.co/v1/lamini/delete_data' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "LaminiTest"

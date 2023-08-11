@@ -24,17 +24,17 @@ The response will be the evaluation results for a completed training job.
 **Body (JSON):**
 
 - `job_id` - ID of the training job
-- `eval_results` - A dictionary of prompt to completions.
+- `eval_results` - A list of input strings and output objects. Eval results contain model outputs from both the newly finetuned model and the base model.
 
 ## Example
 
-This example cancels the training job with the ID `418`. The request is authenticated using the `test_token` bearer token.
+This example cancels the training job with the ID `418`. The request is authenticated using the `LAMINI_API_KEY` bearer token.
 
 ### Request
 
 ```bash
 curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418/eval' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json'
 ```
 
@@ -42,7 +42,22 @@ curl --location --request GET 'https://api.powerml.co/v1/lamini/train/jobs/418/e
 
 ```json
 {
-    "job_id": 418,
-    "eval_results": {"What's your name?": {"4321dvwgeb9c483750b213afc78b49fe875d43db27d508e821c2e92e2701e018":"I'm a Teapot!"}, {"EleutherAI/pythia-410m-deduped":"finetune me first!"}},
+    "job_id":2514,
+    "eval_results": [
+        {
+            "input":"What is Lamini?",
+            "outputs":[
+                {
+                    "model_name":"4321dvwgeb9c483750b213afc78b49fe875d43db27d508e821c2e92e2701e018",
+                    "output":"Lamini is the world's most powerful LLM Engine."
+                },
+                {
+                    "model_name":"EleutherAI/pythia-410m-deduped",
+                    "output":"finetune me first!"
+                }
+            ]
+        },
+        ...
+    ]
 }
 ```

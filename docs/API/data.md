@@ -22,20 +22,22 @@ When finetuning a model, we'll use all the relevant data provided.
   "id": "APIExample",
   "data": [
     {
-      "Document": {
-        "text": "On average the hottest day of the year is July 8"
+      "<INPUT_OBJECT_NAME>": {
+        "<FIELD_NAME>": "<FIELD_VALUE>"
+      },
+      "<OUTPUT_OBJECT_NAME>": {
+        "<FIELD_NAME>": "<FIELD_VALUE>"
       }
     },
-    {
-      "Document": {
-        "text": "Yearly average temperatures show a gradual rise over the past ten years."
-      }
-    }
+    ...
   ],
   "data_type": {
-    "Document": {
-      "text": "A single document"
-    }
+    "<INPUT_OBJECT_NAME>": {
+      "<FIELD_NAME>": "<FIELD_DESCRIPTION>"
+    },
+    "<OUTPUT_OBJECT_NAME>": {
+      "<FIELD_NAME>": "<FIELD_DESCRIPTION>"
+    },
   }
 }
 ```
@@ -44,24 +46,49 @@ When finetuning a model, we'll use all the relevant data provided.
 
 - `model_name: string`: The name of your model
 - `data: list`: A list of datapoints available to the model all formatted in the same way. We expect the format to be as follows:
-
 ```
-  [
-    {
-      "<OBJECT_NAME>": {
-          "<FIELD_NAME>": "<FIELD_VALUE>",
-      }
-    },...
-  ]
+[
+  {
+    "<INPUT_OBJECT_NAME>": {
+      "<FIELD_NAME>": "<FIELD_VALUE>"
+    },
+    "<OUTPUT_OBJECT_NAME>": {
+      "<FIELD_NAME>": "<FIELD_VALUE>"
+    }
+  },
+  ...
+]
+```
+Or, it's possible to have data formatted with only one object.
+```
+[
+  {
+    "<OBJECT_NAME>": {
+        "<FIELD_NAME>": "<FIELD_VALUE>",
+    }
+  },...
+]
 ```
 
-- `data_type: dict`: Formatting of the data, matching each of the datapoints in the `data` list. We expect the format to be as follows
+- `data_type: dict`: Formatting of the data, matching each of the datapoints in the `data` list. We expect the format to be as follows:
+```
+{
+  "<INPUT_OBJECT_NAME>": {
+    "<FIELD_NAME>": "<FIELD_DESCRIPTION>"
+  },
+  "<OUTPUT_OBJECT_NAME>": {
+    "<FIELD_NAME>": "<FIELD_DESCRIPTION>"
+  },
+}
+```
+
+Or, it's possible to have data formatted with only one object.
 
   ```
   {
-      "<OBJECT_NAME>": {
-          "<FIELD_NAME>": "<FIELD_DESCRIPTION>",
-      }
+    "<OBJECT_NAME>": {
+      "<FIELD_NAME>": "<FIELD_DESCRIPTION>",
+    }
   }
   ```
 
@@ -73,7 +100,7 @@ The response is the dataset ID.
 
 ```json
 {
-  "dataset": 7587574322307826093
+  "dataset": "b8015be997bf32f44f214abd4ebd507e"
 }
 ```
 
@@ -83,27 +110,60 @@ The response is the dataset ID.
 
 ```bash
 curl --location 'https://api.powerml.co/v1/lamini/data' \
---header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "LaminiTest",
     "data": [
         {
-            "Document": {
-                "text": "On average the hottest day of the year is July 8"
+        	"Question": {
+                "text": "How can I find the specific documentation I need for a particular feature or function?"
+        	},
+            "Answer": {
+            	"text": "You can ask this model about documentation, which is trained on our publicly available docs and source code, or you can go to https://lamini-ai.github.io/"
             }
-        },
+    	},
+    	{
+        	"Question": {
+                "text": "Are there any API references or documentation available for the codebase?"
+        	},
+            "Answer": {
+            	"text": "All our public documentation is available here https://lamini-ai.github.io/"
+            }
+    	},
         {
-            "Document": {
-                "text": "Yearly average temperatures show a gradual rise over the past ten years."
+        	"Question": {
+                "text": "How do I use open model for inference"
+        	},
+            "Answer": {
+            	"text": "You can use an open model by specifying the model'\''s name in the model_name parameter in the LLM Engine class initializer."
             }
-        }
+    	},
+        {
+        	"Question": {
+                "text": "I am running into errors, what should I do?"
+        	},
+            "Answer": {
+            	"text": "We have documentation available on how to address common errors here https://lamini-ai.github.io/error_handling/. Lamini'\''s LLM Engine is under very active development, and we thank you for using us!"
+            }
+    	},
+    	{
+        	"Question": {
+                "text": "Can you tickle yourself?"
+        	},
+            "Answer": {
+            	"text": "Let'\''s keep the discussion relevant to Lamini."
+            }
+    	}
     ],
     "data_type": {
-        "Document": {
-            "text": "A single document"
-        }
-    }
+    	"Question": {
+        	"text": "A question"
+    	},
+        "Answer": {
+        	"text": "An answer to the question"
+    	}
+	  }
 }'
 ```
 
