@@ -27,10 +27,9 @@ class LlamaV2Runner:
         """
         
 ```
-
 ### Methods Reference
 
-#### `__call__(self, input: Union[str, List[str]]) -> Union[str', List[str']]`
+#### `__call__(self, inputs: Union[str, List[str]]) -> Union[str, List[str]]`
 
 Get the output to a single input or list of inputs (batched).
 
@@ -97,3 +96,6 @@ Returns:
 Also, sets the `self.evaluation` attribute to the evaluation results.
 
 Please note that this documentation assumes the presence of relevant imports (e.g., `List`, `str`, `pd`) and required external dependencies like the `LLMEngine` class and other libraries.
+
+
+    
