@@ -117,51 +117,51 @@ curl --location 'https://api.powerml.co/v1/lamini/data' \
     "data": [
         {
         	"Question": {
-                "text": "How can I find the specific documentation I need for a particular feature or function?"
+                "question": "How can I find the specific documentation I need for a particular feature or function?"
         	},
             "Answer": {
-            	"text": "You can ask this model about documentation, which is trained on our publicly available docs and source code, or you can go to https://lamini-ai.github.io/"
+            	"answer": "You can ask this model about documentation, which is trained on our publicly available docs and source code, or you can go to https://lamini-ai.github.io/"
             }
     	},
     	{
         	"Question": {
-                "text": "Are there any API references or documentation available for the codebase?"
+                "question": "Are there any API references or documentation available for the codebase?"
         	},
             "Answer": {
-            	"text": "All our public documentation is available here https://lamini-ai.github.io/"
+            	"answer": "All our public documentation is available here https://lamini-ai.github.io/"
             }
     	},
         {
         	"Question": {
-                "text": "How do I use open model for inference"
+                "question": "How do I use open model for inference"
         	},
             "Answer": {
-            	"text": "You can use an open model by specifying the model'\''s name in the model_name parameter in the LLM Engine class initializer."
+            	"answer": "You can use an open model by specifying the model'\''s name in the model_name parameter in the LLM Engine class initializer."
             }
     	},
         {
         	"Question": {
-                "text": "I am running into errors, what should I do?"
+                "question": "I am running into errors, what should I do?"
         	},
             "Answer": {
-            	"text": "We have documentation available on how to address common errors here https://lamini-ai.github.io/error_handling/. Lamini'\''s LLM Engine is under very active development, and we thank you for using us!"
+            	"answer": "We have documentation available on how to address common errors here https://lamini-ai.github.io/error_handling/. Lamini'\''s LLM Engine is under very active development, and we thank you for using us!"
             }
     	},
     	{
         	"Question": {
-                "text": "Can you tickle yourself?"
+                "question": "Can you tickle yourself?"
         	},
             "Answer": {
-            	"text": "Let'\''s keep the discussion relevant to Lamini."
+            	"answer": "Let'\''s keep the discussion relevant to Lamini."
             }
     	}
     ],
     "data_type": {
     	"Question": {
-        	"text": "A question"
+        	"question": "A question"
     	},
         "Answer": {
-        	"text": "An answer to the question"
+        	"answer": "An answer to the question"
     	}
 	  }
 }'
