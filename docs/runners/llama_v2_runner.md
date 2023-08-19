@@ -29,29 +29,29 @@ class LlamaV2Runner:
 ```
 ### Methods Reference
 
-#### `__call__(self, inputs: Union[str, List[str]]) -> Union[str, List[str]]`
+#### `__call__(self, user_input: Union[str, List[str]]) -> Union[str, List[str]]`
 
-Get the output to a single input or list of inputs (batched).
+Get the output to a single user input or list of user inputs (batched).
 
 Args:
 
-- `input` (str): The input to the model.
+- `user_input` (str or List[str]): The user input to the model.
 
 Returns:
 
-- `output` (str): The output of the model.
+- `output` (str or List[str]): The output of the model.
 
 #### `load_data(self, data)`
 
-Load a list of dictionaries with input-output pairs into the model. Each dictionary must have "input" and "output" as keys.
+Load a list of dictionaries with input-output pairs into the model. Each dictionary must have "user" and "output" as keys.
 
 Args:
 
-- `data` (List[dict]): A list of dictionaries representing input-output pairs.
+- `data` (List[dict]): A list of dictionaries representing user input and output pairs.
 
 #### `load_data_from_jsonlines(self, file_path: str)`
 
-Load a jsonlines file with input-output pairs into the model. Each line in the file must be a JSON object with "input" and "output" as keys.
+Load a jsonlines file with user input and output pairs into the model. Each line in the file must be a JSON object with "user" and "output" as keys.
 
 Args:
 
@@ -59,15 +59,15 @@ Args:
 
 #### `load_data_from_dataframe(self, df: pd.DataFrame)`
 
-Load a pandas DataFrame with input-output pairs into the model. Each row must have "input" and "output" as keys.
+Load a pandas DataFrame with user input-output pairs into the model. Each row must have "user" and "output" as keys.
 
 Args:
 
-- `df` (pd.DataFrame): The pandas DataFrame containing the input-output pairs.
+- `df` (pd.DataFrame): The pandas DataFrame containing the user input-output pairs.
 
 #### `load_data_from_csv(self, file_path: str)`
 
-Load a CSV file with input-output pairs into the model. Each row must have "input" and "output" as keys.
+Load a CSV file with user input-output pairs into the model. Each row must have "user" and "output" as keys.
 
 Args:
 
@@ -75,7 +75,7 @@ Args:
 
 #### `clear_data(self)`
 
-Clear the data from the model, including loaded documents and input-output pairs.
+Clear the data from the model, including loaded documents and user input-output pairs.
 
 #### `train(self, verbose: bool = False)`
 
