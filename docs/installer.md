@@ -23,7 +23,7 @@ Install Docker by following [the instructions here](https://docs.docker.com/engi
 1. Install fabric-manager: `$ sudo apt-get install cuda-drivers-fabricmanager-`*`[NVIDIA-SMI-VERSION]`* .
 1. Starting with `$ sudo apt-get update`, [follow the commands to get Docker and Nvidia to work together](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#setting-up-nvidia-container-toolkit) 🔗.
 
-## Lamini Installer 🎁
+## Lamini installer 🎁
 
 1. Using the link provided by Lamini (reach out if you have any issues!), get the installer: `$ wget -O lamini-installer.sh '`*`link-to-installer`*`'` .
 1. Add execute permissions: `$ chmod +x lamini-installer.sh` .
