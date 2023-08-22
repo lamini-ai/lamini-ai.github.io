@@ -1,6 +1,6 @@
 # Installer 🦙
 
-Looking to get an installer and host Lamini on-premises? Reach out to us at info@lamini.ai!
+Looking to get an installer and host Lamini on-premise? Reach out to us at info@lamini.ai!
 
 ## System requirements 🌾
 Before getting started, make sure your machine is set up to run Lamini smoothly. Check that your machine has ***at least***:
