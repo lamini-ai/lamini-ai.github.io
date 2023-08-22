@@ -1,5 +1,6 @@
 # Getting Started
 
+Looking to host Lamini on prem? Check out [Installer](/installer) for setup instructions.
 ## Installation
 
 Lamini can be installed using pip, the package manager for Python. To install Lamini, open a command prompt and type:

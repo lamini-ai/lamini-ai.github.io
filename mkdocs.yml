@@ -46,6 +46,7 @@ markdown_extensions:
 # Page tree
 nav:
   - Getting Started: index.md
+  - Installer: installer.md
   - Authentication: auth.md
   - Notebook Examples: notebooks.md
   - Walkthroughs:
