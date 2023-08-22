@@ -4,6 +4,7 @@ Looking to get an installer and host Lamini on-premise? Reach out to us at info@
 
 ## System requirements 🌾
 Before getting started, make sure your machine is set up to run Lamini smoothly. Check that your machine has ***at least***:
+
 - 32 GB memory
 - 32 GB GPU memory, e.g. Nvidia A40 or V100
 - 1 TB disk
@@ -19,7 +20,7 @@ Install Docker by following [the instructions here](https://docs.docker.com/engi
 ### Driver
 1. [Install the Nvidia driver using Package Manager](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html#package-manager) 🔗.
 1. Confirm the driver is properly loaded by running `$ nvidia-smi` .
-1. Install fabric-manager: `$ sudo apt-get install cuda-drivers-fabricmanager-`*`[NVIDIA-SMI-VERSION]`*` .
+1. Install fabric-manager: `$ sudo apt-get install cuda-drivers-fabricmanager-`*`[NVIDIA-SMI-VERSION]`* .
 1. Starting with `$ sudo apt-get update`, [follow the commands to get Docker and Nvidia to work together](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#setting-up-nvidia-container-toolkit) 🔗.
 
 ## Lamini Installer 🎁
