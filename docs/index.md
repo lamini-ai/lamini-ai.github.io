@@ -1,6 +1,6 @@
 # Getting Started
 
-Looking to host Lamini on prem? Check out [Installer](/installer) for setup instructions.
+Looking to host Lamini on prem? Check out [the installer instructions](/installer) 🔗.
 ## Installation
 
 Lamini can be installed using pip, the package manager for Python. To install Lamini, open a command prompt and type:
@@ -37,7 +37,7 @@ llm = LLMEngine(
     )
 ```
 
-See the [Authentication](/auth) page for more advanced options.
+See [the Authentication page](/auth) 🔗 for more advanced options.
 
 ### Basic test
 
