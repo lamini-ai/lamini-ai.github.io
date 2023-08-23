@@ -6,7 +6,7 @@ Looking to get an installer and host Lamini on-premise? Reach out to us at [info
 Before getting started, make sure your machine is set up to run Lamini smoothly. Check that your machine has ***at least***:
 
 - 32 GB memory
-- 32 GB GPU memory, e.g. Nvidia A40 or V100
+- 32 GB GPU memory
 - 1 TB disk
 - Ubuntu 22*
 
