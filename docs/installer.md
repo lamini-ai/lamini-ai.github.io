@@ -12,7 +12,7 @@ Before getting started, make sure your machine is set up to run Lamini smoothly.
 
 *other linux distros should work as long as they run Docker/OCI
 
-Reach out to us to [info@lamini.ai](mailto:info@lamini.ai) for advice on
+Reach out to us at [info@lamini.ai](mailto:info@lamini.ai) for advice on
 configuring and purchasing machines capable of running your
 desired application, data volume, and number of users.
 
