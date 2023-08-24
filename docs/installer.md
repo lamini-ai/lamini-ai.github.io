@@ -19,7 +19,9 @@ desired application, LLM model (e.g. Llama v2), data volume, and number of users
 Our typical configuration is an LLM Superstation, which is a powerful server
 with multiple GPUs that can fully host, finetune, and deploy the largest
 models on the Lamini platform.  We have configs that fit into an office or
-datacenter.
+datacenter.  The Lamini software architecture is based on technologies used
+in supercomputers and scales horizontally to the largest systems in the world, e.g.
+more than 10,000 GPUs.
 
 ## Dependencies ☕️
 
