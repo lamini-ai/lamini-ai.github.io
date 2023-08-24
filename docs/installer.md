@@ -40,7 +40,7 @@ Install Docker by following [the instructions here](https://docs.docker.com/engi
 1. Add execute permissions: `$ chmod +x lamini-installer.sh` .
 1. Run the installer: `$ ./lamini-installer.sh` .
 
-### Kubernetes/etc Setup
+### Kubernetes/etc setup
 
 Docs coming soon!  Reach out to us at [info@lamini.ai](mailto:info@lamini.ai)!
 
@@ -48,7 +48,7 @@ Docs coming soon!  Reach out to us at [info@lamini.ai](mailto:info@lamini.ai)!
 Woo, congrats and welcome to the herd!!
 
 Start Lamini with `$ ./build-lamini-installer/lamini-installer/lamini-up`.
-We reccomend running this inside a [screen](https://en.wikipedia.org/wiki/GNU_Screen)
+We recommend running this inside a [screen](https://en.wikipedia.org/wiki/GNU_Screen)
 or [tmux](https://en.wikipedia.org/wiki/Tmux) for ease of use to be able to
 view detailed logs.
 
