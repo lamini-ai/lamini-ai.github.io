@@ -23,6 +23,10 @@ datacenter.  The Lamini software architecture is based on technologies used
 in supercomputers and scales horizontally to the largest systems in the world, e.g.
 more than 10,000 GPUs.
 
+However, you can also run the entire Lamini platform on your laptop.  It's a helpful
+dev/testing environment, and CPUs can run LLMs with hundreds of millions of parameters
+just fine.
+
 ## Dependencies ☕️
 
 Lamini is entirely self contained and can run on any machine that can run Docker or OCI containers.  In addition to the operation system, provisioning involves installing Docker, and installing the GPU driver.
