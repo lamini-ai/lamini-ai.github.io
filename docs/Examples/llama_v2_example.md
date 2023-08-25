@@ -1,6 +1,6 @@
 # Question Answer Model
 
-In this walkthrough, we'll go over how to quickly use Llama V2's system and user prompts.
+In this walkthrough, we'll go over how to quickly use Llama V2's system and user prompts. If you have enterprise access, feel free to also run the [Colab notebook](https://colab.research.google.com/drive/1kc92-BjRLNa9evn_IKzEMf2z2lMzNo77).
 
 ## Import the LlamaV2Runner class
 
