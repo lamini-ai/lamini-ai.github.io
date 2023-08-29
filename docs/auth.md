@@ -60,6 +60,34 @@ All Lamini REST API requests should include your API key in an Authorization HTT
 Authorization: Bearer <YOUR-KEY-HERE>
 ```
 
+### Local mode
+
+If you are hosting your own Lamini servers, you need to point your client at the correct server.
+
+In the config file:
+
+```sh
+production:
+    key: "<YOUR-KEY-HERE>"
+    url: "<YOUR-SERVER-URL-HERE>:<YOUR-SERVER-PORT-HERE>"
+```
+
+In the python client:
+
+```python
+from llama import LLMEngine
+
+llm = LLMEngine(
+    id="marketing",
+    config={
+        "production": {
+            "key": "<YOUR-KEY-HERE>",
+            "url": "<YOUR-SERVER-URL-HERE>:<YOUR-SERVER-PORT-HERE>"
+        }
+    },
+)
+```
+
 ## Accounts
 
 ### Create an account
