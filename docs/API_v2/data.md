@@ -1,6 +1,7 @@
 ## Endpoint Documentation: `/v2/lamini/data`
 
-This endpoint allows you to make a POST request to send data to the LaminiTest model for processing.
+This endpoint allows you to make a POST request to send non-paired data to the LaminiTest model for processing.
+If you would like to save data pairs, please see /v2/lamini/data_pairs.
 
 ### Request
 
