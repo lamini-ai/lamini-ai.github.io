@@ -16,10 +16,8 @@ This endpoint allows you to make a POST request to obtain a model completion.
 {
     "id": "<YOUR_LLMENGINE_ID>",
     "model_name": "<YOUR_MODEL_NAME>",
-    "input_type": {
-       "in_value": {"question": "What is the hottest day of the year?"},
-       "out_type": {"Answer": "An answer to the question"}    
-    }
+    "in_value": {"question": "What is the hottest day of the year?"},
+    "out_type": {"Answer": "An answer to the question"}
 }
 ```
 
@@ -57,7 +55,7 @@ The response will contain an answer to the provided questions.
 ```json
 {
     "Answer": "The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months.",
-    "Answer2": ""
+    "Answer2": "..."
 }
 ```
 
