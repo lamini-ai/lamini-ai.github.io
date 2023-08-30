@@ -25,7 +25,7 @@ This endpoint allows you to make a POST request to obtain a model completion.
 
 -   `id: string`: An id which will allow you to iterate on finetuned models
 -   `model_name: string`: The name of your base or finetuned model
--   `in_type`: `Dict[str, Union[int, float, str, bool]]`. Ex.
+-   `in_value`: `Dict[str, Union[int, float, str, bool]]`. Ex.
     ```
         {
             "question": "What is the hottest day of the year?",
@@ -38,7 +38,7 @@ This endpoint allows you to make a POST request to obtain a model completion.
             "Answer": "An answer to the question",
             "Answer2": "An answer to the question2",
         }
-      You can optionally specify the type by appending `#type` to the key.  For example,
+      You can optionally specify the type by appending `#<type>` to the key.  For example,
         ```
             "Answer#int": "An answer to the question",
         ```
