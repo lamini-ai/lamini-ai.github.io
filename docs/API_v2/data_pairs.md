@@ -8,7 +8,7 @@ If you would like to send an input list, please see /v2/lamini/data.
 - HTTP Method: POST
 - URL: `https://api.powerml.co/v2/lamini/data_pairs`
 - Headers:
-  - `Authorization: Bearer test_token`
+  - `Authorization: Bearer <LAMINI_API_KEY>`
   - `Content-Type: application/json`
 - Example Body (JSON):
 ```json
@@ -42,7 +42,7 @@ The response is the dataset ID.
 
 ```bash
 curl --location 'https://api.powerml.co/v2/lamini/data_pairs' \
---header 'Authorization: Bearer test_token' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "LaminiTest",
