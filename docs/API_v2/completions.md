@@ -66,7 +66,7 @@ The response will contain an answer to the provided questions.
 
 ```bash
 curl --location 'https://api.powerml.co/v2/lamini/completions' \
---header 'Authorization: Bearer test_token' \
+--header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{                                                                                                        
     "id": "LaminiTest",                                                                                          
