@@ -47,17 +47,19 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 
 ### Response
 
-The response will contain an answer to the provided questions.
+If the web request is successful, you will see a response with an answer to the provided questions like below:
 
 - Success Status Code: 200
 - Body (JSON):
   - Output will be formatted as specified by the `out_type` argument passed in above. 
-```json
-{
-    "Answer": "The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months.",
-    "Answer2": "..."
-}
-```
+  ```json
+     {
+       "Answer": "The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months.",
+    "  Answer2": "..."
+     }
+  ```
+
+Otherwise, the request will return an error code, and the response json will contain specific error details like invalid token or incompatible data.
 
 
 ### Example
@@ -93,4 +95,3 @@ curl --location 'https://api.powerml.co/v2/lamini/completions' \
  "Answer":"The hottest day of the year varies depending on location."
 }
 ```
-
