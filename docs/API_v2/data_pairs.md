@@ -1,7 +1,7 @@
 ## Endpoint Documentation: `/v2/lamini/data_pairs`
 
-This endpoint allows you to make a POST request to send data pairs to the LaminiTest model for processing.
-If you would like to save non-paired data, please see /v2/lamini/data.
+This endpoint allows you to make a POST request to send input/output pairs to the LaminiTest model for processing.
+If you would like to send an input list, please see /v2/lamini/data.
 
 ### Request
 
@@ -33,7 +33,7 @@ The response is the dataset ID.
 - Success Status Code: 200
 - Body (JSON):
 ```json
-{"dataset":"1234"}
+{"dataset":"20ef5fd0375f389bc9f9a2e6615dd464"}
 ```
 
 ### Example
