@@ -33,7 +33,7 @@ The response is the dataset ID.
 - Success Status Code: 200
 - Body (JSON):
 ```json
-{"dataset":"20ef5fd0375f389bc9f9a2e6615dd464"}
+{"dataset":"1abdc1e146c9d657336ed39ddbf31532"}
 ```
 
 ### Example
@@ -48,7 +48,7 @@ curl --location 'https://api.powerml.co/v2/lamini/data_pairs' \
     "id": "LaminiTest",
     "data": [
               [{"name": "Larry", "height": 4}, {"speed": 1.0}],
-              [{"name": "Cici", ""height": 100}, {"speed": 1.2}]
+              [{"name": "Cici", "height": 100}, {"speed": 1.2}]
 	    ]
 }'
 ```
@@ -56,5 +56,5 @@ curl --location 'https://api.powerml.co/v2/lamini/data_pairs' \
 #### Response
 
 ```json
-{"dataset":"20ef5fd0375f389bc9f9a2e6615dd464"}
+{"dataset":"1abdc1e146c9d657336ed39ddbf31532"}
 ```
