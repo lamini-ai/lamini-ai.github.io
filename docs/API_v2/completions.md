@@ -25,7 +25,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 
 -   `id: string`: An id which will allow you to iterate on finetuned models
 -   `model_name: string`: The name of your base or finetuned model
--   `in_value`: `Dict[str, T]`, where `T` can be `str`, `int, `float` or `bool`. Ex.
+-   `in_value`: `Dict[str, T]`, where `T` can be `str`, `int`, `float` or `bool`. Ex.
     ```
         {
             "question": "What is the hottest day of the year?",
