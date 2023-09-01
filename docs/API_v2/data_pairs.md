@@ -15,8 +15,8 @@ If you would like to save non-paired data, please see /v2/lamini/data.
 {
     "id": "LaminiTest",
     "data": [
-              [{"name": "Larry", "n_legs": 4}, {"speed": 1.0}],
-              [{"name": "Cici", "n_legs": 100}, {"speed": 1.2}],
+              [{"name": "Larry", "height": 4}, {"speed": 1.0}],
+              [{"name": "Cici", "height": 100}, {"speed": 1.2}],
 	    ]
 }
 ```
@@ -47,8 +47,8 @@ curl --location 'https://api.powerml.co/v2/lamini/data_pairs' \
 --data '{
     "id": "LaminiTest",
     "data": [
-              [{"name": "Larry", "n_legs": 4}, {"speed": 1.0}],
-              [{"name": "Cici", "n_legs": 100}, {"speed": 1.2}]
+              [{"name": "Larry", "height": 4}, {"speed": 1.0}],
+              [{"name": "Cici", ""height": 100}, {"speed": 1.2}]
 	    ]
 }'
 ```

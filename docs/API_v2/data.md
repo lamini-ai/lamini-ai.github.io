@@ -14,7 +14,7 @@ If you would like to save data pairs, please see /v2/lamini/data_pairs.
 ```json
 {
     "id": "LaminiTest",
-    "data": [{"name": "Larry", "n_legs": 4}, {"name": "Cici", "n_legs": 100}]
+    "data": [{"name": "Larry", "height": 4}, {"name": "Cici", "height": 100}]
 }
 ```
 
@@ -43,7 +43,7 @@ curl --location 'https://api.powerml.co/v2/lamini/data' \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "LaminiTest",
-    "data": [{"name": "Larry", "n_legs": 4}, {"name": "Cici", "n_legs": 100}]
+    "data": [{"name": "Larry", "height": 4}, {"name": "Cici", "height": 100}]
 }'
 ```
 
