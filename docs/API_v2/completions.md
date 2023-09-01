@@ -23,8 +23,8 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 
 #### Parameters:
 
--   `id: string`: An id which will allow you to iterate on finetuned models
--   `model_name: string`: The name of your base or finetuned model
+-   `id`: `str`, an id which will allow you to iterate on finetuned models
+-   `model_name`: `str`, the name of your base or finetuned model
 -   `in_value`: `Dict[str, T]`, where `T` can be `str`, `int`, `float` or `bool`. Ex.
     ```
         {
@@ -32,18 +32,18 @@ This endpoint allows you to make a POST request to complete a task or answer a q
             "question2": "What is for lunch?",
         }
     ```
--   `out_type`: Dict[str, str]. Type Schema of the output. Ex.
+-   `out_type`: `Dict[str, str]`. Type Schema of the output. Ex.
     ```
         {
             "Answer": "An answer to the question",
             "Answer2": "An answer to the question2",
         }
-      You can optionally specify the type by appending `#<type>` to the key.  For example,
-        ```
-            "Answer#int": "An answer to the question",
-        ```
-      The default type is `str`.  The valid types are `int`, `float`, `bool`, and `str`.
     ```
+    You can optionally specify the type by appending `#<type>` to the key.  For example,
+    ```
+            "Answer#int": "An answer to the question",
+    ```
+    The default type is `str`.  The valid types are `int`, `float`, `bool`, and `str`.
 
 ### Response
 
