@@ -1,7 +1,7 @@
 ## Endpoint Documentation: `/v2/lamini/data`
 
-This endpoint allows you to make a POST request to send non-paired data to the LaminiTest model for processing.
-If you would like to save data pairs, please see /v2/lamini/data_pairs.
+This endpoint allows you to make a POST request to send an input list to the LaminiTest model for processing.
+If you would like to send a list or input/output pairs, please see `/v2/lamini/data_pairs`.
 
 ### Request
 
@@ -21,7 +21,7 @@ If you would like to save data pairs, please see /v2/lamini/data_pairs.
 #### Parameters:
 
 -   `model_name: string`: The name of your model
--   `data`: A dict list of datapoints available to the model all formatted in the same way. Each key in the dict must be a str, and each value must be a str, int, float, or bool.  The dicts must have the same keys.  In addition, `data` can also be a single dict.
+-   `data`: A list of dicts specifying datapoints available to the model all formatted in the same way. Each key in the dict must be a str, and each value must be a str, int, float, or bool.  The dicts must have the same keys.  In addition, `data` can also be a single dict.
 
 ### Response
 
@@ -30,7 +30,7 @@ The response is the dataset ID.
 - Success Status Code: 200
 - Body (JSON):
 ```json
-{"dataset":"1234"}
+{"dataset":"20ef5fd0375f389bc9f9a2e6615dd464"}
 ```
 
 ### Example
