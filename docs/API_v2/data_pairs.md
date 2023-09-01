@@ -28,13 +28,15 @@ If you would like to send an input list, please see /v2/lamini/data.
 
 ### Response
 
-The response is the dataset ID.
+If the web request is successful, you will see a response like below with the dataset ID.
 
 - Success Status Code: 200
 - Body (JSON):
-```json
-{"dataset":"1abdc1e146c9d657336ed39ddbf31532"}
-```
+  ```json
+    {"dataset":"1abdc1e146c9d657336ed39ddbf31532"}
+  ```
+
+Otherwise, the request will return an error code, and the response json will contain specific error details like invalid token or incompatible data.
 
 ### Example
 
