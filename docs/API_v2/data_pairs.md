@@ -23,7 +23,7 @@ If you would like to send an input list, please see /v2/lamini/data.
 
 #### Parameters:
 
--   `model_name: string`: The name of your model
+-   `id: string`: An id which will allow you to iterate on finetuned models.
 -   `data`: A list of dict pairs.  The first dict of each pair represents an input object, and the second dict of each pair represents an output object.  The input objects must have the same keys, and the output objects must have the same keys.
 
 ### Response

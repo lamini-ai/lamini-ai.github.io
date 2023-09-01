@@ -20,7 +20,7 @@ If you would like to send a list or input/output pairs, please see `/v2/lamini/d
 
 #### Parameters:
 
--   `model_name: string`: The name of your model
+-   `id: string`: An id which will allow you to iterate on finetuned models.
 -   `data`: A list of dicts specifying datapoints available to the model all formatted in the same way. Each key in the dict must be a str, and each value must be a str, int, float, or bool.  The dicts must have the same keys.  In addition, `data` can also be a single dict.
 
 ### Response
