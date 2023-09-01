@@ -55,7 +55,7 @@ If the web request is successful, you will see a response with an answer to the 
   ```json
      {
        "Answer": "The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months.",
-    "  Answer2": "..."
+       "Answer2": "..."
      }
   ```
 
