@@ -18,7 +18,7 @@ model = LlamaV2Runner()
 
 <details>
   <summary>Llama V2 Types and Prompt Template</summary>
-  
+
 ```python
 from llama.prompts.prompt import BasePrompt
 from llama import Type, Context
@@ -63,7 +63,7 @@ def get_example_qa_data():
     data = [
         {
             "user": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
-            "system": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature."
+            "system": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.",
             "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
         },
         {
