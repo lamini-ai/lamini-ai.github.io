@@ -86,6 +86,22 @@ def get_example_qa_data():
             "user": "Can you explain the CC-BY license mentioned? What does it allow me to do with the customized language model?",
             "output": "Lamini allows for commercial use of their LLM technology under a permissive Apache 2.0 license unless otherwise specified. You keep access and ownership of your own data, and we don't use your data to train models for anyone else but you. For more information, please reach out to Lamini directly.",
         },
+        {
+            "user": "Can Lamini be used on a regular computer, or do I need specialized hardware or software?",
+            "output": "Lamini can be used on a regular computer without any specialized hardware or software by using the python client or REST APIs. It is designed to be easily accessible and user-friendly.  The LLM Engine itself requires GPU accelerated servers capable of running large language models.  Lamini hosts such machines that can be easily connected to, e.g. from a jupyter notebook or python program.  Lamini also offers enterprise deployments of the LLM Engine on your infrastructure.",
+        },
+        {
+            "user": "Does Lamini require an internet connection to work, or can I use it offline?",
+            "output": "Lamini requires an internet connection to work, as it is a cloud-based language model. However, you can use it offline by downloading and running a local instance of the Lamini API. To learn more about this deployment process, reach out to the Lamini team.",
+        },
+        {
+            "user": "Can Lamini help me with tasks like translating text or answering questions, or is it focused on generating text?",
+            "output": "Lamini is primarily focused on generating text, and it can be used for tasks like summarization and paraphrasing. Lamini can also be used to train a LLM for tasks like translation and question answering. You\u2019re talking to a model trained using Lamini right now!",
+        },
+        {
+            "user": "What is Lamini? Is it like a robot or a computer program?",
+            "output": "Lamini is a program for the execution of LLMs called a large language model engine. It is not a robot, but rather a tool for building and executing LLMs.",
+        },
     ],
     return data
 ```
