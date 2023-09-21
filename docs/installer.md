@@ -62,6 +62,8 @@ You can also run with `$ ./build-lamini-installer/lamini-installer/lamini-up -d`
 to start the services as a background daemon process, and view the logs with
 `docker logs`
 
+Once running, you can checkout the UI at http://localhost:5001!
+
 ## Configuring Lamini
 
 ### llama_config.yaml
