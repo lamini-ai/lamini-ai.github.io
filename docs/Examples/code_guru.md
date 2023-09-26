@@ -54,7 +54,7 @@ function = Function(
     code='def __init__(self, builder, name):\n        self.builder = builder\n        self.name = name\n        self.main = Function(program=self, name="main")\n        self.functions = {"main": self.main}\n        self.examples = []'
 )
 llm.save_data([function])
-answer = llm(input=Question(question=question), output_type=Answer)
+answer = llm(input=question, output_type=Answer)
 
 print(answer)
 ```
