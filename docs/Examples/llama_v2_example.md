@@ -102,7 +102,7 @@ def get_example_qa_data():
             "user": "What is Lamini? Is it like a robot or a computer program?",
             "output": "Lamini is a program for the execution of LLMs called a large language model engine. It is not a robot, but rather a tool for building and executing LLMs.",
         },
-    ],
+    ]
     return data
 ```
 
