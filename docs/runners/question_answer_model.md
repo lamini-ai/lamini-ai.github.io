@@ -49,7 +49,7 @@ Optional Step: If you want to change the default values of the hyper-parameters 
 ```python
 model.train(finetune_args={'learning_rate': 1.0e-4})
 ```
-The default values of the hyper-parameters and key values can be found in the llama_config.yaml file in the configs folder in LLAMA.
+The default values of the hyper-parameters and key values can be found in the llama_config.yaml file in the configs folder in LLAMA. Currently we support most hyper-parameters in [huggingface's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc. 
 
 
 Once a model is trained you can check the eval results to see before and after comparisons of the base model and the trained model. You can also query the new trained model like so
