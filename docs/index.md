@@ -11,10 +11,10 @@ pip install lamini
 
 This will download and install the latest version of Lamini and its dependencies.
 
-Check if your installation was done correctly, by importing the LLM engine (called `llama`) in your python interpreter. Fun fact: Lamini is the tribe of which llamas are a part, so you can import the module `llama` to work with the LLM engine.
+Check if your installation was done correctly, by importing the LlamaV2Runner in your python interpreter. Fun fact: Lamini is the tribe of which llamas are a part, so you can import the module `lamini` to work with the LLM engine.
 
 ```python
->> from llama import LLMEngine
+>> from lamini import LlamaV2Runner
 ```
 
 ## Setup your keys
@@ -31,9 +31,8 @@ production:
 Another option is to pass in your production key to the config parameter of the `LLMEngine` class
 
 ```python
-llm = LLMEngine(
-    id="example_llm",
-    config={"production.key": "<YOUR-KEY-HERE>"}
+model = LlamaV2Runner(
+    config={"production.key": "<YOUR-KEY-HERE>", "production.url" : "<YOUR-SERVER-URL-HERE>"}
     )
 ```
 
@@ -44,18 +43,15 @@ See [the Authentication page](/auth) 🔗 for more advanced options.
 Run the LLM engine with a basic test to see if installation and authentication were set up correctly.
 
 ```python
-from llama import LLMEngine, Type, Context
+from lamini import LlamaV2Runner
 
-class Test(Type):
-    test_string: str = Context("just a test")
+model = LlamaV2Runner()
 
-llm = LLMEngine(id="my_test")
-
-test = Test(test_string="testing 123")
-llm(test, output_type=Test)
+answer = model("Tell me a story about llamas.")
+print(answer)
 ```
 
-Now you're on your way to using the LLM engine on your specific use case!
+Now you're on your way to building your own LLM for your specific use case!
 
 To play with different types in an interface, you can log in at [https://lamini.ai](https://lamini.ai) and use the playground there.
 
