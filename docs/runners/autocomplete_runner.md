@@ -67,8 +67,9 @@ Train the model on the loaded data. This function blocks until training is compl
 Args:
 
 - `verbose` (bool): Whether to print verbose training progress. Default is False.
+- (Optional) `finetune_args` (dict): key=hyper-parameter name, value=parameter value. Same as [huggingface's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments)
 
-#### `evaluate(self) -> dict
+#### `evaluate(self)`
 
 Get the evaluation results of the trained model.
 
