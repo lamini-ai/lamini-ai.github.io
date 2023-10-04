@@ -1,6 +1,6 @@
 ## Endpoint Documentation: `/v2/lamini/data`
 
-This endpoint allows you to make a POST request to send an input list to the LaminiTest model for processing.
+This endpoint allows you to make a POST request to send an data for Lamini to use during RAG (retreival augmented generation). For training, see `/v2/lamini/train`.
 If you would like to send a list or input/output pairs, please see `/v2/lamini/data_pairs`.
 
 ### Request
@@ -14,7 +14,7 @@ If you would like to send a list or input/output pairs, please see `/v2/lamini/d
 ```json
 {
     "id": "LaminiTest",
-    "data": [{"name": "Larry", "height": 4}, {"name": "Cici", "height": 100}]
+    "data": [{"document": "lorem"}, {"document": "ipsum"}]
 }
 ```
 

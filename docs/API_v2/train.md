@@ -18,7 +18,12 @@ Use this API endpoint to train a model. This will train a model using the data y
 ```json
 {
   "id": "APIExample",
-  "model_name": "EleutherAI/pythia-410m-deduped"
+  "model_name": "EleutherAI/pythia-410m-deduped",
+  "data": [
+      [{"input": "Larry"}, {"output": 1.0}],
+      [{"input": "Cici"}, {"output": 1.2}],
+  ],
+  "prompt_template": "{input:input}",
 }
 ```
 
@@ -26,6 +31,8 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 - id (string): The `id` corresponding to the dataset you'd like to train with.
 - model_name (string): The base model you'd like to train.
+- data (list): The data you'd like to train on. This should be a list of [input, output] arrays. Each input and output should be an object. 
+- prompt_template (string): The prompt template to use during training. For more information see [prompt templates](/Concepts/prompt_templates/).
 
 ## Response:
 

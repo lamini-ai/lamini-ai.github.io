@@ -1,6 +1,6 @@
 ## Endpoint Documentation: `/v2/lamini/data_pairs`
 
-This endpoint allows you to make a POST request to send input/output pairs to the LaminiTest model for processing.
+This endpoint allows you to make a POST request to send input/output pairs to use during RAG (retreival augmented generation). For training, see `/v2/lamini/train`.
 If you would like to send an input list, please see /v2/lamini/data.
 
 ### Request

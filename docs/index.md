@@ -9,6 +9,8 @@ Lamini can be installed using pip, the package manager for Python. To install La
 pip install lamini
 ```
 
+We recommend that you keep up to date with the most recent stable version of lamini which can be found here: [https://pypi.org/project/lamini/](https://pypi.org/project/lamini/). This package is a python wrapper around our REST API.
+
 This will download and install the latest version of Lamini and its dependencies.
 
 Check if your installation was done correctly, by importing the LlamaV2Runner in your python interpreter. Fun fact: Lamini is the tribe of which llamas are a part, so you can import the module `lamini` to work with the LLM engine.

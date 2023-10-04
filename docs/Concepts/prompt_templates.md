@@ -25,7 +25,7 @@ prompt = QAPrompt()
 llm = LLMEngine(
     id="prompt_example",
     model_name="meta-llama/Llama-2-7b-chat-hf",
-    prompt=prompt,
+    prompt_template=prompt.prompt_template,
 )
 ```
 

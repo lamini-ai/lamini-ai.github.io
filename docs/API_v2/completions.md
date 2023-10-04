@@ -17,7 +17,9 @@ This endpoint allows you to make a POST request to complete a task or answer a q
     "id": "<YOUR_LLMENGINE_ID>",
     "model_name": "<YOUR_MODEL_NAME>",
     "in_value": {"question": "What is the hottest day of the year?"},
-    "out_type": {"Answer": "An answer to the question"}
+    "out_type": {"Answer": "string"},
+    "prompt_template": "{input:question}",
+    "stop_tokens": ["\n\n"],
 }
 ```
 
@@ -40,6 +42,8 @@ This endpoint allows you to make a POST request to complete a task or answer a q
         }
     ```
     The valid types are `str`, `int`, `float`, and `bool`.
+-   `prompt_template`: `str`, the template to use when passing the input to the model. For more information see [prompt templates](/Concepts/prompt_templates/).
+-   `stop_tokens`: `list[str]`, a list of stop tokens to use. these are used in each field produced in the output.
 
 ### Response
 
@@ -72,12 +76,10 @@ curl --location 'https://api.powerml.co/v2/lamini/completions' \
     "in_value": {                                                                                                
       "question": "What is the hottest day of the year?",                                                        
       "question2": "What is for lunch?",                                                                         
-      "question3": "How many inches in a foot?"
     },                                                                                                           
     "out_type": {                                                                                                
-      "Answer": "An answer to the question",                                                                     
-      "Answer2": "An answer to the question2",                                                                   
-      "Answer3#int": "An answer to the question3"                                                               
+      "Answer": "str",                                                                     
+      "Answer2": "str",                                                                   
     }                                                                                                            
 }'
 ```
@@ -90,6 +92,5 @@ Note the result is a hash, so the order of keys may be different from below.
 {
  "Answer":"The hottest day of the year varies depending on location.",
  "Answer2": "Lunch options depend on individual preferences.",
- "Answer3": 12
 }
 ```
