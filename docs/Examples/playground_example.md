@@ -7,7 +7,7 @@ In this walkthrough, we'll build a working question answer model to demonstrate 
 ```python
 from llama import LLMEngine
 
-llm = LLMEngine(id="QA")
+llm = LLMEngine(id="QA", model_name="meta-llama/Llama-2-7b-chat-hf")
 ```
 
 ## Define the LLM interface

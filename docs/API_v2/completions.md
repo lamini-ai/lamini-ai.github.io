@@ -29,21 +29,17 @@ This endpoint allows you to make a POST request to complete a task or answer a q
     ```
         {
             "question": "What is the hottest day of the year?",
-            "question2": "What is for lunch?",
+            "question2": "2+2",
         }
     ```
 -   `out_type`: `Dict[str, str]`. Type Schema of the output. Ex.
     ```
         {
-            "Answer": "An answer to the question",
-            "Answer2": "An answer to the question2",
+            "Answer": "str",
+            "Answer2": "int",
         }
     ```
-    You can optionally specify the type by appending `#<type>` to the key.  For example,
-    ```
-            "Answer#int": "An answer to the question",
-    ```
-    The default type is `str`.  The valid types are `int`, `float`, `bool`, and `str`.
+    The valid types are `str`, `int`, `float`, and `bool`.
 
 ### Response
 
@@ -55,7 +51,7 @@ If the web request is successful, you will see a response with an answer to the 
   ```json
      {
        "Answer": "The hottest day of the year varies depending on the location, but generally, it occurs during the summer months when the sun is closest to the Earth. In many regions, July or August tend to be the hottest months.",
-       "Answer2": "..."
+       "Answer2": 4,
      }
   ```
 
@@ -72,7 +68,7 @@ curl --location 'https://api.powerml.co/v2/lamini/completions' \
 --header 'Content-Type: application/json' \
 --data '{                                                                                                        
     "id": "LaminiTest",                                                                                          
-    "model_name": "text-davinci-003",                                                                            
+    "model_name": "meta-llama/Llama-2-7b-chat-hf",                                                                            
     "in_value": {                                                                                                
       "question": "What is the hottest day of the year?",                                                        
       "question2": "What is for lunch?",                                                                         

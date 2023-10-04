@@ -24,7 +24,7 @@ class QAPrompt(BasePrompt):
 prompt = QAPrompt()
 llm = LLMEngine(
     id="prompt_example",
-    model_name="EleutherAI/pythia-2.8b-deduped",
+    model_name="meta-llama/Llama-2-7b-chat-hf",
     prompt=prompt,
 )
 ```

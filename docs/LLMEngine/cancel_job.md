@@ -3,7 +3,7 @@
 Cancel a job
 
 ```python
-llm = LLMEngine(id="example")
+llm = LLMEngine(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
 llm.cancel_job(job_id)
 ```
 

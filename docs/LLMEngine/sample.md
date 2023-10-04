@@ -3,7 +3,7 @@
 Generate a list of unique outputs.
 
 ```python
-llm = LLMEngine(id="example")
+llm = LLMEngine(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
 job = llm.sample(input, output_type, n, *args, **kwargs)
 ```
 

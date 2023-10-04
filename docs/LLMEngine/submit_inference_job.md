@@ -3,7 +3,7 @@
 Submits a job for processing.
 
 ```python
-llm = LLMEngine(id="example")
+llm = LLMEngine(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
 job = llm.submit_inference_job(input, output_type, *args, **kwargs)
 ```
 

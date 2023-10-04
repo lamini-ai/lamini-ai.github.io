@@ -42,6 +42,7 @@ from llama import LLMEngine
 
 llm = LLMEngine(
     id="marketing",
+    model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {
             "key": "<YOUR-KEY-HERE>",
@@ -79,6 +80,7 @@ from llama import LLMEngine
 
 llm = LLMEngine(
     id="marketing",
+    model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {
             "key": "<YOUR-KEY-HERE>",

@@ -20,7 +20,7 @@ output: `<class 'llama.Type>` - output of the LLM, based on `input`, in the type
 ## Example
 
 ```python
-llm = LLMEngine(id="my_llm_name")
+llm = LLMEngine(id="my_llm_name", model_name="meta-llama/Llama-2-7b-chat-hf")
 
 my_output = llm(my_input, output_type=MyOutputType)
 ```

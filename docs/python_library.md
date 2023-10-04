@@ -31,12 +31,12 @@ Note: to play with different types in a user interface, you can log in at [https
 Next, you want to instantiate your LLM engine with `LLM`.
 
 ```python
-llm = LLMEngine(id="animal_stories")
+llm = LLMEngine(id="animal_stories", model_name="meta-llama/Llama-2-7b-chat-hf")
 
 # If you want to use a different base model or add your config options here
 llm = LLMEngine(
     id="my_llm_name",
-    model_name="chat-gpt",
+    model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {
             "key": "<API-KEY-HERE>",
@@ -124,7 +124,7 @@ my_data.append([dog_animal, dog_speed])
 Instantiate the LLM engine, add data, add improvements (as many as you like), and run the LLM engine.
 
 ```python
-llm = LLMEngine(id="animal_stories")
+llm = LLMEngine(id="animal_stories", model_name="meta-llama/Llama-2-7b-chat-hf")
 
 llm.set_data(my_data)
 llm.improve(on="story", to="specify the number of legs in a subtle way")
