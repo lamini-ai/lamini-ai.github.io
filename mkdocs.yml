@@ -47,10 +47,10 @@ markdown_extensions:
 nav:
   - Getting Started: 
       - Introduction: index.md
-      - Installation and Setup: Start/setup
-      - Installer: Start/installer
-      - Authentication: Start/auth
-  - Notebook Examples: notebooks
+      - Installation and Setup: Start/setup.md
+      - Installer: Start/installer.md
+      - Authentication: Start/auth.md
+  - Notebook Examples: notebooks.md
   - Walkthroughs:
       - LlamaV2 Walkthrough: Examples/llama_v2_example.md
       - Question Answer Walkthrough: Examples/question_answer_walkthrough.md
