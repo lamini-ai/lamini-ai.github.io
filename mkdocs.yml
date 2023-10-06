@@ -45,7 +45,7 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Getting Started: 
+  - Getting Started:
       - Introduction: index.md
       - Installation and Setup: Start/setup.md
       - Installer: Start/installer.md
@@ -79,15 +79,11 @@ nav:
       - Error Handling: error_handling.md
       - Dataset Filters: filters.md
       - Dataset Augmenters: augmenters.md
-      - LLMEngine Class Docs:
-          - __init__: LLMEngine/__init__.md
-          - __call__: LLMEngine/__call__.md
-          - save_data: LLMEngine/save_data.md
-          - train: LLMEngine/train.md
-          - evaluate: LLMEngine/evaluate.md
-          - improve: LLMEngine/improve.md
-          - submit_inference_job: LLMEngine/submit_inference_job.md
-          - check_job_status: LLMEngine/check_job_status.md
-          - get_job_results: LLMEngine/get_job_results.md
-          - cancel_job: LLMEngine/cancel_job.md
-          - sample: LLMEngine/sample.md
+      - Lamini Class Docs:
+          - __init__: Lamini/__init__.md
+          - __call__: Lamini/__call__.md
+          - train: Lamini/train.md
+          - evaluate: Lamini/evaluate.md
+          - check_job_status: Lamini/check_job_status.md
+          - cancel_job: Lamini/cancel_job.md
+  - Patch Notes: DeveloperNotes/lamini_v2_api_migration.md

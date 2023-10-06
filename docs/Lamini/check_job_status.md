@@ -1,9 +1,9 @@
-# llama.LLMEngine.check_job_status
+# lamini.Lamini.check_job_status
 
 Check the status of a job
 
 ```python
-llm = LLMEngine(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
 status = llm.check_job_status(job_id)
 ```
 

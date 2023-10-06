@@ -1,4 +1,4 @@
-# llama.LLMEngine.evaluate
+# lamini.Lamini.evaluate
 
 After training, quickly understand how the model has improved using this function.
 

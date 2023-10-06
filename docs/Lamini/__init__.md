@@ -1,9 +1,9 @@
-# llama.LLMEngine.\_\_init\_\_
+# lamini.Lamini.\_\_init\_\_
 
-Class that instantiates the LLMEngine.
+Class that instantiates the Lamini.
 
 ```python
-LLMEngine(id, model_name, config)
+Lamini(id, model_name, config, prompt_template)
 ```
 
 ## Attributes
@@ -16,12 +16,12 @@ LLMEngine(id, model_name, config)
 ## Example
 
 ```python
-llm = LLMEngine(id="my_llm_name", model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(id="my_llm_name", model_name="meta-llama/Llama-2-7b-chat-hf")
 
 # With optional parameters
-llm = LLMEngine(
+llm = Lamini(
         id="my_llm_name",
         model_name="meta-llama/Llama-2-7b-chat-hf",
-        config={"production.key": "lamini_token"}
+        prompt_template="{input:question}" # change this based on your expected input
       )
 ```

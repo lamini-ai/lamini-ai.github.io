@@ -1,4 +1,4 @@
-# llama.LLMEngine.train
+# lamini.Lamini.train
 
 Train a LLM. This function will submit a training job and continuously poll until the job is completed. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
@@ -9,7 +9,7 @@ llm.save_data(data)
 results = llm.train()
 ```
 
-Or, if you specify the data as an argument to `llama.LLMEngine.train` then Lamini will train *only* on that data.
+Or, if you specify the data as an argument to `lamini.Lamini.train` then Lamini will train *only* on that data.
 
 ```python
 llm = LLMEngine(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
