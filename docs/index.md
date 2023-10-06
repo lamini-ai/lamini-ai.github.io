@@ -1,62 +1,40 @@
-# Getting Started
+# Welcome to Lamini!
 
-Looking to host Lamini on prem? Check out [the installer instructions](/installer) 🔗.
-## Installation
+Lamini is the leading enterprise LLM platform for finetuning. We make it easy for every enterprise and developer to build customized, private models: easier, faster, and higher-performing than any general LLMs.
 
-Lamini can be installed using pip, the package manager for Python. To install Lamini, open a command prompt and type:
+If you want to build larger models, deploy a model in production, host it on your own infrastructure on premise or in your VPC, or other enterprise features, please contact us at [info@lamini.ai](mailto:info@lamini.ai)!
 
+## Why Lamini?
+
+### Leader in Generative AI
+Lamini is built by a team finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students online [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 2, Google’s PaLM, and NVIDIA’s Megatron.
+
+### Optimized for enterprise LLMs
+
+Lamini is optimized for enterprise finetuning LLMs, which have big data and use specialized data, tasks, and software interfaces. Lamini includes advanced optimizations for enterprise LLMs, built on and extending PEFT (LoRA), RLHF, and toolformer, to provide data isolation across 4,266x models on the same server, speed up model switching by 1.09 billion times, compress models by 32x, and easily integrate LLMs with enterprise APIs without hyperparameter search.
+
+### LLM Superstation 
+
+The LLM Superstation combines Lamini's easy-to-use enterprise LLM infrastructure with AMD Instinct™ MI210 and MI250 accelerators. It is optimized for private enterprise LLMs, built to be heavily differentiated with proprietary data. Lamini is the only LLM platform that exclusively runs on AMD Instinct GPUs — in production! Learn more about [our collaboration with AMD](https://www.lamini.ai/blog/lamini-amd-paving-the-road-to-gpu-rich-enterprise-llms).
+
+## Getting Started
 ```sh
 pip install lamini
 ```
+Our documentation includes detailed [Installation and Setup](/Start/setup), [On-premise Installer](/Start/installer), [Authentication](/Start/auth), and many [Notebook Examples](/notebooks) and [Walkthroughs](/Examples/llama_v2_example) to help you train your first model!
 
-We recommend that you keep up to date with the most recent stable version of lamini which can be found here: [https://pypi.org/project/lamini/](https://pypi.org/project/lamini/). This package is a python wrapper around our REST API.
-
-This will download and install the latest version of Lamini and its dependencies.
-
-Check if your installation was done correctly, by importing the LlamaV2Runner in your python interpreter. Fun fact: Lamini is the tribe of which llamas are a part, so you can import the module `lamini` to work with the LLM engine.
-
-```python
->> from lamini import LlamaV2Runner
-```
-
-## Setup your keys
-
-Go to [https://lamini.ai](https://lamini.ai). Log in to get your API key and purchase credits (under the Account tab).
-
-Create `~/.powerml/configure_llama.yaml` and put a key in it.
-
-```sh
-production:
-    key: "<YOUR-KEY-HERE>"
-```
-
-Another option is to pass in your production key to the config parameter of the `LLMEngine` class
-
-```python
-model = LlamaV2Runner(
-    config={"production.key": "<YOUR-KEY-HERE>", "production.url" : "<YOUR-SERVER-URL-HERE>"}
-    )
-```
-
-See [the Authentication page](/auth) 🔗 for more advanced options.
-
-### Basic test
-
-Run the LLM engine with a basic test to see if installation and authentication were set up correctly.
-
-```python
-from lamini import LlamaV2Runner
-
-model = LlamaV2Runner()
-
-answer = model("Tell me a story about llamas.")
-print(answer)
-```
-
-Now you're on your way to building your own LLM for your specific use case!
-
-To play with different types in an interface, you can log in at [https://lamini.ai](https://lamini.ai) and use the playground there.
+Once you're up and running, check out detailed documention about our [REST API](/API_v2/completions) and [Python Library](/python_library). 
 
 ## Web App
+In addition to a REST API and Python Package, we also have a web application to help streamline model training and evalutaion. Go to [https://app.lamini.ai/](https://app.lamini.ai/) to manage your training jobs, view model eval results, test your finetuned models in a playground, generate API keys, and monitor usage.
 
-In addition to a REST API and Python Package, we also have a web application to help streamline model training and evalutaion. Go to [https://app.lamini.ai/](https://app.lamini.ai/) to view your training jobs, see model evaulation, play around with finetuned models in a playground, generate API keys, and monitor usage.
+## Resources
+- [Lamini & AMD: Paving the Road to GPU-Rich Enterprise LLMs](https://www.lamini.ai/blog/lamini-amd-paving-the-road-to-gpu-rich-enterprise-llms)
+- [Finetuning LLMs with our CEO Sharon Zhou & Andrew Ng](https://www.lamini.ai/blog/finetuning-llms-with-our-ceo-sharon-zhou-andrew-ng)
+- [One Billion Times Faster Finetuning with Lamini PEFT](https://www.lamini.ai/blog/one-billion-times-faster-finetuning-with-lamini-peft)
+- [Prompt-engineering vs. Finetuning](https://www.lamini.ai/blog/the-battle-between-prompting-and-finetuning)
+- [Free, Fast & Furious Finetuning](https://www.lamini.ai/blog/free-fast-and-furious-finetuning)
+- [How to specialize general-purpose LLMs to private data](https://www.lamini.ai/blog/specialize-llms-to-private-data-databricks)
+
+<br><br>
+

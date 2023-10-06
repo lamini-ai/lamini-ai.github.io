@@ -45,9 +45,11 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Getting Started: index.md
-  - Installer: installer.md
-  - Authentication: auth.md
+  - Getting Started: 
+      - Introduction: index.md
+      - Installation and Setup: Start/setup.md
+      - Installer: Start/installer.md
+      - Authentication: Start/auth.md
   - Notebook Examples: notebooks.md
   - Walkthroughs:
       - LlamaV2 Walkthrough: Examples/llama_v2_example.md
