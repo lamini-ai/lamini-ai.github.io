@@ -1,6 +1,6 @@
 # Prompt Templates
 
-Under the hood, Lamini's LLM Engine converts your structured data into a string for the LLM to ingest. Then, the LLM Engine consumes the model output to produce structured output.
+Under the hood, Lamini's LLM Engine converts your structured data into a string for the LLM to ingest. Then, the Lamini class uses the model output to produce structured output.
 
 The engine provides tuned default conversion, but you may want greater control over the input to the model. To do this, Lamini provides a `prompt_template` interface. Let's look at an example.
 

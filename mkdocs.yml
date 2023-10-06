@@ -62,12 +62,12 @@ nav:
       - Prompt Templates: Concepts/prompt_templates.md
   - REST API:
       - Completions: API_v2/completions.md
-      - Data: API_v2/data.md
-      - Delete Data: API_v2/delete_data.md
       - Train: API_v2/train.md
       - Training Status: API_v2/train_job_status.md
       - Cancel Training: API_v2/train_job_cancel.md
       - Eval Results: API_v2/eval_results.md
+      - Data: API_v2/data_pairs.md
+      - Delete Data: API_v2/delete_data.md
   - Python Library:
       - Usage: python_library.md
       - Runner Classes:
@@ -83,7 +83,7 @@ nav:
           - __init__: Lamini/__init__.md
           - __call__: Lamini/__call__.md
           - train: Lamini/train.md
-          - evaluate: Lamini/evaluate.md
           - check_job_status: Lamini/check_job_status.md
+          - evaluate: Lamini/evaluate.md
           - cancel_job: Lamini/cancel_job.md
   - Patch Notes: DeveloperNotes/lamini_v2_api_migration.md
