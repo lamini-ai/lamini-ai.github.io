@@ -5,7 +5,7 @@ Push-button example notebooks demonstrating how to use Lamini. These notebooks a
 ## Lamini: Finetuning For Free
 
 - **Description:** This notebook provides an introduction to training using Lamini's Python Library.
-- **Link:** [Lamini: Finetuning For Free](https://colab.research.google.com/drive/1QMeGzR9FnhNJJFmcHtm9RhFP3vrwIkFn?usp=sharing)
+- **Link:** [Lamini: Finetuning For Free](https://colab.research.google.com/drive/1F7XkfN5_VLlhr5zIG3SdK_sUqo4Wr7bE)
 - **Usage:** Users can clone this notebook to their Google Drive and open it in Google Colab to start training their own LLMs.
 - **Models Supported:** Currently the free tier version supports following models:
     - meta-llama/Llama-2-7b-hf
