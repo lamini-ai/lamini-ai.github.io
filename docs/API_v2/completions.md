@@ -70,17 +70,17 @@ Otherwise, the request will return an error code, and the response json will con
 curl --location 'https://api.powerml.co/v2/lamini/completions' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
---data '{                                                                                                        
-    "id": "LaminiTest",                                                                                          
-    "model_name": "meta-llama/Llama-2-7b-chat-hf",                                                                            
-    "in_value": {                                                                                                
-      "question": "What is the hottest day of the year?",                                                        
-      "question2": "What is for lunch?",                                                                         
-    },                                                                                                           
-    "out_type": {                                                                                                
-      "Answer": "str",                                                                     
-      "Answer2": "str",                                                                   
-    }                                                                                                            
+--data '{
+    "id": "LaminiTest",
+    "model_name": "meta-llama/Llama-2-7b-chat-hf",
+    "in_value": {
+        "question": "What is the hottest day of the year?",
+        "question2": "What is for lunch?"
+    },
+    "out_type": {
+        "Answer": "str",
+        "Answer2": "str"
+    }
 }'
 ```
 
