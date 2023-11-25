@@ -2,6 +2,8 @@
 
 Lamini is the leading enterprise LLM platform for finetuning. We make it easy for every enterprise and developer to build customized, private models: easier, faster, and higher-performing than any general LLMs.
 
+Get started with your [free API token](https://app.lamini.ai), and take a [quick tour](get_started/quick_tour.md) of Lamini's features.
+
 If you want to build larger models, deploy a model in production, host it on your own infrastructure on premise or in your VPC, or other enterprise features, please contact us at [info@lamini.ai](mailto:info@lamini.ai)!
 
 ## Why Lamini?

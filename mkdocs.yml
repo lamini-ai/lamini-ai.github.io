@@ -1,4 +1,4 @@
-site_name: ""
+site_name: "Lamini Docs"
 site_url: "https://lamini-ai.github.io"
 
 theme:
@@ -42,14 +42,15 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 # Page tree
 nav:
   - Getting Started:
       - Introduction: index.md
-      - Installation and Setup: Start/setup.md
-      - Installer: Start/installer.md
-      - Authentication: Start/auth.md
+      - Quick Tour: get_started/quick_tour.md
+      - Install: get_started/install.md
   - Notebook Examples: notebooks.md
   - Walkthroughs:
       - LlamaV2 Walkthrough: Examples/llama_v2_example.md

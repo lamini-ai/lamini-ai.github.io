@@ -2,7 +2,7 @@
 
 The `LlamaV2Runner` class is designed for running and training a Llama V2 model, using system and user prompts.
 
-To see example usage check out the [Llama V2 walkthrough](Examples/llama_v2_example.md)
+To see example usage check out the [Llama V2 walkthrough](../Examples/llama_v2_example.md)
 
 
 ## Class Definition

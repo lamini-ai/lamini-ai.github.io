@@ -48,4 +48,4 @@ You can try following solutions:
 ## Authentication error
 
 Authentication errors occur when a user attempts to access a secured resource but fails to provide the correct credentials. This can occur if the user has entered their credentials incorrectly, if the credentials are out of date, or if the credentials are not authorized to access the resource. Authentication errors can also occur if the authentication system itself has malfunctioned or has been compromised.
-You can resolve it by setting correct authentication token. More detailed documentation can be found [here](auth.md)
+You can resolve it by setting correct authentication token. More detailed documentation can be found [here](Start/auth.md)
