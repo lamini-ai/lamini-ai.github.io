@@ -51,40 +51,25 @@ nav:
       - Introduction: index.md
       - Quick Tour: get_started/quick_tour.md
       - Install: get_started/install.md
-  - Notebook Examples: notebooks.md
-  - Walkthroughs:
-      - LlamaV2 Walkthrough: Examples/llama_v2_example.md
-      - Question Answer Walkthrough: Examples/question_answer_walkthrough.md
-      - Code Guru Walkthrough: Examples/code_guru.md
-      - Extract HTML Walkthrough: Examples/extract_html.md
-      - Article Writer Walkthrough: Examples/write_article.md
-  - Concepts:
-      - Model Runners: Concepts/model_runner.md
-      - Prompt Templates: Concepts/prompt_templates.md
-  - REST API:
-      - Completions: API_v2/completions.md
-      - Train: API_v2/train.md
-      - Training Status: API_v2/train_job_status.md
-      - Cancel Training: API_v2/train_job_cancel.md
-      - Eval Results: API_v2/eval_results.md
-      - Data: API_v2/data_pairs.md
-      - Delete Data: API_v2/delete_data.md
-  - Python Library:
-      - Usage: python_library.md
-      - Runner Classes:
-          - LlamaV2Runner: runners/llama_v2_runner.md
-          - QuestionAnswerModel: runners/question_answer_model.md
-          - AutocompleteRunner: runners/autocomplete_runner.md
-          - BasicModelRunner: runners/basic_model_runner.md
-          - InputOutputRunner: runners/input_output_runner.md
-      - Error Handling: error_handling.md
-      - Dataset Filters: filters.md
-      - Dataset Augmenters: augmenters.md
-      - Lamini Class Docs:
-          - __init__: Lamini/__init__.md
-          - __call__: Lamini/__call__.md
-          - train: Lamini/train.md
-          - check_job_status: Lamini/check_job_status.md
-          - evaluate: Lamini/evaluate.md
-          - cancel_job: Lamini/cancel_job.md
-  - Patch Notes: DeveloperNotes/lamini_v2_api_migration.md
+  - Inference:
+      - Quick Tour: inference/quick_tour.md
+      - Playground: inference/playground.md
+      - Models List: inference/models_list.md
+      - JSON Output: inference/json_output.md
+  - Training:
+      - Quick Tour: training/quick_tour.md
+      - Dashboard: training/dashboard.md
+      - Models List: training/models_list.md
+      - Finetuning: training/finetuning.md
+      - Efficient LoRAs: training/lora.md
+      - Pretraining & Continued Pretraining: training/pretraining.md
+      - Evaluation: training/evaluation.md
+  - Applications:  
+      - RAG: applications/rag.md
+      - Classifier: applications/classifier.md
+      - Agent: applications/agent.md
+      - Chat: applications/chat.md
+      - Autocomplete: applications/autocomplete.md
+  - Enterprise Install: enterprise_install.md
+  - Advanced Inference: advanced_inference.md
+  - Advanced Training: advanced_training.md
