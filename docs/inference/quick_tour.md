@@ -7,6 +7,7 @@ Customize inference in many ways:
 - Change the output type, e.g. `str`, `int`, or `float`.
 - Output multiple values in structured JSON.
 - High-throughput inference, e.g. 10,000 requests per call.
+- Run simple applications like [RAG](/docs/applications/rag.md).
 
 === "Python Library"
 
@@ -314,3 +315,18 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 
 
 Great! You submitted a batch inference request. You're well on your way to building a production application that uses high-throughput pipelines of LLMs.
+
+## Applications
+
+See examples of applications in the [Applications](/docs/applications/rag.md) section. 
+
+* RAG
+* Classifier
+* Agent
+* Chat
+* Autocomplete (e.g. Copilot)
+
+Before starting to train, we recommend prototyping your applications with inference and understanding the limits of inference first since these techniques are a lot easier and faster to iterate on than training. 
+
+Of course, training will give you the superpowers that took the world from a research project called GPT-3 to an app ChatGPT.
+
