@@ -6,7 +6,7 @@ Get a list of running jobs and statuses. You can also see these results by going
 
 **HTTP Method:** `GET`
 
-**Path:** `https://api.powerml.co/v2/lamini/train/jobs`
+**Path:** `https://api.lamini.ai/v2/lamini/train/jobs`
 
 **Headers:**
 
@@ -30,7 +30,7 @@ This example cancels the training job with the ID `418`. The request is authenti
 ### Request
 
 ```bash
-curl --location --request GET 'https://api.powerml.co/v2/lamini/train/jobs' \
+curl --location --request GET 'https://api.lamini.ai/v2/lamini/train/jobs' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json'
 ```

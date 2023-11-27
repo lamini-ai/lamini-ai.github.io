@@ -30,7 +30,7 @@ Next, run an LLM:
     <details>
     <summary>Expected Output</summary>
 
-    > "Hello! I'm just an AI, I don't have feelings or emotions like humans do, but I'm here to help you with any questions or concerns you may have. I'm programmed to provide respectful, safe, and accurate responses, and I will always do my best to help you. Please feel free to ask me anything, and I will do my best to assist you. Is there something specific you would like to know or discuss?"
+        "Hello! I'm just an AI, I don't have feelings or emotions like humans do, but I'm here to help you with any questions or concerns you may have. I'm programmed to provide respectful, safe, and accurate responses, and I will always do my best to help you. Please feel free to ask me anything, and I will do my best to assist you. Is there something specific you would like to know or discuss?"
 
     </details>
 
@@ -62,9 +62,11 @@ Next, run an LLM:
 
     JSON result with key `Answer` of type `str`:
     
-    > {
-        "Answer":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"
-    }
+        
+        {
+            "Answer":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"
+        }
+        
     </details>
     
     That's it! 🎉
@@ -72,13 +74,6 @@ Next, run an LLM:
 
 
 More details and options in [Install](install.md).
-
-You just ran inference. What's next?
-* Better inference: customize your inference call
-* Bigger inference: batching requests
-* Training: build your own LLM with finetuning and more
-* Better training: customize your training call
-* Bigger training: efficiently train LoRAs and more advanced methods
 
 ## Better inference
 
@@ -94,4 +89,4 @@ More json schema.
 
 Batch processes.
 
-## Training
+## Train an LLM

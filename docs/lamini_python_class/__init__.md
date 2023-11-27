@@ -11,7 +11,7 @@ Lamini(id, model_name, config, prompt_template)
 -   id: `str` - name of the model you're working on.
 -   model_name: `str` - name of the base model, for example `meta-llama/Llama-2-7b-chat-hf`.
 -   config: `dict` (Optional) - auth-related parameters, e.g. token
--   prompt_template: `str` (Optional) - prompt template to use during inference and training. For more information see [prompt templates](/Concepts/prompt_templates/).
+-   prompt_template: `str` (Optional) - prompt template to use during inference and training. 
 
 ## Example
 

@@ -6,7 +6,7 @@ Delete data associated with the provided Lamini Engine id.
 
 **HTTP Method:** `POST`
 
-**Path:** `https://api.powerml.co/v2/lamini/delete_data`
+**Path:** `https://api.lamini.ai/v2/lamini/delete_data`
 
 **Headers:**
 
@@ -32,7 +32,7 @@ This example deletes data associated with id `APIExample`.
 ### Request
 
 ```bash
-curl --location --request POST 'https://api.powerml.co/v2/lamini/delete_data' \
+curl --location --request POST 'https://api.lamini.ai/v2/lamini/delete_data' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{

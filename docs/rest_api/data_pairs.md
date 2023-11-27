@@ -6,7 +6,7 @@ If you would like to send an input list, please see /v2/lamini/data.
 ### Request
 
 - HTTP Method: POST
-- URL: `https://api.powerml.co/v2/lamini/data_pairs`
+- URL: `https://api.lamini.ai/v2/lamini/data_pairs`
 - Headers:
   - `Authorization: Bearer <LAMINI_API_KEY>`
   - `Content-Type: application/json`
@@ -43,7 +43,7 @@ Otherwise, the request will return an error code, and the response json will con
 #### Request
 
 ```bash
-curl --location 'https://api.powerml.co/v2/lamini/data_pairs' \
+curl --location 'https://api.lamini.ai/v2/lamini/data_pairs' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{

@@ -6,7 +6,7 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 **HTTP Method:** POST
 
-**URL:** `https://api.powerml.co/v2/lamini/train`
+**URL:** `https://api.lamini.ai/v2/lamini/train`
 
 **Headers:**
 
@@ -50,7 +50,7 @@ The response will include a job id and the status of the job. You can monitor th
 ### Request
 
 ```bash
-curl --location 'https://api.powerml.co/v2/lamini/train' \
+curl --location 'https://api.lamini.ai/v2/lamini/train' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{

@@ -5,7 +5,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 ### Request
 
 - HTTP Method: POST
-- URL: `https://api.powerml.co/v2/lamini/completions`
+- URL: `https://api.lamini.ai/v2/lamini/completions`
 - Headers:
   - `Authorization: Bearer <LAMINI_API_KEY>`
   - `Content-Type: application/json`
@@ -67,7 +67,7 @@ Otherwise, the request will return an error code, and the response json will con
 #### Request
 
 ```bash
-curl --location 'https://api.powerml.co/v2/lamini/completions' \
+curl --location 'https://api.lamini.ai/v2/lamini/completions' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
