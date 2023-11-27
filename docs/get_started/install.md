@@ -12,7 +12,14 @@ Add your key to your environment variables. In your terminal, run:
 ```bash
 export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
 ```
-Put this line in your `~/.bashrc` or equivalent file, so you don't have to rerun it in a new session. Remember to `source ~/.bashrc` after you make the change.
+
+Put this line in your `~/.bash_profile` or equivalent file, so you don't have to rerun it in a new session. Remember to `source ~/.bash_profile` after you make the change.
+
+```bash
+echo "export LAMINI_API_KEY='$LAMINI_API_KEY'" >> ~/.bash_profile
+source ~/.bash_profile
+echo $LAMINI_API_KEY
+```
 
 ## 2. Run an LLM 🦙
 
@@ -23,7 +30,7 @@ Run an LLM with our REST API or Python SDK.
     As a test, run the following command. This calls Llama 2 and returns structured JSON:
 
     ```bash
-    curl --location "https://api.powerml.co/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v2/lamini/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{

@@ -1,6 +1,8 @@
 # Playground
 
-The Llama 2 playground makes it easy to run Llama 2 models. Run it at [https://app.lamini.ai/playground](https://app.lamini.ai/playground).
+The playground makes it easy to run different open-source models. 
 
-<!-- TODO: Add screenshot of Playground -->
+Run Llama 2 at [https://app.lamini.ai/playground](https://app.lamini.ai/playground).
+
+<!-- TODO: Add GIF of Playground -->
 ![Llama 2 Playground](/assets/playground.png)
