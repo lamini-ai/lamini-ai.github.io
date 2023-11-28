@@ -1,6 +1,7 @@
 When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can train it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
 There are many ways to train your LLM. We'll cover the most common ones here:
+
 * Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
 * Better training: customize your training call and evaluate your LLM
 * Faster training: efficiently train LoRAs, or slices of LLMs

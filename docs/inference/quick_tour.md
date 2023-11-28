@@ -258,7 +258,7 @@ You just ran inference many times. What's next?
 
 ## Bigger inference
 
-Batching requests is the way to get more throughput. It's easy: simple pass in a list of inputs to any of the classes and it will be handled.
+Batching requests is the way to get more throughput. It's easy: simply pass in a list of inputs to any of the classes and it will be handled.
 
 You can send up to 10,000 requests per call - on the Pro and Organization tiers. Up to 1000 on the Free tier.
 
