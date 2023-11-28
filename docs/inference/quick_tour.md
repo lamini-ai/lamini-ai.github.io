@@ -7,7 +7,7 @@ Customize inference in many ways:
 - Change the output type, e.g. `str`, `int`, or `float`.
 - Output multiple values in structured JSON.
 - High-throughput inference, e.g. 10,000 requests per call.
-- Run simple applications like [RAG](/docs/applications/rag.md).
+- Run simple applications like [RAG](/applications/rag).
 
 === "Python Library"
 
@@ -72,7 +72,7 @@ Customize inference in many ways:
 
     Definitely check out the expected output here. Because now it's a pirate :)
 
-    Let's go lower-level. The [`Lamini` class](/docs/lamini_python_class/__init__.md) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/docs/rest_api/completions.md).
+    Let's go lower-level. The [`Lamini` class](/lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/rest_api/completions).
 
     `Lamini` expects a dictionary as input and a return dictionary for the output type. The simplest one you'll see here is returning a string.
 
@@ -318,7 +318,7 @@ Great! You submitted a batch inference request. You're well on your way to build
 
 ## Applications
 
-See examples of applications in the [Applications](/docs/applications/rag.md) section. 
+See examples of applications in the [Applications](/applications/rag) section. 
 
 * RAG
 * Classifier

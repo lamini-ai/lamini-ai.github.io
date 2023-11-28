@@ -42,7 +42,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
         }
     ```
     The valid types are `str`, `int`, `float`, and `bool`.
--   `prompt_template`: `str`, the template to use when passing the input to the model. For more information see [prompt templates](/Concepts/prompt_templates/).
+-   `prompt_template`: `str`, the template to use when passing the input to the model. For more information see [prompt templates](/deprecated/Concepts/prompt_templates).
 -   `stop_tokens`: `list[str]`, a list of stop tokens to use. these are used in each field produced in the output.
 
 ### Response

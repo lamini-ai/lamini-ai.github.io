@@ -2,7 +2,7 @@
 
 Welcome to this easy 2-step install. Estimated time: 2 minutes.
 
-If you want to host Lamini in your VPC or on prem, check out [the installer instructions](/enterprise_install/installer.md) 🔗.
+If you want to host Lamini in your VPC or on prem, check out [enterprise installer instructions](/enterprise_install) 🔗.
 
 ## 1. Get your Lamini API key 🔑
 Your API key is at [https://app.lamini.ai/account](https://app.lamini.ai/account). If it's your first time, create a free account by logging in.
