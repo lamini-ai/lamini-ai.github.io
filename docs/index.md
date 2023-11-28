@@ -1,6 +1,6 @@
 # Welcome to Lamini!
 
-Lamini is the enterprise LLM platform for building proprietary LLMs, fully owned by you. In just a few lines of code, build LLM pipelines and self-improving LLMs. Deploy within 10 minutes, and see your LLMs improve overtime!
+Lamini is the enterprise LLM platform for building proprietary LLMs, fully owned by you. In just a few lines of code, build LLM pipelines and self-improving LLMs. Deploy within 10 minutes, and see your LLMs improve over time!
 
 If you want to build larger models, deploy a model in production, and host it on your own infrastructure on premise or in your VPC, please contact us at [info@lamini.ai](mailto:info@lamini.ai)!
 
