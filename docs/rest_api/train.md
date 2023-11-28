@@ -1,6 +1,6 @@
 # POST `/v2/lamini/train`
 
-Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v2/lamini/data` api, or through adding data to an `id` using the python package's [Paired data api](/API_v2/data_pairs/). The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v2/lamini/data` api, or through adding data to an `id` using the python package's [Paired data api](/rest_api/data_pairs/). The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ## Request
 
@@ -32,7 +32,7 @@ Use this API endpoint to train a model. This will train a model using the data y
 - id (string): The `id` corresponding to the dataset you'd like to train with.
 - model_name (string): The base model you'd like to train.
 - data (list): The data you'd like to train on. This should be a list of [input, output] arrays. Each input and output should be an object. 
-- prompt_template (string): The prompt template to use during training. For more information see [prompt templates](/Concepts/prompt_templates/).
+- prompt_template (string): The prompt template to use during training. For more information see [prompt templates](/deprecated/Concepts/prompt_templates).
 
 ## Response:
 

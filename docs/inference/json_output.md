@@ -5,7 +5,7 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 
 === "Python Library"
 
-    You can enforce JSON schema via the [`Lamini` class](/docs/lamini_python_class/__init__.md) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/docs/rest_api/completions.md).
+    You can enforce JSON schema via the [`Lamini` class](/lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/rest_api/completions).
 
     First, return a string:
 

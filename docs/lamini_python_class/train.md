@@ -2,7 +2,7 @@
 
 Train a LLM. This function will submit a training job and continuously poll until the job is completed. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
-Specify the data as an argument to `lamini.Lamini.train` then Lamini will train *only* on that data. Additionally, you may optionally specify the prompt template used to produce training prompts, based on the input data that you have. For more information on prompt templates see [prompt templates](/Concepts/prompt_templates/).
+Specify the data as an argument to `lamini.Lamini.train` then Lamini will train *only* on that data. Additionally, you may optionally specify the prompt template used to produce training prompts, based on the input data that you have. For more information on prompt templates see [prompt templates](/deprecated/Concepts/prompt_templates).
 
 ```python
 data = [
