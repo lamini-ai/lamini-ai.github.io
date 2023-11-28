@@ -110,7 +110,7 @@ You'll breeze through some of these here. You can step through all of these in t
 
     You can run inference with one CURL command.
 
-    Full reference docs on the REST API are [here](../rest_api/completions).
+    Full reference docs on the REST API are [here](/rest_api/completions).
 
     ```sh
     curl --location "https://api.lamini.ai/v2/lamini/completions" \
