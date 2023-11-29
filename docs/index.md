@@ -249,11 +249,10 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
 * Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
 * Better training: customize your training call and evaluate your LLM
-* Faster training: efficiently train LoRAs, or slices of LLMs
 * Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 
-For "Faster training" and "Bigger training" sections, see the [Training Quick Tour](training/quick_tour.md).
+For the "Bigger training" section, see the [Training Quick Tour](training/quick_tour.md).
 
 
 === "Python Library"
