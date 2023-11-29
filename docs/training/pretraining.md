@@ -13,4 +13,8 @@ llm.load_data_from_strings(["list", "of", "strings"])
 llm.train()
 ```
 
-Please sign into your Organizations Tier account to access further content.
+See [Advanced Training](../advanced_training.md) for more advanced training methods.
+
+<br><br>
+
+

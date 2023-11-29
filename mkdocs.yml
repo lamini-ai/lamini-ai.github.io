@@ -77,6 +77,7 @@ nav:
       - __call__: lamini_python_class/__call__.md
       - train: lamini_python_class/train.md
       - check_job_status: lamini_python_class/check_job_status.md
+      - cancel_job: lamini_python_class/cancel_job.md
       - evaluate: lamini_python_class/evaluate.md
       - delete_data: lamini_python_class/delete_data.md
   - REST API reference:

@@ -73,7 +73,7 @@ Next, run an LLM:
 
 
 
-More details and options in [Install](install.md).
+More details and options in [Install](get_started/install.md).
 
 ## Better inference
 
@@ -84,9 +84,9 @@ Customize inference in many ways:
 - Change the output type, e.g. `str`, `int`, or `float`.
 - Output multiple values in structured JSON.
 - High-throughput inference, e.g. 10,000 requests per call.
-- Run simple applications like [RAG](/docs/applications/rag.md).
+- Run simple applications like [RAG](applications/rag.md).
 
-You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](/docs/inference/quick_tour.md).
+You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
 
 === "Python Library"
 
@@ -110,7 +110,7 @@ You'll breeze through some of these here. You can step through all of these in t
 
     You can run inference with one CURL command.
 
-    Full reference docs on the REST API are [here](/docs/rest_api/completions.md).
+    Full reference docs on the REST API are [here](rest_api/completions.md).
 
     ```sh
     curl --location "https://api.lamini.ai/v2/lamini/completions" \
@@ -140,7 +140,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 === "Python Library"
 
-    In order to do this in Python, you have to drop a to lower-level. The [`Lamini` class](/docs/lamini_python_class/__init__.md) is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our [REST API endpoint](/docs/rest_api/completions.md).
+    In order to do this in Python, you have to drop a to lower-level. The [`Lamini` class](lamini_python_class/__init__.md) is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our [REST API endpoint](rest_api/completions.md).
 
     `Lamini` expects an input dictionary, and a return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
@@ -253,7 +253,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 * Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 
-For "Faster training" and "Bigger training" sections, see the [Training Quick Tour](/docs/training/quick_tour.md).
+For "Faster training" and "Bigger training" sections, see the [Training Quick Tour](training/quick_tour.md).
 
 
 === "Python Library"
@@ -387,5 +387,6 @@ For "Faster training" and "Bigger training" sections, see the [Training Quick To
     }'
     ```
 
-    See the [REST API docs](/docs/rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
+    See the [REST API docs](rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
+<br><br>

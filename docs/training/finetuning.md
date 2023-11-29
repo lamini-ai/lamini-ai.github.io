@@ -154,4 +154,6 @@ Finetuning a model is training it to do a specific task with your data formatted
     }'
     ```
 
-    See the [REST API docs](/docs/rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
+    See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
+
+<br><br>

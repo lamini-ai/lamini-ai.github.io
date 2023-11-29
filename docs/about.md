@@ -2,7 +2,7 @@
 
 Lamini is the leading enterprise LLM platform for finetuning. We make it easy for every enterprise and developer to build customized, private models: easier, faster, and higher-performing than any general LLMs.
 
-Get started with your [free API token](https://app.lamini.ai), and take a [quick tour](get_started/quick_tour.md) of Lamini's features.
+Get started with your [free API token](https://app.lamini.ai), and take a [quick tour](index.md) of Lamini's features.
 
 If you want to build larger models, deploy a model in production, host it on your own infrastructure on premise or in your VPC, or other enterprise features, please contact us at [info@lamini.ai](mailto:info@lamini.ai)!
 
@@ -21,9 +21,10 @@ The LLM Superstation combines Lamini's easy-to-use enterprise LLM infrastructure
 
 ## Getting Started
 ```sh
-pip install lamini
+pip install --upgrade lamini
 ```
-Our documentation includes detailed [Installation and Setup](/Start/setup), [On-premise Installer](/Start/installer), [Authentication](/Start/auth), and many [Notebook Examples](/notebooks) and [Walkthroughs](/Examples/llama_v2_example) to help you train your first model!
+
+Check out the [Inference Quick Tour](inference/quick_tour.md) and [Training Quick Tour](training/quick_tour.md) to quickly learn about Lamini's features.
 
 Once you're up and running, check out detailed documention about our [REST API](/API_v2/completions) and [Python Library](/python_library). 
 
