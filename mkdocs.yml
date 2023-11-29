@@ -48,8 +48,8 @@ markdown_extensions:
 # Page tree
 nav:
   - Getting Started:
-      - Introduction: index.md
-      - Quick Tour: get_started/quick_tour.md
+      - Quick Tour: index.md
+      - About: about.md
       - Install: get_started/install.md
   - Inference:
       - Quick Tour: inference/quick_tour.md
@@ -68,7 +68,6 @@ nav:
       - RAG: applications/rag.md
       - Classifier: applications/classifier.md
       - Agent: applications/agent.md
-      - Chat: applications/chat.md
       - Autocomplete: applications/autocomplete.md
   - Enterprise Install: enterprise_install.md
   - Advanced Inference: advanced_inference.md
