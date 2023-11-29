@@ -4,7 +4,6 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
 * Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
 * Better training: customize your training call and evaluate your LLM
-* Faster training: efficiently train LoRAs, or slices of LLMs
 * Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 ## Basic and better training
@@ -163,17 +162,6 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
-
-## Faster training
-
-All you have to do to enable training LoRAs is to set the `enable_peft` flag to `True` when instantiating your model.
-
-```python hl_lines="1"
-llm = LlamaV2Runner(enable_peft=True)
-llm.load_data(data)
-llm.train()
-llm.evaluate()
-```
 
 ## Bigger training
 
