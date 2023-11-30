@@ -13,9 +13,5 @@ New models come out daily, so there are many more than the most popular ones lis
 | Llama 2 Chat (70B) | `meta-llama/Llama-2-70b-chat-hf` | 4096 | Organization | Unlimited |
 | Mistral Instruct (7B) | `mistralai/Mistral-7B-Instruct-v0.1` | 4096 | Pro | 20 |
 | Mistral Instruct (7B) | `mistralai/Mistral-7B-Instruct-v0.1` | 4096 | Organization | Unlimited |
-Code Llama Instruct (13B) | `codellama/CodeLlama-13b-hf` | 100000 | Pro | 20 |
-Code Llama Instruct (34B) | `codellama/CodeLlama-34b-hf` | 100000 | Organization | Unlimited |
-Code Llama Instruct (13B) | `codellama/CodeLlama-13b-hf` | 100000 | Pro | 20 |
-Code Llama Instruct (13B) | `codellama/CodeLlama-13b-hf` | 100000 | Organization | Unlimited |
-Code Llama Instruct (7B) | `codellama/CodeLlama-7b-hf` | 100000 | Pro | 20 |
-Code Llama Instruct (7B) | `codellama/CodeLlama-7b-hf` | 100000 | Organization | Unlimited |
+| Top of 7B LLM Leaderboard | see [leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) | xxxxxx | Pro | 20 |
+| Top of 7B LLM Leaderboard | see [leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) | xxxxxx | Organization | Unlimited |

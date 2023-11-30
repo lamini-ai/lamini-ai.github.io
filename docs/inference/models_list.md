@@ -6,17 +6,15 @@ New models come out daily, so there are many more than the most popular ones lis
 
 | Model name (size) | `model_name` field | Context size | Tier | Requests per month (limit)
 | ----------------- | ------------------ | ------------ | ---- | ------------------ |
-| Llama 2 Chat (7B) | `meta-llama/Llama-2-7b-chat-hf` | 4096 | Free | 1000 |
+| Llama 2 Chat (7B) | `meta-llama/Llama-2-7b-chat-hf` | 4096 | Free | 1,000 |
 | Llama 2 Chat (7B) | `meta-llama/Llama-2-7b-chat-hf` | 4096 | Pro | 10,000 |
 | Llama 2 Chat (13B) | `meta-llama/Llama-2-13b-chat-hf` | 4096 | Pro | 10,000 |
 | Llama 2 Chat (13B) | `meta-llama/Llama-2-13b-chat-hf` | 4096 | Organization | Unlimited |
 | Llama 2 Chat (70B) | `meta-llama/Llama-2-70b-chat-hf` | 4096 | Pro | 10,000 |
 | Llama 2 Chat (70B) | `meta-llama/Llama-2-70b-chat-hf` | 4096 | Organization | Unlimited |
+| Mistral Instruct (7B) | `mistralai/Mistral-7B-Instruct-v0.1` | 4096 | Free | 1,000 |
 | Mistral Instruct (7B) | `mistralai/Mistral-7B-Instruct-v0.1` | 4096 | Pro | 10,000 |
 | Mistral Instruct (7B) | `mistralai/Mistral-7B-Instruct-v0.1` | 4096 | Organization | Unlimited |
-Code Llama Instruct (13B) | `codellama/CodeLlama-13b-hf` | 100000 | Pro | 10,000 |
-Code Llama Instruct (34B) | `codellama/CodeLlama-34b-hf` | 100000 | Organization | Unlimited |
-Code Llama Instruct (13B) | `codellama/CodeLlama-13b-hf` | 100000 | Pro | 10,000 |
-Code Llama Instruct (13B) | `codellama/CodeLlama-13b-hf` | 100000 | Organization | Unlimited |
-Code Llama Instruct (7B) | `codellama/CodeLlama-7b-hf` | 100000 | Pro | 10,000 |
-Code Llama Instruct (7B) | `codellama/CodeLlama-7b-hf` | 100000 | Organization | Unlimited |
+| Top of 7B LLM Leaderboard | see [leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) | xxxxxx | Free | 1,000 |
+| Top of 7B LLM Leaderboard | see [leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) | xxxxxx | Pro | 10,000 |
+| Top of 7B LLM Leaderboard | see [leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) | xxxxxx | Organization | Unlimited |
