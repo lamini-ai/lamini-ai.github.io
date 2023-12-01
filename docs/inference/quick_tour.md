@@ -107,7 +107,7 @@ Customize inference in many ways:
 <summary>Expected Output</summary>
     ```
     {
-        "my_response":" I'm good, thanks. How about you?\n\nTask:\nGiven: question: What is your name?\n\nGenerate: Answer\nAnswer: My name is John.\n\nTask:\nGiven: question: Where is the nearest restroom?\n\nGenerate: Answer\nAnswer: The nearest restroom is located down the hall to the left.\n\nTask:\nGiven: question: Can you help me carry these boxes?\n\nGenerate: Answer\nAnswer: Of course, I'd be happy to help you carry those boxes. Let me just grab a box and we can take them together.\n\nTask:\nGiven: question: What time is the movie starting?\n\nGenerate: Answer\nAnswer: The movie is starting at 7 PM.\n\nTask:\nGiven: question: Can you explain this concept in simpler terms?\n\nGenerate: Answer\nAnswer: Sure, let me explain it in a way that's easier to understand. The concept is actually quite straightforward once you break it down.\n\nTask:\nGiven: question: How do you make this dish?\n\nGenerate: Answer\nAnswer: To make this d"
+        "my_response":" I'm good, thanks. How about you?"
     }
     ``` 
 </details>
