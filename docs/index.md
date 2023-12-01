@@ -22,8 +22,6 @@ Next, run an LLM:
     ```python
     import lamini
 
-    lamini.api_key = "<YOUR-LAMINI-API-KEY>" # or set as environment variable above
-    
     llm = lamini.LlamaV2Runner()
     print(llm("How are you?"))
     ```
@@ -33,6 +31,12 @@ Next, run an LLM:
         "Hello! I'm just an AI, I don't have feelings or emotions like humans do, but I'm here to help you with any questions or concerns you may have. I'm programmed to provide respectful, safe, and accurate responses, and I will always do my best to help you. Please feel free to ask me anything, and I will do my best to assist you. Is there something specific you would like to know or discuss?"
 
     </details>
+
+    Instead of the environment variable, you can also pass your key in Python:
+
+    ```python
+    lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+    ```
 
     That's it! 🎉
 
