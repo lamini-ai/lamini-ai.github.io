@@ -64,7 +64,7 @@ nav:
       - Efficient LoRAs: training/lora.md
       - Pretraining: training/pretraining.md
       - Evaluation: training/evaluation.md
-  - Applications:  
+  - Applications:
       - RAG: applications/rag.md
       - Classifier: applications/classifier.md
       - Agent: applications/agent.md
@@ -72,6 +72,7 @@ nav:
   - Enterprise Install: enterprise_install.md
   - Advanced Inference: advanced_inference.md
   - Advanced Training: advanced_training.md
+  - Advanced Auth: advanced_auth.md
   - Lamini Python reference:
       - __init__: lamini_python_class/__init__.md
       - __call__: lamini_python_class/__call__.md
