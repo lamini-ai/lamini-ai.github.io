@@ -26,7 +26,7 @@ pip install --upgrade lamini
 
 Check out the [Inference Quick Tour](inference/quick_tour.md) and [Training Quick Tour](training/quick_tour.md) to quickly learn about Lamini's features.
 
-Once you're up and running, check out detailed documention about our [REST API](/API_v2/completions) and [Python Library](/python_library). 
+Once you're up and running, check out detailed documention about our [REST API](rest_api/completions.md) and [Python Library](lamini_python_class/__init__.md). 
 
 ## Web App
 In addition to a REST API and Python Package, we also have a web application to help streamline model training and evalutaion. Go to [https://app.lamini.ai/](https://app.lamini.ai/) to manage your training jobs, view model eval results, test your finetuned models in a playground, generate API keys, and monitor usage.
