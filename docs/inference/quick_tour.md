@@ -129,8 +129,8 @@ Here, you can see `system` and `instruction` used in the template and input dict
     )
     output = llama2_prompt(
         {
-            "system": "How are you?", 
-            "instruction": "You are a helpful assistant."
+            "system": "You are a helpful assistant.", 
+            "instruction": "How are you?"
         },
         output_type={"my_response": "string"}
     )
