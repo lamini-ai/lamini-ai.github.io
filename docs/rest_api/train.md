@@ -34,7 +34,7 @@ Use this API endpoint to train a model. This will train a model using the data y
 ## Parameters:
 
 - model_name (string): The base model you'd like to train.
-- data (list): The data you'd like to train on. This should be a list of [input, output] arrays. Each input and output should be an object.
+- data (list): The data you'd like to train on. This should be a list of datapoints, with each datapoint a json object with keys `input` and `output`. Each input and output should have string values.
 
 ## Response:
 
