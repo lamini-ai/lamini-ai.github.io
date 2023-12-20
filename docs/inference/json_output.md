@@ -108,7 +108,7 @@ Great! You've successfully run an LLM with structured JSON schema outputs.
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
         "prompt": "How old are you?",
         "out_type": {
-                "age": "int",
+                "response": "int",
                 "units": "str"
             }
     ```
