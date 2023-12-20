@@ -1,27 +1,30 @@
-## Endpoint Documentation: `/v2/lamini/data`
+## Endpoint Documentation: `/v1/data`
 
-This endpoint allows you to make a POST request to send an data for Lamini to use during RAG (retreival augmented generation). For training, see `/v2/lamini/train`.
-If you would like to send a list or input/output pairs, please see `/v2/lamini/data_pairs`.
+This endpoint allows you to make a POST request to send input/output pairs to use during RAG (retreival augmented generation). For training, see `/v1/train`.
+If you would like to send an input list, please see /v1/data.
 
 ### Request
 
 - HTTP Method: POST
-- URL: `https://api.lamini.ai/v2/lamini/data`
+- URL: `https://api.lamini.ai/v1/data`
 - Headers:
   - `Authorization: Bearer <LAMINI_API_KEY>`
   - `Content-Type: application/json`
 - Example Body (JSON):
+
 ```json
 {
-    "id": "LaminiTest",
-    "data": [{"document": "lorem"}, {"document": "ipsum"}]
+  "data": [
+    { "name": "Larry", "height": 4, "speed": 1.0 },
+    { "name": "Cici", "height": 100, "speed": 1.2 }
+  ]
 }
 ```
 
 #### Parameters:
 
--   `id`: `str`, an id which will allow you to iterate on finetuned models.
--   `data`: A list of dicts specifying datapoints available to the model all formatted in the same way. Each key in the dict must be a str, and each value must be a str, int, float, or bool.  The dicts must have the same keys.  In addition, `data` can also be a single dict.
+- `id`: `str`, an id which will allow you to iterate on finetuned models.
+- `data`: A list of dict pairs. The first dict of each pair represents an input object, and the second dict of each pair represents an output object. The input objects must have the same keys, and the output objects must have the same keys.
 
 ### Response
 
@@ -30,7 +33,7 @@ If the web request is successful, you will see a response like below with the da
 - Success Status Code: 200
 - Body (JSON):
   ```json
-    {"dataset":"12bc9e7a36f2cad3d70ad6c55994536d"}
+  { "dataset": "1abdc1e146c9d657336ed39ddbf31532" }
   ```
 
 Otherwise, the request will return an error code, and the response json will contain specific error details like invalid token or incompatible data.
@@ -40,17 +43,19 @@ Otherwise, the request will return an error code, and the response json will con
 #### Request
 
 ```bash
-curl --location 'https://api.lamini.ai/v2/lamini/data' \
+curl --location 'https://api.lamini.ai/v1/data' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
-    "id": "LaminiTest",
-    "data": [{"name": "Larry", "height": 4}, {"name": "Cici", "height": 100}]
+    "data": [
+              [{"name": "Larry", "height": 4}, {"speed": 1.0}],
+              [{"name": "Cici", "height": 100}, {"speed": 1.2}]
+	    ]
 }'
 ```
 
 #### Response
 
 ```json
-{"dataset":"12bc9e7a36f2cad3d70ad6c55994536d"}
+{ "dataset": "1abdc1e146c9d657336ed39ddbf31532" }
 ```

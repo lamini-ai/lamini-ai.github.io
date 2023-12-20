@@ -5,6 +5,7 @@ Get LLMs in production in 2 minutes with Lamini!
 First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account).
 
 Add the key as an environment variable. Or, authenticate via the Python library below.
+
 ```bash
 export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
 ```
@@ -12,6 +13,7 @@ export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
 Next, run an LLM:
 
 === "Python Library"
+
     Install the Python library.
 
     ```python
@@ -23,7 +25,7 @@ Next, run an LLM:
     import lamini
 
     llm = lamini.LlamaV2Runner()
-    print(llm("How are you?"))
+    print(llm.call("How are you?"))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -45,37 +47,26 @@ Next, run an LLM:
     Run an LLM with one CURL command.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "LaminiTest",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt_template": "<s>[INST] <<SYS>>\n{input:system}\n<</SYS>>\n\n{input:instruction} [/INST]",
-        "in_value": {
-            "system": "You are a helpful assistant.",
-            "instruction": "How are you?"
-        },
-        "out_type": {
-            "Answer": "str"
-        }
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]",
     }'
     ```
     <details>
     <summary>Expected Output</summary>
 
-    JSON result with key `Answer` of type `str`:
-    
-        
+    JSON result with key `output` of type `str`:
+
         {
-            "Answer":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"
+            "output":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"
         }
-        
+
     </details>
-    
+
     That's it! 🎉
-
-
 
 More details and options in [Install](get_started/install.md).
 
@@ -99,7 +90,7 @@ You'll breeze through some of these here. You can step through all of these in t
     from lamini import LlamaV2Runner
 
     pirate_llm = LlamaV2Runner(system_prompt="You are a pirate. Say arg matey!")
-    print(pirate_llm("How are you?"))
+    print(pirate_llm.call("How are you?"))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -117,29 +108,23 @@ You'll breeze through some of these here. You can step through all of these in t
     Full reference docs on the REST API are [here](rest_api/completions.md).
 
     ```sh
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How are you?"
-        },
-        "out_type": {
-            "my_response": "str"
-        }
+        "How are you?",
     }'
     ```
     <details>
     <summary>Expected Output</summary>
         ```
         {
-            "my_response":" I'm good, thanks. How about you?"
+            "output":" I'm good, thanks. How about you?"
         }
-        ``` 
+        ```
     </details>
-    
+
 You can also add multiple outputs and multiple output types in one call. The output is a JSON schema that is strictly enforced.
 
 === "Python Library"
@@ -151,9 +136,9 @@ You can also add multiple outputs and multiple output types in one call. The out
     ```python hl_lines="4-7"
     from lamini import Lamini
 
-    llm = Lamini(id="my-llm-id", model_name="meta-llama/Llama-2-7b-chat-hf")
-    llm(
-        {"question": "How old are you?"},
+    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    llm.generate(
+        "How old are you?",
         output_type={"age": "int", "units": "str"}
     )
     ```
@@ -161,15 +146,12 @@ You can also add multiple outputs and multiple output types in one call. The out
 === "REST API"
 
     ```sh hl_lines="10-13"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How old are you?"
-        },
+        "prompt": "How old are you?",
         "out_type": {
             "age": "int",
             "units": "str"
@@ -193,36 +175,38 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
 You can send up to 10,000 requests per call - on the Pro and Organization tiers. Up to 1000 on the Free tier.
 
-=== "Python Library" 
-    ```python hl_lines="2-6"
-    llm(
+=== "Python Library"
+
+    `python hl_lines="2-6"
+    llm.call(
         [
-            {"input": "How old are you?"},
-            {"input": "What is the meaning of life?"},
-            {"input": "What is the hottest day of the year?"},
+            "How old are you?",
+            "What is the meaning of life?",
+            "What is the hottest day of the year?",
         ],
         output_type={"response": "str", "explanation": "str"}
     )
-    ```
+    `
+
 === "REST API"
-    ```sh hl_lines="7-11"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+
+    `sh hl_lines="7-11"
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-batch-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": [
-            {"input": "How old are you?"},
-            {"input": "What is the meaning of life?"},
-            {"input": "What is the hottest day of the year?"}
+        "prompt": [
+            "How old are you?",
+            "What is the meaning of life?",
+            "What is the hottest day of the year?"
         ],
         "out_type": {
             "response": "str",
             "explanation": "str"
         }
     }'
-    ```
+    `
 
 <details>
 <summary>Expected Output</summary>
@@ -244,20 +228,17 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     ```
 </details>
 
-
 ## Training
 
 When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can train it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
 There are many ways to train your LLM. We'll cover the most common ones here:
 
-* Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
-* Better training: customize your training call and evaluate your LLM
-* Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
-
+- Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
+- Better training: customize your training call and evaluate your LLM
+- Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 For the "Bigger training" section, see the [Training Quick Tour](training/quick_tour.md).
-
 
 === "Python Library"
 
@@ -336,7 +317,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     ```python
     from lamini import LlamaV2Runner
-    
+
     llm = LlamaV2Runner()
     llm.load_data(data)
     ```
@@ -348,7 +329,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     ```
 
     Evaluate your model after training, which compares results to the base model.
-    
+
     ```python
     llm.evaluate()
     ```
@@ -356,21 +337,18 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     After training, `llm` will use the finetuned model for inference.
 
     ```python
-    llm("What's your favorite animal?")
+    llm.call("What's your favorite animal?")
     ```
-
-
 
 === "REST API"
 
     First, add data to your model.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/data_pairs" \
+    curl --location "https://api.lamini.ai/v1/data" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-training-id",
         "data": [
                 [{"name": "Larry", "height": 4}, {"speed": 1.0}],
                 [{"name": "Cici", "height": 100}, {"speed": 1.2}]
@@ -381,11 +359,10 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     Using the same `id`, you can then submit a training job ("finetuning") on this model. This will finetune the model on the data you just added.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/train" \
+    curl --location "https://api.lamini.ai/v1/train" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-training-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf"
     }'
     ```

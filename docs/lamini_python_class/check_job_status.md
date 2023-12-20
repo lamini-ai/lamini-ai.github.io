@@ -3,13 +3,13 @@
 Check the status of a job
 
 ```python
-llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
 status = llm.check_job_status(job_id)
 ```
 
 ## Parameters
 
--   job_id: `str` - unique job id
+- job_id: `str` - unique job id
 
 ## Returns
 
@@ -74,9 +74,9 @@ Possible statuses include
 
 ### Running Information
 
--   `progress` - A description of the progress made in terms of iterations. Each iteration represents an equal subset of the data.
--   `starttime` - Job starttime, unixtime in seconds
--   `time_elapsed` - Amount of time elapsed since the start time
--   `average_runtime` - Average runtime per iteration in seconds thus far
--   `estimated_total_time` - Estimated total runtime based on average runtime in seconds
--   `estimated_time_remaining` - Estimated total time remaining based on average runtime in seconds
+- `progress` - A description of the progress made in terms of iterations. Each iteration represents an equal subset of the data.
+- `starttime` - Job starttime, unixtime in seconds
+- `time_elapsed` - Amount of time elapsed since the start time
+- `average_runtime` - Average runtime per iteration in seconds thus far
+- `estimated_total_time` - Estimated total runtime based on average runtime in seconds
+- `estimated_time_remaining` - Estimated total time remaining based on average runtime in seconds

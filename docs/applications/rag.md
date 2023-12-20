@@ -17,19 +17,22 @@ llm.train()
 ```
 
 Here's the response:
+
 ```
-llm("Who won the case above about dana and wells fargo?")
+llm.call("Who won the case above about dana and wells fargo?")
 
 >> The court ruled in favor of Dana and Linda Phillabaum, the defendants and appellees,
 in the foreclosure action brought against them by Wells Fargo.
 ```
 
 Run it yourself, change the query:
+
 ```bash
 ./example.sh --query "Who won the case above about dana and wells fargo?"
 ```
 
 Change the model (any open source model, just use the HuggingFace path!)
+
 ```python
 llm = RetrievalAugmentedRunner(model_name="meta-llama/Llama-2-13b-chat-hf")
 ```
@@ -46,22 +49,26 @@ RAG, short for "Retrieval Augmented Generation," is designed to seamlessly integ
 
 This implementation makes use of the Lamini framework, which streamlines the integration of the RAG system into your AI projects. Lamini simplifies setup, training, and deployment of AI models, including RAG.
 
-
 #### Getting Started
+
 1. Install Lamini
+
 ```bash
 pip install lamini
 ```
 
 2. Clone the repository
+
 ```bash
 git clone git@github.com:lamini-ai/RAG.git
 ```
 
 3. cd into the repository
+
 ```bash
 cd RAG
 ```
+
 4. Add your data in the data folder. A sample data has been added for you.
 
 5. Run an example on a question you want to ask about your data
@@ -73,9 +80,10 @@ cd RAG
 ### What is Lamini doing under the hood with `RetrievalAugmentedRunner`?
 
 Let's look inside `RetrievalAugmentedRunner`:
+
 1. `llm.load_data` - Loads data using our directory-loader. It loads all the text readable files from the `data` repository and splits them into batches for faster indexing.
-2. `llm.train` - Generates embeddings using Lamini and indexes the loaded data using Lamini Index powered by [faiss](https://faiss.ai). 
-3. `llm("Who won the flowers vs rausch case?")` - Runs our query engine. Retrieves the top k documents for a given query, appends them to the query and runs inference on the LLM on the new query.
+2. `llm.train` - Generates embeddings using Lamini and indexes the loaded data using Lamini Index powered by [faiss](https://faiss.ai).
+3. `llm.call("Who won the flowers vs rausch case?")` - Runs our query engine. Retrieves the top k documents for a given query, appends them to the query and runs inference on the LLM on the new query.
 
 If you are interested in diving deeper into these tools, here's how we implement it in python:
 
@@ -89,11 +97,11 @@ engine = QueryEngine(index)
 response = engine.answer_question("Who won the case above about dana and wells fargo?")
 
 ```
+
 This code is in `RAG/rag-deeper.py` script using the following command:
 
 ```bash
 python RAG/rag-deeper.py
 ```
-
 
 [Clone the RAG repo](https://github.com/lamini-ai/rag-easy-runner).

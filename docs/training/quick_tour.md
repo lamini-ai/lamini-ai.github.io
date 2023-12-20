@@ -2,9 +2,9 @@ When running inference, with prompt-engineering and RAG, is not enough for your 
 
 There are many ways to train your LLM. We'll cover the most common ones here:
 
-* Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
-* Better training: customize your training call and evaluate your LLM
-* Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
+- Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
+- Better training: customize your training call and evaluate your LLM
+- Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 ## Basic and better training
 
@@ -85,7 +85,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     ```python
     from lamini import LlamaV2Runner
-    
+
     llm = LlamaV2Runner()
     llm.load_data(data)
     ```
@@ -97,7 +97,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     ```
 
     Evaluate your model after training, which compares results to the base model.
-    
+
     ```python
     llm.evaluate()
     ```
@@ -108,10 +108,10 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     from lamini import Lamini
 
     data = [
-        [{"input": "What's your favorite animal?"}, {"output": "dog"}],
-        [{"input": "What's your favorite color?"}, {"output": "blue"}],
+        {"input": "What's your favorite animal?","output": "dog"},
+        {"input": "What's your favorite color?","output": "blue"},
     ]
-    llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf", prompt_template="{input:input}")
+    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
     llm.train(data=data)
     ```
 
@@ -125,22 +125,20 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     The `results` dictionary contains a `model_name` that you can then pass in for inference. By default, after training, the new finetuned model is loaded into the `llm` object.
 
     ```python
-    llm({"input": "What's your favorite animal?"}, output_type={"output": "string"})
+    llm.call("What's your favorite animal?")
     ```
 
     This will use the finetuned model for inference.
-
 
 === "REST API"
 
     First, add data to your model.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/data_pairs" \
+    curl --location "https://api.lamini.ai/v1/data" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-training-id",
         "data": [
                 [{"name": "Larry", "height": 4}, {"speed": 1.0}],
                 [{"name": "Cici", "height": 100}, {"speed": 1.2}]
@@ -151,17 +149,15 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     Using the same `id`, you can then submit a training job ("finetuning") on this model. This will finetune the model on the data you just added.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/train" \
+    curl --location "https://api.lamini.ai/v1/train" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-training-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf"
     }'
     ```
 
     See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
-
 
 ## Bigger training
 
@@ -175,7 +171,7 @@ You just need a file with dictionaries with the key "text" in it, and that's it 
 from lamini import AutocompleteRunner
 
 llm = AutocompleteRunner(model_name="meta-llama/Llama-2-7b-chat-hf")
-llm.load_data_from_strings(["list", "of", "strings"]) 
+llm.load_data_from_strings(["list", "of", "strings"])
 llm.train()
 ```
 

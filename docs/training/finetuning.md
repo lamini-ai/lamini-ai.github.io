@@ -1,6 +1,4 @@
-
 Finetuning a model is training it to do a specific task with your data formatted with particular input-output pairs. To do this part right, you need a few things. One, we've set some mdoel defaults to get the model to improve and learn from the data, instead of going off the rails, but you can still control lower-level settings if you want to override them. Second, iterating on the data is critical for success. So knowing how to edit the data after each finetuning job is important. You will be iterating a lot to get to the right model and recipe. Third, you need to know how to evaluate your model to see if it's improving. We've made this easy for you to compare results across models and datasets with a viewer.
-
 
 === "Python Library"
 
@@ -79,7 +77,7 @@ Finetuning a model is training it to do a specific task with your data formatted
 
     ```python
     from lamini import LlamaV2Runner
-    
+
     llm = LlamaV2Runner()
     llm.load_data(data)
     ```
@@ -91,7 +89,7 @@ Finetuning a model is training it to do a specific task with your data formatted
     ```
 
     Evaluate your model after training, which compares results to the base model.
-    
+
     ```python
     llm.evaluate()
     ```
@@ -102,10 +100,10 @@ Finetuning a model is training it to do a specific task with your data formatted
     from lamini import Lamini
 
     data = [
-        [{"input": "What's your favorite animal?"}, {"output": "dog"}],
-        [{"input": "What's your favorite color?"}, {"output": "blue"}],
+        {"input": "What's your favorite animal?", "output": "dog"},
+        {"input": "What's your favorite color?", "output": "blue"},
     ]
-    llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf", prompt_template="{input:input}")
+    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
     llm.train(data=data)
     ```
 
@@ -119,25 +117,23 @@ Finetuning a model is training it to do a specific task with your data formatted
     The `results` dictionary contains a `model_name` that you can then pass in for inference. By default, after training, the new finetuned model is loaded into the `llm` object.
 
     ```python
-    llm({"input": "What's your favorite animal?"}, output_type={"output": "string"})
+    llm.call("What's your favorite animal?")
     ```
 
     This will use the finetuned model for inference.
-
 
 === "REST API"
 
     First, add data to your model.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/data_pairs" \
+    curl --location "https://api.lamini.ai/v1/data" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-training-id",
         "data": [
-                [{"name": "Larry", "height": 4}, {"speed": 1.0}],
-                [{"name": "Cici", "height": 100}, {"speed": 1.2}]
+                {"input": "Larry", "output": 1.0},
+                {"input": "Cici", "output": 1.2}
             ]
     }'
     ```
@@ -145,11 +141,10 @@ Finetuning a model is training it to do a specific task with your data formatted
     Using the same `id`, you can then submit a training job ("finetuning") on this model. This will finetune the model on the data you just added.
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/train" \
+    curl --location "https://api.lamini.ai/v1/train" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-training-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf"
     }'
     ```

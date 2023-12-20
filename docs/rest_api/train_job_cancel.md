@@ -1,4 +1,4 @@
-# POST `/v2/lamini/train/jobs/{job_id}/cancel`
+# POST `/v1/train/jobs/{job_id}/cancel`
 
 Cancel a scheduled or running training job. You can also see these results by going to the `train` tab at [https://app.lamini.ai/train](https://app.lamini.ai/train)
 
@@ -6,7 +6,7 @@ Cancel a scheduled or running training job. You can also see these results by go
 
 **HTTP Method:** `POST`
 
-**Path:** `https://api.lamini.ai/v2/lamini/train/jobs/{job_id}/cancel`
+**Path:** `https://api.lamini.ai/v1/train/jobs/{job_id}/cancel`
 
 **Headers:**
 
@@ -34,7 +34,7 @@ This example cancels the training job with the ID `418`. The request is authenti
 ### Request
 
 ```bash
-curl --location --request POST 'https://api.lamini.ai/v2/lamini/train/jobs/418/cancel' \
+curl --location --request POST 'https://api.lamini.ai/v1/train/jobs/418/cancel' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json'
 ```
