@@ -2,42 +2,6 @@ Enforcing structured JSON schema output is important for handling LLM outputs do
 
 For an in-depth technical deep dive of how we implemented this feature, see [our blog post](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
 
-=== "Python Library"
-
-    You can enforce JSON schema via the [`Lamini` class](/lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/rest_api/completions).
-
-    First, return a string:
-
-    ```python hl_lines="6"
-    from lamini import Lamini
-
-    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
-    output = llm.generate("How are you?")
-    ```
-
-=== "REST API"
-
-    First, get a basic string output out:
-
-    ```sh hl_lines="10-12"
-    curl --location "https://api.lamini.ai/v1/completions" \
-    --header "Authorization: Bearer $LAMINI_API_KEY" \
-    --header "Content-Type: application/json" \
-    --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How are you?",
-    }'
-    ```
-
-<details>
-<summary>Expected Output</summary>
-    ```
-    {
-        "output":" I'm good, thanks. How about you?"
-    }
-    ``` 
-</details>
-
 ### Values other than strings
 
 You can change the output type to be a different type, e.g. `int` or `float`. This typing is strictly enforced.
@@ -63,7 +27,7 @@ Please let us know if there are specific types you'd like to see supported.
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
         "prompt": "How old are you?",
         "out_type": {
-            "response": "int"
+            "age": "int"
         }
     }'
     ```
@@ -117,3 +81,40 @@ You can also add multiple output types in one call. The output is a JSON schema 
 </details>
 
 Great! You've successfully run an LLM with structured JSON schema outputs.
+
+!!! tip
+
+    Make sure your output type keys are prompt-tuned to produce the desired output!
+    For example:
+
+    ```
+        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "prompt": "How old are you?",
+        "out_type": {
+                "age": "int",
+                "units": "str"
+            }
+    ```
+
+    returns
+
+    ```
+    {"age":30,"units":"years"}
+    ```
+
+    But
+
+    ```
+        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "prompt": "How old are you?",
+        "out_type": {
+                "age": "int",
+                "units": "str"
+            }
+    ```
+
+    returns
+
+    ```
+    {"response":200,"units":"meters"}
+    ```

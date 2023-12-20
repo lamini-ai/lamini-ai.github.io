@@ -124,21 +124,7 @@ Finetuning a model is training it to do a specific task with your data formatted
 
 === "REST API"
 
-    First, add data to your model.
-
-    ```bash
-    curl --location "https://api.lamini.ai/v1/data" \
-    --header "Authorization: Bearer $LAMINI_API_KEY" \
-    --header "Content-Type: application/json" \
-    --data '{
-        "data": [
-                {"input": "Larry", "output": 1.0},
-                {"input": "Cici", "output": 1.2}
-            ]
-    }'
-    ```
-
-    Using the same `id`, you can then submit a training job ("finetuning") on this model. This will finetune the model on the data you just added.
+    Fine tune a model with a single request.
 
     ```bash
     curl --location "https://api.lamini.ai/v1/train" \
@@ -146,6 +132,10 @@ Finetuning a model is training it to do a specific task with your data formatted
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf"
+        "data": [
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"},
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
+            ]
     }'
     ```
 

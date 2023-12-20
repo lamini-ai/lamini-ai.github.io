@@ -110,7 +110,9 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
 === "Python Library"
 
-    Note that for the `LlamaV2Runner` class, the prompt template is already preloaded with the Llama 2 prompt template. You can recreate it similarly here (simplified version) using `Lamini`:
+    !!! note
+
+        In the `LlamaV2Runner` class, the prompt template is already preloaded with the Llama 2 prompt template. You can recreate it similarly here (simplified version) using `Lamini`:
 
     ```python  hl_lines="4 8 9"
     llama2_prompt = Lamini(
@@ -223,7 +225,9 @@ And you can add multiple output types in one call. The output is a JSON schema t
     ```
 </details>
 
-Note that while it's tempting to squeeze everything into a single LLM call, performance can degrade after too many values in the output type due. Sometimes, it's better to make multiple calls. This is a tradeoff between latency and throughput. Speaking of throughput...
+!!! note
+
+    While it's tempting to squeeze everything into a single LLM call, performance can degrade after too many values in the output type due. Sometimes, it's better to make multiple calls. This is a tradeoff between latency and throughput. Speaking of throughput...
 
 You just ran inference many times. What's next?
 
@@ -234,7 +238,8 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 You can send up to 10,000 requests per call - on the Pro and Organization tiers. Up to 1000 on the Free tier.
 
 === "Python Library"
-`python hl_lines="2-6"
+
+    ```python hl_lines="2-6"
     llm.call(
         [
             "How old are you?",
@@ -243,9 +248,11 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
         ],
         output_type={"response": "str", "explanation": "str"}
     )
-    `
+    ```
+
 === "REST API"
-`sh hl_lines="7-11"
+
+    ```sh hl_lines="7-11"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -261,7 +268,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
             "explanation": "str"
         }
     }'
-    `
+    ```
 
 <details>
 <summary>Expected Output</summary>

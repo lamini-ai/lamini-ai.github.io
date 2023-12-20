@@ -131,7 +131,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     In order to do this in Python, you have to drop a to lower-level. The [`Lamini` class](lamini_python_class/__init__.md) is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our [REST API endpoint](rest_api/completions.md).
 
-    `Lamini` expects an input dictionary, and a return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
+    `Lamini` expects an prompt, and an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
     ```python hl_lines="4-7"
     from lamini import Lamini
@@ -177,7 +177,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 
 === "Python Library"
 
-    `python hl_lines="2-6"
+    ```python hl_lines="2-6"
     llm.call(
         [
             "How old are you?",
@@ -186,11 +186,11 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
         ],
         output_type={"response": "str", "explanation": "str"}
     )
-    `
+    ```
 
 === "REST API"
 
-    `sh hl_lines="7-11"
+    ```sh hl_lines="6-10"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -206,7 +206,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
             "explanation": "str"
         }
     }'
-    `
+    ```
 
 <details>
 <summary>Expected Output</summary>
@@ -270,10 +270,6 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
                 "user": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
                 "system": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.",
                 "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
-            },
-            {
-                "user": "Is the Lamini type system similar to a python type system?",
-                "output": "Yes, the Lamini type system is built using Pydantic BaseModel.",
             },
             {
                 "user": "Does Lamini have a limit on the number of API requests I can make?",
@@ -342,21 +338,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
 === "REST API"
 
-    First, add data to your model.
-
-    ```bash
-    curl --location "https://api.lamini.ai/v1/data" \
-    --header "Authorization: Bearer $LAMINI_API_KEY" \
-    --header "Content-Type: application/json" \
-    --data '{
-        "data": [
-                [{"name": "Larry", "height": 4}, {"speed": 1.0}],
-                [{"name": "Cici", "height": 100}, {"speed": 1.2}]
-            ]
-    }'
-    ```
-
-    Using the same `id`, you can then submit a training job ("finetuning") on this model. This will finetune the model on the data you just added.
+    Fine tune a model with a single request.
 
     ```bash
     curl --location "https://api.lamini.ai/v1/train" \
@@ -364,6 +346,10 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf"
+        "data": [
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"},
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
+            ]
     }'
     ```
 

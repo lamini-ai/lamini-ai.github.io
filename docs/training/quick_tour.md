@@ -132,21 +132,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
 === "REST API"
 
-    First, add data to your model.
-
-    ```bash
-    curl --location "https://api.lamini.ai/v1/data" \
-    --header "Authorization: Bearer $LAMINI_API_KEY" \
-    --header "Content-Type: application/json" \
-    --data '{
-        "data": [
-                [{"name": "Larry", "height": 4}, {"speed": 1.0}],
-                [{"name": "Cici", "height": 100}, {"speed": 1.2}]
-            ]
-    }'
-    ```
-
-    Using the same `id`, you can then submit a training job ("finetuning") on this model. This will finetune the model on the data you just added.
+    Fine tune a model with a single request.
 
     ```bash
     curl --location "https://api.lamini.ai/v1/train" \
@@ -154,27 +140,13 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf"
+        "data": [
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"},
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
+            ]
     }'
     ```
 
     See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
-
-## Bigger training
-
-A common use case is to pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge. This is called "continued pretraining" or "domain adaptation" for learning this content on top of the basic language skills of a pretrained LLM, or "pretraining from scratch" if you're starting from a randomly initialized LLM.
-
-The first step of doing this is similar to finetuning. However, you can instead do less preparation of your data. However, we recommend 1B tokens, or about 250M words, of data for a difference in performance.
-
-You just need a file with dictionaries with the key "text" in it, and that's it -- not target outputs. Just let the LLM read it unprocessed. One of the most common use cases is to autocomplete large technical texts, e.g. using our `AutocompleteRunner`.
-
-```python hl_lines="3 4"
-from lamini import AutocompleteRunner
-
-llm = AutocompleteRunner(model_name="meta-llama/Llama-2-7b-chat-hf")
-llm.load_data_from_strings(["list", "of", "strings"])
-llm.train()
-```
-
-See [Advanced Training](../advanced_training.md) for more advanced training methods.
 
 <br><br>

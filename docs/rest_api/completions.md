@@ -65,8 +65,6 @@ curl --location 'https://api.lamini.ai/v1/completions' \
 
 #### Response
 
-Note the result is a hash, so the order of keys may be different from below.
-
 ```json
 {
   "output": "The hottest day of the year varies depending on location."
