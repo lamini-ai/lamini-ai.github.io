@@ -1,27 +1,36 @@
-## Endpoint Documentation: `/v2/lamini/data`
+## Endpoint Documentation: `/v1/data`
 
-This endpoint allows you to make a POST request to send an data for Lamini to use during RAG (retreival augmented generation). For training, see `/v2/lamini/train`.
-If you would like to send a list or input/output pairs, please see `/v2/lamini/data_pairs`.
+This endpoint allows you to make a POST request to send input/output pairs to use during RAG (retreival augmented generation). For training, see `/v1/train`.
+If you would like to send an input list, please see /v1/data.
 
 ### Request
 
 - HTTP Method: POST
-- URL: `https://api.lamini.ai/v2/lamini/data`
+- URL: `https://api.lamini.ai/v1/data`
 - Headers:
   - `Authorization: Bearer <LAMINI_API_KEY>`
   - `Content-Type: application/json`
 - Example Body (JSON):
+
 ```json
 {
-    "id": "LaminiTest",
-    "data": [{"document": "lorem"}, {"document": "ipsum"}]
+  "data": [
+    {
+      "input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]",
+      "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"
+    },
+    {
+      "input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?",
+      "output": "Lamini provides each user with free tokens up front."
+    }
+  ]
 }
 ```
 
 #### Parameters:
 
--   `id`: `str`, an id which will allow you to iterate on finetuned models.
--   `data`: A list of dicts specifying datapoints available to the model all formatted in the same way. Each key in the dict must be a str, and each value must be a str, int, float, or bool.  The dicts must have the same keys.  In addition, `data` can also be a single dict.
+- `id`: `str`, an id which will allow you to iterate on finetuned models.
+- `data`: A list of dict pairs. The first dict of each pair represents an input object, and the second dict of each pair represents an output object. The input objects must have the same keys, and the output objects must have the same keys.
 
 ### Response
 
@@ -30,7 +39,7 @@ If the web request is successful, you will see a response like below with the da
 - Success Status Code: 200
 - Body (JSON):
   ```json
-    {"dataset":"12bc9e7a36f2cad3d70ad6c55994536d"}
+  { "dataset": "1abdc1e146c9d657336ed39ddbf31532" }
   ```
 
 Otherwise, the request will return an error code, and the response json will contain specific error details like invalid token or incompatible data.
@@ -40,17 +49,19 @@ Otherwise, the request will return an error code, and the response json will con
 #### Request
 
 ```bash
-curl --location 'https://api.lamini.ai/v2/lamini/data' \
+curl --location 'https://api.lamini.ai/v1/data' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
-    "id": "LaminiTest",
-    "data": [{"name": "Larry", "height": 4}, {"name": "Cici", "height": 100}]
+    "data": [
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"},
+                {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
+            ]
 }'
 ```
 
 #### Response
 
 ```json
-{"dataset":"12bc9e7a36f2cad3d70ad6c55994536d"}
+{ "dataset": "1abdc1e146c9d657336ed39ddbf31532" }
 ```

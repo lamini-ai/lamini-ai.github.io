@@ -8,9 +8,9 @@ To keep your API key safe, production requests should always be routed through y
 
 Lamini offers several ways to provide your API key:
 
--   [Config file](#config-file)
--   [Python API](#python-api)
--   [Authorization HTTP header](#authorization-http-header)
+- [Config file](#config-file)
+- [Python API](#python-api)
+- [Authorization HTTP header](#authorization-http-header)
 
 ### Config file
 
@@ -41,7 +41,6 @@ To get started, simply import our API client and initialize it with your API key
 from llama import LLMEngine
 
 llm = LLMEngine(
-    id="marketing",
     model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {
@@ -79,7 +78,6 @@ In the python client:
 from llama import LLMEngine
 
 llm = LLMEngine(
-    id="marketing",
     model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {
