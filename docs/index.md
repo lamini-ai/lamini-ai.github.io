@@ -113,7 +113,7 @@ You'll breeze through some of these here. You can step through all of these in t
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "How are you?",
+        "prompt": "How are you?",
     }'
     ```
     <details>
