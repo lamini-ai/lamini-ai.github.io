@@ -93,7 +93,7 @@ Customize inference in many ways:
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How are you?",
+        "prompt": "How are you?"
     }'
     ```
 
@@ -135,13 +135,13 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
     The prompt is passed in through `prompt` as part of the request.
 
-    ```sh hl_lines="7-10"
+    ```sh hl_lines="6"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]"
     }'
     ```
     <details>
@@ -166,7 +166,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 
 === "REST API"
 
-    ```sh hl_lines="10-12"
+    ```sh hl_lines="7-9"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -201,7 +201,7 @@ And you can add multiple output types in one call. The output is a JSON schema t
 
 === "REST API"
 
-    ```sh hl_lines="10-13"
+    ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -252,7 +252,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 
 === "REST API"
 
-    ```sh hl_lines="7-11"
+    ```sh hl_lines="6-10"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
