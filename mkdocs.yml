@@ -67,6 +67,7 @@ nav:
       - Evaluation: training/evaluation.md
   - Applications:
       - Classifier: applications/classifier.md
+      - Named Entity Recognition (NER): applications/ner.md
   - Enterprise Install: enterprise_install.md
   - Advanced Inference: advanced_inference.md
   - Advanced Training: advanced_training.md
