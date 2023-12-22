@@ -96,11 +96,19 @@ Notice that you can prompt-engineer via the prompts with entity label and descri
 
 Your other tool is adding data, which is optional. You can add data via the `llm.add_data_to_class` method, before training (`llm.prompt_train` on the prompts). 
 
-You can add as much data as you want. For every class, e.g. `Patient`, you can add a list of strings to it in one call of `add_data_to_class`, e.g. `llm.add_data_to_class("Patient", ["Text: Brewer is a canine patient. Noun Phrase: patient", "Text: Brewer is a canine patient. Noun Phrase: Brewer"])`.
+You can add as much data as you want. For every class, e.g. `Patient`, you can add a list of strings to it in one call of `add_data_to_class`, e.g. 
+
+```python
+llm.add_data_to_class("Patient", ["Text: Brewer is a canine patient. Noun Phrase: patient", "Text: Brewer is a canine patient. Noun Phrase: Brewer"])
+```
 
 Note that the example shows adding the context in the datapoints, with the text (sentence) and the noun phrase. 
 
-Like the JSON harness, you can pass in multiple prompts in a list of prompts, e.g. `llm.predict(["Text: Brewer is a canine patient. Noun Phrase: Brewer", "Text: Brewer is a canine patient. Noun Phrase: patient"])`.
+Like the JSON harness, you can pass in multiple prompts in a list of prompts, e.g.
+
+```python
+llm.predict(["Text: Brewer is a canine patient. Noun Phrase: Brewer", "Text: Brewer is a canine patient. Noun Phrase: patient"])
+```
 
 - [Finetuning](../training/finetuning.md)
 
