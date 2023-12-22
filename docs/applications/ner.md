@@ -6,6 +6,7 @@ Named entity recognition (NER) is the task of identifying and classifying named 
 You can use LLMs for NER. Here are several tools in your Lamini toolbox for doing so.
 
 Note: These tools are in order of increasing difficulty to get right:
+
 1. JSON output
 2. LLM Classifier
 3. Finetuning
