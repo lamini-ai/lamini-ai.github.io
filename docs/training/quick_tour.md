@@ -125,7 +125,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     The `results` dictionary contains a `model_name` that you can then pass in for inference. By default, after training, the new finetuned model is loaded into the `llm` object.
 
     ```python
-    llm.call("What's your favorite animal?")
+    llm.generate("What's your favorite animal?")
     ```
 
     This will use the finetuned model for inference.

@@ -24,8 +24,8 @@ Next, run an LLM:
     ```python
     import lamini
 
-    llm = lamini.LlamaV2Runner()
-    print(llm.call("How are you?"))
+    llm_runner = lamini.LlamaV2Runner()
+    print(llm_runner.call("How are you?"))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -89,8 +89,8 @@ You'll breeze through some of these here. You can step through all of these in t
     ```python hl_lines="3"
     from lamini import LlamaV2Runner
 
-    pirate_llm = LlamaV2Runner(system_prompt="You are a pirate. Say arg matey!")
-    print(pirate_llm.call("How are you?"))
+    pirate_llm_runner = LlamaV2Runner(system_prompt="You are a pirate. Say arg matey!")
+    print(pirate_llm_runner.call("How are you?"))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -131,7 +131,9 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     In order to do this in Python, you have to drop a to lower-level. The [`Lamini` class](lamini_python_class/__init__.md) is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our [REST API endpoint](rest_api/completions.md).
 
-    `Lamini` expects an prompt, and an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
+    `Lamini` expects a prompt, and an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
+
+    Note that while runners use a `.call(prompt)` method, `Lamini` uses `.generate(prompt)`.
 
     ```python hl_lines="4-7"
     from lamini import Lamini
@@ -178,7 +180,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 === "Python Library"
 
     ```python hl_lines="2-6"
-    llm.call(
+    llm.generate(
         [
             "How old are you?",
             "What is the meaning of life?",
@@ -314,26 +316,26 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     ```python
     from lamini import LlamaV2Runner
 
-    llm = LlamaV2Runner()
-    llm.load_data(data)
+    llm_runner = LlamaV2Runner()
+    llm_runner.load_data(data)
     ```
 
     Train the model. Track progress at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
-    llm.train()
+    llm_runner.train()
     ```
 
     Evaluate your model after training, which compares results to the base model.
 
     ```python
-    llm.evaluate()
+    llm_runner.evaluate()
     ```
 
-    After training, `llm` will use the finetuned model for inference.
+    After training, `llm_runner` will use the finetuned model for inference.
 
     ```python
-    llm.call("What's your favorite animal?")
+    llm_runner.call("What's your favorite animal?")
     ```
 
 === "REST API"

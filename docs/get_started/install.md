@@ -73,8 +73,8 @@ Run an LLM with our REST API or Python SDK.
     ```python
     from lamini import LlamaV2Runner
 
-    llm = LlamaV2Runner()
-    response = llm.call("Tell me a story about llamas.")
+    llm_runner = LlamaV2Runner()
+    response = llm_runner.call("Tell me a story about llamas.")
 
     print(response)
     ```
@@ -91,8 +91,8 @@ If you're in a iPython notebook, you can pass in your Lamini API key to any Pyth
 from lamini import LlamaV2Runner
 
 config = { "production.key": "<YOUR-LAMINI-API-KEY>"}
-llm = LlamaV2Runner(config=config)
-response = llm.call("Tell me a story about llamas.")
+llm_runner = LlamaV2Runner(config=config)
+response = llm_runner.call("Tell me a story about llamas.")
 
 print(response)
 ```
@@ -109,8 +109,8 @@ This will be implicitly read for any Python model class, e.g. `LLMEngine` or `Ll
 ```python
 from lamini import LlamaV2Runner
 
-llm = LlamaV2Runner()
-response = llm.call("Tell me a story about llamas.")
+llm_runner = LlamaV2Runner()
+response = llm_runner.call("Tell me a story about llamas.")
 
 print(response)
 ```
@@ -130,8 +130,8 @@ If you are [running Lamini in your VPC or on prem](/enterprise_install/installer
 
     Test that it works:
     ```python
-    llm = LlamaV2Runner(config=config)
-    response = llm.call("Tell me a story about llamas.")
+    llm_runner = LlamaV2Runner(config=config)
+    response = llm_runner.call("Tell me a story about llamas.")
 
     print(response)
     ```
@@ -180,8 +180,8 @@ As a test, run this LLM call in a subsequent cell:
 ```python
 from lamini import LlamaV2Runner
 
-llm = LlamaV2Runner()
-response = llm.call("Tell me a story about llamas.")
+llm_runner = LlamaV2Runner()
+response = llm_runner.call("Tell me a story about llamas.")
 
 print(response)
 ```

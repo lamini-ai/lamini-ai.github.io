@@ -38,15 +38,15 @@ Feeling new to coding? Don't worry, we've got you covered with our awesome Pytho
 To get started, simply import our API client and initialize it with your API key:
 
 ```python
-from llama import LLMEngine
+from lamini import Lamini
 
-llm = LLMEngine(
+llm = Lamini(
     model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {
             "key": "<YOUR-KEY-HERE>",
         }
-    },
+    }
 )
 ```
 
@@ -75,9 +75,9 @@ production:
 In the python client:
 
 ```python
-from llama import LLMEngine
+from lamini import Lamini
 
-llm = LLMEngine(
+llm = Lamini(
     model_name="meta-llama/Llama-2-7b-chat-hf",
     config={
         "production": {

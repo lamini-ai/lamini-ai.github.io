@@ -117,7 +117,7 @@ Finetuning a model is training it to do a specific task with your data formatted
     The `results` dictionary contains a `model_name` that you can then pass in for inference. By default, after training, the new finetuned model is loaded into the `llm` object.
 
     ```python
-    llm.call("What's your favorite animal?")
+    llm.generate("What's your favorite animal?")
     ```
 
     This will use the finetuned model for inference.

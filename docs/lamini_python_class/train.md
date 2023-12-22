@@ -25,5 +25,5 @@ The default values of the hyper-parameters and key values can be found in the ll
 results: `dict` - a dictionary object with fields `job_id` and `model_name` which can be used to fetch eval results or used to query the finetuned model. In order to query the finetuned model you may use the new `model_name` like so
 
 ```python
-my_output = llm.call(my_input, model_name=results['model_name'])
+my_output = llm.generate(my_input, model_name=results['model_name'])
 ```

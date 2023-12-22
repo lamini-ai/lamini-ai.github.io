@@ -11,15 +11,15 @@ We make it super easy and effective on any open-source model.
 ```python
 from lamini import RetrievalAugmentedRunner
 
-llm = RetrievalAugmentedRunner()
-llm.load_data("data/")
-llm.train()
+llm_runner = RetrievalAugmentedRunner()
+llm_runner.load_data("data/")
+llm_runner.train()
 ```
 
 Here's the response:
 
 ```
-llm.call("Who won the case above about dana and wells fargo?")
+llm_runner.call("Who won the case above about dana and wells fargo?")
 
 >> The court ruled in favor of Dana and Linda Phillabaum, the defendants and appellees,
 in the foreclosure action brought against them by Wells Fargo.
@@ -81,9 +81,9 @@ cd RAG
 
 Let's look inside `RetrievalAugmentedRunner`:
 
-1. `llm.load_data` - Loads data using our directory-loader. It loads all the text readable files from the `data` repository and splits them into batches for faster indexing.
-2. `llm.train` - Generates embeddings using Lamini and indexes the loaded data using Lamini Index powered by [faiss](https://faiss.ai).
-3. `llm.call("Who won the flowers vs rausch case?")` - Runs our query engine. Retrieves the top k documents for a given query, appends them to the query and runs inference on the LLM on the new query.
+1. `llm_runner.load_data` - Loads data using our directory-loader. It loads all the text readable files from the `data` repository and splits them into batches for faster indexing.
+2. `llm_runner.train` - Generates embeddings using Lamini and indexes the loaded data using Lamini Index powered by [faiss](https://faiss.ai).
+3. `llm_runner.call("Who won the flowers vs rausch case?")` - Runs our query engine. Retrieves the top k documents for a given query, appends them to the query and runs inference on the LLM on the new query.
 
 If you are interested in diving deeper into these tools, here's how we implement it in python:
 

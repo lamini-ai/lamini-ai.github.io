@@ -1,6 +1,6 @@
 # lamini.Lamini.\_\_init\_\_
 
-Class that instantiates the Lamini.
+Class that instantiates the Lamini class for calling and training models.
 
 ```python
 Lamini(model_name, config)
@@ -15,9 +15,21 @@ Lamini(model_name, config)
 
 ```python
 llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
-
-# With optional parameters
-llm = Lamini(
-        model_name="meta-llama/Llama-2-7b-chat-hf",
-      )
 ```
+
+With optional paramters:
+```python
+import os
+key = os.environ.get("LAMINI_API_KEY")
+
+llm = Lamini(
+    model_name="meta-llama/Llama-2-7b-chat-hf",
+    config={
+        "production": {
+            "key": key,
+        }
+    },
+)
+```
+
+See [advanced authentication options](../advanced_auth.md) for more details.
