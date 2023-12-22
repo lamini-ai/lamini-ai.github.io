@@ -19,7 +19,7 @@ Please let us know if there are specific types you'd like to see supported.
 
 === "REST API"
 
-    ```sh hl_lines="10-12"
+    ```sh hl_lines="7-9"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -56,7 +56,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
 
 === "REST API"
 
-    ```sh hl_lines="10-13"
+    ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -74,7 +74,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25,
+        'age': 30,
         'units': 'years'
     }
     ```
