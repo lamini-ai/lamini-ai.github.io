@@ -23,7 +23,7 @@ The simplest first pass is to use Lamini's JSON output harness, which takes any 
 * Extract arbitrary named entities, not just fixed labels/classes
 * Main downside: You can only add data through prompt-engineering (includes adding RAG outputs), but you cannot teach the model new information from lots of data
 
-Here is some sample code of how to use the JSON output harness for NER. The task here is to label noun phrases in a sentence with the type of noun phrase it is. The output is a JSON object with the label as a string.
+Here is some sample code of how to use the JSON output harness for NER. The task here is to label noun phrases in a sentence. The domain here is veterinary medicine, but it can be any domain. The output is a JSON object with the label as a string.
 
 ```python
 from lamini import Lamini
