@@ -9,7 +9,8 @@ Lamini(model_name, config)
 ## Attributes
 
 - model_name: `str` - name of the base model, for example `meta-llama/Llama-2-7b-chat-hf`.
-- config: `dict` (Optional) - auth-related parameters, e.g. token
+- config: `dict` (Optional) - auth-related parameters, e.g. url and token as well as `model_config` which takes in model specific attributes. `model_config` currently supports RoPE scaling parameters like 
+```"model_config": {"rope_scaling.type": "dynamic", "rope_scaling.factor": "8.0"}```.
 
 ## Example
 
