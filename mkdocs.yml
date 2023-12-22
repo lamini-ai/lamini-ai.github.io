@@ -76,6 +76,7 @@ nav:
       - __init__: lamini_python_class/__init__.md
       - generate: lamini_python_class/generate.md
       - train: lamini_python_class/train.md
+      - upload_file: lamini_python_class/upload_file.md
       - check_job_status: lamini_python_class/check_job_status.md
       - cancel_job: lamini_python_class/cancel_job.md
       - evaluate: lamini_python_class/evaluate.md
