@@ -14,7 +14,7 @@ Note: These tools are in order of increasing difficulty to get right:
 We recommend starting with the first one, and moving onto the next one, if you need to get better results.
 
 
-## [LLM - JSON output](../inference/json_output.md)
+## LLM JSON output ([docs](../inference/json_output.md))
 
 The simplest first pass is to use Lamini's JSON output harness, which takes any LLM and makes it output a guaranteed JSON schema of your choosing.
 
@@ -61,7 +61,7 @@ out = llm.generate(list_of_prompts, output_type=output_type)
 
 JSON output is great in that it encourages the model to output the right thing, but it's not teaching it on any new data yet, so there could still be a performance gap. That said, if you run this at a larger scale (~30 examples), you can score how well the model does (% correct out of ~30) and that can guide whether you can just use it as is, or you should advance to the next step.
 
-## [LLM Classifier](../applications/classifier.md)
+## LLM Classifier ([docs](../applications/classifier.md))
 
 While the JSON harness mainly deals with prompts (you can "add data" to prompts to some extent), the LLM Classifier can handle BOTH prompts and data. Regarding data, you can put an unlimited amount in.
 
@@ -110,7 +110,7 @@ Like the JSON harness, you can pass in multiple prompts in a list of prompts, e.
 llm.predict(["Text: Brewer is a canine patient. Noun Phrase: Brewer", "Text: Brewer is a canine patient. Noun Phrase: patient"])
 ```
 
-## [Finetuning](../training/finetuning.md)
+## Finetuning ([docs](../training/finetuning.md))
 
 The premise of finetuning is to give you maximum control over the output behavior of the model and the content it learns. It takes the LLM Classifier and JSON harness to overdrive. But with maximal flexibility, it is also much harder to get right, because there's so much you can do. It also needs more data. 
 
