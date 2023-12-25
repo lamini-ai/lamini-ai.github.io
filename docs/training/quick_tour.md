@@ -162,4 +162,51 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
+
+## Bigger training:
+=== "Python Library"
+
+For training on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
+
+Say, you have a csv file `test.csv` with the following format:
+```csv
+user,answer
+"Explain the process of photosynthesis","Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things.
+"What is the capital of USA?", "Washington, D.C."
+....
+```
+
+You can use the LLamaV2Runner to train on this file directly. First, upload the file and specify the input and output keys.
+```python
+from lamini import LlamaV2Runner
+
+llm = LlamaV2Runner()
+llm.upload_file("test.csv", input_key="user", output_key="answer")
+```
+
+You can also pass in a `jsonlines` file which may look like this:
+
+`test.jsonlines`
+```json
+{"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
+{"user": "What is the capital of USA?", "answer": "Washington, D.C."}
+....
+```
+
+Then train on this file using the `train` function.
+```python
+from lamini import LlamaV2Runner
+
+llm = LlamaV2Runner()
+llm.upload_file("test.jsonlines", input_key="user", output_key="answer")
+
+llm.train(limit=100000)
+```
+
+<b>Note:</b>
+
+
+1. Everytime you upload a file, the subsequent `train` would operate on the latest uploaded file, unless you pass in another dataset via `train(data)`.
+2. The runners wrap the data with the prompt template. To prepare your custom data and pass exactly that for training, try `upload_file` via the `Lamini` interface. More details on that [here](../lamini_python_class/upload_file.md).
+
 <br><br>
