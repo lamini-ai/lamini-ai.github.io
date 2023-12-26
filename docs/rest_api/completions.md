@@ -15,7 +15,6 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 {
   "model_name": "<YOUR_MODEL_NAME>",
   "prompt": "What is the hottest day of the year?",
-  "stop_tokens": ["\n\n"]
 }
 ```
 
@@ -31,7 +30,6 @@ This endpoint allows you to make a POST request to complete a task or answer a q
       }
   ```
   The valid types are `str`, `int`, `float`, and `bool`. If no out_type is specified, the result will be returned as a string.
-- `stop_tokens`: `list[str]`, a list of stop tokens to use. these are used in each field produced in the output.
 
 ### Response
 

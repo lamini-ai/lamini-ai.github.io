@@ -82,6 +82,7 @@ nav:
       - evaluate: lamini_python_class/evaluate.md
   - REST API reference:
       - completions: rest_api/completions.md
+      - embedding: rest_api/embedding.md
       # - data: rest_api/data.md
       - train: rest_api/train.md
       - train_jobs: rest_api/train_jobs.md
