@@ -119,9 +119,7 @@ You'll breeze through some of these here. You can step through all of these in t
     <details>
     <summary>Expected Output</summary>
         ```
-        {
-            "output":" I'm good, thanks. How about you?"
-        }
+        {"output":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"}
         ```
     </details>
 
@@ -140,7 +138,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
     llm.generate(
-        "How old are you?",
+        "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         output_type={"age": "int", "units": "str"}
     )
     ```
@@ -153,7 +151,7 @@ You can also add multiple outputs and multiple output types in one call. The out
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         "out_type": {
             "age": "int",
             "units": "str"
@@ -182,9 +180,9 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     ```python hl_lines="2-6"
     llm.generate(
         [
-            "How old are you?",
-            "What is the meaning of life?",
-            "What is the hottest day of the year?",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the meaning of life? [/INST]",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the hottest day of the year? [/INST]"
         ],
         output_type={"response": "str", "explanation": "str"}
     )
