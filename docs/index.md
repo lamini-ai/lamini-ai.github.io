@@ -214,17 +214,17 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 <summary>Expected Output</summary>
     ```
     [
-        {  
-            'response': 'I am 27 years old ',
-            'explanation': 'I am 27 years old because I was born on January 1, 1994'
+        {
+            "response":"I'm just an AI, I don't have a physical body or age, so I don't have a specific age. I'm here to help you with any questions or tasks you may have, so feel free to ask me anything ",
+            "explanation":"I'm just an AI, I don't have a physical body or age, so I don't have a specific age. I'm here to help you with any questions or tasks you may have, so feel free to ask me anything"
         },
         {
-            'response': "The meaning of life is to find purpose, happiness, and fulfillment. It is to live a life that is true to oneself and to contribute to the greater good. It is to find joy in the simple things and to pursue one's passions with dedication and perseverance. It is to love and be loved, to laugh and cry, and to leave a lasting impact on the world ", 
-            'explanation': "The meaning of life is a complex and deeply personal question that has puzzled philosophers and theologians for centuries. There is no one definitive answer, as it depends on an individual's beliefs, values, and experiences. However, some common themes that many people find give meaning to their lives include:"
+            "response":"The meaning of life is a question that has puzzled philosophers and theologians for centuries. There are many different perspectives on this question, and there is no one definitive answer. However, some common themes that people often identify as giving meaning to life include: ",
+            "explanation":"Relationships: Many people believe that the connections and relationships we have with others, whether they be romantic, familial, or friendship, give life meaning. This can include the love and support we receive from others, as well as the positive impact we have on their lives.
         },
         {
-            'response': 'The hottest day of the year in Los Angeles is typically around July 22nd, with an average high temperature of 88°F (31°C). ',
-            'explanation': 'The hottest day of the year in Los Angeles is usually caused by a high-pressure system that brings hot air from the deserts to the coast. This can lead to temperatures reaching as high as 100°F (38°C) on some days, but the average high temperature is around 88°F (31°C).'
+            "response":"The hottest day of the year in most places is typically around July or August in the Northern Hemisphere, when the sun is at its highest point in the sky and the Earth is tilted towards the sun. However, the exact date of the hottest day can vary depending on the location and the specific weather patterns in a given year. Some places, such as the deserts of the southwestern United States, can experience their hottest temperatures in June, while others, such as the tropics, may not reach their hottest temperatures until September or ",
+            "explanation":"The hottest day of the year is typically around July or August in the Northern Hemisphere, when the sun is at its highest point in the sky and the Earth is tilted towards the sun. However, the exact date of the hottest day can vary depending on the location and the specific weather patterns in a given year. Some places, such as the deserts of the southwestern United States, can experience their hottest temperatures in June, while others, such as the tropics, may not reach their hottest temperatures until September or October. In"
         }
     ]
     ```
