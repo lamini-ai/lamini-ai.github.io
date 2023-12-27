@@ -11,30 +11,11 @@ Customize inference in many ways:
 
     The Python library offers higher-level classes to work with models. The most common ones are:
 
-    * `BasicModelRunner`: Run any model with a simple string input and string output. Especially for non-Llama-2-based models.
     * `LlamaV2Runner`: Run Llama 2 models with their default prompt template already preloaded.
+    * `MistralRunner`: Run Mistral models with their default prompt template already preloaded.
 
-    Run BasicModelRunner.
-    ```python hl_lines="3"
-    from lamini import BasicModelRunner
+    Let's take a look at how to use one of these.
 
-    llm_runner = BasicModelRunner("meta-llama/Llama-2-7b-chat-hf")
-    print(llm_runner.call("How are you?"))
-    ```
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        I hope you are doing well.
-        I am writing to you today to ask for your help. As you may know, I am a big fan of your work and I have been following your career for many years. I must say, you are an inspiration to me and many others.
-        I am reaching out to you because I am in a bit of a difficult situation and I was hoping you could offer me some advice. You see, I have been struggling with [insert problem here] and I am not sure how to handle it. I have tried various solutions, but nothing seems to be working. I was hoping you could share some of your wisdom and experience with me.
-        I understand that you are very busy and I do not want to take up too much of your time. However, I would be forever grateful if you could spare a few minutes to offer me some advice.
-        Thank you in advance for your time and consideration. I look forward to hearing from you soon.
-        Sincerely,
-        [Your Name]
-        ```
-    </details>
-
-    Run LlamaV2Runner.
     ```python hl_lines="3"
     from lamini import LlamaV2Runner
 
