@@ -137,7 +137,8 @@ If you are [running Lamini in your VPC or on prem](/enterprise_install/installer
     ```
 
 === "In `~/.powerml/configure_llama.yaml`"
-Add the extra `url` field:
+
+    Add the extra `url` field:
 
     ```sh
     production:
