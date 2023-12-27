@@ -7,7 +7,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 - HTTP Method: POST
 - URL: `https://api.lamini.ai/v1/completions`
 - Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
+  - `Authorization: Bearer $LAMINI_API_KEY`
   - `Content-Type: application/json`
 - Example Body (JSON):
 
@@ -53,11 +53,11 @@ Otherwise, the request will return an error code, and the response json will con
 
 ```bash
 curl --location 'https://api.lamini.ai/v1/completions' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json' \
 --data '{
     "model_name": "meta-llama/Llama-2-7b-chat-hf",
-    "prompt": "What is the hottest day of the year?"
+    "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the hottest day of the year? [/INST]"
 }'
 ```
 

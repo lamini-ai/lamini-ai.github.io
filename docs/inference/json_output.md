@@ -25,7 +25,7 @@ Please let us know if there are specific types you'd like to see supported.
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How old are you?",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         "out_type": {
             "age": "int"
         }
@@ -49,7 +49,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
 
     ```python hl_lines="3"
     llm.generate(
-        "How old are you?",
+        "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         output_type={"age": "int", "units": "str"}
     )
     ```
@@ -62,7 +62,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How old are you?",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         "out_type": {
             "age": "int",
             "units": "str"
@@ -74,7 +74,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
 <summary>Expected Output</summary>
     ```
     {
-        'age': 30,
+        'age': 27,
         'units': 'years'
     }
     ```
@@ -89,7 +89,7 @@ Great! You've successfully run an LLM with structured JSON schema outputs.
 
     ```
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How old are you?",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         "out_type": {
                 "age": "int",
                 "units": "str"
@@ -106,7 +106,7 @@ Great! You've successfully run an LLM with structured JSON schema outputs.
 
     ```
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How old are you?",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         "out_type": {
                 "response": "int",
                 "units": "str"
@@ -116,5 +116,5 @@ Great! You've successfully run an LLM with structured JSON schema outputs.
     returns
 
     ```
-    {"response":200,"units":"meters"}
+    {"response":404,"units":"meters"}
     ```

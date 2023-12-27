@@ -7,7 +7,7 @@ This endpoint allows you to make a POST request to convert a chunk of text into 
 - HTTP Method: POST
 - URL: `https://api.lamini.ai/v1/inference/embedding`
 - Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
+  - `Authorization: Bearer $LAMINI_API_KEY`
   - `Content-Type: application/json`
 - Example Body (JSON):
 
@@ -41,7 +41,7 @@ Otherwise, the request will return an error code, and the response json will con
 
 ```bash
 curl --location 'https://api.lamini.ai/v1/inference/embedding' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json' \
 --data '{
     "prompt": "What is the hottest day of the year?"

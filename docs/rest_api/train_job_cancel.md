@@ -10,7 +10,7 @@ Cancel a scheduled or running training job. You can also see these results by go
 
 **Headers:**
 
-- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Authorization: Bearer $LAMINI_API_KEY`
 - `Content-Type: application/json`
 
 **Parameters:**
@@ -35,7 +35,7 @@ This example cancels the training job with the ID `418`. The request is authenti
 
 ```bash
 curl --location --request POST 'https://api.lamini.ai/v1/train/jobs/418/cancel' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json'
 ```
 

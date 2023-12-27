@@ -113,15 +113,13 @@ You'll breeze through some of these here. You can step through all of these in t
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How are you?"
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]"
     }'
     ```
     <details>
     <summary>Expected Output</summary>
         ```
-        {
-            "output":" I'm good, thanks. How about you?"
-        }
+        {"output":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"}
         ```
     </details>
 
@@ -140,7 +138,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
     llm.generate(
-        "How old are you?",
+        "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         output_type={"age": "int", "units": "str"}
     )
     ```
@@ -153,7 +151,7 @@ You can also add multiple outputs and multiple output types in one call. The out
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "How old are you?",
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
         "out_type": {
             "age": "int",
             "units": "str"
@@ -165,7 +163,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25,
+        'age': 27,
         'units': 'years'
     }
     ```
@@ -182,9 +180,9 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     ```python hl_lines="2-6"
     llm.generate(
         [
-            "How old are you?",
-            "What is the meaning of life?",
-            "What is the hottest day of the year?",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the meaning of life? [/INST]",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the hottest day of the year? [/INST]"
         ],
         output_type={"response": "str", "explanation": "str"}
     )
@@ -199,9 +197,9 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
         "prompt": [
-            "How old are you?",
-            "What is the meaning of life?",
-            "What is the hottest day of the year?"
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow old are you? [/INST]",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the meaning of life? [/INST]",
+            "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the hottest day of the year? [/INST]"
         ],
         "out_type": {
             "response": "str",
@@ -214,17 +212,17 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 <summary>Expected Output</summary>
     ```
     [
-        {  
-            'response': 'I am 27 years old ',
-            'explanation': 'I am 27 years old because I was born on January 1, 1994'
+        {
+            "response":"I'm just an AI, I don't have a physical body or age, so I don't have a specific age. I'm here to help you with any questions or tasks you may have, so feel free to ask me anything ",
+            "explanation":"I'm just an AI, I don't have a physical body or age, so I don't have a specific age. I'm here to help you with any questions or tasks you may have, so feel free to ask me anything"
         },
         {
-            'response': "The meaning of life is to find purpose, happiness, and fulfillment. It is to live a life that is true to oneself and to contribute to the greater good. It is to find joy in the simple things and to pursue one's passions with dedication and perseverance. It is to love and be loved, to laugh and cry, and to leave a lasting impact on the world ", 
-            'explanation': "The meaning of life is a complex and deeply personal question that has puzzled philosophers and theologians for centuries. There is no one definitive answer, as it depends on an individual's beliefs, values, and experiences. However, some common themes that many people find give meaning to their lives include:"
+            "response":"The meaning of life is a question that has puzzled philosophers and theologians for centuries. There are many different perspectives on this question, and there is no one definitive answer. However, some common themes that people often identify as giving meaning to life include: ",
+            "explanation":"Relationships: Many people believe that the connections and relationships we have with others, whether they be romantic, familial, or friendship, give life meaning. This can include the love and support we receive from others, as well as the positive impact we have on their lives.
         },
         {
-            'response': 'The hottest day of the year in Los Angeles is typically around July 22nd, with an average high temperature of 88°F (31°C). ',
-            'explanation': 'The hottest day of the year in Los Angeles is usually caused by a high-pressure system that brings hot air from the deserts to the coast. This can lead to temperatures reaching as high as 100°F (38°C) on some days, but the average high temperature is around 88°F (31°C).'
+            "response":"The hottest day of the year in most places is typically around July or August in the Northern Hemisphere, when the sun is at its highest point in the sky and the Earth is tilted towards the sun. However, the exact date of the hottest day can vary depending on the location and the specific weather patterns in a given year. Some places, such as the deserts of the southwestern United States, can experience their hottest temperatures in June, while others, such as the tropics, may not reach their hottest temperatures until September or ",
+            "explanation":"The hottest day of the year is typically around July or August in the Northern Hemisphere, when the sun is at its highest point in the sky and the Earth is tilted towards the sun. However, the exact date of the hottest day can vary depending on the location and the specific weather patterns in a given year. Some places, such as the deserts of the southwestern United States, can experience their hottest temperatures in June, while others, such as the tropics, may not reach their hottest temperatures until September or October. In"
         }
     ]
     ```
