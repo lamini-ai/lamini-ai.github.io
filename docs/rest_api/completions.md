@@ -14,7 +14,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 ```json
 {
   "model_name": "<YOUR_MODEL_NAME>",
-  "prompt": "What is the hottest day of the year?",
+  "prompt": "What is the hottest day of the year?"
 }
 ```
 
@@ -57,7 +57,7 @@ curl --location 'https://api.lamini.ai/v1/completions' \
 --header 'Content-Type: application/json' \
 --data '{
     "model_name": "meta-llama/Llama-2-7b-chat-hf",
-    "prompt": "What is the hottest day of the year?",
+    "prompt": "What is the hottest day of the year?"
 }'
 ```
 

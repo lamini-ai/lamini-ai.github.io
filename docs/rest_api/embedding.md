@@ -13,7 +13,7 @@ This endpoint allows you to make a POST request to convert a chunk of text into 
 
 ```json
 {
-  "prompt": "What is the hottest day of the year?",
+  "prompt": "What is the hottest day of the year?"
 }
 ```
 
@@ -29,7 +29,7 @@ If the web request is successful, you will see a response with the vector embedd
 - Body (JSON):
   ```json
   {
-    "embedding": [0.013080810196697712,-0.05404408276081085, ... ,-0.016650857403874397],
+    "embedding": [0.013080810196697712,-0.05404408276081085, ... ,-0.016650857403874397]
   }
   ```
 
@@ -44,7 +44,7 @@ curl --location 'https://api.lamini.ai/v1/inference/embedding' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
-    "prompt": "What is the hottest day of the year?",
+    "prompt": "What is the hottest day of the year?"
 }'
 ```
 
@@ -55,4 +55,3 @@ curl --location 'https://api.lamini.ai/v1/inference/embedding' \
     "embedding": [0.013080810196697712,-0.05404408276081085, ... ,-0.016650857403874397],
 }
 ```
-
