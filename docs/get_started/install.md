@@ -36,7 +36,7 @@ Run an LLM with our REST API or Python SDK.
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt": "What is the hottest day of the year?"
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nWhat is the hottest day of the year? [/INST]"
     }'
     ```
 

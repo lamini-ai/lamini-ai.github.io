@@ -10,7 +10,7 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 **Headers:**
 
-- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Authorization: Bearer $LAMINI_API_KEY`
 - `Content-Type: application/json`
 
 **Example Body (JSON):**
@@ -53,7 +53,7 @@ The response will include a job id and the status of the job. You can monitor th
 
 ```bash
 curl --location 'https://api.lamini.ai/v1/train' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json' \
 --data '{
     "model_name": "EleutherAI/pythia-410m-deduped"

@@ -10,7 +10,7 @@ Get the training evaluation results for a completed training job. You can also s
 
 **Headers:**
 
-- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Authorization: Bearer $LAMINI_API_KEY`
 - `Content-Type: application/json`
 
 **Parameters:**
@@ -34,7 +34,7 @@ This example cancels the training job with the ID `418`. The request is authenti
 
 ```bash
 curl --location --request GET 'https://api.lamini.ai/v1/train/jobs/418/eval' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json'
 ```
 

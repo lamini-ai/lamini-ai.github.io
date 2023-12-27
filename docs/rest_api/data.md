@@ -8,7 +8,7 @@ If you would like to send an input list, please see /v1/data.
 - HTTP Method: POST
 - URL: `https://api.lamini.ai/v1/data`
 - Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
+  - `Authorization: Bearer $LAMINI_API_KEY`
   - `Content-Type: application/json`
 - Example Body (JSON):
 
@@ -50,7 +50,7 @@ Otherwise, the request will return an error code, and the response json will con
 
 ```bash
 curl --location 'https://api.lamini.ai/v1/data' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json' \
 --data '{
     "data": [

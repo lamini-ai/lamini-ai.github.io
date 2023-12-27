@@ -10,7 +10,7 @@ Get a list of running jobs and statuses. You can also see these results by going
 
 **Headers:**
 
-- `Authorization: Bearer <LAMINI_API_KEY>`
+- `Authorization: Bearer $LAMINI_API_KEY`
 - `Content-Type: application/json`
 
 ## Response
@@ -31,7 +31,7 @@ This example cancels the training job with the ID `418`. The request is authenti
 
 ```bash
 curl --location --request GET 'https://api.lamini.ai/v1/train/jobs' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
+--header 'Authorization: Bearer $LAMINI_API_KEY' \
 --header 'Content-Type: application/json'
 ```
 
