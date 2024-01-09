@@ -19,7 +19,11 @@ Next, run an LLM:
     ```python
     pip install --upgrade lamini
     ```
+    Note: if you run into issues, try to include the [latest version number](https://pypi.org/project/lamini/), see an example below. Please share your environment info with us at [info@lamini.ai](mailto:info@lamini.ai), so we can help debug.
 
+    ```sh
+    pip install lamini==2.0.5
+    ```
     Run an LLM with a few lines of code.
     ```python
     import lamini

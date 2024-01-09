@@ -59,6 +59,12 @@ Run an LLM with our REST API or Python SDK.
     pip install --upgrade lamini
     ```
 
+    Note: if you run into issues, try to include the [latest version number](https://pypi.org/project/lamini/), see an example below. Please share your environment info with us at [info@lamini.ai](mailto:info@lamini.ai), so we can help debug.
+
+    ```sh
+    pip install lamini==2.0.5
+    ```
+
     This is a python wrapper around our REST API. It also includes many high-level classes and functions to make it easier to work with LLMs.
 
     As a test, run the following command. This calls Llama 2 and returns a string:
