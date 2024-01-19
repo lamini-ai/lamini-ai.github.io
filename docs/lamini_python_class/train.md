@@ -30,6 +30,7 @@ results = llm.train(finetune_args={'learning_rate': 1.0e-4})
 Currently we support most hyper-parameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
 
 Common hyperparameters to tune include:
+
 - `learning_rate` (float) - the learning rate of the model
 
 - `early_stopping` (bool) - whether to use early stopping or not
@@ -44,6 +45,7 @@ results = llm.train(peft_args={'task_type': 'CAUSAL_LM'})
 ```
 
 Common hyperparameters to tune for LoRA/PEFT tuning:
+
 - `r_value` (int)
 
 - `lora_alpha` (int)
