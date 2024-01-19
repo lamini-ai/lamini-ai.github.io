@@ -27,7 +27,26 @@ Optional Step: If you want to change the default values of the hyper-parameters 
 ```python
 results = llm.train(finetune_args={'learning_rate': 1.0e-4})
 ```
-The default values of the hyper-parameters and key values can be found in the llama_config.yaml file in the configs folder in LLAMA. Currently we support most hyper-parameters in [huggingface's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc. 
+Currently we support most hyper-parameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
+
+Common hyperparameters to tune include:
+- `learning_rate` (float) - the learning rate of the model
+- `early_stopping` (bool) - whether to use early stopping or not
+- `max_steps` (int) - the maximum number of steps to train for
+- `optim` (str) - the optimizer to use, e.g. `adam` or `sgd`, a string from HuggingFace
+
+For models over 3B parameters, parameter-efficient finetuning with LoRAs is turned on by default. For parameter-efficient fine-tuning (PEFT), we support the following hyperparameters:
+```python
+results = llm.train(peft_args={'task_type': 'CAUSAL_LM'})
+```
+
+Common hyperparameters to tune for LoRA/PEFT tuning:
+- `r_value` (int)
+- `lora_alpha` (int)
+- `lora_dropout` (int)
+- `target_modules` (list)
+- `bias` (str)
+- `task_type` (str)
 
 ## Returns
 

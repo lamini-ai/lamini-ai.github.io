@@ -117,10 +117,12 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     The data can be any format and just passed into the model via the prompt template showing what's supposed to be the input. The "output" field is read as the desired target output.
 
-    Then, the way to pass in hyperparamters is through the `train` method.
+    Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `train` method:
     ```python
     results = llm.train(finetune_args={'learning_rate': 1.0e-4})
     ```
+
+    More details on overriding default hyperparameters can be found in the [`train` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
 
     The `results` dictionary contains a `model_name` that you can then pass in for inference. By default, after training, the new finetuned model is loaded into the `llm` object.
 
