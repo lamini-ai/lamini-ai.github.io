@@ -31,8 +31,11 @@ Currently we support most hyper-parameters in [HuggingFace's training arguments]
 
 Common hyperparameters to tune include:
 - `learning_rate` (float) - the learning rate of the model
+
 - `early_stopping` (bool) - whether to use early stopping or not
+
 - `max_steps` (int) - the maximum number of steps to train for
+
 - `optim` (str) - the optimizer to use, e.g. `adam` or `sgd`, a string from HuggingFace
 
 For models over 3B parameters, parameter-efficient finetuning with LoRAs is turned on by default. For parameter-efficient fine-tuning (PEFT), we support the following hyperparameters:
@@ -42,10 +45,15 @@ results = llm.train(peft_args={'task_type': 'CAUSAL_LM'})
 
 Common hyperparameters to tune for LoRA/PEFT tuning:
 - `r_value` (int)
+
 - `lora_alpha` (int)
+
 - `lora_dropout` (int)
+
 - `target_modules` (list)
+
 - `bias` (str)
+
 - `task_type` (str)
 
 ## Returns
