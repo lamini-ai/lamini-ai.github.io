@@ -2,7 +2,7 @@
 
 Runs the instantiated LLM engine.
 
-```
+```python
 llm = Lamini(id="example")
 llm.generate(prompt, output_type)
 ```
@@ -36,7 +36,7 @@ You can use `local_cache_file` to specify a path on your local machine to store 
 In the event of a failure during a set of inference jobs, restarting will quickly retrieve existing results from the local cache, significantly speeding up the process compared to fetching results from the server again.
 
 Example
-```
+```python
 my_output = llm.generate(prompt, output_type={"output": "string"}, local_cache_file='my_cache.txt')
 ```
 
@@ -48,6 +48,6 @@ my_output = llm.generate(prompt, output_type={"output": "string"}, local_cache_f
 * base_delay: `number` - Default to 10 seconds. In each retry attempt, `delay = base_delay * 2 ** num_retry`
 
 Example
-```
+```python
 my_output = llm.generate(prompt, output_type={"output": "string"}, max_retries=3, base_delay=2)
 ```
