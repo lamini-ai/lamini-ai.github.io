@@ -16,7 +16,7 @@ llm.generate(prompt, output_type)
 
 ## Returns
 
-output: `dict` - output of the LLM, based on `input`, in the type specified by `output_type`
+output: `dict` - output of the LLM, based on `prompt`, in the type specified by `output_type`
 
 ## Example
 
