@@ -3,7 +3,7 @@
 Runs the instantiated LLM engine.
 
 ```python
-llm = Lamini(model_name)
+llm = Lamini(model_name=model_name)
 llm.generate(prompt, output_type)
 ```
 
@@ -47,7 +47,7 @@ my_output = llm.generate(prompt, output_type={"output": "string"}, local_cache_f
 `max_retries` and `base_delay` can be used to automatically retry inference.
 
 * max_retries: `int` - Default to 0. Max number of attempts to retry inference
-* base_delay: `number` - Default to 10 seconds. In each retry attempt, `delay = base_delay * 2 ** num_retry`
+* base_delay: `number` - Default to 10 seconds. In each retry attempt, `delay = base_delay * 2 ** iteration_num`
 
 Example
 ```python
