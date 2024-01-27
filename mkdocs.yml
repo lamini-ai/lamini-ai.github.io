@@ -74,7 +74,7 @@ nav:
   - Advanced Training: advanced_training.md
   - Lamini Python reference:
       - __init__: lamini_python_class/__init__.md
-      - __call__: lamini_python_class/__call__.md
+      - generate: lamini_python_class/__call__.md
       - train: lamini_python_class/train.md
       - check_job_status: lamini_python_class/check_job_status.md
       - cancel_job: lamini_python_class/cancel_job.md
