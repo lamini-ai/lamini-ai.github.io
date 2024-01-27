@@ -3,6 +3,8 @@
 Runs the instantiated LLM engine.
 
 ```python
+from lamini import Lamini
+
 llm = Lamini(id="example")
 llm.generate(prompt, output_type)
 ```
