@@ -3,7 +3,7 @@
 Runs the instantiated LLM engine.
 
 ```python
-llm = Lamini(id="example")
+llm = Lamini(model_name)
 llm.generate(prompt, output_type)
 ```
 
@@ -21,7 +21,7 @@ output: `dict` - output of the LLM, based on `prompt`, in the type specified by 
 ```python
 from lamini import Lamini
 
-llm = Lamini(id="my_llm_name", model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
 
 prompt = "What are llamas?"
 my_output = llm.generate(prompt, output_type={"output": "string"})
