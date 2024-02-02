@@ -115,7 +115,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     `Lamini` expects an input, either a string or list of strings, and an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
-    ```python hl_lines="4-7"
+    ```python hl_lines="6"
     from lamini import Lamini
 
     llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
@@ -127,7 +127,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 === "REST API"
 
-    ```sh hl_lines="10-13"
+    ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
@@ -169,7 +169,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     )
     ```
 === "REST API"
-    ```sh hl_lines="7-11"
+    ```sh hl_lines="6-10"
     curl --location "https://api.lamini.ai/v1/completions" \
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
