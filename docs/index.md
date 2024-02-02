@@ -2,7 +2,7 @@
 
 Start using LLMs in just 2 steps with Lamini!
 
-First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account).
+First, get `<YOUR-LAMINI-API-KEY>` at <ins>[https://app.lamini.ai/account](https://app.lamini.ai/account)</ins>.
 
 Next, run an LLM:
 
@@ -57,7 +57,7 @@ Next, run an LLM:
 
 
 
-More details and options in [Install](get_started/install.md).
+More details and options in <ins>[Install](get_started/install.md)</ins>.
 
 ## Better inference
 
@@ -68,9 +68,9 @@ Customize inference in many ways:
 - Change the output type, e.g. `str`, `int`, or `float`.
 - Output multiple values in structured JSON.
 - High-throughput inference, e.g. 10,000 requests per call.
-- Run simple applications like [RAG](applications/rag.md).
+- Run simple applications like <ins>[RAG](applications/rag.md)</ins>.
 
-You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
+You'll breeze through some of these here. You can step through all of these in the <ins>[Inference Quick Tour](inference/quick_tour.md)</ins>.
 
 === "Python Library"
 
@@ -86,7 +86,7 @@ You'll breeze through some of these here. You can step through all of these in t
 
     You can run inference with one CURL command.
 
-    Full reference docs on the REST API are [here](rest_api/completions.md).
+    Full reference docs on the REST API are <ins>[here](rest_api/completions.md)</ins>.
 
     ```sh
     curl --location "https://api.lamini.ai/v1/completions" \
@@ -111,7 +111,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 === "Python Library"
 
-    In order to do this in Python, you have to drop a to lower-level. The [`Lamini` class](lamini_python_class/__init__.md) is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our [REST API endpoint](rest_api/completions.md).
+    In order to do this in Python, you have to drop a to lower-level. The <ins>[`Lamini` class](lamini_python_class/__init__.md)</ins> is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our <ins>[REST API endpoint](rest_api/completions.md)</ins>.
 
     `Lamini` expects an input, either a string or list of strings, and an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
@@ -219,7 +219,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 * Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 
-For the "Bigger training" section, see the [Training Quick Tour](training/quick_tour.md).
+For the "Bigger training" section, see the <ins>[Training Quick Tour](training/quick_tour.md)</ins>.
 
 
 === "Python Library"
@@ -293,7 +293,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     </details>
 
-    Next, instantiate the model and train. Track progress at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+    Next, instantiate the model and train. Track progress at <ins>[https://app.lamini.ai/train](https://app.lamini.ai/train)</ins>.
 
     ```python
     from lamini import LlamaV2Runner
@@ -333,6 +333,6 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
         }'
     ```
 
-    See the [REST API docs](rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
+    See the <ins>[REST API docs](rest_api/train.md)</ins> for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
 <br><br>
