@@ -311,7 +311,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     After training, `llm` will use the finetuned model for inference.
 
     ```python
-    llm.generate("What's your favorite animal?")
+    llm("What's your favorite animal?")
     ```
 
 
