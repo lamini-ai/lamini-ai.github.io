@@ -74,13 +74,13 @@ Customize inference in many ways:
 
     Let's go lower-level. The [`Lamini` class](/../lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/../rest_api/completions).
 
-    `Lamini` expects a dictionary as input and a return dictionary for the output type. The simplest one you'll see here is returning a string.
+    `Lamini` expects a string or list of strings as input and a return dictionary for the output type. The simplest one you'll see here is returning a string.
 
     ```python
     from lamini import Lamini
 
-    llm = Lamini(id="my-llm-id", model_name="meta-llama/Llama-2-7b-chat-hf")
-    output = llm({"my_input": "How are you?"}, output_type={"my_response": "string"})
+    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    output = llm.generate("How are you?", output_type={"my_response": "string"})
     ```
 === "REST API"
 
@@ -89,25 +89,19 @@ Customize inference in many ways:
     Full reference docs on the REST API are [here](/../rest_api/completions.md).
 
     ```sh
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How are you?"
-        },
-        "out_type": {
-            "my_response": "str"
-        }
+        "prompt": "How are you?"
     }'
     ```
 <details>
 <summary>Expected Output</summary>
     ```
     {
-        "my_response":" I'm good, thanks. How about you?"
+        "output":" I hope you are doing well.\nI am writing to you today to ask for your help. As you may know, I am a big fan of your work and I have been following your career for many years. I must say, you are an inspiration to me and many others.\n\nI am reaching out to you because I am in a bit of a difficult situation and I was hoping you could offer me some advice. You see, I have been struggling with [insert problem here] and I am not sure how to handle it. I have tried [insert solutions here] but they have not worked for me. I was hoping you could share some of your wisdom and experience with me.\n\nI know that you are a very busy person, but I would be forever grateful if you could take the time to respond to my message. I promise to keep your advice confidential and to use it to help me overcome my problem.\n\nThank you in advance for your time and consideration. I look forward to hearing from you soon.\n\nSincerely,\n[Your Name]"
     }
     ``` 
 </details>
@@ -122,16 +116,11 @@ Here, you can see `system` and `instruction` used in the template and input dict
     Note that for the `LlamaV2Runner` class, the prompt template is already preloaded with the Llama 2 prompt template. You can recreate it similarly here (simplified version) using `Lamini`:
 
     ```python  hl_lines="4 8 9"
-    llama2_prompt = Lamini(
-        id="llama2-prompt",
-        model_name="meta-llama/Llama-2-7b-chat-hf",
-        prompt_template="<s>[INST] <<SYS>>\n{input:system}\n<</SYS>>\n\n{input:instruction} [/INST]",
+    llama2 = Lamini(
+        model_name="meta-llama/Llama-2-7b-chat-hf"
     )
-    output = llama2_prompt(
-        {
-            "system": "How are you?", 
-            "instruction": "You are a helpful assistant."
-        },
+    output = llama2(
+        "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don'\''t know the answer to a question, please don'\''t share false information.\n<</SYS>>\n\nHow are you? [/INST]",
         output_type={"my_response": "string"}
     )
     ```
@@ -139,37 +128,32 @@ Here, you can see `system` and `instruction` used in the template and input dict
     <summary>Expected Output</summary>
         ```
         {
-            'my_response': "  Hello! *smiling* I'm just an AI, I don't have feelings like humans do, but I'm here to help you in any way I can! Is there something specific you need assistance with or would you like to chat?"
+            'my_response': "I'm just an AI, I don't have personal feelings or emotions, but I'm here to help you with any questions or concerns you may have. Is there something specific you would like to talk about or ask? Please feel free to ask, and I will do my best to assist you in a safe and respectful manner"
         }
         ```
     </details>
 
 === "REST API"
 
-    The input dictionary is passed in through `in_value` as part of the request.
+    The input dictionary is passed in through `prompt` as part of the request.
 
     ```sh hl_lines="7-10"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "llama2-prompt-template",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "prompt_template": "<s>[INST] <<SYS>>\n{input:system}\n<</SYS>>\n\n{input:instruction} [/INST]",
-        "in_value": {
-            "system": "You are a helpful assistant.",
-            "instruction": "How are you?"
-        },
+        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]",
         "out_type": {
             "Answer": "str"
-        }
+                    }
     }'
     ```
     <details>
     <summary>Expected Output</summary>
         ```
         {
-            "Answer":"  Hello! *adjusts glasses* I'm feeling quite well, thank you for asking! It's always a pleasure to assist you. How may I be of service today? Is there something specific you need help with?"
+            "Answer": "I'm just an AI, I don't have feelings or emotions like humans do, so I don't have a physical state of being like"
         }
         ```
     </details>
@@ -178,24 +162,22 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 
 === "Python Library"
 
-    ```python hl_lines="3"
-    llm(
-        {"question": "How old are you in years?"},
+    ```python hl_lines="4"
+    llm =  Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    llm.generate(
+        "How old are you in years?",
         output_type={"age": "int"}
     )
     ```
 === "REST API"
 
     ```sh hl_lines="10-12"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How old are you?"
-        },
+        "prompt": "How old are you?",
         "out_type": {
             "response": "int"
         }
@@ -217,8 +199,8 @@ And you can add multiple output types in one call. The output is a JSON schema t
 === "Python Library"
 
     ```python hl_lines="3"
-    llm(
-        {"question": "How old are you?"},
+    llm.generate(
+        "How old are you?",
         output_type={"age": "int", "units": "str"}
     )
     ```
@@ -226,15 +208,12 @@ And you can add multiple output types in one call. The output is a JSON schema t
 === "REST API"
 
     ```sh hl_lines="10-13"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How old are you?"
-        },
+        "prompt": "How old are you?",
         "out_type": {
             "age": "int",
             "units": "str"
@@ -252,7 +231,7 @@ And you can add multiple output types in one call. The output is a JSON schema t
     ```
 </details>
 
-Note that while it's tempting to squeeze everything into a single LLM call, performance can degrade after too many values in the output type due. Sometimes, it's better to make multiple calls. This is a tradeoff between latency and throughput. Speaking of throughput...
+Note that while it's tempting to squeeze everything into a single LLM call, performance can degrade after too many values in the output type. Sometimes, it's better to make multiple calls. This is a tradeoff between latency and throughput. Speaking of throughput...
 
 You just ran inference many times. What's next?
 
@@ -264,27 +243,27 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 
 === "Python Library" 
     ```python hl_lines="2-6"
-    llm(
+    llm.generate(
         [
-            {"input": "How old are you?"},
-            {"input": "What is the meaning of life?"},
-            {"input": "What is the hottest day of the year?"},
+           "How old are you?",
+           "What is the meaning of life?",
+           "What is the hottest day of the year?",
         ],
         output_type={"response": "str", "explanation": "str"}
     )
     ```
 === "REST API"
     ```sh hl_lines="7-11"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
         "id": "my-llm-batch-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": [
-            {"input": "How old are you?"},
-            {"input": "What is the meaning of life?"},
-            {"input": "What is the hottest day of the year?"}
+        "prompt": [
+            "How old are you?",
+            "What is the meaning of life?",
+            "What is the hottest day of the year?"
         ],
         "out_type": {
             "response": "str",
