@@ -27,34 +27,32 @@ Run an LLM with our REST API or Python SDK.
 
 === "Run with REST API"
 
-    As a test, run the following command. This calls Llama 2 and returns structured JSON:
+    As a test, run the following command. This makes a batch call to Llama 2 and returns structured JSON:
 
     ```bash
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "LaminiTest",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "What is the hottest day of the year?",
-            "question2": "What is for lunch?"
-        },
+        "prompt": ["What is the hottest day of the year?", "What is for lunch?"],
         "out_type": {
-            "Answer": "str",
-            "Answer2": "str"
+            "answer": "str"
         }
     }'
     ```
 
-    Great, you've run your first Lamini API call! 
+    Great, you've run your first Lamini API call!
 
     Here is a sample response, with structured JSON schema output:
     ```json
-    {
-        "Answer": "The hottest day of the year is July 21st, according to NASA ",
-        "Answer2": "For lunch, I would recommend trying the new vegan restaurant in town"
-    }
+    [
+        {
+            "answer": "The hottest day of the year is usually around July 21st or 22nd in the Northern Hemisphere, and January 20th or 21st in the Southern Hemisphere"
+        },{
+            "answer": "Sandwiches"
+        }
+    ]
     ```
 
     Now you're ready to start building your own LLMs, which includes heavier batch calls and training LLMs to learn more complex domains and tasks from your data.
@@ -68,34 +66,32 @@ Run an LLM with our REST API or Python SDK.
 
     This is a python wrapper around our REST API. It also includes many high-level classes and functions to make it easier to work with LLMs.
 
-    As a test, run the following command. This calls Llama 2 and returns a string:
-
     ```python
     import lamini
 
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
     ```
 
-    As a test, run the LLM:
+    As a test, run the LLM and call Llama 2:
     ```python
     from lamini import LlamaV2Runner
-    
+
     llm = LlamaV2Runner()
     response = llm("Tell me a story about llamas.")
-    
+
     print(response)
     ```
 
     ## (Optional) Advanced Python setups
 
     #### Advanced Python setup: notebook
-    You have several other options to authenticate, if the above methods don't work for you.
+    You have several other options to authenticate if the above methods do not work for you.
 
-    If you're in a iPython notebook, you can pass in your Lamini API key to any Python model class, e.g. `LLMEngine` or `LlamaV2Runner`, as shown below:
+    If you're in an iPython notebook, you can pass in your Lamini API key to any Python model class, e.g. `LLMEngine` or `LlamaV2Runner`, as shown below:
 
     ```python
     from lamini import LlamaV2Runner
-    
+
     config = { "production.key": "<YOUR-LAMINI-API-KEY>"}
     llm = LlamaV2Runner(config=config)
     response = llm("Tell me a story about llamas.")
@@ -103,7 +99,7 @@ Run an LLM with our REST API or Python SDK.
     print(response)
     ```
 
-    You can also create a file at `~/.powerml/configure_llama.yaml` with your Lamini API key in it:
+    You can also create a file at `~/.lamini/configure.yaml` with your Lamini API key in it:
 
     ```sh
     production:
@@ -114,7 +110,7 @@ Run an LLM with our REST API or Python SDK.
 
     ```python
     from lamini import LlamaV2Runner
-    
+
     llm = LlamaV2Runner()
     response = llm("Tell me a story about llamas.")
 
@@ -128,7 +124,7 @@ Run an LLM with our REST API or Python SDK.
     === "Python script"
 
         ```python
-        config = { 
+        config = {
             "production.key": "<YOUR-LAMINI-API-KEY>",
             "production.url" : "<YOUR-SERVER-URL-HERE>"
         }
@@ -138,7 +134,7 @@ Run an LLM with our REST API or Python SDK.
         ```python
         llm = LlamaV2Runner(config=config)
         response = llm("Tell me a story about llamas.")
-        
+
         print(response)
         ```
 
@@ -173,10 +169,10 @@ Run an LLM with our REST API or Python SDK.
     production_token = authenticate_lamini()
     !pip install --upgrade lamini
 
-    keys_dir_path = '/root/.powerml'
+    keys_dir_path = '/root/.lamini'
     os.makedirs(keys_dir_path, exist_ok=True)
 
-    keys_file_path = keys_dir_path + '/configure_llama.yaml'
+    keys_file_path = keys_dir_path + '/configure.yaml'
     with open(keys_file_path, 'w') as f:
     yaml.dump(config, f, default_flow_style=False)
     ```
