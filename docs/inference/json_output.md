@@ -12,9 +12,9 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
     ```python hl_lines="6"
     from lamini import Lamini
 
-    llm = Lamini(id="my-llm-id", model_name="meta-llama/Llama-2-7b-chat-hf")
-    output = llm(
-        {"my_input": "How are you?"},
+    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    output = llm.generate(
+        "How are you?",
         output_type={"my_response": "string"}
     )
     ```
@@ -23,16 +23,13 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 
     First, get a basic string output out:
 
-    ```sh hl_lines="10-12"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    ```sh hl_lines="7-9"
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How are you?"
-        },
+        "prompt": "How are you?",
         "out_type": {
             "my_response": "str"
         }
@@ -42,9 +39,9 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 <summary>Expected Output</summary>
     ```
     {
-        "my_response":" I'm good, thanks. How about you?"
+        'my_response': "I'm good, thanks for asking! How about you"
     }
-    ``` 
+    ```
 </details>
 
 ### Values other than strings
@@ -56,23 +53,20 @@ Please let us know if there are specific types you'd like to see supported.
 === "Python Library"
 
     ```python hl_lines="3"
-    llm(
-        {"question": "How old are you in years?"},
+    llm.generate(
+        "How old are you?",
         output_type={"age": "int"}
     )
     ```
 === "REST API"
 
-    ```sh hl_lines="10-12"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    ```sh hl_lines="7-9"
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How old are you?"
-        },
+        "prompt": "How old are you?",
         "out_type": {
             "response": "int"
         }
@@ -95,24 +89,21 @@ You can also add multiple output types in one call. The output is a JSON schema 
 === "Python Library"
 
     ```python hl_lines="3"
-    llm(
-        {"question": "How old are you?"},
+    llm.generate(
+        "How old are you?",
         output_type={"age": "int", "units": "str"}
     )
     ```
 
 === "REST API"
 
-    ```sh hl_lines="10-13"
-    curl --location "https://api.lamini.ai/v2/lamini/completions" \
+    ```sh hl_lines="7-10"
+    curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "id": "my-llm-id",
         "model_name": "meta-llama/Llama-2-7b-chat-hf",
-        "in_value": {
-            "question": "How old are you?"
-        },
+        "prompt": "How old are you?",
         "out_type": {
             "age": "int",
             "units": "str"
@@ -124,7 +115,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25,
+        'age': 30,
         'units': 'years'
     }
     ```
