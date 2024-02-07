@@ -64,7 +64,7 @@ nav:
       - Efficient LoRAs: training/lora.md
       - Pretraining: training/pretraining.md
       - Evaluation: training/evaluation.md
-  - Applications:  
+  - Applications:
       - RAG: applications/rag.md
       - Classifier: applications/classifier.md
       - Agent: applications/agent.md
@@ -82,6 +82,7 @@ nav:
       - delete_data: lamini_python_class/delete_data.md
   - REST API reference:
       - completions: rest_api/completions.md
+      - embed: rest_api/embed.md
       - data: rest_api/data.md
       - data_pairs: rest_api/data_pairs.md
       - delete_data: rest_api/delete_data.md
