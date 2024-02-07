@@ -12,7 +12,7 @@ Customize inference in many ways:
 === "Python Library"
 
     The Python library offers higher-level classes to work with models. The most common ones are:
-    
+
     * `BasicModelRunner`: Run any model with a simple string input and string output. Especially for non-Llama-2-based models.
     * `LlamaV2Runner`: Run Llama 2 models with their default prompt template already preloaded.
 
@@ -36,7 +36,7 @@ Customize inference in many ways:
         ```
     </details>
 
-    Run LlamaV2Runner. 
+    Run LlamaV2Runner.
     ```python hl_lines="3"
     from lamini import LlamaV2Runner
 
@@ -103,9 +103,9 @@ Customize inference in many ways:
     {
         "output":" I hope you are doing well.\nI am writing to you today to ask for your help. As you may know, I am a big fan of your work and I have been following your career for many years. I must say, you are an inspiration to me and many others.\n\nI am reaching out to you because I am in a bit of a difficult situation and I was hoping you could offer me some advice. You see, I have been struggling with [insert problem here] and I am not sure how to handle it. I have tried [insert solutions here] but they have not worked for me. I was hoping you could share some of your wisdom and experience with me.\n\nI know that you are a very busy person, but I would be forever grateful if you could take the time to respond to my message. I promise to keep your advice confidential and to use it to help me overcome my problem.\n\nThank you in advance for your time and consideration. I look forward to hearing from you soon.\n\nSincerely,\n[Your Name]"
     }
-    ``` 
+    ```
 </details>
-    
+
 
 You can also pass in a prompt template. In your template, you can use variable tags like `{input:field_name}` where `field_name` is a key in your input dictionary. The template is rendered with the input dictionary.
 
@@ -115,7 +115,7 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
     Note that for the `LlamaV2Runner` class, the prompt template is already preloaded with the Llama 2 prompt template. You can recreate it similarly here (simplified version) using `Lamini`:
 
-    ```python  hl_lines="4 8 9"
+    ```python  hl_lines="5"
     llama2 = Lamini(
         model_name="meta-llama/Llama-2-7b-chat-hf"
     )
@@ -137,7 +137,7 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
     The input dictionary is passed in through `prompt` as part of the request.
 
-    ```sh hl_lines="7-10"
+    ```sh hl_lines="6"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -171,7 +171,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
     ```
 === "REST API"
 
-    ```sh hl_lines="10-12"
+    ```sh hl_lines="7-9"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -207,7 +207,7 @@ And you can add multiple output types in one call. The output is a JSON schema t
 
 === "REST API"
 
-    ```sh hl_lines="10-13"
+    ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -241,7 +241,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
 You can send up to 10,000 requests per call - on the Pro and Organization tiers. Up to 1000 on the Free tier.
 
-=== "Python Library" 
+=== "Python Library"
     ```python hl_lines="2-6"
     llm.generate(
         [
@@ -276,12 +276,12 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
 <summary>Expected Output</summary>
     ```
     [
-        {  
+        {
             'response': 'I am 27 years old ',
             'explanation': 'I am 27 years old because I was born on January 1, 1994'
         },
         {
-            'response': "The meaning of life is to find purpose, happiness, and fulfillment. It is to live a life that is true to oneself and to contribute to the greater good. It is to find joy in the simple things and to pursue one's passions with dedication and perseverance. It is to love and be loved, to laugh and cry, and to leave a lasting impact on the world ", 
+            'response': "The meaning of life is to find purpose, happiness, and fulfillment. It is to live a life that is true to oneself and to contribute to the greater good. It is to find joy in the simple things and to pursue one's passions with dedication and perseverance. It is to love and be loved, to laugh and cry, and to leave a lasting impact on the world ",
             'explanation': "The meaning of life is a complex and deeply personal question that has puzzled philosophers and theologians for centuries. There is no one definitive answer, as it depends on an individual's beliefs, values, and experiences. However, some common themes that many people find give meaning to their lives include:"
         },
         {
@@ -297,7 +297,7 @@ Great! You submitted a batch inference request. You're well on your way to build
 
 ## Applications
 
-See examples of applications in the [Applications](/../applications/rag) section. 
+See examples of applications in the [Applications](/../applications/rag) section.
 
 * RAG
 * Classifier
@@ -305,7 +305,6 @@ See examples of applications in the [Applications](/../applications/rag) section
 * Chat
 * Autocomplete (e.g. Copilot)
 
-Before starting to train, we recommend prototyping your applications with inference and understanding the limits of inference first since these techniques are a lot easier and faster to iterate on than training. 
+Before starting to train, we recommend prototyping your applications with inference and understanding the limits of inference first since these techniques are a lot easier and faster to iterate on than training.
 
 Of course, training will give you the superpowers that took the world from a research project called GPT-3 to an app ChatGPT.
-
