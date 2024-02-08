@@ -1,4 +1,4 @@
-## Endpoint Documentation: `/v2/lamini/completions`
+## Endpoint Documentation: `/v1/completions`
 
 This endpoint allows you to make a POST request to complete a task or answer a question with a JSON output.
 
