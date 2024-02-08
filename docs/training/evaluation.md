@@ -2,6 +2,6 @@ Evaluation is key to understanding the performance of your LLM. We provide a few
 
 First, you can access our [dashboard](/training/dashboard) to see the evaluation results of your model against its base model.
 
-Second, you can use our [evaluation API](/rest_api/eval_results) to evaluate your model against a dataset. If you are an Organizations Tier user, then you can also access our LLM evaluation suite.
+Second, you can use our [evaluation API](/rest_api/eval_results) to evaluate your model against a dataset.
 
 ![Evaluation Dashboard](/assets/dashboard.png)
