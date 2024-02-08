@@ -1,3 +1,5 @@
+Check [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main) to see the latest updates and features!
+
 
 Please sign into your Organizations Tier account to access this content.
 

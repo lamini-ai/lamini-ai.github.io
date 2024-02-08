@@ -318,8 +318,6 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
 === "REST API"
 
-    First, add data to your model.
-
     ```bash
     curl --location "https://api.lamini.ai/v1/train" \
         --header "Authorization: Bearer $LAMINI_API_KEY" \
@@ -336,3 +334,5 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     See the [REST API docs](rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
 <br><br>
+
+Want to go deeper? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
