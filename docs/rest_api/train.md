@@ -31,7 +31,7 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 - id (string): The `id` corresponding to the dataset you'd like to train with.
 - model_name (string): The base model you'd like to train.
-- data (list): The data you'd like to train on. This should be a list of [input, output] arrays. Each input and output should be an object. 
+- data (list): The data you'd like to train on. This should be a list of [input, output] arrays. Each input and output should be an object.
 - prompt_template (string): The prompt template to use during training. For more information see [prompt templates](/deprecated/Concepts/prompt_templates).
 
 ## Response:
@@ -41,7 +41,7 @@ The response will include a job id and the status of the job. You can monitor th
 ```
 {
     "job_id": "<JOB_ID>",
-    "status": "SCHEDULED" | "CREATED" | "LOADING DATA" | "TRAINING MODEL" | "EVALUATING MODEL" | "SAVING MODEL" | "COMPLETED" | "FAILED"
+    "status": "SCHEDULED" | "CREATED" | "LOADING DATA" | "TRAINING MODEL" | "EVALUATING MODEL" | "SAVING MODEL" | "COMPLETED" | "PARTIALLY COMPLETED" | "FAILED"
 }
 ```
 
