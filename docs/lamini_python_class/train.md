@@ -10,15 +10,14 @@ data = [
     [{"input": "What's your favorite color?"}, {"output": "blue"}],
     ...
 ]
-llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf", prompt_template="{input:input}")
+llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
 results = llm.train(data)
 ```
 
-Or we can choose to persist the data (additive) across multiple `save_data` calls and then train on the accumulated data.
+This will return a `dataset_id` which can be used to persist the data across multiple runs.
 ```python
-llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
-llm.save_data(data)
-results = llm.train()
+llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+results = llm.train(data="dataset_id)"
 ```
 Persisted data will be evicted after a month of storage, and we recommend that you manage your data separately.
 
@@ -60,8 +59,8 @@ Common hyperparameters to tune for LoRA/PEFT tuning:
 
 ## Returns
 
-results: `dict` - a dictionary object with fields `job_id` and `model_name` which can be used to fetch eval results or used to query the finetuned model. In order to query the finetuned model you may use the new `model_name` like so
+results: `dict` - a dictionary object with fields `job_id`, `model_name`, and `dataset_id` which can be used to fetch eval results or used to query the finetuned model. In order to query the finetuned model you may use the new `model_name` like so
 
 ```python
-my_output = llm(my_input, output_type={"output": "string"}, model_name=results['model_name'])
+my_output = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf").generate("My question")
 ```
