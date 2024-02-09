@@ -60,9 +60,7 @@ nav:
       - Quick Tour: training/quick_tour.md
       - Dashboard: training/dashboard.md
       - Models List: training/models_list.md
-      - Finetuning: training/finetuning.md
       - Efficient LoRAs: training/lora.md
-      - Pretraining: training/pretraining.md
       - Evaluation: training/evaluation.md
   - Applications:
       - RAG: applications/rag.md
