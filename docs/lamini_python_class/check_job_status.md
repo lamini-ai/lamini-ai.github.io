@@ -3,7 +3,7 @@
 Check the status of a job
 
 ```python
-llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
 status = llm.check_job_status(job_id)
 ```
 
@@ -18,14 +18,14 @@ status: `dict` - a dictionary with status information
 Scheduled jobs will have the following returned
 
 ```
-{'status': 'SCHEDULED'}
+{'status': 'QUEUED'}
 ```
 
 Just starting jobs will have the following format returned
 
 ```
 {
-    'status': 'RUNNING',
+    'status': 'TRAINING MODEL',
     'progress': 'Starting Run.',
     'starttime': 1680724301.7032173
 }
@@ -35,7 +35,7 @@ While jobs that have made some progress will have the following format returned
 
 ```
 {
-    'status': 'RUNNING',
+    'status': 'TRAINING MODEL',
     'progress': 'Progress: 1 iterations out of 2.',
     'starttime': 1680724301.7032173,
     'time_elapsed': '8.602318525314331',
@@ -49,7 +49,7 @@ Completed jobs will have the following format returned
 
 ```
 {
-    'status': 'DONE',
+    'status': 'COMPLETED',
     'progress': 'Progress: 3 iterations out of 3.',
     'starttime': 1680724434.2409794,
     'time_elapsed': '20.019465446472168',
@@ -64,12 +64,15 @@ Completed jobs will have the following format returned
 Possible statuses include
 
 ```
-'NOT_SCHEDULED'
 'SCHEDULED'
-'RUNNING'
-'DONE'
-'ERRORED'
-'CANCELED'
+'QUEUED'
+'LOADING DATA'
+'TRAINING MODEL'
+'EVALUATING MODEL'
+'COMPLETED'
+'PARTIALLY COMPLETED'
+'FAILED'
+'CANCELLED'
 ```
 
 ### Running Information

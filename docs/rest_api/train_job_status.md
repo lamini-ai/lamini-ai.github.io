@@ -24,7 +24,7 @@ The response will contain the job id, job status, job start time, and model name
 **Body (JSON):**
 
 - `job_id`: The job id
-- `status`: "SCHEDULED" | "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "CANCELED" | "FAILED"
+- `status`: "SCHEDULED" | "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "PARTIALLY COMPLETED" | "CANCELED" | "FAILED"
 - `start_time`: Start time of the object
 - `model_name`: The finetuned model name, available after model is saved
 
