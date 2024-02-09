@@ -66,7 +66,6 @@ nav:
       - RAG: applications/rag.md
       - Classifier: applications/classifier.md
       - Agent: applications/agent.md
-      - Autocomplete: applications/autocomplete.md
   - Enterprise Install: enterprise_install.md
   - Advanced Inference: advanced_inference.md
   - Advanced Training: advanced_training.md
