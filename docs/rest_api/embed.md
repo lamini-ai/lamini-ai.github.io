@@ -1,11 +1,11 @@
-## Endpoint Documentation: `/v1/inference/embed`
+## Endpoint Documentation: `/v1/inference/embedding`
 
 This endpoint allows you to make a POST request to convert a string into a vector embedding (a List[float]).
 
 ### Request
 
 - HTTP Method: POST
-- URL: `https://api.lamini.ai/v1/inference/embed`
+- URL: `https://api.lamini.ai/v1/inference/embedding`
 - Headers:
   - `Authorization: Bearer <LAMINI_API_KEY>`
   - `Content-Type: application/json`
@@ -14,15 +14,15 @@ This endpoint allows you to make a POST request to convert a string into a vecto
 
 ```json
 {
-    "prompt": Union[str, List[str]]
+    "prompt": Union[str, List[str]],
     "model_name": str
 }
 ```
 
 #### Parameters:
 
--   `model_name`: `str`, the name of your base or finetuned model
 -   `prompt` : `str` or `List[str]`, the string to embed
+-   `model_name` (optional): `str`, the name of a base or finetuned model. Default is `sentence-transformers/all-MiniLM-L6-v2`.
 
 ### Response
 
@@ -44,7 +44,7 @@ Otherwise, the request will return an error code, and the response json will con
 #### Request
 
 ```bash
-curl --location 'https://api.lamini.ai/v1/inference/embed' \
+curl --location 'https://api.lamini.ai/v1/inference/embedding' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{ "prompt": "How are you?  Rate on a scale of 1 to 5." }'
