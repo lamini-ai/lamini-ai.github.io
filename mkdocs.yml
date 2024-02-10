@@ -81,8 +81,6 @@ nav:
       - completions: rest_api/completions.md
       - embed: rest_api/embed.md
       - data: rest_api/data.md
-      - data_pairs: rest_api/data_pairs.md
-      - delete_data: rest_api/delete_data.md
       - train: rest_api/train.md
       - train_jobs: rest_api/train_jobs.md
       - train_job_status: rest_api/train_job_status.md

@@ -1,12 +1,12 @@
-# POST `/v2/lamini/train`
+# POST `/v1/train`
 
-Use this API endpoint to train a model. This will train a model using the data you've provided through the `/v2/lamini/data` api, or through adding data to an `id` using the python package's [Paired data api](/rest_api/data_pairs/). The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+Use this API endpoint to train a model. This will train a model with the data path provided through `/v1/data` api. The response will include a job id, dataset id, and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ## Request
 
 **HTTP Method:** POST
 
-**URL:** `https://api.lamini.ai/v2/lamini/train`
+**URL:** `https://api.lamini.ai/v1/train`
 
 **Headers:**
 
@@ -17,22 +17,20 @@ Use this API endpoint to train a model. This will train a model using the data y
 
 ```json
 {
-  "id": "APIExample",
-  "model_name": "EleutherAI/pythia-410m-deduped",
+  "model_name": "meta-llama/Llama-2-7b-chat-hf",
   "data": [
       [{"input": "Larry"}, {"output": 1.0}],
       [{"input": "Cici"}, {"output": 1.2}],
   ],
-  "prompt_template": "{input:input}",
+  "upload_file_path": "https://laministorage.blob.core.windows.net/training-data/platform/lorem_ipsum?abcdef",
 }
 ```
 
 ## Parameters:
 
-- id (string): The `id` corresponding to the dataset you'd like to train with.
-- model_name (string): The base model you'd like to train.
-- data (list): The data you'd like to train on. This should be a list of [input, output] arrays. Each input and output should be an object.
-- prompt_template (string): The prompt template to use during training. For more information see [prompt templates](/deprecated/Concepts/prompt_templates).
+- model_name (string): The model you'd like to train on.
+- data (list): The data you'd like to train on. This should be a list of dictionaries with input and output keys.
+- upload_file_path (string): The data path given from `/v1/data` api.
 
 ## Response:
 
@@ -50,12 +48,26 @@ The response will include a job id and the status of the job. You can monitor th
 ### Request
 
 ```bash
-curl --location 'https://api.lamini.ai/v2/lamini/train' \
+curl --location 'https://api.lamini.ai/v1/train' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
-    "id": "LaminiTest",
-    "model_name": "EleutherAI/pythia-410m-deduped"
+    "model_name": "meta-llama/Llama-2-7b-chat-hf",
+    "data": [
+      {
+          "input": "What are you wearing?",
+          "output": "A hat, thank you for asking."
+      },
+      {
+          "input": "What is the hottest day of the year?",
+          "output": "Im not sure, but I think its in the summer."
+      },
+      {
+          "input": "What is for lunch?",
+          "output": "I want boba."
+      }
+    ],
+  "upload_file_path": "https://laministorage.blob.core.windows.net/training-data/platform/lorem_ipsum?abcdef"
 }'
 ```
 
