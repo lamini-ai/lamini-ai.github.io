@@ -19,8 +19,18 @@ Use this API endpoint to train a model. This will train a model with the data pa
 {
   "model_name": "meta-llama/Llama-2-7b-chat-hf",
   "data": [
-      [{"input": "Larry"}, {"output": 1.0}],
-      [{"input": "Cici"}, {"output": 1.2}],
+    {
+        "input": "What are you wearing?",
+        "output": "A hat, thank you for asking."
+    },
+    {
+        "input": "What is the hottest day of the year?",
+        "output": "Im not sure, but I think its in the summer."
+    },
+    {
+        "input": "What is for lunch?",
+        "output": "I want boba."
+    }
   ],
   "upload_file_path": "https://laministorage.blob.core.windows.net/training-data/platform/lorem_ipsum?abcdef",
 }
