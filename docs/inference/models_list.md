@@ -2,6 +2,7 @@
 All transformer-based architectures on HuggingFace are available via Lamini for Pro users! Here are the most asked for ones, but you can just use the path from HuggingFace in the `model_name` field.
 
 Many popular models are also available to free users:
+
 - 'hf-internal-testing/tiny-random-gpt2'
 - 'EleutherAI/pythia-70m'
 - 'EleutherAI/pythia-70m-deduped'
