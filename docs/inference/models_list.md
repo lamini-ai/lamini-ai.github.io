@@ -34,8 +34,6 @@ Many popular models are also available to free users:
 - 'Intel/neural-chat-7b-v3-1'
 - 'mistralai/Mistral-7B-Instruct-v0.1'
 - 'microsoft/phi-2'
-- 'codellama/CodeLlama-34b-Instruct-hf'
-- 'defog/sqlcoder'
 
 <!-- | Model name (size) | `model_name` field | Context size | Tier | Requests per month (limit)
 | ----------------- | ------------------ | ------------ | ---- | ------------------ |
