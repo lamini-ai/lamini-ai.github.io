@@ -6,7 +6,8 @@ This efficiency gain is on and handled by default so you can use the correct mod
 
 ```python hl_lines="1"
 llm = LlamaV2Runner()
-llm.train(data=data)
+llm.data = data
+llm.train()
 llm.evaluate()
 ```
 

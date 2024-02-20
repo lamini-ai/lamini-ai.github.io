@@ -85,7 +85,8 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     from lamini import LlamaV2Runner
 
     llm = LlamaV2Runner()
-    llm.train(data=data)
+    llm.data = data
+    llm.train()
     ```
 
     Evaluate your model after training, which compares results to the base model.
