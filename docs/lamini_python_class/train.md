@@ -2,12 +2,12 @@
 
 Train a LLM. This function will submit a training job and continuously poll until the job is completed. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
-Specify the data as an argument to `lamini.Lamini.train` then Lamini will train *only* on that data. Additionally, you may optionally specify the prompt template used to produce training prompts, based on the input data that you have. For more information on prompt templates see [prompt templates](/deprecated/Concepts/prompt_templates).
+Specify the data as an argument to `lamini.Lamini.train` then Lamini will train _only_ on that data.
 
 ```python
 data = [
-    [{"input": "What's your favorite animal?"}, {"output": "dog"}],
-    [{"input": "What's your favorite color?"}, {"output": "blue"}],
+    {"input": "What's your favorite animal?", "output": "dog"},
+    {"input": "What's your favorite color?", "output": "blue"},
     ...
 ]
 llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
@@ -15,10 +15,12 @@ results = llm.train(data)
 ```
 
 This will return a `dataset_id` which can be used to persist the data across multiple runs.
+
 ```python
 llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
-results = llm.train(data="dataset_id)"
+results = llm.train(data="dataset_id")
 ```
+
 Persisted data will be evicted after a month of storage, and we recommend that you manage your data separately.
 
 Optional Step: If you want to change the default values of the hyper-parameters of the model (like learning rate), you can pass the hyper-parameters you want to modify using the following code
@@ -26,6 +28,7 @@ Optional Step: If you want to change the default values of the hyper-parameters 
 ```python
 results = llm.train(finetune_args={'learning_rate': 1.0e-4})
 ```
+
 Currently we support most hyper-parameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
 
 Common hyperparameters to tune include:
@@ -39,6 +42,7 @@ Common hyperparameters to tune include:
 - `optim` (str) - the optimizer to use, e.g. `adam` or `sgd`, a string from HuggingFace
 
 For models over 3B parameters, parameter-efficient finetuning with LoRAs is turned on by default. For parameter-efficient fine-tuning (PEFT), we support the following hyperparameters:
+
 ```python
 results = llm.train(peft_args={'task_type': 'CAUSAL_LM'})
 ```

@@ -1,6 +1,6 @@
 ## Endpoint Documentation: `/v1/train`
 
-Use this API endpoint to train a model. This will train a model with the data path provided through `/v1/data` api. The response will include a job id, dataset id, and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+Use this API endpoint to train a model. This will train a model with the `dataset_id` provided through `lamini.Lamini.upload_data` [python api](/docs/rest_api/upload_data.md). The response will include a job id, dataset id, and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ## Request
 

@@ -78,14 +78,13 @@ nav:
       - __init__: lamini_python_class/__init__.md
       - generate: lamini_python_class/__call__.md
       - train: lamini_python_class/train.md
+      - upload_data: lamini_python_class/upload_data.md
       - check_job_status: lamini_python_class/check_job_status.md
       - cancel_job: lamini_python_class/cancel_job.md
       - evaluate: lamini_python_class/evaluate.md
-      - delete_data: lamini_python_class/delete_data.md
   - REST API reference:
       - completions: rest_api/completions.md
       - embed: rest_api/embed.md
-      - data: rest_api/data.md
       - train: rest_api/train.md
       - train_jobs: rest_api/train_jobs.md
       - train_job_status: rest_api/train_job_status.md

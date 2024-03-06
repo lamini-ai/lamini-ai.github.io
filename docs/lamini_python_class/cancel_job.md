@@ -9,8 +9,4 @@ llm.cancel_job(job_id)
 
 ## Parameters
 
--   job_id: `str` - unique job id
-
-## Returns
-
-None
+- job_id: `str` - unique job id
