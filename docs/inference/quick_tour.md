@@ -1,5 +1,3 @@
-
-
 Customize inference in many ways:
 
 - Change the prompt.
@@ -82,6 +80,7 @@ Customize inference in many ways:
     llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
     output = llm.generate("How are you?", output_type={"my_response": "string"})
     ```
+
 === "REST API"
 
     You can run inference with one CURL command.
@@ -97,6 +96,7 @@ Customize inference in many ways:
         "prompt": "How are you?"
     }'
     ```
+
 <details>
 <summary>Expected Output</summary>
     ```
@@ -105,7 +105,6 @@ Customize inference in many ways:
     }
     ```
 </details>
-
 
 You can also pass in a prompt template. In your template, you can use variable tags like `{input:field_name}` where `field_name` is a key in your input dictionary. The template is rendered with the input dictionary.
 
@@ -169,6 +168,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
         output_type={"age": "int"}
     )
     ```
+
 === "REST API"
 
     ```sh hl_lines="7-9"
@@ -192,7 +192,6 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
     }
     ```
 </details>
-
 
 And you can add multiple output types in one call. The output is a JSON schema that is also strictly enforced.
 
@@ -242,7 +241,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 You can send up to 10,000 requests per call - on the Pro and Organization tiers. Up to 1000 on the Free tier.
 
 === "Python Library"
-    ```python hl_lines="2-6"
+`python hl_lines="2-6"
     llm.generate(
         [
            "How old are you?",
@@ -251,9 +250,9 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
         ],
         output_type={"response": "str", "explanation": "str"}
     )
-    ```
+    `
 === "REST API"
-    ```sh hl_lines="7-11"
+`sh hl_lines="7-11"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -270,7 +269,7 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
             "explanation": "str"
         }
     }'
-    ```
+    `
 
 <details>
 <summary>Expected Output</summary>
@@ -292,18 +291,17 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     ```
 </details>
 
-
 Great! You submitted a batch inference request. You're well on your way to building a production application that uses high-throughput pipelines of LLMs.
 
 ## Applications
 
 See examples of applications in the [Applications](/../applications/rag) section.
 
-* RAG
-* Classifier
-* Agent
-* Chat
-* Autocomplete (e.g. Copilot)
+- RAG
+- Classifier
+- Agent
+- Chat
+- Autocomplete (e.g. Copilot)
 
 Before starting to train, we recommend prototyping your applications with inference and understanding the limits of inference first since these techniques are a lot easier and faster to iterate on than training.
 

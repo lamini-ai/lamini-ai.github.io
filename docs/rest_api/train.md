@@ -1,4 +1,4 @@
-# POST `/v1/train`
+## Endpoint Documentation: `/v1/train`
 
 Use this API endpoint to train a model. This will train a model with the data path provided through `/v1/data` api. The response will include a job id, dataset id, and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
@@ -18,29 +18,14 @@ Use this API endpoint to train a model. This will train a model with the data pa
 ```json
 {
   "model_name": "meta-llama/Llama-2-7b-chat-hf",
-  "data": [
-    {
-        "input": "What are you wearing?",
-        "output": "A hat, thank you for asking."
-    },
-    {
-        "input": "What is the hottest day of the year?",
-        "output": "Im not sure, but I think its in the summer."
-    },
-    {
-        "input": "What is for lunch?",
-        "output": "I want boba."
-    }
-  ],
-  "upload_file_path": "https://laministorage.blob.core.windows.net/training-data/platform/lorem_ipsum?abcdef",
+  "dataset_id": "<YOUR DATASET ID>"
 }
 ```
 
 ## Parameters:
 
 - model_name (string): The model you'd like to train on.
-- data (list): The data you'd like to train on. This should be a list of dictionaries with input and output keys.
-- upload_file_path (string): The data path given from `/v1/data` api.
+- dataset_id (string): The dataset id you'd like to train on.
 
 ## Response:
 
@@ -63,21 +48,7 @@ curl --location 'https://api.lamini.ai/v1/train' \
 --header 'Content-Type: application/json' \
 --data '{
     "model_name": "meta-llama/Llama-2-7b-chat-hf",
-    "data": [
-      {
-          "input": "What are you wearing?",
-          "output": "A hat, thank you for asking."
-      },
-      {
-          "input": "What is the hottest day of the year?",
-          "output": "Im not sure, but I think its in the summer."
-      },
-      {
-          "input": "What is for lunch?",
-          "output": "I want boba."
-      }
-    ],
-  "upload_file_path": "https://laministorage.blob.core.windows.net/training-data/platform/lorem_ipsum?abcdef"
+    "dataset_id": "<YOUR DATASET ID>",
 }'
 ```
 
@@ -85,7 +56,7 @@ curl --location 'https://api.lamini.ai/v1/train' \
 
 ```json
 {
-  "job_id": "1512",
+  "job_id": "55555",
   "status": "SCHEDULED"
 }
 ```

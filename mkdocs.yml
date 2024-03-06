@@ -30,6 +30,9 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+  icon:
+    admonition:
+      note: octicons/tag-16
 
 extra_css:
   - stylesheets/extra.css
@@ -44,6 +47,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - admonition
+  - pymdownx.details
 
 # Page tree
 nav:
@@ -86,4 +91,3 @@ nav:
       - train_job_status: rest_api/train_job_status.md
       - train_job_cancel: rest_api/train_job_cancel.md
       - eval_results: rest_api/eval_results.md
-      - API migration note: rest_api/lamini_v2_api_migration.md
