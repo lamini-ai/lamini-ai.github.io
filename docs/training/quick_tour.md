@@ -2,9 +2,9 @@ When running inference, with prompt-engineering and RAG, is not enough for your 
 
 There are many ways to train your LLM. We'll cover the most common ones here:
 
-* Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
-* Better training: customize your training call and evaluate your LLM
-* Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
+- Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
+- Better training: customize your training call and evaluate your LLM
+- Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 ## Basic and better training
 
@@ -110,7 +110,6 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     More details on overriding default hyperparameters can be found in the [`train` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
 
-
 === "REST API"
 
     ```bash
@@ -118,21 +117,82 @@ There are many ways to train your LLM. We'll cover the most common ones here:
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf",
+            "model_name": "meta-llama/Llama-2-7b-chat-hf"
             "data": [
-                    {"input": "Larry", "output": 1.0},
-                    {"input": "Cici", "output": 1.2}
+                    {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"},
+                    {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
                 ]
         }'
     ```
 
     See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
+## Bigger training:
 
-## Bigger training
+=== "Python Library"
 
-A common use case is to pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge. This is called "continued pretraining" or "domain adaptation" for learning this content on top of the basic language skills of a pretrained LLM, or "pretraining from scratch" if you're starting from a randomly initialized LLM.
+For training on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
 
-See [Advanced Training](../advanced_training.md) for more advanced training methods.
+Say, you have a csv file `test.csv` with the following format:
+
+```csv
+user,answer
+"Explain the process of photosynthesis","Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things.
+"What is the capital of USA?", "Washington, D.C."
+....
+```
+
+You can use the LLamaV2Runner to train on this file directly. First, upload the file and specify the input and output keys.
+
+```python
+from lamini import LlamaV2Runner
+
+llm = LlamaV2Runner()
+llm.upload_file("test.csv", input_key="user", output_key="answer")
+```
+
+Alternatively, you may pass in a `jsonlines` file which may look like this:
+
+`test.jsonlines`
+
+```json
+{"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
+{"user": "What is the capital of USA?", "answer": "Washington, D.C."}
+....
+```
+
+Then train on this file using the `train` function.
+
+```python
+from lamini import LlamaV2Runner
+
+llm = LlamaV2Runner()
+llm.upload_file("test.jsonlines", input_key="user", output_key="answer")
+
+llm.train(limit=100000)
+```
+
+Everytime you upload a file, the subsequent `train` would operate on the latest uploaded file, unless you pass in another dataset via `train(data)`.
+
+You may also just use the `Lamini` interface to train on a file using any other model.
+Make sure that the data in the file is in the following format:
+
+`data.json`
+
+```json
+[
+{"input": "What's your favorite animal?","output": "dog"},
+{"input": "What's your favorite color?","output": "blue"},
+    ......
+]
+```
+
+Example code snippet:
+
+```python
+llm = Lamini(model_name="EleutherAI/pythia-70m")
+llm.upload_file(data.json)
+llm.train()
+```
 
 <br><br>

@@ -14,6 +14,7 @@ Use this API endpoint to train a model. This will train a model with the `datase
 - `Content-Type: application/json`
 
 **Example Body (JSON):**
+To train on an already uploaded dataset
 
 ```json
 {
@@ -22,10 +23,29 @@ Use this API endpoint to train a model. This will train a model with the `datase
 }
 ```
 
+Or, submit a small dataset with the request
+
+```json
+{
+  "model_name": "meta-llama/Llama-2-7b-chat-hf",
+  "data": [
+    {
+      "input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]",
+      "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"
+    },
+    {
+      "input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?",
+      "output": "Lamini provides each user with free tokens up front."
+    }
+  ]
+}
+```
+
 ## Parameters:
 
 - model_name (string): The model you'd like to train on.
-- dataset_id (string): The dataset id you'd like to train on.
+- dataset_id (Optional[string]): The dataset id you'd like to train on.
+- data (Optional[list]): The dataset you'd like to train on.
 
 ## Response:
 
