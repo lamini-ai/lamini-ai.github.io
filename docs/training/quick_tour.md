@@ -16,7 +16,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     ```python
     {
-        "user": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
+        "input": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
         "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
     }
     ```
@@ -79,7 +79,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     </details>
 
-    Next, instantiate the model and train. Track progress at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+    Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
     from lamini import LlamaV2Runner
@@ -88,20 +88,6 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     llm.data = data
     llm.train()
     ```
-
-    Evaluate your model after training, which compares results to the base model.
-
-    ```python
-    llm.evaluate()
-    ```
-
-    After training, rhe `results` dictionary contains a `model_name` that you can then pass in for inference. By default, after training, the new finetuned model is loaded into the `llm` object as well.
-
-    ```python
-    llm("What's your favorite animal?")
-    ```
-
-    Let's drop a level lower.
 
     Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `train` method:
     ```python
@@ -190,7 +176,7 @@ Make sure that the data in the file is in the following format:
 Example code snippet:
 
 ```python
-llm = Lamini(model_name="EleutherAI/pythia-70m")
+llm = Lamini(model_name="meta-llama/Llama-2-7b-hf")
 llm.upload_file(data.json)
 llm.train()
 ```

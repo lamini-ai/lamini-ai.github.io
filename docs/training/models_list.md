@@ -1,36 +1,14 @@
-
 All transformer-based architectures on HuggingFace are available via Lamini for Pro users! Here are the most asked for ones, but you can just use the path from HuggingFace in the `model_name` field.
 
 Many popular models are also available to free users:
 
-- 'hf-internal-testing/tiny-random-gpt2'
-- 'EleutherAI/pythia-70m'
-- 'EleutherAI/pythia-70m-deduped'
-- 'EleutherAI/pythia-70m-v0'
-- 'EleutherAI/pythia-70m-deduped-v0'
-- 'EleutherAI/neox-ckpt-pythia-70m-deduped-v0'
-- 'EleutherAI/neox-ckpt-pythia-70m-v1'
-- 'EleutherAI/neox-ckpt-pythia-70m-deduped-v1'
-- 'EleutherAI/gpt-neo-125m'
-- 'EleutherAI/pythia-160m'
-- 'EleutherAI/pythia-160m-deduped'
-- 'EleutherAI/pythia-160m-deduped-v0'
-- 'EleutherAI/neox-ckpt-pythia-70m'
-- 'EleutherAI/neox-ckpt-pythia-160m'
-- 'EleutherAI/neox-ckpt-pythia-160m-deduped-v1'
-- 'EleutherAI/pythia-410m'
-- 'EleutherAI/pythia-410m-v0'
-- 'EleutherAI/pythia-410m-deduped'
-- 'EleutherAI/pythia-410m-deduped-v0'
-- 'EleutherAI/neox-ckpt-pythia-410m'
-- 'EleutherAI/neox-ckpt-pythia-410m-deduped-v1'
-- 'cerebras/Cerebras-GPT-111M'
-- 'cerebras/Cerebras-GPT-256M'
 - 'meta-llama/Llama-2-7b-hf'
 - 'meta-llama/Llama-2-7b-chat-hf'
 - 'Intel/neural-chat-7b-v3-1'
 - 'mistralai/Mistral-7B-Instruct-v0.1'
 - 'microsoft/phi-2'
+
+If there's a specific model you'd like to use reach out to us at info@lamini.ai
 
 <!-- | Model name (size) | `model_name` field | Context size | Tier | Jobs per month (limit)
 | ----------------- | ------------------ | ------------ | ---- | ------------------ |

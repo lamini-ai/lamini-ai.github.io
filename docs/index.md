@@ -7,7 +7,7 @@ First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://ap
 Next, run an LLM:
 
 === "Python Library"
-    Install the Python library.
+Install the Python library.
 
     ```python
     pip install --upgrade lamini
@@ -54,8 +54,6 @@ Next, run an LLM:
     </details>
 
     That's it! 🎉
-
-
 
 More details and options in [Install](get_started/install.md).
 
@@ -111,15 +109,13 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 === "Python Library"
 
-    In order to do this in Python, you have to drop a to lower-level. The [`Lamini` class](lamini_python_class/__init__.md) is the base class for all runners, including the `LlamaV2Runner`. `Lamini` wraps our [REST API endpoint](rest_api/completions.md).
-
-    `Lamini` expects an input, either a string or list of strings, and an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
+    You can provie an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
     ```python hl_lines="6"
-    from lamini import Lamini
+    from lamini import LlamaV2Runner
 
-    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
-    llm.generate(
+    llm = LlamaV2Runner()
+    llm(
         "How old are you?",
         output_type={"age": "int", "units": "str"}
     )
@@ -155,11 +151,11 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 Batching requests is the way to get more throughput. It's easy: simply pass in a list of inputs to any of the classes and it will be handled.
 
-You can send up to 10,000 requests per call - on the Pro and Organization tiers. Up to 1000 on the Free tier.
-
 === "Python Library"
+
     ```python hl_lines="2-6"
-    llm.generate(
+
+    llm(
         [
             "How old are you?",
             "What is the meaning of life?",
@@ -168,7 +164,9 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
         output_type={"response": "str", "explanation": "str"}
     )
     ```
+
 === "REST API"
+
     ```sh hl_lines="6-10"
     curl --location "https://api.lamini.ai/v1/completions" \
         --header "Authorization: Bearer $LAMINI_API_KEY" \
@@ -207,20 +205,17 @@ You can send up to 10,000 requests per call - on the Pro and Organization tiers.
     ```
 </details>
 
-
 ## Training
 
 When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can train it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
 There are many ways to train your LLM. We'll cover the most common ones here:
 
-* Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
-* Better training: customize your training call and evaluate your LLM
-* Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
-
+- Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
+- Better training: customize your training call and evaluate your LLM
+- Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
 For the "Bigger training" section, see the [Training Quick Tour](training/quick_tour.md).
-
 
 === "Python Library"
 
@@ -230,7 +225,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     ```python
     {
-        "user": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
+        "input": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
         "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
     }
     ```
@@ -293,7 +288,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     </details>
 
-    Next, instantiate the model and train. Track progress at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+    Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
     from lamini import LlamaV2Runner
@@ -302,38 +297,5 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     llm.data = data
     llm.train()
     ```
-
-    Evaluate your model after training, which compares results to the base model.
-
-    ```python
-    llm.evaluate()
-    ```
-
-    After training, `llm` will use the finetuned model for inference.
-
-    ```python
-    llm("What's your favorite animal?")
-    ```
-
-
-
-=== "REST API"
-
-    ```bash
-    curl --location "https://api.lamini.ai/v1/train" \
-        --header "Authorization: Bearer $LAMINI_API_KEY" \
-        --header "Content-Type: application/json" \
-        --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf",
-            "data": [
-                    {"input": "Larry", "output": 1.0},
-                    {"input": "Cici", "output": 1.2}
-                ]
-        }'
-    ```
-
-    See the [REST API docs](rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
-
-<br><br>
 
 Want to go deeper? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
