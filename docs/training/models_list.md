@@ -5,7 +5,8 @@ Many popular models are also available to free users:
 - 'meta-llama/Llama-2-7b-hf'
 - 'meta-llama/Llama-2-7b-chat-hf'
 - 'Intel/neural-chat-7b-v3-1'
-- 'mistralai/Mistral-7B-Instruct-v0.1'
+- 'mistralai/Mistral-7B-Instruct-v0.2'
+- 'mistralai/Mixtral-8x7B-v0.1'
 - 'microsoft/phi-2'
 
 If there's a specific model you'd like to use reach out to us at info@lamini.ai
