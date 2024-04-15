@@ -4,17 +4,17 @@ Runs the instantiated LLM engine.
 
 ```python
 llm = Lamini(model_name=model_name)
-llm.generate(prompt, output_type)
+llm.generate(prompt)
 ```
 
 ## Parameters
 
 -   prompt: `str or list[str]` - the prompt
--   output_type: `dict` - the type of the output
+-   (optional) output_type: `dict` - the type of the output
 
 ## Returns
 
-output: `dict` - output of the LLM, based on `prompt`, in the type specified by `output_type`
+output: `dict` - output of the LLM, based on `prompt`, in the type specified by `output_type`. If not specified, output will be what the model chooses to return (most commonly a String).
 
 ## Example
 
@@ -26,8 +26,10 @@ llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
 prompt = "What are llamas?"
 my_output = llm.generate(prompt, output_type={"output": "string"})
 
-prompt = ["What are llamas?", "What are alpacs?"]
-my_output = llm.generate(prompt, output_type={"output": "string"})
+prompt = ["What are llamas?", "What are alpacas?"]
+my_output = llm.generate(prompt)
+
+my_output_str = llm.generate(prompt, output_type={"output": "string"})
 ```
 
 ## Fault Tolerance
