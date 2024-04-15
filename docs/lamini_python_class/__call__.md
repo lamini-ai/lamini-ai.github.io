@@ -24,12 +24,11 @@ from lamini import Lamini
 llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
 
 prompt = "What are llamas?"
-my_output = llm.generate(prompt, output_type={"output": "string"})
-
-prompt = ["What are llamas?", "What are alpacas?"]
 my_output = llm.generate(prompt)
-
 my_output_str = llm.generate(prompt, output_type={"output": "string"})
+
+prompts = ["What are llamas?", "What are alpacas?"]
+my_outputs = llm.generate(prompts)
 ```
 
 ## Fault Tolerance
