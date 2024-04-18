@@ -70,6 +70,7 @@ nav:
   - Applications:
       - RAG: applications/rag.md
       - Classifier: applications/classifier.md
+      - Pipeline: applications/pipeline.md
       - Agent: applications/agent.md
   - Enterprise Install: enterprise_install.md
   - Advanced Inference: advanced_inference.md
