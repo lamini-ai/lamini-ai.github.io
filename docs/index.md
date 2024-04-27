@@ -7,13 +7,14 @@ First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://ap
 Next, run an LLM:
 
 === "Python Library"
-Install the Python library.
+    Install the Python library.
 
     ```python
     pip install --upgrade lamini
     ```
 
     Run an LLM with a few lines of code.
+
     ```python
     import lamini
 
@@ -22,6 +23,7 @@ Install the Python library.
     llm = lamini.LlamaV2Runner()
     print(llm("How are you?"))
     ```
+
     <details>
     <summary>Expected Output</summary>
 
@@ -44,6 +46,7 @@ Install the Python library.
             "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant \n<</SYS>>\n\nWhat is a llama? [/INST]"
         }'
     ```
+
     <details>
     <summary>Expected Output</summary>
 
