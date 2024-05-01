@@ -25,6 +25,31 @@ echo $LAMINI_API_KEY
 
 Run an LLM with our REST API or Python SDK.
 
+=== "Python SDK"
+    Install the latest version of [`lamini`](https://pypi.org/project/lamini/).
+
+    ```sh
+    pip install --upgrade lamini
+    ```
+
+    This is a python wrapper around our REST API. It also includes many high-level classes and functions to make it easier to work with LLMs.
+
+    ```python
+    import lamini
+
+    lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+    ```
+
+    As a test, run the LLM and call Llama 3:
+    ```python
+    from lamini import Lamini
+
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+    response = llm.generate("Tell me a story about llamas.")
+
+    print(response)
+    ```
+
 === "REST API"
 
     As a test, run the following command. This makes a batch call to Llama 3 and returns structured JSON:
@@ -56,31 +81,6 @@ Run an LLM with our REST API or Python SDK.
     ```
 
     Now you're ready to start building your own LLMs, which includes heavier batch calls and training LLMs to learn more complex domains and tasks from your data.
-
-=== "Python SDK"
-    Install the latest version of [`lamini`](https://pypi.org/project/lamini/).
-
-    ```sh
-    pip install --upgrade lamini
-    ```
-
-    This is a python wrapper around our REST API. It also includes many high-level classes and functions to make it easier to work with LLMs.
-
-    ```python
-    import lamini
-
-    lamini.api_key = "<YOUR-LAMINI-API-KEY>"
-    ```
-
-    As a test, run the LLM and call Llama 3:
-    ```python
-    from lamini import Lamini
-
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    response = llm.generate("Tell me a story about llamas.")
-
-    print(response)
-    ```
 
     ## (Optional) Advanced Python setups
 

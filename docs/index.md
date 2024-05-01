@@ -33,7 +33,7 @@ Next, run an LLM:
 
     That's it! 🎉
 
-=== "Bash (REST API)"
+=== "REST API"
 
     Run an LLM with one CURL command.
 
