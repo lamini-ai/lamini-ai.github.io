@@ -39,7 +39,7 @@ Next, run an LLM:
 
     ```bash
     curl --location "https://api.lamini.ai/v1/completions" \
-        --header 'Authorization: Bearer 7f591d9b71e532a3e1c993d90a3b011bb509623c78d7271c1a4bda3dee67bdad' \
+        --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
             "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
@@ -152,7 +152,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
-    --header 'Authorization: Bearer 7f591d9b71e532a3e1c993d90a3b011bb509623c78d7271c1a4bda3dee67bdad' \
+    --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
