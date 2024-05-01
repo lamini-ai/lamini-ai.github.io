@@ -57,7 +57,8 @@ llm = RetrievalAugmentedRunner(chunk_size=512, step_size=256)
 llm.load_data("data")
 llm.train()
 prompt = "Have we invested in any generative AI companies in 2023?"
-response = llm.call(prompt)
+augmented_prompt = "\n".join(reversed(most_similar)) + "\n\n" + prompt
+response = llm.generate(augmented_prompt)
 print(response)
 ```
 ### How RAG works:
