@@ -17,7 +17,7 @@ class QuestionAnswerPipeline(GenerationPipeline):
             "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=200
         )
         self.asnwer_generator = AnswerGenerator(
-            "mmeta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=100
+            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=100
         )
 
     def forward(self, x):
