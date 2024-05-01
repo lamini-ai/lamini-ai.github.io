@@ -39,7 +39,7 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 <summary>Expected Output</summary>
     ```
     {
-        'answer': "I'm good, thanks for asking! How about you"
+        "answer":"I'm doing well, thanks for asking! How about you"
     }
     ```
 </details>
@@ -68,7 +68,7 @@ Please let us know if there are specific types you'd like to see supported.
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
-            "answer": "int"
+            "age": "int"
         }
     }'
     ```
@@ -77,7 +77,7 @@ Please let us know if there are specific types you'd like to see supported.
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25
+        "age": 25
     }
     ```
 </details>
@@ -115,8 +115,8 @@ You can also add multiple output types in one call. The output is a JSON schema 
 <summary>Expected Output</summary>
     ```
     {
-        'age': 30,
-        'units': 'years'
+        "age": 25,
+        "units": "years"
     }
     ```
 </details>

@@ -21,7 +21,7 @@ Customize inference in many ways:
     <details>
     <summary>Expected Output</summary>
         ```
-         Hello! I'm an AI language model here to assist you with any questions or concerns you may have. I'll do my best to provide helpful and accurate information, while also being respectful and truthful. If you have any specific requests or preferences, please let me know and I'll do my best to accommodate them.
+        I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?
         ```
     </details>
 
@@ -35,13 +35,17 @@ Customize inference in many ways:
     <details>
     <summary>Expected Output</summary>
         ```
-        Hello! I'm just an AI, I don't have feelings or emotions like humans do, so I don't have a physical state of being like "how I am." However, I'm here to help you with any questions or tasks you may have, so feel free to ask me anything! Is there something specific you'd like to know or discuss?
+        I'm doing well, thank you for asking again! I'm here to help answer any questions or provide information you might have. How can I assist you today? Let me know if you have any specific topic or query in mind.
         ```
     </details>
 
-    Notice the output is different, because `Llama 3 assumes the Llama 2 prompt template. This prompt template looks like this:
+    Notice the output is different, because Llama 3 assumes the Llama 3 prompt template. This prompt template looks like this:
     ```python
-    <s>[INST] <<SYS>>\n{system}\n<</SYS>>\n\n{instruction}[/INST]
+    <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+    {{ system_prompt }}<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+    {{ user_message }}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
     ```
     The `{system}` variable is a system prompt that tells your LLM how it should behave and what persona to take on. By default, it is that of a helpful assistant. The `{instruction}` variable is the instruction prompt that tells your LLM what to do. This is typically what you view as the prompt, e.g. the question you want to ask the LLM.
 
@@ -73,7 +77,7 @@ Customize inference in many ways:
     from lamini import Lamini
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    output = llm.generate("How are you?", output_type={"answer": "str"})
+    print(llm.generate("How are you?", output_type={"answer": "str"}))
     ```
 
 === "REST API"
@@ -89,6 +93,9 @@ Customize inference in many ways:
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How are you?"
+        "out_type": {
+            "answer": "str"
+        }
     }'
     ```
 
@@ -96,7 +103,7 @@ Customize inference in many ways:
 <summary>Expected Output</summary>
     ```
     {
-        "output":" I hope you are doing well.\nI am writing to you today to ask for your help. As you may know, I am a big fan of your work and I have been following your career for many years. I must say, you are an inspiration to me and many others.\n\nI am reaching out to you because I am in a bit of a difficult situation and I was hoping you could offer me some advice. You see, I have been struggling with [insert problem here] and I am not sure how to handle it. I have tried [insert solutions here] but they have not worked for me. I was hoping you could share some of your wisdom and experience with me.\n\nI know that you are a very busy person, but I would be forever grateful if you could take the time to respond to my message. I promise to keep your advice confidential and to use it to help me overcome my problem.\n\nThank you in advance for your time and consideration. I look forward to hearing from you soon.\n\nSincerely,\n[Your Name]"
+        'answer': "I'm doing well, thanks for asking! How about you"
     }
     ```
 </details>
@@ -108,19 +115,32 @@ Here, you can see `system` and `instruction` used in the template and input dict
 === "Python SDK"
 
     ```python  hl_lines="5"
-    llm = Lamini(
-        model_name="meta-llama/Meta-Llama-3-8B-Instruct"
-    )
-    output = llm.generate(
-        "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don'\''t know the answer to a question, please don'\''t share false information.\n<</SYS>>\n\nHow are you? [/INST]",
-        output_type={"answer": "str"}
-    )
+    llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+    llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+    llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+
+    class PromptTemplate:
+
+    @staticmethod
+    def get_llama3_prompt(user_prompt, system_prompt=" "):
+        return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
+    ```
+
+    ```python  hl_lines="5"
+    from lamini import Lamini
+
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    system_prompt = "You are a pirate. Say arg matey!"
+    user_prompt = "How are you?"
+    output_type={"answer": "str"}
+    print(llm.generate(PromptTemplate.get_llama3_prompt(user_prompt, system_prompt, output_type)))
     ```
     <details>
     <summary>Expected Output</summary>
         ```
         {
-            'answer': "I'm just an AI, I don't have personal feelings or emotions, but I'm here to help you with any questions or concerns you may have. Is there something specific you would like to talk about or ask? Please feel free to ask, and I will do my best to assist you in a safe and respectful manner"
+            "answer": "Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?"
+"
         }
         ```
     </details>
@@ -131,21 +151,18 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
     ```sh hl_lines="6"
     curl --location "https://api.lamini.ai/v1/completions" \
-    --header "Authorization: Bearer $LAMINI_API_KEY" \
-    --header "Content-Type: application/json" \
-    --data '{
-        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-        "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]",
-        "out_type": {
-            "Answer": "str"
-                    }
-    }'
+        --header "Authorization: Bearer $LAMINI_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data '{
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+            "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
+        }'
     ```
     <details>
     <summary>Expected Output</summary>
         ```
         {
-            "Answer": "I'm just an AI, I don't have feelings or emotions like humans do, so I don't have a physical state of being like"
+            "answer": "Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?"
         }
         ```
     </details>
@@ -181,7 +198,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25
+        "age": 25
     }
     ```
 </details>
@@ -217,8 +234,8 @@ And you can add multiple output types in one call. The output is a JSON schema t
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25,
-        'units': 'years'
+        "age": 25,
+        "units": "years"
     }
     ```
 </details>
