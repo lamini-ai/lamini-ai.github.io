@@ -6,8 +6,8 @@ First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://ap
 
 Next, run an LLM:
 
-=== "Python Library"
-    Install the Python library.
+=== "Python SDK"
+    Install the Python SDK.
 
     ```python
     pip install --upgrade lamini
@@ -20,20 +20,20 @@ Next, run an LLM:
 
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
-    llm = lamini.LlamaV2Runner()
-    print(llm("How are you?"))
+    llm = Lamini(class_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    print(llm.generate("How are you?"))
     ```
 
     <details>
     <summary>Expected Output</summary>
-
-        "Hello! I'm just an AI, I don't have feelings or emotions like humans do, but I'm here to help you with any questions or concerns you may have. I'm programmed to provide respectful, safe, and accurate responses, and I will always do my best to help you. Please feel free to ask me anything, and I will do my best to assist you. Is there something specific you would like to know or discuss?"
-
+        ```
+        I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?
+        ```
     </details>
 
     That's it! 🎉
 
-=== "Bash (REST API)"
+=== "REST API"
 
     Run an LLM with one CURL command.
 
@@ -42,18 +42,18 @@ Next, run an LLM:
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf",
-            "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant \n<</SYS>>\n\nWhat is a llama? [/INST]"
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "prompt": "How are you?"
         }'
     ```
 
     <details>
     <summary>Expected Output</summary>
-
-    {
-        "output":"  Ah, a llama! *excitedly* A llama is a domesticated mammal that is native to South America. They are members of the camel family and are known for their distinctive long necks, ears, and coats. Llamas are known for their intelligence, gentle nature, and versatility, making them popular as pack animals, companions, and even therapy animals. They are also a popular choice for fiber production, as their wool is soft, warm, and durable. *nods* Is there anything else you would like to know about llamas?"
-    }
-
+        ```
+        [
+            {"output":"I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?"}
+        ]
+        ```
     </details>
 
     That's it! 🎉
@@ -73,14 +73,33 @@ Customize inference in many ways:
 
 You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
 
-=== "Python Library"
+=== "Python SDK"
 
-    Prompt-engineer the system prompt in `LlamaV2Runner`.
+    Prompt-engineer the system prompt in `Lamini`.
+
+    <details>
+    <summary>prompt_template.py</summary>
+        ```
+        llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+        llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+        llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+
+        class PromptTemplate:
+
+        @staticmethod
+        def get_llama3_prompt(user_prompt, system_prompt=" "):
+            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
+        ```
+    </details>
+
     ```python hl_lines="3"
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
+    from prompt_template import PromptTemplate
 
-    pirate_llm = LlamaV2Runner(system_prompt="You are a pirate. Say arg matey!")
-    print(pirate_llm("How are you?"))
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    system_prompt = "You are a pirate. Say arg matey!"
+    user_prompt = "How are you?"
+    print(llm.generate(PromptTemplate.get_llama3_prompt(user_prompt, system_prompt)))
     ```
 
 === "REST API"
@@ -94,15 +113,15 @@ You'll breeze through some of these here. You can step through all of these in t
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf",
-            "prompt": "<s>[INST] <<SYS>>\nYou are a pirate. Say arg matey!\n<</SYS>>\n\nHow are you? [/INST]"
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+            "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
         }'
     ```
 
 <details>
 <summary>Expected Output</summary>
     ```
-    ARGH matey! *adjusts eye patch* I be doin' grand, thank ye for askin'! The sea be callin' me name, and me heart be yearnin' fer the next great adventure. *winks* What be bringin' ye to these fair waters? Maybe we can share a pint o' grog and swap tales o' the high seas? *grin*
+    Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?
     ```
 </details>
 
@@ -110,41 +129,46 @@ Definitely check out the expected output here. Because now it's a pirate :)
 
 You can also add multiple outputs and multiple output types in one call. The output is a JSON schema that is strictly enforced.
 
-=== "Python Library"
+=== "Python SDK"
 
     You can provie an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
     ```python hl_lines="6"
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner()
-    llm(
-        "How old are you?",
-        output_type={"age": "int", "units": "str"}
-    )
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    system_prompt = ""
+    user_prompt = "How old are you?"
+    output_type={"age": "int", "units": "str"}
+    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+    prompt += system_prompt
+    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+    prompt += user_prompt
+    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    print(llm.generate(prompt=prompt, output_type=output_type))
     ```
 
 === "REST API"
 
     ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
-        --header "Authorization: Bearer $LAMINI_API_KEY" \
-        --header "Content-Type: application/json" \
-        --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf",
-            "prompt": "How old are you?",
-            "out_type": {
-                "age": "int",
-                "units": "str"
-            }
-        }'
+    --header "Authorization: Bearer $LAMINI_API_KEY" \
+    --header "Content-Type: application/json" \
+    --data '{
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+        "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How old are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"],
+        "out_type": {
+            "age": "int",
+            "units": "str"
+        }
+    }'
     ```
 
 <details>
 <summary>Expected Output</summary>
     ```
     {
-        "age":30,
+        "age":0,
         "units":"years"
     }
     ```
@@ -154,18 +178,18 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 Batching requests is the way to get more throughput. It's easy: simply pass in a list of inputs to any of the classes and it will be handled.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="2-6"
-
-    llm(
-        [
-            "How old are you?",
-            "What is the meaning of life?",
-            "What is the hottest day of the year?"
-        ],
-        output_type={"response": "str", "explanation": "str"}
-    )
+    from lamini import Lamini
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    prompt = [
+        "How old are you?",
+        "What is the meaning of life?",
+        "What is the hottest day of the year?"
+    ]
+    output_type={"answer": "str"}
+    print(llm.generate(prompt=prompt, output_type=output_type))
     ```
 
 === "REST API"
@@ -175,15 +199,14 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf",
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
             "prompt": [
                 "How old are you?",
                 "What is the meaning of life?",
                 "What is the hottest day of the year?"
             ],
             "out_type": {
-                "response": "str",
-                "explanation": "str"
+                "answer": "str"
             }
         }'
     ```
@@ -192,19 +215,12 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 <summary>Expected Output</summary>
     ```
     [
-        {
-            "response":"I'm just an AI, I don't have personal experiences or emotions like humans do. However, I'm here to help you with any questions or tasks you may have. Is there something specific you'd like to know or discuss ",
-            "explanation":"I'm just an AI, I don't have personal experiences or emotions like humans do. I'm here to help you with any questions or tasks you may have. Is there something specific you'd like to know or discuss"
-        },
-        {
-            "response":"The meaning of life is to find your gift. The purpose of life is to give it away ",
-            "explanation":"The meaning of life is a question that has puzzled philosophers and theologians for centuries. However, as the famous poet and author, Pablo Picasso once said, 'The meaning of life is to find your gift. The purpose of life is to give it away.' This quote highlights the idea that the purpose of life is not just to exist, but to make a positive impact on the world through the unique talents and abilities that each person possesses. By discovering and using our gifts to help others, we can find true fulfillment and purpose in life. This quote also emphasizes the importance of generosity and giving back to the community, as it is through these acts of kindness that we can truly make a difference in the world. Ultimately, the meaning of life is to find your gift, and to use it to make the world a better place"
-        },
-        {
-            "response":"The hottest day of the year is usually around July 21st in the Northern Hemisphere, and January 20th in the Southern Hemisphere. However, the exact date can vary depending on the location and the specific weather patterns in a given year. Some places, such as the deserts of the southwestern United States, can experience their hottest temperatures in June or July, while other places, such as the tropics, may experience their hottest temperatures in April or May. It's important to check local weather forecasts and climate data to determine the hottest day of the year in a particular location ",
-            "explanation":"The hottest day of the year is typically around the summer solstice in the Northern Hemisphere, and the winter solstice in the Southern Hemisphere. This is because the Earth's axis is tilted at an angle of about 23.5 degrees, which causes the sun's rays to hit the Northern Hemisphere more directly during the summer months and the Southern Hemisphere during the winter months. As a result, the temperatures in the Northern Hemisphere tend to be warmer than in the Southern Hemisphere during the summer months, and vice versa during the winter months. However, there can be variations in the timing and intensity of the hottest day of the year depending on local weather patterns and climate conditions."
-        }
-    ]
+        {"answer":"I am 25 years old"},
+        
+        {"answer":"The meaning of life is to find your purpose and pursue it with passion and dedication. It is to live a life that is true to who you are and to make a positive impact on the world around you. It is to find joy and fulfillment in the journey, and to never give up on your dreams"},
+        
+        {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"}
+    ]                                                                     
     ```
 </details>
 
@@ -220,16 +236,16 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
 For the "Bigger training" section, see the [Training Quick Tour](training/quick_tour.md).
 
-=== "Python Library"
+=== "Python SDK"
 
-    First, get data and put it in the format that `LlamaV2Runner` expects, which includes an `input` and `output`.
+    First, get data and put it in the format that `Lamini` expects, which includes an `input` and `output`.
 
     Sample data:
 
     ```python
     {
         "input": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
-        "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
+        "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python SDK: https://lamini-ai.github.io/example/",
     }
     ```
 
@@ -247,7 +263,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
         data = [
             {
                 "input": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
-                "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
+                "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python SDK: https://lamini-ai.github.io/example/",
             },
             {
                 "input": "Is the Lamini type system similar to a python type system?",
@@ -294,11 +310,10 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner()
-    llm.data = data
-    llm.train()
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    llm.train(data)
     ```
 
 Want to go deeper? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!

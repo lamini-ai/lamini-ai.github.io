@@ -3,7 +3,7 @@
 This function can be used to upload a large file to the server for finetuning on it.
 
 ```python
-llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 llm.upload_file(<file_path>)
 ```
 
@@ -20,7 +20,7 @@ Make sure that the data in the file is in the following format:
 You can subsequently train on this data using the `train` function.
 
 ```python
-llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 llm.upload_file(<file_path>)
 llm.train()
 ```

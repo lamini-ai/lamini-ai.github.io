@@ -9,7 +9,7 @@ If you want to build larger models, deploy a model in production, host it on you
 ## Why Lamini?
 
 ### Leader in Generative AI
-Lamini is built by a team finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students online [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 2, Google’s PaLM, and NVIDIA’s Megatron.
+Lamini is built by a team finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students online [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3, Google’s PaLM, and NVIDIA’s Megatron.
 
 ### Optimized for enterprise LLMs
 
@@ -26,7 +26,7 @@ pip install --upgrade lamini
 
 Check out the [Inference Quick Tour](inference/quick_tour.md) and [Training Quick Tour](training/quick_tour.md) to quickly learn about Lamini's features.
 
-Once you're up and running, check out detailed documention about our [REST API](/API_v2/completions) and [Python Library](/python_library). 
+Once you're up and running, check out detailed documention about our [REST API](/API_v2/completions) and [Python SDK](/python_library). 
 
 ## Web App
 In addition to a REST API and Python Package, we also have a web application to help streamline model training and evalutaion. Go to [https://app.lamini.ai/](https://app.lamini.ai/) to manage your training jobs, view model eval results, test your finetuned models in a playground, generate API keys, and monitor usage.

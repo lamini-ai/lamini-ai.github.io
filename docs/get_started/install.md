@@ -25,16 +25,16 @@ echo $LAMINI_API_KEY
 
 Run an LLM with our REST API or Python SDK.
 
-=== "Run with REST API"
+=== "REST API"
 
-    As a test, run the following command. This makes a batch call to Llama 2 and returns structured JSON:
+    As a test, run the following command. This makes a batch call to Llama 3 and returns structured JSON:
 
     ```bash
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": ["What is the hottest day of the year?", "What is for lunch?"],
         "out_type": {
             "answer": "str"
@@ -47,17 +47,15 @@ Run an LLM with our REST API or Python SDK.
     Here is a sample response, with structured JSON schema output:
     ```json
     [
-        {
-            "answer": "The hottest day of the year is usually around July 21st or 22nd in the Northern Hemisphere, and January 20th or 21st in the Southern Hemisphere"
-        },{
-            "answer": "Sandwiches"
-        }
+        {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"},
+        
+        {"answer":"I don't know, what do you want to eat"}
     ]
     ```
 
     Now you're ready to start building your own LLMs, which includes heavier batch calls and training LLMs to learn more complex domains and tasks from your data.
 
-=== "Run with Python SDK"
+=== "Python SDK"
     Install the latest version of [`lamini`](https://pypi.org/project/lamini/).
 
     ```sh
@@ -72,12 +70,12 @@ Run an LLM with our REST API or Python SDK.
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
     ```
 
-    As a test, run the LLM and call Llama 2:
+    As a test, run the LLM and call Llama 3:
     ```python
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner()
-    response = llm("Tell me a story about llamas.")
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+    response = llm.generate("Tell me a story about llamas.")
 
     print(response)
     ```
@@ -87,14 +85,14 @@ Run an LLM with our REST API or Python SDK.
     #### Advanced Python setup: notebook
     You have several other options to authenticate if the above methods do not work for you.
 
-    If you're in an iPython notebook, you can pass in your Lamini API key to any Python model class, e.g. `LLMEngine` or `LlamaV2Runner`, as shown below:
+    If you're in an iPython notebook, you can pass in your Lamini API key to any Python model class, e.g. `Lamini`, as shown below:
 
     ```python
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
     config = { "production.key": "<YOUR-LAMINI-API-KEY>"}
-    llm = LlamaV2Runner(config=config)
-    response = llm("Tell me a story about llamas.")
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct', config=config)
+    response = llm.generate("Tell me a story about llamas.")
 
     print(response)
     ```
@@ -106,13 +104,13 @@ Run an LLM with our REST API or Python SDK.
         key: "<YOUR-LAMINI-API-KEY>"
     ```
 
-    This will be implicitly read for any Python model class, e.g. `LLMEngine` or `LlamaV2Runner`, without needing to pass in the `config` variable. As a test:
+    This will be implicitly read for any Python model class, e.g. `Lamini`, without needing to pass in the `config` variable. As a test:
 
     ```python
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner()
-    response = llm("Tell me a story about llamas.")
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct)
+    response = llm.generate("Tell me a story about llamas.")
 
     print(response)
     ```
@@ -132,8 +130,8 @@ Run an LLM with our REST API or Python SDK.
 
         Test that it works:
         ```python
-        llm = LlamaV2Runner(config=config)
-        response = llm("Tell me a story about llamas.")
+        llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct', config=config)
+        response = llm.generate("Tell me a story about llamas.")
 
         print(response)
         ```
@@ -179,10 +177,10 @@ Run an LLM with our REST API or Python SDK.
 
     As a test, run this LLM call in a subsequent cell:
     ```python
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner()
-    response = llm("Tell me a story about llamas.")
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+    response = llm.generate("Tell me a story about llamas.")
 
     print(response)
     ```

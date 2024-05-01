@@ -3,7 +3,7 @@
 Check the status of a job
 
 ```python
-llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 status = llm.check_job_status(job_id)
 ```
 

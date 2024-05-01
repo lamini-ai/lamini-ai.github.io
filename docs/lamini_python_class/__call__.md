@@ -21,11 +21,11 @@ output: `dict` - output of the LLM, based on `prompt`, in the type specified by 
 ```python
 from lamini import Lamini
 
-llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 
 prompt = "What are llamas?"
 my_output = llm.generate(prompt)
-my_output_str = llm.generate(prompt, output_type={"output": "string"})
+my_output_str = llm.generate(prompt, output_type={"answer": "str"})
 
 prompts = ["What are llamas?", "What are alpacas?"]
 my_outputs = llm.generate(prompts)
@@ -40,7 +40,7 @@ In the event of a failure during a set of inference jobs, restarting will quickl
 
 Example
 ```python
-my_output = llm.generate(prompt, output_type={"output": "string"}, local_cache_file='my_cache.txt')
+my_output = llm.generate(prompt, output_type={"answer": "str"}, local_cache_file='my_cache.txt')
 ```
 
 ### Retries
@@ -52,5 +52,5 @@ my_output = llm.generate(prompt, output_type={"output": "string"}, local_cache_f
 
 Example
 ```python
-my_output = llm.generate(prompt, output_type={"output": "string"}, max_retries=3, base_delay=2)
+my_output = llm.generate(prompt, output_type={"answer": "str"}, max_retries=3, base_delay=2)
 ```

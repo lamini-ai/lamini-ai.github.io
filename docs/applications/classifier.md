@@ -194,7 +194,7 @@ These command line scripts just call python inside of docker so you don't have t
 
 If you hate docker, you can also run this from python easily...
 
-# Python Library
+# Python SDK
 
 Install it
 `pip install lamini`

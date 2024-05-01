@@ -5,7 +5,7 @@ Enter PEFT: parameter-efficient finetuning. In combination with a few techniques
 This efficiency gain is on and handled by default so you can use the correct model.
 
 ```python hl_lines="1"
-llm = LlamaV2Runner()
+llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
 llm.data = data
 llm.train()
 llm.evaluate()

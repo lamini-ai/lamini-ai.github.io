@@ -3,7 +3,7 @@ Enforcing structured JSON schema output is important for handling LLM outputs do
 
 For an in-depth technical deep dive of how we implemented this feature, see [our blog post](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
 
-=== "Python Library"
+=== "Python SDK"
 
     You can enforce JSON schema via the [`Lamini` class](/lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/rest_api/completions).
 
@@ -12,10 +12,10 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
     ```python hl_lines="6"
     from lamini import Lamini
 
-    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     output = llm.generate(
         "How are you?",
-        output_type={"my_response": "string"}
+        output_type={"answer": "str"}
     )
     ```
 
@@ -28,10 +28,10 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How are you?",
         "out_type": {
-            "my_response": "str"
+            "answer": "str"
         }
     }'
     ```
@@ -39,7 +39,7 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 <summary>Expected Output</summary>
     ```
     {
-        'my_response': "I'm good, thanks for asking! How about you"
+        "answer":"I'm doing well, thanks for asking! How about you"
     }
     ```
 </details>
@@ -50,7 +50,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 
 Please let us know if there are specific types you'd like to see supported.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="3"
     llm.generate(
@@ -65,10 +65,10 @@ Please let us know if there are specific types you'd like to see supported.
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
-            "response": "int"
+            "age": "int"
         }
     }'
     ```
@@ -77,7 +77,7 @@ Please let us know if there are specific types you'd like to see supported.
 <summary>Expected Output</summary>
     ```
     {
-        'age': 25
+        "age": 25
     }
     ```
 </details>
@@ -86,7 +86,7 @@ Please let us know if there are specific types you'd like to see supported.
 
 You can also add multiple output types in one call. The output is a JSON schema that is also strictly enforced.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="3"
     llm.generate(
@@ -102,7 +102,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
             "age": "int",
@@ -115,8 +115,8 @@ You can also add multiple output types in one call. The output is a JSON schema 
 <summary>Expected Output</summary>
     ```
     {
-        'age': 30,
-        'units': 'years'
+        "age": 25,
+        "units": "years"
     }
     ```
 </details>

@@ -3,7 +3,7 @@
 Cancel a job
 
 ```python
-llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 llm.cancel_job(job_id)
 ```
 
