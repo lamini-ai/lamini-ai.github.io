@@ -57,7 +57,7 @@ Run an LLM with our REST API or Python SDK.
 
     Now you're ready to start building your own LLMs, which includes heavier batch calls and training LLMs to learn more complex domains and tasks from your data.
 
-=== "Lamini SDK"
+=== "Python SDK"
     Install the latest version of [`lamini`](https://pypi.org/project/lamini/).
 
     ```sh

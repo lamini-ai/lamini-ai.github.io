@@ -7,9 +7,9 @@ Customize inference in many ways:
 - High-throughput inference, e.g. 10,000 requests per call.
 - Run simple applications like [RAG](/../applications/rag).
 
-=== "Python Library"
+=== "Python SDK"
 
-    The Python library offers higher-level class, `Lamini`, to work with models.
+    The Python SDK offers higher-level class, `Lamini`, to work with models.
 
     Run Lamini with Llama 3.
     ```python hl_lines="3"
@@ -105,7 +105,7 @@ You can also pass in a prompt template. In your template, you can use variable t
 
 Here, you can see `system` and `instruction` used in the template and input dictionary.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python  hl_lines="5"
     llm = Lamini(
@@ -152,7 +152,7 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
 You can change the output type to be a different type, e.g. `int` or `float`. This typing is strictly enforced.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="4"
     llm =  Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
@@ -188,7 +188,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 
 And you can add multiple output types in one call. The output is a JSON schema that is also strictly enforced.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="3"
     llm.generate(
@@ -231,7 +231,7 @@ You just ran inference many times. What's next?
 
 Batching requests is the way to get more throughput. It's easy: simply pass in a list of inputs to any of the classes and it will be handled.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="2-6"
     llm.generate(

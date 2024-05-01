@@ -6,8 +6,8 @@ First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://ap
 
 Next, run an LLM:
 
-=== "Python Library"
-    Install the Python library.
+=== "Python SDK"
+    Install the Python SDK.
 
     ```python
     pip install --upgrade lamini
@@ -87,7 +87,7 @@ Customize inference in many ways:
 
 You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
 
-=== "Python Library"
+=== "Python SDK"
 
     Prompt-engineer the system prompt in `Lamini`.
     ```python hl_lines="3"
@@ -126,7 +126,7 @@ Definitely check out the expected output here. Because now it's a pirate :)
 
 You can also add multiple outputs and multiple output types in one call. The output is a JSON schema that is strictly enforced.
 
-=== "Python Library"
+=== "Python SDK"
 
     You can provie an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
@@ -175,7 +175,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
 Batching requests is the way to get more throughput. It's easy: simply pass in a list of inputs to any of the classes and it will be handled.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="2-6"
     from lamini import Lamini
@@ -233,7 +233,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
 For the "Bigger training" section, see the [Training Quick Tour](training/quick_tour.md).
 
-=== "Python Library"
+=== "Python SDK"
 
     First, get data and put it in the format that `Lamini` expects, which includes an `input` and `output`.
 
@@ -242,7 +242,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     ```python
     {
         "input": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
-        "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
+        "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python SDK: https://lamini-ai.github.io/example/",
     }
     ```
 
@@ -260,7 +260,7 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
         data = [
             {
                 "input": "Are there any step-by-step tutorials or walkthroughs available in the documentation?",
-                "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/",
+                "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python SDK: https://lamini-ai.github.io/example/",
             },
             {
                 "input": "Is the Lamini type system similar to a python type system?",

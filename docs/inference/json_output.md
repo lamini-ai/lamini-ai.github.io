@@ -3,7 +3,7 @@ Enforcing structured JSON schema output is important for handling LLM outputs do
 
 For an in-depth technical deep dive of how we implemented this feature, see [our blog post](https://www.lamini.ai/blog/guarantee-valid-json-output-with-lamini).
 
-=== "Python Library"
+=== "Python SDK"
 
     You can enforce JSON schema via the [`Lamini` class](/lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/rest_api/completions).
 
@@ -50,7 +50,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 
 Please let us know if there are specific types you'd like to see supported.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="3"
     llm.generate(
@@ -86,7 +86,7 @@ Please let us know if there are specific types you'd like to see supported.
 
 You can also add multiple output types in one call. The output is a JSON schema that is also strictly enforced.
 
-=== "Python Library"
+=== "Python SDK"
 
     ```python hl_lines="3"
     llm.generate(
