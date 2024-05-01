@@ -9,17 +9,14 @@ Customize inference in many ways:
 
 === "Python Library"
 
-    The Python library offers higher-level classes to work with models. The most common ones are:
+    The Python library offers higher-level classes to work with model.
 
-    * `MistralRunner`: Run Mistral models with their default prompt template.
-    * `LlamaV2Runner`: Run Llama 2 models with their default prompt template.
-
-    Run Lamini.
+    Run Lamini with Llama 3.
     ```python hl_lines="3"
-    from lamini import MistralRunner
+    from lamini import Lamini
 
-    llm = MistralRunner()
-    llm("How are you?")
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+    llm.generate("How are you?")
     ```
     <details>
     <summary>Expected Output</summary>
@@ -28,12 +25,12 @@ Customize inference in many ways:
         ```
     </details>
 
-    Run LlamaV2Runner.
+    Run Lamini with Mistral.
     ```python hl_lines="3"
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner() # defaults to Llama 2-7B
-    print(llm("How are you?"))
+    llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
+    print(llm.generate("How are you?"))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -42,18 +39,22 @@ Customize inference in many ways:
         ```
     </details>
 
-    Notice the output is different, because `LlamaV2Runner` assumes the Llama 2 prompt template. This prompt template looks like this:
+    Notice the output is different, because `Llama 3 assumes the Llama 2 prompt template. This prompt template looks like this:
     ```python
     <s>[INST] <<SYS>>\n{system}\n<</SYS>>\n\n{instruction}[/INST]
     ```
     The `{system}` variable is a system prompt that tells your LLM how it should behave and what persona to take on. By default, it is that of a helpful assistant. The `{instruction}` variable is the instruction prompt that tells your LLM what to do. This is typically what you view as the prompt, e.g. the question you want to ask the LLM.
 
-    Prompt-engineer the system prompt in `LlamaV2Runner`.
+    Prompt-engineer the system prompt in `Lamini`.
     ```python hl_lines="3"
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    pirate_llm = LlamaV2Runner(system_prompt="You are a pirate. Say arg matey!")
-    print(pirate_llm("How are you?"))
+    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+    prompt += "You are a pirate. Say arg matey!"
+    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+    prompt += "How are you?"
+    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    print(llm.generate(prompt))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -71,8 +72,8 @@ Customize inference in many ways:
     ```python
     from lamini import Lamini
 
-    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
-    output = llm.generate("How are you?", output_type={"my_response": "string"})
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    output = llm.generate("How are you?", output_type={"my_response": "str"})
     ```
 
 === "REST API"
@@ -86,7 +87,7 @@ Customize inference in many ways:
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How are you?"
     }'
     ```
@@ -106,13 +107,11 @@ Here, you can see `system` and `instruction` used in the template and input dict
 
 === "Python Library"
 
-    Note that for the `LlamaV2Runner` class, the prompt template is already preloaded with the Llama 2 prompt template. You can recreate it similarly here (simplified version) using `Lamini`:
-
     ```python  hl_lines="5"
-    llama2 = Lamini(
-        model_name="meta-llama/Llama-2-7b-chat-hf"
+    llm = Lamini(
+        model_name="meta-llama/Meta-Llama-3-8B-Instruct"
     )
-    output = llama2(
+    output = llm.generate(
         "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don'\''t know the answer to a question, please don'\''t share false information.\n<</SYS>>\n\nHow are you? [/INST]",
         output_type={"my_response": "string"}
     )
@@ -135,7 +134,7 @@ Here, you can see `system` and `instruction` used in the template and input dict
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "<s>[INST] <<SYS>>\nYou are a helpful assistant.\n<</SYS>>\n\nHow are you? [/INST]",
         "out_type": {
             "Answer": "str"
@@ -156,7 +155,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
 === "Python Library"
 
     ```python hl_lines="4"
-    llm =  Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    llm =  Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     llm.generate(
         "How old are you in years?",
         output_type={"age": "int"}
@@ -170,10 +169,10 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
-            "response": "int"
+            "answer": "int"
         }
     }'
     ```
@@ -205,7 +204,7 @@ And you can add multiple output types in one call. The output is a JSON schema t
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
             "age": "int",
@@ -253,7 +252,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": [
             "How old are you?",
             "What is the meaning of life?",

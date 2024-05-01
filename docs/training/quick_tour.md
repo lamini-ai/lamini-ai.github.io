@@ -10,7 +10,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
 === "Python Library"
 
-    First, get data and put it in the format that `LlamaV2Runner` expects, which includes an `input` and `output`.
+    First, get data and put it in the format that `Lamini` expects, which includes an `input` and `output`.
 
     Sample data:
 
@@ -82,9 +82,9 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
-    from lamini import LlamaV2Runner
+    from lamini import Lamini
 
-    llm = LlamaV2Runner()
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
     llm.data = data
     llm.train()
     ```
@@ -103,7 +103,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Llama-2-7b-chat-hf"
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct"
             "data": [
                     {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python library: https://lamini-ai.github.io/example/"},
                     {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
@@ -128,12 +128,12 @@ user,answer
 ....
 ```
 
-You can use the LLamaV2Runner to train on this file directly. First, upload the file and specify the input and output keys.
+You can use the Lamini to train on this file directly. First, upload the file and specify the input and output keys.
 
 ```python
-from lamini import LlamaV2Runner
+from lamini import Lamini
 
-llm = LlamaV2Runner()
+llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
 llm.upload_file("test.csv", input_key="user", output_key="answer")
 ```
 
@@ -150,9 +150,9 @@ Alternatively, you may pass in a `jsonlines` file which may look like this:
 Then train on this file using the `train` function.
 
 ```python
-from lamini import LlamaV2Runner
+from lamini import Lamini
 
-llm = LlamaV2Runner()
+llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
 llm.upload_file("test.jsonlines", input_key="user", output_key="answer")
 
 llm.train(limit=100000)
@@ -176,7 +176,7 @@ Make sure that the data in the file is in the following format:
 Example code snippet:
 
 ```python
-llm = Lamini(model_name="meta-llama/Llama-2-7b-hf")
+llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 llm.upload_file(data.json)
 llm.train()
 ```

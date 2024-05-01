@@ -179,13 +179,13 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
     ```python hl_lines="2-6"
     from lamini import Lamini
-    llm = Lamini(model_name="mistralai/Mistral-7B-Instruct-v0.2")
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     prompt = [
         "How old are you?",
         "What is the meaning of life?",
         "What is the hottest day of the year?"
     ]
-    output_type={"response": "str", "explanation": "str"}
+    output_type={"answer": "str"}
     print(llm.generate(prompt=prompt, output_type=output_type))
     ```
 
@@ -196,15 +196,14 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
             "prompt": [
                 "How old are you?",
                 "What is the meaning of life?",
                 "What is the hottest day of the year?"
             ],
             "out_type": {
-                "response": "str",
-                "explanation": "str"
+                "answer": "str"
             }
         }'
     ```
@@ -212,19 +211,13 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 <details>
 <summary>Expected Output</summary>
     ```
-    [{
-        "response":"I don't have the ability to age or exist outside of this text-based environment. I'm here to help answer questions and provide information to the best of my ability ",
+    [
+        {"answer":"I am 25 years old"},
         
-        "explanation":"I am a text-based artificial intelligence and do not have the physical attributes or biological functions associated with aging. I exist solely to process and generate text based on the data and algorithms I've been programmed with. I don't have the ability to experience time or change in the way that a living organism does"
-    },{
-        "response":"The meaning of life is a question that has puzzled philosophers, theologians, and thinkers throughout history. Some believe that the meaning of life is to seek happiness, knowledge, or personal growth, while others believe that it is to serve a higher power or to fulfill a specific purpose. Ultimately, the answer to this question is a matter of personal belief and interpretation. Some people may find meaning in their relationships, their work, or their faith, while others may find it through exploration and discovery. Ultimately, the meaning of life may be something that each individual must discover for themselves ",
+        {"answer":"The meaning of life is to find your purpose and pursue it with passion and dedication. It is to live a life that is true to who you are and to make a positive impact on the world around you. It is to find joy and fulfillment in the journey, and to never give up on your dreams"},
         
-        "explanation":"The question of the meaning of life is a philosophical and metaphysical question related to the purpose or significance of life or existence in general. It has been asked for centuries and has been the subject of much debate and discussion among scholars, theologians, and thinkers. Some people believe that the meaning of life is to seek happiness, knowledge, or personal growth, while others believe that it is to serve a higher power or to fulfill a specific purpose. Ultimately, the answer to this question is a matter of personal belief and interpretation. Some people may find meaning in their relationships, their work, or their faith, while others may find it through exploration and discovery. It is a deeply personal and subjective question, and each individual must ultimately determine what gives their life meaning and purpose"
-    },{
-        "response":"The hottest day of the year varies depending on the location. It's best to check the local weather records for the hottest temperature ever recorded in your area ",
-        
-        "explanation":"The hottest day of the year can vary greatly depending on the location. Some places may experience their hottest temperatures during the summer months, while others may have hotter days during other seasons. To find out the hottest day on record for a specific location, it's best to check the local weather records or meteorological data"
-    }]                                                                     
+        {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"}
+    ]                                                                     
     ```
 </details>
 

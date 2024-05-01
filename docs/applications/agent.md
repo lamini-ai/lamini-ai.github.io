@@ -29,7 +29,7 @@ Calling orders API with: item_name=milk, quantity=2, unit=gallons
 ### Chat x Operator
 LLM Operators can work hand in hand with your other LLMs, e.g. for Q&A, chat, etc.:
 ```
-self.chat = LlamaV2Runner() # inside Operator class, pass in a model_name to a finetuned LLM if desired
+self.chat = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct') # inside Operator class, pass in a model_name to a finetuned LLM if desired
 ...
 message = user_input + orders_api_response
 model_response = self.chat(message, system_prompt=f"Respond to the user, confirming the addition to cart. If response from API is 200, then confirm that the item {item_name} has been placed in the cart, else ask the user to restate their order.")

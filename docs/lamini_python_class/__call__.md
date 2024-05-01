@@ -21,7 +21,7 @@ output: `dict` - output of the LLM, based on `prompt`, in the type specified by 
 ```python
 from lamini import Lamini
 
-llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(model_name="mmeta-llama/Meta-Llama-3-8B-Instruct")
 
 prompt = "What are llamas?"
 my_output = llm.generate(prompt)

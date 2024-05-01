@@ -70,7 +70,7 @@ curl --location 'https://api.lamini.ai/v1/completions' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
-    "model_name": "meta-llama/Llama-2-7b-chat-hf",
+    "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
     "prompt": [
             "How old is Carl, the llama with a hat?",
             "How old is Paul, the llama with a hat?"

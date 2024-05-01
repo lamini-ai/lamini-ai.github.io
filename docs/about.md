@@ -9,7 +9,7 @@ If you want to build larger models, deploy a model in production, host it on you
 ## Why Lamini?
 
 ### Leader in Generative AI
-Lamini is built by a team finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students online [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 2, Google’s PaLM, and NVIDIA’s Megatron.
+Lamini is built by a team finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students online [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3, Google’s PaLM, and NVIDIA’s Megatron.
 
 ### Optimized for enterprise LLMs
 

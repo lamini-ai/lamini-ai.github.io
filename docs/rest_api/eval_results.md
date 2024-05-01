@@ -56,7 +56,7 @@ curl --location --request GET 'https://api.lamini.ai/v1/lamini/train/jobs/418/ev
                     "output":"Lamini is the world's most powerful LLM Engine."
                 },
                 {
-                    "model_name":"meta-llama/Llama-2-7b-hf",
+                    "model_name":"meta-llama/Meta-Llama-3-8B-Instruct",
                     "output":"finetune me first!"
                 }
             ]

@@ -12,10 +12,10 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
     ```python hl_lines="6"
     from lamini import Lamini
 
-    llm = Lamini(model_name="meta-llama/Llama-2-7b-chat-hf")
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     output = llm.generate(
         "How are you?",
-        output_type={"my_response": "string"}
+        output_type={"answer": "str"}
     )
     ```
 
@@ -28,10 +28,10 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How are you?",
         "out_type": {
-            "my_response": "str"
+            "answer": "str"
         }
     }'
     ```
@@ -65,10 +65,10 @@ Please let us know if there are specific types you'd like to see supported.
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
-            "response": "int"
+            "answer": "int"
         }
     }'
     ```
@@ -102,7 +102,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Llama-2-7b-chat-hf",
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "out_type": {
             "age": "int",

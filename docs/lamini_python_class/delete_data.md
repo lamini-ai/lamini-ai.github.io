@@ -2,7 +2,7 @@
 
 Delete datasets associated with the provided Lamini Engine id.
 ```python
-llm = Lamini(id="example", model_name="meta-llama/Llama-2-7b-chat-hf")
+llm = Lamini(id="example", model_name="meta-llama/Meta-Llama-3-8B-Instruct")
 response = llm.delete_data()
 ```
 

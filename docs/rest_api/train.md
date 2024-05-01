@@ -18,7 +18,7 @@ To train on an already uploaded dataset
 
 ```json
 {
-  "model_name": "meta-llama/Llama-2-7b-chat-hf",
+  "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
   "dataset_id": "<YOUR DATASET ID>"
 }
 ```
@@ -27,7 +27,7 @@ Or, submit a small dataset with the request
 
 ```json
 {
-  "model_name": "meta-llama/Llama-2-7b-chat-hf",
+  "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
   "data": [
     {
       "input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]",
@@ -67,7 +67,7 @@ curl --location 'https://api.lamini.ai/v1/train' \
 --header 'Authorization: Bearer <LAMINI_API_KEY>' \
 --header 'Content-Type: application/json' \
 --data '{
-    "model_name": "meta-llama/Llama-2-7b-chat-hf",
+    "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
     "dataset_id": "<YOUR DATASET ID>",
 }'
 ```

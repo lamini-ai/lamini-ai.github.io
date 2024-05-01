@@ -14,10 +14,10 @@ class QuestionAnswerPipeline(GenerationPipeline):
         super(QuestionAnswerPipeline, self).__init__()
 
         self.question_generator = QuestionGenerator(
-            "mistralai/Mistral-7B-Instruct-v0.2", max_new_tokens=200
+            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=200
         )
         self.asnwer_generator = AnswerGenerator(
-            "mistralai/Mistral-7B-Instruct-v0.2", max_new_tokens=100
+            "mmeta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=100
         )
 
     def forward(self, x):
