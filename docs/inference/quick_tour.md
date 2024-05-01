@@ -9,7 +9,7 @@ Customize inference in many ways:
 
 === "Python Library"
 
-    The Python library offers higher-level classes to work with model.
+    The Python library offers higher-level class, `Lamini`, to work with models.
 
     Run Lamini with Llama 3.
     ```python hl_lines="3"
