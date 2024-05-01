@@ -47,11 +47,9 @@ Run an LLM with our REST API or Python SDK.
     Here is a sample response, with structured JSON schema output:
     ```json
     [
-        {
-            "answer": "The hottest day of the year is usually around July 21st or 22nd in the Northern Hemisphere, and January 20th or 21st in the Southern Hemisphere"
-        },{
-            "answer": "Sandwiches"
-        }
+        {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"},
+        
+        {"answer":"I don't know, what do you want to eat"}
     ]
     ```
 

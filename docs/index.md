@@ -17,39 +17,23 @@ Next, run an LLM:
 
     ```python
     import lamini
-    from prompt_template import PromptTemplate
 
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
     llm = Lamini(class_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate(PromptTemplate.get_llama3_prompt("How are you?")))
+    print(llm.generate("How are you?"))
     ```
-
-    <details>
-    <summary>prompt_template.py</summary>
-        ```
-        llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-        llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-        llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-
-        class PromptTemplate:
-
-        @staticmethod
-        def get_llama3_prompt(user_prompt, system_prompt=" "):
-            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
-        ```
-    </details>
 
     <details>
     <summary>Expected Output</summary>
         ```
-        I'm just a language model, I don't have emotions or feelings like humans do, so I don't have a personal well-being or emotional state. I'm simply a computer program designed to process and generate text based on the inputs I receive. I'm functioning properly and ready to assist you with any questions or tasks you may have!
+        I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?
         ```
     </details>
 
     That's it! 🎉
 
-=== "Bash (REST API)"
+=== "REST API"
 
     Run an LLM with one CURL command.
 
@@ -58,15 +42,17 @@ Next, run an LLM:
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
-            "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a helpful assistant <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n What is a llama? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "prompt": "How are you?"
         }'
     ```
 
     <details>
     <summary>Expected Output</summary>
         ```
-        [{"output":"I'd be happy to help!\n\nA llama is a domesticated mammal that belongs to the camelid family, which also includes camels and alpacas. They are native to South America, specifically the Andean region of present-day Peru, Bolivia, Ecuador, and Chile.\n\nLlamas are known for their distinctive appearance, which includes:\n\n* A long neck and legs\n* A soft, woolly coat that can range in color from white to brown to black\n* A banana-shaped ear\n* A long, bushy tail\n* A gentle disposition\n\nLlamas are often used as pack animals, carrying goods and supplies across the Andean terrain. They are also used for their wool, which is soft and warm, and for their milk, which is rich in nutrients.\n\nIn recent years, llamas have become popular as pets, and some people even keep them as companions. They are known for their intelligence, social nature, and ability to form strong bonds with humans.\n\nSome interesting facts about llamas include:\n\n* Llamas can live up to 20-30 years in captivity\n* They are able to spit when they feel threatened or scared, but this is relatively rare\n* Llamas are able to communicate with each other through a variety of sounds, including humming, snorting, and grunting\n* They are able to run at speeds of up to 35 miles per hour\n\nOverall, llamas are fascinating creatures that have adapted to life in the Andean highlands and have become an important part of the region's culture and economy."}]
+        [
+            {"output":"I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?"}
+        ]
         ```
     </details>
 
@@ -90,8 +76,25 @@ You'll breeze through some of these here. You can step through all of these in t
 === "Python SDK"
 
     Prompt-engineer the system prompt in `Lamini`.
+
+    <details>
+    <summary>prompt_template.py</summary>
+        ```
+        llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+        llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+        llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+
+        class PromptTemplate:
+
+        @staticmethod
+        def get_llama3_prompt(user_prompt, system_prompt=" "):
+            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
+        ```
+    </details>
+
     ```python hl_lines="3"
     from lamini import Lamini
+    from prompt_template import PromptTemplate
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     system_prompt = "You are a pirate. Say arg matey!"
@@ -149,7 +152,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     ```sh hl_lines="7-10"
     curl --location "https://api.lamini.ai/v1/completions" \
-    --header 'Authorization: Bearer 7f591d9b71e532a3e1c993d90a3b011bb509623c78d7271c1a4bda3dee67bdad' \
+    --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
