@@ -39,7 +39,7 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 <summary>Expected Output</summary>
     ```
     {
-        'my_response': "I'm good, thanks for asking! How about you"
+        'answer': "I'm good, thanks for asking! How about you"
     }
     ```
 </details>

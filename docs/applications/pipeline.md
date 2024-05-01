@@ -24,9 +24,9 @@ class QuestionAnswerPipeline(GenerationPipeline):
         x = self.question_generator(
             x,
             output_type={
-                "question_1": "string",
-                "question_2": "string",
-                "question_3": "string",
+                "question_1": "str",
+                "question_2": "str",
+                "question_3": "str",
             },
         )
         x = self.asnwer_generator(x)

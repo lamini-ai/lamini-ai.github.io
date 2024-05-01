@@ -73,7 +73,7 @@ Customize inference in many ways:
     from lamini import Lamini
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    output = llm.generate("How are you?", output_type={"my_response": "str"})
+    output = llm.generate("How are you?", output_type={"answer": "str"})
     ```
 
 === "REST API"
@@ -113,14 +113,14 @@ Here, you can see `system` and `instruction` used in the template and input dict
     )
     output = llm.generate(
         "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don'\''t know the answer to a question, please don'\''t share false information.\n<</SYS>>\n\nHow are you? [/INST]",
-        output_type={"my_response": "string"}
+        output_type={"answer": "str"}
     )
     ```
     <details>
     <summary>Expected Output</summary>
         ```
         {
-            'my_response': "I'm just an AI, I don't have personal feelings or emotions, but I'm here to help you with any questions or concerns you may have. Is there something specific you would like to talk about or ask? Please feel free to ask, and I will do my best to assist you in a safe and respectful manner"
+            'answer': "I'm just an AI, I don't have personal feelings or emotions, but I'm here to help you with any questions or concerns you may have. Is there something specific you would like to talk about or ask? Please feel free to ask, and I will do my best to assist you in a safe and respectful manner"
         }
         ```
     </details>

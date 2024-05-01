@@ -16,7 +16,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 {
     "model_name": "<YOUR_MODEL_NAME>",
     "prompt": "What is the hottest day of the year?",
-    "out_type": {"Answer": "string"},
+    "out_type": {"answer": "str"},
 }
 ```
 
