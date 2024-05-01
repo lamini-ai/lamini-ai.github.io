@@ -14,7 +14,7 @@ Before getting started, make sure your machine is set up to run Lamini smoothly.
 
 Reach out to us at [info@lamini.ai](mailto:info@lamini.ai) for advice on
 configuring and purchasing machines capable of running your
-desired application, LLM model (e.g. Llama v2), data volume, and number of users.
+desired application, LLM model (e.g. Llama v3), data volume, and number of users.
 
 Our typical configuration is an LLM Superstation, which is a powerful server
 with multiple GPUs that can fully host, finetune, and deploy the largest
