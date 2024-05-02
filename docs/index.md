@@ -43,16 +43,15 @@ Next, run an LLM:
         --header "Content-Type: application/json" \
         --data '{
             "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-            "prompt": "How are you?"
+            "prompt": "How are you?",
+            "out_type": {"Response": "str"}
         }'
     ```
 
     <details>
     <summary>Expected Output</summary>
         ```
-        [
-            {"output":"I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?"}
-        ]
+        {"Response":"I'm doing well, thanks for asking! How about you"}
         ```
     </details>
 
