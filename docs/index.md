@@ -16,11 +16,11 @@ Next, run an LLM:
     Run an LLM with a few lines of code.
 
     ```python
-    import lamini
+    from lamini import Lamini
 
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
-    llm = lamini.Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     print(llm.generate("How are you?", output_type={"Response": "str"}))
     ```
 
