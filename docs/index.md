@@ -16,18 +16,18 @@ Next, run an LLM:
     Run an LLM with a few lines of code.
 
     ```python
-    import lamini
+    from lamini import Lamini
 
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
-    llm = Lamini(class_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate("How are you?"))
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    print(llm.generate("How are you?", output_type={"Response": "str"}))
     ```
 
     <details>
     <summary>Expected Output</summary>
         ```
-        I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?
+        {'Response': "I'm doing well, thanks for asking! How about you"}
         ```
     </details>
 
@@ -43,16 +43,15 @@ Next, run an LLM:
         --header "Content-Type: application/json" \
         --data '{
             "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-            "prompt": "How are you?"
+            "prompt": "How are you?",
+            "out_type": {"Response": "str"}
         }'
     ```
 
     <details>
     <summary>Expected Output</summary>
         ```
-        [
-            {"output":"I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?"}
-        ]
+        {"Response":"I'm doing well, thanks for asking! How about you"}
         ```
     </details>
 
@@ -73,33 +72,25 @@ Customize inference in many ways:
 
 You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
 
+### Prompt engineering
 === "Python SDK"
 
     Prompt-engineer the system prompt in `Lamini`.
 
-    <details>
-    <summary>prompt_template.py</summary>
-        ```
+    ```python
+    def create_llama3_prompt(user_prompt, system_prompt=""):
         llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
         llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
         llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+        return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
 
-        class PromptTemplate:
-
-        @staticmethod
-        def get_llama3_prompt(user_prompt, system_prompt=" "):
-            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
-        ```
-    </details>
-
-    ```python hl_lines="3"
     from lamini import Lamini
-    from prompt_template import PromptTemplate
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     system_prompt = "You are a pirate. Say arg matey!"
     user_prompt = "How are you?"
-    print(llm.generate(PromptTemplate.get_llama3_prompt(user_prompt, system_prompt)))
+    prompt = create_llama3_prompt(user_prompt, system_prompt)
+    print(llm.generate(prompt))
     ```
 
 === "REST API"
@@ -113,7 +104,7 @@ You'll breeze through some of these here. You can step through all of these in t
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
             "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
         }'
     ```
@@ -127,24 +118,25 @@ You'll breeze through some of these here. You can step through all of these in t
 
 Definitely check out the expected output here. Because now it's a pirate :)
 
+### Output type
 You can also add multiple outputs and multiple output types in one call. The output is a JSON schema that is strictly enforced.
 
 === "Python SDK"
 
     You can provie an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
-    ```python hl_lines="6"
+    ```python hl_lines="10"
+    def create_llama3_prompt(user_prompt, system_prompt=" "):
+        llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+        llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+        llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+        return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
+
     from lamini import Lamini
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    system_prompt = ""
-    user_prompt = "How old are you?"
     output_type={"age": "int", "units": "str"}
-    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    prompt += system_prompt
-    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-    prompt += user_prompt
-    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    prompt = create_llama3_prompt(user_prompt="How old are you?")
     print(llm.generate(prompt=prompt, output_type=output_type))
     ```
 
@@ -155,7 +147,7 @@ You can also add multiple outputs and multiple output types in one call. The out
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How old are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"],
         "out_type": {
             "age": "int",
@@ -180,7 +172,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
 === "Python SDK"
 
-    ```python hl_lines="2-6"
+    ```python hl_lines="3-7"
     from lamini import Lamini
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     prompt = [
@@ -216,11 +208,11 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
     ```
     [
         {"answer":"I am 25 years old"},
-        
+
         {"answer":"The meaning of life is to find your purpose and pursue it with passion and dedication. It is to live a life that is true to who you are and to make a positive impact on the world around you. It is to find joy and fulfillment in the journey, and to never give up on your dreams"},
-        
+
         {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"}
-    ]                                                                     
+    ]
     ```
 </details>
 
@@ -250,10 +242,6 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     ```
 
     Now, load more data in that format. We recommend at least 1000 examples to see a difference in training.
-
-    ```python
-    data = get_data()
-    ```
 
     <details>
     <summary>Code for <code>get_data()</code></summary>
@@ -307,13 +295,14 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     </details>
 
-    Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+    Instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
     from lamini import Lamini
 
+    data = get_data()
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     llm.train(data)
     ```
 
-Want to go deeper? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
+Want to see more examples? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
