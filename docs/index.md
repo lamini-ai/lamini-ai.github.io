@@ -21,13 +21,13 @@ Next, run an LLM:
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
     llm = lamini.Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate("How are you?"))
+    print(llm.generate("How are you?", output_type={"Response": "str"}))
     ```
 
     <details>
     <summary>Expected Output</summary>
         ```
-        I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?
+        {'Response': "I'm doing well, thanks for asking! How about you"}
         ```
     </details>
 
