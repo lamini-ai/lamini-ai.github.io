@@ -140,7 +140,6 @@ Here, you can see `system` and `instruction` used in the template and input dict
         ```
         {
             "answer": "Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?"
-"
         }
         ```
     </details>
