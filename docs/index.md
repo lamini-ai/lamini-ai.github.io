@@ -136,7 +136,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     output_type={"age": "int", "units": "str"}
-    prompt = create_llama3_prompt(user_prompt="How old are you?", system_prompt="")
+    prompt = create_llama3_prompt(user_prompt="How old are you?")
     print(llm.generate(prompt=prompt, output_type=output_type))
     ```
 
@@ -172,7 +172,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
 === "Python SDK"
 
-    ```python hl_lines="2-6"
+    ```python hl_lines="3-7"
     from lamini import Lamini
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     prompt = [
@@ -243,10 +243,6 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     Now, load more data in that format. We recommend at least 1000 examples to see a difference in training.
 
-    ```python
-    data = get_data()
-    ```
-
     <details>
     <summary>Code for <code>get_data()</code></summary>
 
@@ -299,13 +295,14 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
 
     </details>
 
-    Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+    Instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
     from lamini import Lamini
 
+    data = get_data()
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     llm.train(data)
     ```
 
-Want to go deeper? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
+Want to see more examples? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
