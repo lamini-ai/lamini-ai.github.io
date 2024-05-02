@@ -72,33 +72,25 @@ Customize inference in many ways:
 
 You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
 
+### Prompt engineering
 === "Python SDK"
 
     Prompt-engineer the system prompt in `Lamini`.
 
-    <details>
-    <summary>prompt_template.py</summary>
-        ```
+    ```python
+    def create_llama3_prompt(user_prompt, system_prompt=""):
         llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
         llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
         llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+        return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
 
-        class PromptTemplate:
-
-        @staticmethod
-        def get_llama3_prompt(user_prompt, system_prompt=" "):
-            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
-        ```
-    </details>
-
-    ```python hl_lines="3"
     from lamini import Lamini
-    from prompt_template import PromptTemplate
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     system_prompt = "You are a pirate. Say arg matey!"
     user_prompt = "How are you?"
-    print(llm.generate(PromptTemplate.get_llama3_prompt(user_prompt, system_prompt)))
+    prompt = create_llama3_prompt(user_prompt, system_prompt)
+    print(llm.generate(prompt))
     ```
 
 === "REST API"
@@ -126,24 +118,25 @@ You'll breeze through some of these here. You can step through all of these in t
 
 Definitely check out the expected output here. Because now it's a pirate :)
 
+### Output type
 You can also add multiple outputs and multiple output types in one call. The output is a JSON schema that is strictly enforced.
 
 === "Python SDK"
 
     You can provie an optional return dictionary for the output type. You can return multiple values, e.g. an int and a string here.
 
-    ```python hl_lines="6"
+    ```python hl_lines="10"
+    def create_llama3_prompt(user_prompt, system_prompt=" "):
+        llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+        llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+        llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+        return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
+
     from lamini import Lamini
 
     llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    system_prompt = ""
-    user_prompt = "How old are you?"
     output_type={"age": "int", "units": "str"}
-    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    prompt += system_prompt
-    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-    prompt += user_prompt
-    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    prompt = create_llama3_prompt(user_prompt="How old are you?", system_prompt="")
     print(llm.generate(prompt=prompt, output_type=output_type))
     ```
 
