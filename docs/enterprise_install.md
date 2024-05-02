@@ -53,12 +53,21 @@ Docs coming soon!  Reach out to us at [info@lamini.ai](mailto:info@lamini.ai)!
 ## Start up 🚀
 Woo, congrats and welcome to the herd!!
 
-Start Lamini with `$ ./build-lamini-installer/lamini-installer/lamini-up`.
+Go to the lamini installer dir: `$ cd build-lamini-installer/lamini-installer` 
+
+Get your Hugging Face Access Token from: `https://huggingface.co/settings/tokens`
+
+Enter the token in the config file, `configs/llama_config_edits.yaml`, under the huggingface token field:
+```
+huggingface: # This is the Hugging Face API token, it will default to offline mode if no token is provided
+    token: ""
+```
+Start Lamini with `$ ./lamini-up`.
 We recommend running this inside a [screen](https://en.wikipedia.org/wiki/GNU_Screen)
 or [tmux](https://en.wikipedia.org/wiki/Tmux) for ease of use to be able to
 view detailed logs.
 
-You can also run with `$ ./build-lamini-installer/lamini-installer/lamini-up -d`
+You can also run with `$ ./lamini-up -d`
 to start the services as a background daemon process, and view the logs with
 `docker logs`
 
