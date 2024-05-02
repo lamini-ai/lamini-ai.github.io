@@ -53,7 +53,7 @@ Docs coming soon!  Reach out to us at [info@lamini.ai](mailto:info@lamini.ai)!
 ## Start up 🚀
 Woo, congrats and welcome to the herd!!
 
-Go to the lamini installer dir: `$ cd build-lamini-installer/lamini-installer` 
+Go to the lamini installer directory: `$ cd build-lamini-installer/lamini-installer` 
 
 Get your Hugging Face Access Token from: `https://huggingface.co/settings/tokens`
 
