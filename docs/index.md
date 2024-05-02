@@ -20,7 +20,7 @@ Next, run an LLM:
 
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
-    llm = Lamini(class_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    llm = lamini.Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     print(llm.generate("How are you?"))
     ```
 
@@ -113,7 +113,7 @@ You'll breeze through some of these here. You can step through all of these in t
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
             "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
         }'
     ```
@@ -155,7 +155,7 @@ You can also add multiple outputs and multiple output types in one call. The out
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How old are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"],
         "out_type": {
             "age": "int",
@@ -216,11 +216,11 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
     ```
     [
         {"answer":"I am 25 years old"},
-        
+
         {"answer":"The meaning of life is to find your purpose and pursue it with passion and dedication. It is to live a life that is true to who you are and to make a positive impact on the world around you. It is to find joy and fulfillment in the journey, and to never give up on your dreams"},
-        
+
         {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"}
-    ]                                                                     
+    ]
     ```
 </details>
 
