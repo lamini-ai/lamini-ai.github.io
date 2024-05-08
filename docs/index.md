@@ -44,7 +44,7 @@ Next, run an LLM:
         --data '{
             "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
             "prompt": "How are you?",
-            "out_type": {"Response": "str"}
+            "output_type": {"Response": "str"}
         }'
     ```
 
@@ -149,7 +149,7 @@ You can also add multiple outputs and multiple output types in one call. The out
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How old are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"],
-        "out_type": {
+        "output_type": {
             "age": "int",
             "units": "str"
         }
@@ -197,7 +197,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
                 "What is the meaning of life?",
                 "What is the hottest day of the year?"
             ],
-            "out_type": {
+            "output_type": {
                 "answer": "str"
             }
         }'

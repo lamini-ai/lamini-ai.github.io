@@ -30,7 +30,7 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How are you?",
-        "out_type": {
+        "output_type": {
             "answer": "str"
         }
     }'
@@ -67,7 +67,7 @@ Please let us know if there are specific types you'd like to see supported.
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
-        "out_type": {
+        "output_type": {
             "age": "int"
         }
     }'
@@ -104,7 +104,7 @@ You can also add multiple output types in one call. The output is a JSON schema 
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
-        "out_type": {
+        "output_type": {
             "age": "int",
             "units": "str"
         }

@@ -16,7 +16,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 {
     "model_name": "<YOUR_MODEL_NAME>",
     "prompt": "What is the hottest day of the year?",
-    "out_type": {"answer": "str"},
+    "output_type": {"answer": "str"},
 }
 ```
 
@@ -30,7 +30,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
             "How old is Paul, the llama with a hat?",
         ]
     ```
--   `out_type`: `Dict[str, str]`. Type Schema of the output. Ex.
+-   `output_type`: `Dict[str, str]`. Type Schema of the output. Ex.
     ```
         {
             "age": "int",
@@ -45,7 +45,7 @@ If the web request is successful, you will see a response with an answer to the 
 
 - Success Status Code: 200
 - Body (JSON):
-  - Output will be formatted as specified by the `out_type` argument passed in above.
+  - Output will be formatted as specified by the `output_type` argument passed in above.
   ```json
     [
         {
@@ -75,7 +75,7 @@ curl --location 'https://api.lamini.ai/v1/completions' \
             "How old is Carl, the llama with a hat?",
             "How old is Paul, the llama with a hat?"
         ],
-    "out_type": {
+    "output_type": {
         "age": "int",
         "units": "str"
     }
