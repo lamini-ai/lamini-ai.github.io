@@ -93,7 +93,7 @@ Customize inference in many ways:
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How are you?"
-        "out_type": {
+        "output_type": {
             "answer": "str"
         }
     }'
@@ -187,7 +187,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
-        "out_type": {
+        "output_type": {
             "answer": "int"
         }
     }'
@@ -222,7 +222,7 @@ And you can add multiple output types in one call. The output is a JSON schema t
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
-        "out_type": {
+        "output_type": {
             "age": "int",
             "units": "str"
         }
@@ -274,7 +274,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
             "What is the meaning of life?",
             "What is the hottest day of the year?"
         ],
-        "out_type": {
+        "output_type": {
             "response": "str",
             "explanation": "str"
         }

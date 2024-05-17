@@ -36,7 +36,7 @@ Run an LLM with our REST API or Python SDK.
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": ["What is the hottest day of the year?", "What is for lunch?"],
-        "out_type": {
+        "output_type": {
             "answer": "str"
         }
     }'
