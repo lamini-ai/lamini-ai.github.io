@@ -66,18 +66,10 @@ Run an LLM with our REST API or Python SDK.
 
     ```python
     import lamini
-
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
-    ```
 
-    As a test, run the LLM and call Llama 3:
-    ```python
-    from lamini import Lamini
-
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    response = llm.generate("Tell me a story about llamas.")
-
-    print(response)
+    llm = lamini.Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
+    print(llm.generate("Tell me a story about llamas."))
     ```
 
     ## (Optional) Advanced Python setups
