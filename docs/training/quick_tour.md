@@ -85,8 +85,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     from lamini import Lamini
 
     llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    llm.data = data
-    llm.train()
+    llm.train(data_or_dataset_id=data)
     ```
 
     Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `train` method:
@@ -177,8 +176,8 @@ Example code snippet:
 
 ```python
 llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-llm.upload_file(data.json)
-llm.train()
+dataset_id = llm.upload_file("data.json")
+llm.train(data_or_dataset_id=dataset_id)
 ```
 
 <br><br>

@@ -6,8 +6,7 @@ This efficiency gain is on and handled by default so you can use the correct mod
 
 ```python hl_lines="1"
 llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-llm.data = data
-llm.train()
+llm.train(data_or_dataset_id=data)
 llm.evaluate()
 ```
 

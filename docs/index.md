@@ -7,6 +7,7 @@ First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://ap
 Next, run an LLM:
 
 === "Python SDK"
+
     Install the Python SDK.
 
     ```python
@@ -20,7 +21,7 @@ Next, run an LLM:
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 
     llm = lamini.Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate("How are you?"))
+    print(llm.generate("How are you?", output_type={"Response":"str"}))
     ```
 
     <details>
@@ -72,6 +73,7 @@ Customize inference in many ways:
 You'll breeze through some of these here. You can step through all of these in the [Inference Quick Tour](inference/quick_tour.md).
 
 ### Prompt engineering
+
 === "Python SDK"
 
     Prompt-engineer the system prompt in `Lamini`.
@@ -92,6 +94,13 @@ You'll breeze through some of these here. You can step through all of these in t
     print(llm.generate(prompt))
     ```
 
+    <details>
+    <summary>Expected Output</summary>
+        ```
+        Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?
+        ```
+    </details>
+
 === "REST API"
 
     You can run inference with one CURL command.
@@ -104,20 +113,21 @@ You'll breeze through some of these here. You can step through all of these in t
         --header "Content-Type: application/json" \
         --data '{
             "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-            "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
+            "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
         }'
     ```
 
-<details>
-<summary>Expected Output</summary>
-    ```
-    Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?
-    ```
-</details>
+    <details>
+    <summary>Expected Output</summary>
+        ```
+        {"output":"Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rum should sort me out. What about ye, matey? How be yer day goin'?"}
+        ```
+    </details>
 
 Definitely check out the expected output here. Because now it's a pirate :)
 
 ### Output type
+
 You can also add multiple outputs and multiple output types in one call. The output is a JSON schema that is strictly enforced.
 
 === "Python SDK"
@@ -147,7 +157,7 @@ You can also add multiple outputs and multiple output types in one call. The out
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-        "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How old are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"],
+        "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How old are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
         "output_type": {
             "age": "int",
             "units": "str"
@@ -159,7 +169,7 @@ You can also add multiple outputs and multiple output types in one call. The out
 <summary>Expected Output</summary>
     ```
     {
-        "age":0,
+        "age": 0,
         "units":"years"
     }
     ```
@@ -207,12 +217,11 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
     ```
     [
         {"answer":"I am 25 years old"},
-
         {"answer":"The meaning of life is to find your purpose and pursue it with passion and dedication. It is to live a life that is true to who you are and to make a positive impact on the world around you. It is to find joy and fulfillment in the journey, and to never give up on your dreams"},
-
         {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"}
     ]
     ```
+
 </details>
 
 ## Training
@@ -305,3 +314,17 @@ For the "Bigger training" section, see the [Training Quick Tour](training/quick_
     ```
 
 Want to see more examples? Check out [our SDK Repo](https://github.com/lamini-ai/lamini-sdk/tree/main)!
+
+<details>
+<summary>Example Output</summary>
+    ```
+    Uploading data....
+    Upload to blob completed for data.
+    Data pairs uploaded to blob.
+
+    Your dataset id is: 14be5154c3ec4395edbe473f530a69bdd97a922ea695acaa165aadd30e0864a7 . Consider using this in the future to train using the same data.
+    Eg: llm.train(dataset_id='14be5154c3ec4395edbe473f530a69bdd97a922ea695acaa165aadd30e0864a7')
+    Training job submitted! Check status of job 6738 here: https://app.lamini.ai/train/6738
+    ```
+
+</details>
