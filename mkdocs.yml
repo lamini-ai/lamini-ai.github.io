@@ -90,3 +90,8 @@ nav:
       - train_job_status: rest_api/train_job_status.md
       - train_job_cancel: rest_api/train_job_cancel.md
       - eval_results: rest_api/eval_results.md
+
+plugins:
+  - redirects:
+      redirect_maps:
+        'get_started/install.md': 'get_started/authenticate.md'
