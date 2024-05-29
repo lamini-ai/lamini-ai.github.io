@@ -14,7 +14,7 @@ See for yourself: take a [quick tour (with free API access!)](index.md) to see h
 |-|-|-|
 | Tuning | Hallucinations | [95% accuracy on factual tasks: memory tuning](/training/quick_tour/) |
 | Tuning | High infrastructure costs | [32x model compression: efficient LoRAs](/training/lora/) |
-| Inference | Rate limits | [52x faster than open source: request batching](/inference/quick_tour/#bigger-inference) |
+| Inference | Rate limits | [52x faster than open source: iteration batching](https://www.usenix.org/conference/osdi22/presentation/yu) |
 | Inference | Unreliable app integrations | [100% accurate JSON schema output: structured output](/inference/json_output/)|
 
 ## Who are we?
