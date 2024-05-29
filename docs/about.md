@@ -1,35 +1,25 @@
-# Welcome to Lamini!
+## What is Lamini?
 
-Lamini is the leading enterprise LLM platform for finetuning. We make it easy for every enterprise and developer to build customized, private models: easier, faster, and higher-performing than any general LLMs.
+Lamini is the leading enterprise LLM platform for finetuning. We make it easy for every enterprise to build customized, private models for every developer: easier, faster, and better-performing than any general LLMs.
 
-Get started with your [free API token](https://app.lamini.ai), and take a [quick tour](index.md) of Lamini's features.
+The proprietary Lamini backend orchestrates GPUs to deliver exceptional LLM tuning and inference capabilities, which easily integrate into enterprise applications via the Lamini [REST API](/rest_api/completions/), [web UI](/inference/playground/), and [Python client](/lamini_python_class/__init__/). The backend can run in a customer's enviroment (on your own GPU infrastructure on premise or in your VPC), or you can use Lamini's supply of GPUs via [app.lamini.ai](app.lamini.ai).
 
-If you want to build larger models, deploy a model in production, host it on your own infrastructure on premise or in your VPC, or other enterprise features, please contact us at [info@lamini.ai](mailto:info@lamini.ai)!
+![Lamini overview](/assets/lamini-overview.png)
 
-## Why Lamini?
+See for yourself: take a [quick tour (with free API access!)](index.md) to see how Lamini works, or contact us at [info@lamini.ai](mailto:info@lamini.ai) to run in your own environment.
 
-### Leader in Generative AI
-Lamini is built by a team finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students online [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3, Google’s PaLM, and NVIDIA’s Megatron.
+### What's unique about Lamini?
 
-### Optimized for enterprise LLMs
+| Area | Problem | Lamini's solution |
+|-|-|-|
+| Tuning | Hallucinations | [95% accuracy on factual tasks: memory tuning](/training/quick_tour/) |
+| Tuning | High infrastructure costs | [32x model compression: efficient LoRAs](/training/lora/) | 
+| Inference | Rate limits | [52x faster than open source: request batching](/inference/quick_tour/#bigger-inference) |
+| Inference | Unreliable app integrations | [100% accurate JSON schema output: structured output](/inference/json_output/)|
 
-Lamini is optimized for enterprise finetuning LLMs, which have big data and use specialized data, tasks, and software interfaces. Lamini includes advanced optimizations for enterprise LLMs, built on and extending PEFT (LoRA), RLHF, and toolformer, to provide data isolation across 4,266x models on the same server, speed up model switching by 1.09 billion times, compress models by 32x, and easily integrate LLMs with enterprise APIs without hyperparameter search.
+## Who are we?
 
-### LLM Superstation 
-
-The LLM Superstation combines Lamini's easy-to-use enterprise LLM infrastructure with AMD Instinct™ MI210 and MI250 accelerators. It is optimized for private enterprise LLMs, built to be heavily differentiated with proprietary data. Lamini is the only LLM platform that exclusively runs on AMD Instinct GPUs — in production! Learn more about [our collaboration with AMD](https://www.lamini.ai/blog/lamini-amd-paving-the-road-to-gpu-rich-enterprise-llms).
-
-## Getting Started
-```sh
-pip install --upgrade lamini
-```
-
-Check out the [Inference Quick Tour](inference/quick_tour.md) and [Training Quick Tour](training/quick_tour.md) to quickly learn about Lamini's features.
-
-Once you're up and running, check out detailed documention about our [REST API](/API_v2/completions) and [Python SDK](/python_library). 
-
-## Web App
-In addition to a REST API and Python Package, we also have a web application to help streamline model training and evalutaion. Go to [https://app.lamini.ai/](https://app.lamini.ai/) to manage your training jobs, view model eval results, test your finetuned models in a playground, generate API keys, and monitor usage.
+Lamini's team has been finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students about [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3, Google’s PaLM, and NVIDIA’s Megatron.
 
 ## Resources
 - [Lamini & AMD: Paving the Road to GPU-Rich Enterprise LLMs](https://www.lamini.ai/blog/lamini-amd-paving-the-road-to-gpu-rich-enterprise-llms)
@@ -40,4 +30,3 @@ In addition to a REST API and Python Package, we also have a web application to 
 - [How to specialize general-purpose LLMs to private data](https://www.lamini.ai/blog/specialize-llms-to-private-data-databricks)
 
 <br><br>
-
