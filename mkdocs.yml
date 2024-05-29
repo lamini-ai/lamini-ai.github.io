@@ -50,6 +50,11 @@ markdown_extensions:
   - admonition
   - pymdownx.details
 
+extra:
+  analytics:
+    provider: google
+    property: G-443583539
+
 # Page tree
 nav:
   - Getting Started:
