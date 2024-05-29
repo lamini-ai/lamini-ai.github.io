@@ -1,6 +1,6 @@
 # lamini.Lamini.\_\_init\_\_
 
-Class that instantiates the Lamini.
+Class that instantiates the Lamini client.
 
 ```python
 Lamini(model_name, config)
