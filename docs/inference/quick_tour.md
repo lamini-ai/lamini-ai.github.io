@@ -16,7 +16,7 @@ Customize inference in many ways:
     from lamini import Lamini
 
     llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    llm.generate("How are you?")
+    print(llm.generate("How are you?"))
     ```
     <details>
     <summary>Expected Output</summary>
@@ -153,7 +153,7 @@ Here, you can see `system` and `instruction` used in the template and input dict
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
             "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
         }'
     ```
