@@ -3,7 +3,8 @@ import os
 import lamini
 
 class IndexTest(unittest.TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         lamini.api_key = os.environ['PRODUCTION_KEY']
 
     def test_quick_tour(self):

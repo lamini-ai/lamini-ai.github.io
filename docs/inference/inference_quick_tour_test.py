@@ -3,14 +3,15 @@ import os
 import lamini
 
 class InferenceQuickTourTest(unittest.TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         lamini.api_key = os.environ['PRODUCTION_KEY']
 
     def test_quick_tour(self):
         from lamini import Lamini
         llm = Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
         response = llm.generate("How are you?", output_type={"Response":"str"})
-        print(response)
+
         assert (
             response
             == {'Response': "I'm doing well, thanks for asking! How about you"}
@@ -20,7 +21,6 @@ class InferenceQuickTourTest(unittest.TestCase):
         from lamini import Lamini
         llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
         response = llm.generate("How are you?", output_type={"Response":"str"})
-        print(response)
 
         assert (
             response
