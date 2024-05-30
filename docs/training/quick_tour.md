@@ -23,10 +23,6 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     Now, load more data in that format. We recommend at least 1000 examples to see a difference in training.
 
-    ```python
-    data = get_data()
-    ```
-
     <details>
     <summary>Code for <code>get_data()</code></summary>
 
@@ -78,6 +74,10 @@ There are many ways to train your LLM. We'll cover the most common ones here:
     ```
 
     </details>
+
+    ```python
+    data = get_data()
+    ```
 
     Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
