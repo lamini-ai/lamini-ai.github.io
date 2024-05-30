@@ -7,7 +7,6 @@ on:
     secrets:
       production_key:
         required: true
-        type: string
 
 permissions:
   contents: read
