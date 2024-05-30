@@ -90,7 +90,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `train` method:
     ```python
-    results = llm.train(finetune_args={'learning_rate': 1.0e-4})
+    results = llm.train(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
     ```
 
     More details on overriding default hyperparameters can be found in the [`train` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
