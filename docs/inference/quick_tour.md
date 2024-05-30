@@ -58,6 +58,7 @@ Customize inference in many ways:
     prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
     prompt += "How are you?"
     prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    llm = Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
     print(llm.generate(prompt))
     ```
     <details>
