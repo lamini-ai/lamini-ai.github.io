@@ -4,6 +4,10 @@ on:
     branches:
       - main
   workflow_call:
+    secrets:
+      production_key:
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -18,4 +22,4 @@ jobs:
           python-version: 3.x
       - run: pip3 install lamini
       - run: |
-          PRODUCTION_KEY=${{ secrets.production_key}} python3 -m unittest discover -v -s docs/ -p "*.py"
+          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest discover -v -s docs/ -p "*.py"
