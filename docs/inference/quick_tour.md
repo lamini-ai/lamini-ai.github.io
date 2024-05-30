@@ -8,7 +8,7 @@ Customize inference in many ways:
 - Run simple applications like [RAG](/../applications/rag).
 
 
-## Run Lamini with Llama 3.
+## Run Lamini with Llama 3
 === "Python SDK"
 
     The Python SDK offers higher-level class, `Lamini`, to work with models.
@@ -25,7 +25,7 @@ Customize inference in many ways:
 
     Full reference docs on the REST API are [here](/../rest_api/completions.md).
 
-    ```sh
+    ```sh hl_lines="5"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
@@ -60,7 +60,7 @@ The `{system}` variable is a system prompt that tells your LLM how it should beh
 Prompt-engineer the system prompt in `Lamini`.
 === "Python SDK"
 
-    ```python hl_lines="3"
+    ```python
     from lamini import Lamini
 
     prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
@@ -98,18 +98,19 @@ Prompt-engineer the system prompt in `Lamini`.
 
 Definitely check out the expected output here. Because now it's a pirate :)
 
-## Run Lamini with Mistral.
+## Run Lamini with Mistral
 === "Python SDK"
 
-```python hl_lines="3"
-from lamini import Lamini
+    ```python hl_lines="3"
+    from lamini import Lamini
 
-llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
-print(llm.generate("How are you?", output_type={"Response":"str"}))
-```
+    llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
+    print(llm.generate("How are you?", output_type={"Response":"str"}))
+    ```
 
 === "REST API"
-    ```sh
+
+    ```sh hl_lines="5"
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
