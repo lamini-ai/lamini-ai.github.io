@@ -15,4 +15,4 @@ jobs:
           python-version: 3.x
       - run: pip3 install lamini
       - run: |
-          PRODUCTION_KEY=${{ secrets.production_key}} python3 -m discover -v -p "*.py"
+          PRODUCTION_KEY=${{ secrets.production_key}} python3 -m unittest discover -v -p "*.py"
