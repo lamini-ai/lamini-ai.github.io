@@ -1,8 +1,8 @@
 name: Code test
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_call:
     secrets:
       production_key:
