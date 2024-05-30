@@ -125,11 +125,14 @@ class IndexTest(unittest.TestCase):
             llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
             response = llm.train(data)
             self.assertIn (
-                '''Uploading data....\nUpload to blob completed for data.\nData pairs uploaded to blob.\n\nYour dataset id is:''',
+                'job_id',
                 response
             )
             self.assertIn (
-                '''Training job submitted! Check status of job''',
+                'status',
                 response
             )
-            print(response)
+            self.assertIn (
+                'dataset_id',
+                response
+            )
