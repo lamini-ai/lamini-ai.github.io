@@ -41,7 +41,9 @@ Customize inference in many ways:
 <details>
 <summary>Expected Output</summary>
     ```
-    {'Response': "I'm doing well, thanks for asking! How about you"}
+    {
+        'Response': "I'm doing well, thanks for asking! How about you"
+    }
     ```
 </details>
 
@@ -88,7 +90,9 @@ Prompt-engineer the system prompt in `Lamini`.
 <details>
 <summary>Expected Output</summary>
     ```
-    {'Response': "Ahoy, matey! I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. The sun be shinin' bright, the wind be blowin' strong, and me trusty cutlass be by me side. What more could a pirate ask for, eh? Arrr"}
+    {
+        'Response': "Ahoy, matey! I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. The sun be shinin' bright, the wind be blowin' strong, and me trusty cutlass be by me side. What more could a pirate ask for, eh? Arrr"
+    }
     ```
 </details>
 
@@ -121,7 +125,9 @@ print(llm.generate("How are you?", output_type={"Response":"str"}))
 <details>
 <summary>Expected Output</summary>
     ```
-    {'Response': "I'm just a computer program, I don't have feelings or emotions. I'm here to help answer any questions you might have to the best of my ability"}
+    {
+        'Response': "I'm just a computer program, I don't have feelings or emotions. I'm here to help answer any questions you might have to the best of my ability"
+    }
     ```
 </details>
 
