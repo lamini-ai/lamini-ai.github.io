@@ -7,77 +7,16 @@ Customize inference in many ways:
 - High-throughput inference, e.g. 10,000 requests per call.
 - Run simple applications like [RAG](/../applications/rag).
 
+
+## Run Lamini with Llama 3.
 === "Python SDK"
 
     The Python SDK offers higher-level class, `Lamini`, to work with models.
-
-    Run Lamini with Llama 3.
     ```python hl_lines="3"
     from lamini import Lamini
 
     llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    llm.generate("How are you?")
-    ```
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        I'm doing well, thank you for asking! I'm a large language model, so I don't have feelings or emotions like humans do, but I'm functioning properly and ready to assist you with any questions or tasks you may have. It's great to be able to help and provide information to users like you! How about you? How's your day going?
-        ```
-    </details>
-
-    Run Lamini with Mistral.
-    ```python hl_lines="3"
-    from lamini import Lamini
-
-    llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
-    print(llm.generate("How are you?"))
-    ```
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        I'm doing well, thank you for asking again! I'm here to help answer any questions or provide information you might have. How can I assist you today? Let me know if you have any specific topic or query in mind.
-        ```
-    </details>
-
-    Notice the output is different, because Llama 3 assumes the Llama 3 prompt template. This prompt template looks like this:
-    ```python
-    <|begin_of_text|><|start_header_id|>system<|end_header_id|>
-
-    {{ system_prompt }}<|eot_id|><|start_header_id|>user<|end_header_id|>
-
-    {{ user_message }}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-    ```
-    The `{system}` variable is a system prompt that tells your LLM how it should behave and what persona to take on. By default, it is that of a helpful assistant. The `{instruction}` variable is the instruction prompt that tells your LLM what to do. This is typically what you view as the prompt, e.g. the question you want to ask the LLM.
-
-    Prompt-engineer the system prompt in `Lamini`.
-    ```python hl_lines="3"
-    from lamini import Lamini
-
-    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    prompt += "You are a pirate. Say arg matey!"
-    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-    prompt += "How are you?"
-    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-    print(llm.generate(prompt))
-    ```
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        ARGH matey! *adjusts eye patch* I be doin' grand, thank ye for askin'! The sea be callin' me name, and me heart be yearnin' fer the next great adventure. *winks* What be bringin' ye to these fair waters? Maybe we can share a pint o' grog and swap tales o' the high seas? *grin*
-        ```
-    </details>
-
-    Definitely check out the expected output here. Because now it's a pirate :)
-
-    Let's go lower-level. The [`Lamini` class](/../lamini_python_class/__init__) is the base class for all runners. `Lamini` wraps our [REST API endpoint](/../rest_api/completions).
-
-    `Lamini` expects a string or list of strings as input and a return dictionary for the output type. The simplest one you'll see here is returning a string.
-
-    ```python
-    from lamini import Lamini
-
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate("How are you?", output_type={"answer": "str"}))
+    print(llm.generate("How are you?", output_type={"Response":"str"}))
     ```
 
 === "REST API"
@@ -92,9 +31,9 @@ Customize inference in many ways:
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-        "prompt": "How are you?"
+        "prompt": "How are you?",
         "output_type": {
-            "answer": "str"
+            "Response": "str"
         }
     }'
     ```
@@ -103,75 +42,107 @@ Customize inference in many ways:
 <summary>Expected Output</summary>
     ```
     {
-        'answer': "I'm doing well, thanks for asking! How about you"
+        'Response': "I'm doing well, thanks for asking! How about you"
     }
     ```
 </details>
 
-You can also pass in a prompt template. In your template, you can use variable tags like `{input:field_name}` where `field_name` is a key in your input dictionary. The template is rendered with the input dictionary.
+Since Llama 3 assumes the Llama 3 prompt template, you will need to include it for further prompt tuning. This prompt template looks like this:
+```python
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
-Here, you can see `system` and `instruction` used in the template and input dictionary.
+{{ system_prompt }}<|eot_id|><|start_header_id|>user<|end_header_id|>
 
+{{ user_message }}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+```
+The `{system}` variable is a system prompt that tells your LLM how it should behave and what persona to take on. By default, it is that of a helpful assistant. The `{instruction}` variable is the instruction prompt that tells your LLM what to do. This is typically what you view as the prompt, e.g. the question you want to ask the LLM.
+
+Prompt-engineer the system prompt in `Lamini`.
 === "Python SDK"
 
-    ```python  hl_lines="5"
-    llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-    llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-
-    class PromptTemplate:
-
-    @staticmethod
-    def get_llama3_prompt(user_prompt, system_prompt=" "):
-        return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
-    ```
-
-    ```python  hl_lines="5"
+    ```python hl_lines="3"
     from lamini import Lamini
 
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    system_prompt = "You are a pirate. Say arg matey!"
-    user_prompt = "How are you?"
-    output_type={"answer": "str"}
-    print(llm.generate(PromptTemplate.get_llama3_prompt(user_prompt, system_prompt, output_type)))
+    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+    prompt += "You are a pirate. Say arg matey!"
+    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+    prompt += "How are you?"
+    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    llm = Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
+    print(llm.generate(prompt, output_type={"Response":"str"}))
     ```
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        {
-            "answer": "Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?"
-        }
-        ```
-    </details>
 
 === "REST API"
-
-    The input dictionary is passed in through `prompt` as part of the request.
 
     ```sh hl_lines="6"
     curl --location "https://api.lamini.ai/v1/completions" \
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct", 
-            "prompt": ["<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"]
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+            "output_type": {
+                "Response": "str"
+            }
         }'
     ```
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        {
-            "answer": "Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?"
+
+<details>
+<summary>Expected Output</summary>
+    ```
+    {
+        'Response': "Ahoy, matey! I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. The sun be shinin' bright, the wind be blowin' strong, and me trusty cutlass be by me side. What more could a pirate ask for, eh? Arrr"
+    }
+    ```
+</details>
+
+Definitely check out the expected output here. Because now it's a pirate :)
+
+## Run Lamini with Mistral.
+=== "Python SDK"
+
+```python hl_lines="3"
+from lamini import Lamini
+
+llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
+print(llm.generate("How are you?", output_type={"Response":"str"}))
+```
+
+=== "REST API"
+    ```sh
+    curl --location "https://api.lamini.ai/v1/completions" \
+    --header "Authorization: Bearer $LAMINI_API_KEY" \
+    --header "Content-Type: application/json" \
+    --data '{
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "prompt": "How are you?",
+        "output_type": {
+            "Response": "str"
         }
-        ```
-    </details>
+    }'
+    ```
+
+<details>
+<summary>Expected Output</summary>
+    ```
+    {
+        'Response': "I'm just a computer program, I don't have feelings or emotions. I'm here to help answer any questions you might have to the best of my ability"
+    }
+    ```
+</details>
+
+## Output type
+
+`Lamini` expects a string or list of strings as input and a return dictionary for the output type. The simplest one you've seen here is returning a string.
 
 You can change the output type to be a different type, e.g. `int` or `float`. This typing is strictly enforced.
 
 === "Python SDK"
 
-    ```python hl_lines="4"
-    llm =  Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    ```python hl_lines="6"
+    from lamini import Lamini
+
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     llm.generate(
         "How old are you in years?",
         output_type={"age": "int"}
@@ -188,7 +159,7 @@ You can change the output type to be a different type, e.g. `int` or `float`. Th
         "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
         "prompt": "How old are you?",
         "output_type": {
-            "answer": "int"
+            "age": "int"
         }
     }'
     ```
@@ -249,7 +220,10 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
 === "Python SDK"
 
-    ```python hl_lines="2-6"
+    ```python hl_lines="5-9"
+    from lamini import Lamini
+
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
     llm.generate(
         [
            "How old are you?",
@@ -262,7 +236,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
 
 === "REST API"
 
-    ```sh hl_lines="7-11"
+    ```sh hl_lines="6-10"
 
     curl --location "https://api.lamini.ai/v1/completions" \
     --header "Authorization: Bearer $LAMINI_API_KEY" \
