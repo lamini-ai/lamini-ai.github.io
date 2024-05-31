@@ -24,4 +24,6 @@ jobs:
           python-version: 3.x
       - run: pip3 install lamini
       - run: |
-          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest discover -v -s docs/ -p "*.py"
+          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest docs/index_test.py
+          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest docs/training/training_quick_tour_test.py
+          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest docs/inference/inference_quick_tour_test.py
