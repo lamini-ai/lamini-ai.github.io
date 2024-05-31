@@ -92,11 +92,33 @@ class TrainingQuickTourTest(unittest.TestCase):
 
         llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
         with self.subTest("csv"):
-            pass
-            # llm.upload_file("test.csv", input_key="user", output_key="answer")
+            import tempfile, csv
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["user", "answer"]) # Write the header
+                writer.writerow(["Explain the process of photosynthesis","Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."])
+                writer.writerow(["What is the capital of USA?", "Washington, D.C."])
+
+            with open(csvfile.name) as csvfile:
+                response = llm.upload_file(csvfile.name, input_key="user", output_key="answer")
+                assert(response)
 
         with self.subTest("jsonlines"):
-            pass
+            import tempfile, json
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.jsonl', delete=False) as jsonlfile:
+                jsonlfile.write(json.dumps({"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}))
+                jsonlfile.write("\n")
+                jsonlfile.write(json.dumps({"user": "What is the capital of USA?", "answer": "Washington, D.C."}))
+            with open(jsonlfile.name) as jsonlfile:
+                response = llm.upload_file(jsonlfile.name, input_key="user", output_key="answer")
+                assert(response)
 
         with self.subTest("json"):
-            pass
+            import tempfile, json
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as jsonfile:
+                jsonfile.write(json.dumps([{"input": "What's your favorite animal?","output": "dog"}, {"input": "What's your favorite color?","output": "blue"}]))
+            with open(jsonfile.name) as jsonfile:
+                with self.assertRaises(Exception) as context:
+                    llm.upload_file(jsonfile.name, input_key="user", output_key="answer")
+
+                self.assertTrue('Upload of only csv and jsonlines file supported at the moment.' in str(context.exception))
