@@ -127,3 +127,4 @@ class IndexTest(unittest.TestCase):
         llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
         response = llm.train(data)
         [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+        llm.cancel_job() # Clean up

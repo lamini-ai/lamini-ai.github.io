@@ -60,12 +60,13 @@ class TrainingQuickTourTest(unittest.TestCase):
         llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
         response = llm.train(data_or_dataset_id=data)
         [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+        llm.cancel_job() # Clean up
 
 
         with self.subTest("finetune_args"):
             response = llm.train(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
-
             [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+            llm.cancel_job() # Clean up
 
 
     def test_bigger_training(self):
@@ -84,6 +85,7 @@ class TrainingQuickTourTest(unittest.TestCase):
                 dataset_id = llm.upload_file(csvfile.name, input_key="user", output_key="answer")
                 response = llm.train(data_or_dataset_id=dataset_id)
                 [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+                llm.cancel_job() # Clean up
 
         with self.subTest("jsonlines"):
             import tempfile, json
@@ -95,6 +97,7 @@ class TrainingQuickTourTest(unittest.TestCase):
                 dataset_id = llm.upload_file(jsonlfile.name, input_key="user", output_key="answer")
                 response = llm.train(data_or_dataset_id=dataset_id)
                 [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+                llm.cancel_job() # Clean up
 
         with self.subTest("json"):
             import tempfile, json
