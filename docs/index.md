@@ -57,7 +57,7 @@ Next, run an LLM:
 
     That's it! 🎉
 
-More details and options in [Install](get_started/install.md).
+More details and options in [Authenticate](get_started/authenticate).
 
 ## Better inference
 
