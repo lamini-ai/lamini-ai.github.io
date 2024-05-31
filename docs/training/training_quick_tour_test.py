@@ -2,79 +2,12 @@ import unittest
 import os
 import lamini
 
-class IndexTest(unittest.TestCase):
+class TrainingQuickTourTest(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         lamini.api_key = os.environ['PRODUCTION_KEY']
 
     def test_quick_tour(self):
-        llm = lamini.Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
-        response = llm.generate("How are you?", output_type={"Response":"str"})
-        assert (
-            response
-            == {'Response': "I'm doing well, thanks for asking! How about you"}
-        )
-
-    def test_prompt_eng(self):
-        def create_llama3_prompt(user_prompt, system_prompt=""):
-            llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-            llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-            llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
-
-        from lamini import Lamini
-
-        llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-        system_prompt = "You are a pirate. Say arg matey!"
-        user_prompt = "How are you?"
-        prompt = create_llama3_prompt(user_prompt, system_prompt)
-        response = llm.generate(prompt)
-        assert (
-            response
-            == "Arrr, I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. Me leg be feelin' a bit stiff from all the swabbin' the decks, but a good swig o' grog and a bit o' rest should fix me up just fine. What about ye, matey? How be yer day goin'?"
-        )
-
-    def test_output_type(self):
-        def create_llama3_prompt(user_prompt, system_prompt=" "):
-            llama3_header = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-            llama3_middle = "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-            llama3_footer = "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-            return llama3_header + system_prompt + llama3_middle + user_prompt + llama3_footer
-
-        from lamini import Lamini
-
-        llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-        output_type={"age": "int", "units": "str"}
-        prompt = create_llama3_prompt(user_prompt="How old are you?")
-        response = llm.generate(prompt=prompt, output_type=output_type)
-        assert (
-            response
-            == {
-                "age": 0,
-                "units":"years"
-            }
-        )
-
-    def test_bigger_inf(self):
-        from lamini import Lamini
-        llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-        prompt = [
-            "How old are you?",
-            "What is the meaning of life?",
-            "What is the hottest day of the year?"
-        ]
-        output_type={"answer": "str"}
-        response = llm.generate(prompt=prompt, output_type=output_type)
-        assert (
-            response
-            == [
-                {"answer":"I am 25 years old"},
-                {"answer":"The meaning of life is to find your purpose and pursue it with passion and dedication. It is to live a life that is true to who you are and to make a positive impact on the world around you. It is to find joy and fulfillment in the journey, and to never give up on your dreams"},
-                {"answer":"The hottest day of the year is typically the day of the summer solstice, which usually falls on June 20 or June 21 in the Northern Hemisphere. This is the day when the sun is at its highest point in the sky and the Earth is tilted at its maximum angle towards the sun, resulting in the longest day of the year and the most direct sunlight. In the Southern Hemisphere, the summer solstice typically falls on December 21 or December 22. The hottest day of the year can vary depending on the location and climate, but the summer solstice is generally the hottest day of the year in most parts of the world"}
-            ]
-        )
-
-    def test_train(self):
         def get_data():
             data = [
                 {
@@ -120,9 +53,54 @@ class IndexTest(unittest.TestCase):
             ]
             return data
 
+        data = get_data()
         from lamini import Lamini
 
-        data = get_data()
-        llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-        response = llm.train(data)
+        llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+        response = llm.train(data_or_dataset_id=data)
         [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+
+
+        with self.subTest("finetune_args"):
+            response = llm.train(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
+
+            [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+
+
+    def test_bigger_training(self):
+        from lamini import Lamini
+
+        llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+        with self.subTest("csv"):
+            import tempfile, csv
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["user", "answer"]) # Write the header
+                writer.writerow(["Explain the process of photosynthesis","Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."])
+                writer.writerow(["What is the capital of USA?", "Washington, D.C."])
+
+            with open(csvfile.name) as csvfile:
+                dataset_id = llm.upload_file(csvfile.name, input_key="user", output_key="answer")
+                response = llm.train(data_or_dataset_id=dataset_id)
+                [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+
+        with self.subTest("jsonlines"):
+            import tempfile, json
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.jsonl', delete=False) as jsonlfile:
+                jsonlfile.write(json.dumps({"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}))
+                jsonlfile.write("\n")
+                jsonlfile.write(json.dumps({"user": "What is the capital of USA?", "answer": "Washington, D.C."}))
+            with open(jsonlfile.name) as jsonlfile:
+                dataset_id = llm.upload_file(jsonlfile.name, input_key="user", output_key="answer")
+                response = llm.train(data_or_dataset_id=dataset_id)
+                [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+
+        with self.subTest("json"):
+            import tempfile, json
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as jsonfile:
+                jsonfile.write(json.dumps([{"input": "What's your favorite animal?","output": "dog"}, {"input": "What's your favorite color?","output": "blue"}]))
+            with open(jsonfile.name) as jsonfile:
+                with self.assertRaises(Exception) as context:
+                    llm.upload_file(jsonfile.name, input_key="user", output_key="answer")
+
+                self.assertTrue('Upload of only csv and jsonlines file supported at the moment.' in str(context.exception))

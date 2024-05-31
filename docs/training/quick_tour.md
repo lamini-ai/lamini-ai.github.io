@@ -23,10 +23,6 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     Now, load more data in that format. We recommend at least 1000 examples to see a difference in training.
 
-    ```python
-    data = get_data()
-    ```
-
     <details>
     <summary>Code for <code>get_data()</code></summary>
 
@@ -79,6 +75,10 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     </details>
 
+    ```python
+    data = get_data()
+    ```
+
     Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
@@ -90,7 +90,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `train` method:
     ```python
-    results = llm.train(finetune_args={'learning_rate': 1.0e-4})
+    results = llm.train(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
     ```
 
     More details on overriding default hyperparameters can be found in the [`train` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
@@ -133,12 +133,14 @@ You can use the Lamini to train on this file directly. First, upload the file an
 from lamini import Lamini
 
 llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-llm.upload_file("test.csv", input_key="user", output_key="answer")
+dataset_id = llm.upload_file("test.csv", input_key="user", output_key="answer")
+
+llm.train(data_or_dataset_id=dataset_id)
 ```
 
 Alternatively, you may pass in a `jsonlines` file which may look like this:
 
-`test.jsonlines`
+`test.jsonl`
 
 ```json
 {"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
@@ -152,32 +154,7 @@ Then train on this file using the `train` function.
 from lamini import Lamini
 
 llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-llm.upload_file("test.jsonlines", input_key="user", output_key="answer")
+dataset_id = llm.upload_file("test.jsonl", input_key="user", output_key="answer")
 
-llm.train(limit=100000)
-```
-
-Everytime you upload a file, the subsequent `train` would operate on the latest uploaded file, unless you pass in another dataset via `train(data)`.
-
-You may also just use the `Lamini` interface to train on a file using any other model.
-Make sure that the data in the file is in the following format:
-
-`data.json`
-
-```json
-[
-{"input": "What's your favorite animal?","output": "dog"},
-{"input": "What's your favorite color?","output": "blue"},
-    ......
-]
-```
-
-Example code snippet:
-
-```python
-llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-dataset_id = llm.upload_file("data.json")
 llm.train(data_or_dataset_id=dataset_id)
 ```
-
-<br><br>
