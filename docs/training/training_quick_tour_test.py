@@ -5,7 +5,8 @@ import lamini
 class TrainingQuickTourTest(unittest.TestCase):
     @classmethod
     def setUpClass(self):
-        lamini.api_key = os.environ['PRODUCTION_KEY']
+        lamini.api_key = os.environ['STAGING_KEY']
+        lamini.api_url = 'https://api.staging.powerml.co'
 
     def test_quick_tour(self):
         def get_data():

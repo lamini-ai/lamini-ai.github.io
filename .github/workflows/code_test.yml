@@ -5,7 +5,7 @@ on:
   #     - main
   workflow_call:
     secrets:
-      production_key:
+      staging_key:
         required: true
 
 permissions:
@@ -24,6 +24,6 @@ jobs:
           python-version: 3.x
       - run: pip3 install lamini
       - run: |
-          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest docs/index_test.py
-          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest docs/training/training_quick_tour_test.py
-          PRODUCTION_KEY=${{ secrets.production_key }} python3 -m unittest docs/inference/inference_quick_tour_test.py
+          STAGING_KEY=${{ secrets.staging_key }} python3 -m unittest docs/index_test.py
+          STAGING_KEY=${{ secrets.staging_key }} python3 -m unittest docs/training/training_quick_tour_test.py
+          STAGING_KEY=${{ secrets.staging_key }} python3 -m unittest docs/inference/inference_quick_tour_test.py
