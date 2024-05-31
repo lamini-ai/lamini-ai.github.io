@@ -112,7 +112,7 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 
     See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
 
-## Bigger training:
+## Bigger training
 
 === "Python SDK"
 
