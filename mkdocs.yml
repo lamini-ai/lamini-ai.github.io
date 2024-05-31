@@ -73,11 +73,12 @@ nav:
       - Models List: training/models_list.md
       - Efficient LoRAs: training/lora.md
       - Evaluation: training/evaluation.md
-  - Applications:
-      - RAG: applications/rag.md
-      - Classifier: applications/classifier.md
-      - Pipeline: applications/pipeline.md
-      - Agent: applications/agent.md
+  # - Applications:
+  #     - RAG: applications/rag.md
+  #     - Classifier: applications/classifier.md
+  #     - Pipeline: applications/pipeline.md
+  #     - Agent: applications/agent.md
+  - SDK: "https://github.com/lamini-ai/lamini-sdk"
   - Lamini Python reference:
       - __init__: lamini_python_class/__init__.md
       - generate: lamini_python_class/__call__.md
