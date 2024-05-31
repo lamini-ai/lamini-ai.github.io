@@ -80,8 +80,9 @@ class TrainingQuickTourTest(unittest.TestCase):
                 writer.writerow(["What is the capital of USA?", "Washington, D.C."])
 
             with open(csvfile.name) as csvfile:
-                response = llm.upload_file(csvfile.name, input_key="user", output_key="answer")
-                assert(response)
+                dataset_id = llm.upload_file(csvfile.name, input_key="user", output_key="answer")
+                response = llm.train(data_or_dataset_id=dataset_id)
+                [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
 
         with self.subTest("jsonlines"):
             import tempfile, json
@@ -90,8 +91,9 @@ class TrainingQuickTourTest(unittest.TestCase):
                 jsonlfile.write("\n")
                 jsonlfile.write(json.dumps({"user": "What is the capital of USA?", "answer": "Washington, D.C."}))
             with open(jsonlfile.name) as jsonlfile:
-                response = llm.upload_file(jsonlfile.name, input_key="user", output_key="answer")
-                assert(response)
+                dataset_id = llm.upload_file(jsonlfile.name, input_key="user", output_key="answer")
+                response = llm.train(data_or_dataset_id=dataset_id)
+                [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
 
         with self.subTest("json"):
             import tempfile, json
