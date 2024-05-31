@@ -125,15 +125,4 @@ class IndexTest(unittest.TestCase):
         data = get_data()
         llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
         response = llm.train(data)
-        self.assertIn (
-            'job_id',
-            response
-        )
-        self.assertIn (
-            'status',
-            response
-        )
-        self.assertIn (
-            'dataset_id',
-            response
-        )
+        [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]

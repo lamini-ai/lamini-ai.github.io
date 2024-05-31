@@ -58,34 +58,14 @@ class TrainingQuickTourTest(unittest.TestCase):
 
         llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
         response = llm.train(data_or_dataset_id=data)
-        self.assertIn (
-            'job_id',
-            response
-        )
-        self.assertIn (
-            'status',
-            response
-        )
-        self.assertIn (
-            'dataset_id',
-            response
-        )
+        [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+
 
         with self.subTest("finetune_args"):
             response = llm.train(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
 
-            self.assertIn (
-                'job_id',
-                response
-            )
-            self.assertIn (
-                'status',
-                response
-            )
-            self.assertIn (
-                'dataset_id',
-                response
-            )
+            [self.assertIn(key, response) for key in ['job_id', 'status', 'dataset_id']]
+
 
     def test_bigger_training(self):
         from lamini import Lamini
