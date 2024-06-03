@@ -1,5 +1,5 @@
 Lamini documentation 🦙
-* API Docs: https://lamini-ai.github.io/
+* Docs: https://lamini-ai.github.io/
   * Code documentation and example snippets
 * Website: https://www.lamini.ai/
   * Learn more about our product and check out our blog
