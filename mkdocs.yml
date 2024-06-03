@@ -57,7 +57,7 @@ extra:
 
 # Page tree
 nav:
-  - Getting Started:
+  - Introduction:
       - Quick Start: index.md
       - About: about.md
       - Authenticate: get_started/authenticate.md
