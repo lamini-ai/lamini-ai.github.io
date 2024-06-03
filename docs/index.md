@@ -2,9 +2,9 @@
 
 Start using LLMs in just 2 steps with Lamini!
 
-First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account).
+First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account). If you want different authentication options, check out [Authenticate](get_started/authenticate).
 
-Next, run an LLM:
+Next, run Lamini:
 
 === "Python SDK"
 
@@ -31,8 +31,6 @@ Next, run an LLM:
         ```
     </details>
 
-    That's it! 🎉
-
 === "REST API"
 
     Run an LLM with one CURL command.
@@ -55,9 +53,7 @@ Next, run an LLM:
         ```
     </details>
 
-    That's it! 🎉
-
-More details and options in [Authenticate](get_started/authenticate).
+That's it! 🎉
 
 ## Inference
 
