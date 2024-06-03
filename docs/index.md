@@ -71,17 +71,17 @@ Customize inference in many ways:
 You can step through all of these in the [Inference section](inference/quick_tour.md).
 
 
-## Training
+## Tuning
 
-When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can train it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
+When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can tune it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
-There are many ways to train your LLM. We'll cover the most common ones here:
+There are many ways to tune your LLM. We'll cover the most common ones here:
 
-- Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
-- Better training: customize your training call and evaluate your LLM
-- Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
+- Basic tuning: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
+- Better tuning: customize your tuning call and evaluate your LLM
+- Bigger tuning: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
-You can learn how to do these in the [Training section](training/quick_tour.md).
+You can learn how to do these in the [Tuning section](training/quick_tour.md).
 
 ## Examples
 
