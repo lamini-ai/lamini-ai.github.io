@@ -58,7 +58,7 @@ extra:
 # Page tree
 nav:
   - Getting Started:
-      - Quick Tour: index.md
+      - Quick Start: index.md
       - About: about.md
       - Authenticate: get_started/authenticate.md
       - Enterprise Install: enterprise_install.md

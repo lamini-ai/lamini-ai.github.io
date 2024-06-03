@@ -1,4 +1,4 @@
-# Quick Tour
+# Quick Start
 
 Start using LLMs in just 2 steps with Lamini!
 
