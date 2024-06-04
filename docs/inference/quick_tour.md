@@ -1,3 +1,4 @@
+# Inference Overview
 Customize inference in many ways:
 
 - Change the prompt, model, and output type.
