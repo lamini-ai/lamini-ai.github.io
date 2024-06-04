@@ -5,7 +5,7 @@ Customize inference in many ways:
 - High-throughput inference, e.g. 10,000 requests per call.
 - Run applications like RAG (Retrieval Augmented Generation).
 
-## Run Lamini with Llama 3
+## Running Llama 3
 === "Python SDK"
 
     The Python SDK offers higher-level class, `Lamini`, to work with models.
@@ -52,14 +52,55 @@ Since Llama 3 assumes the Llama 3 prompt template, you will need to include it f
 ```
 The `{system}` variable is a system prompt that tells your LLM how it should behave and what persona to take on. By default, it is that of a helpful assistant. The `{instruction}` variable is the instruction prompt that tells your LLM what to do. This is typically what you view as the prompt, e.g. the question you want to ask the LLM.
 
-## Run Lamini with Mistral
+=== "Python SDK"
+
+    ```python
+    from lamini import Lamini
+
+    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+    prompt += "You are a pirate. Say arg matey!"
+    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+    prompt += "How are you?"
+    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
+    llm = Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
+    print(llm.generate(prompt, output_type={"Response":"str"}))
+    ```
+
+=== "REST API"
+
+    ```sh hl_lines="6"
+    curl --location "https://api.lamini.ai/v1/completions" \
+        --header "Authorization: Bearer $LAMINI_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data '{
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+            "output_type": {
+                "Response": "str"
+            }
+        }'
+    ```
+
+<details>
+<summary>Expected Output</summary>
+    ```
+    {
+        'Response': "Ahoy, matey! I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. The sun be shinin' bright, the wind be blowin' strong, and me trusty cutlass be by me side. What more could a pirate ask for, eh? Arrr"
+    }
+    ```
+</details>
+
+## Running other models
+
+With Lamini, you can easily run inference on any transformer-based model from HuggingFace. Remember that many models use prompt templates and will produce poor results if the input does not follow that format.
+
 === "Python SDK"
 
     ```python hl_lines="3"
     from lamini import Lamini
 
     llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
-    print(llm.generate("How are you?", output_type={"Response":"str"}))
+    print(llm.generate("<s>[INST] How are you? [/INST]", output_type={"Response":"str"}))
     ```
 
 === "REST API"
@@ -70,7 +111,7 @@ The `{system}` variable is a system prompt that tells your LLM how it should beh
     --header "Content-Type: application/json" \
     --data '{
         "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
-        "prompt": "How are you?",
+        "prompt": "<s>[INST] How are you? [/INST]",
         "output_type": {
             "Response": "str"
         }
