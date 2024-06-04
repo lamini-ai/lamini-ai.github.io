@@ -6,6 +6,9 @@ There are many ways to train your LLM. We'll cover the most common ones here:
 - Better training: customize your training call and evaluate your LLM
 - Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
 
+In combination with a few techniques, we train LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
+
+This efficiency gain is on and handled by default so you can use the correct model.
 ## Basic and better training
 
 === "Python SDK"
