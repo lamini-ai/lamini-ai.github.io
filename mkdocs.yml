@@ -74,10 +74,10 @@ nav:
   - UI & Website:
       - Playground: inference/playground.md
       - Dashboard: training/dashboard.md
-  # - Applications:
+  - Applications:
+       - Pipeline: applications/pipeline.md
+       - Classifier: applications/classifier.md
   #     - RAG: applications/rag.md
-  #     - Classifier: applications/classifier.md
-  #     - Pipeline: applications/pipeline.md
   #     - Agent: applications/agent.md
   - SDK: "https://github.com/lamini-ai/lamini-sdk"
   - Lamini Python reference:
