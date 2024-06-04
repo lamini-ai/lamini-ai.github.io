@@ -1,8 +1,8 @@
 # Prompt Tuning
 
-=== "Python SDK"
+Prompt tune using the system prompt!
 
-    Prompt-engineer the system prompt in `Lamini`.
+=== "Python SDK"
 
     ```python
     def create_llama3_prompt(user_prompt, system_prompt=""):
