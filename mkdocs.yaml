@@ -68,7 +68,7 @@ nav:
       - JSON Output: inference/json_output.md
       - Batching: inference/batching.md
       - Retrieval Augmented Generation (RAG): inference/rag.md
-  - Training:
+  - Tuning:
       - Overview: training/quick_tour.md
       - Evaluation: training/evaluation.md
   - UI & Website:
