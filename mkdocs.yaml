@@ -81,14 +81,15 @@ nav:
   #     - Agent: applications/agent.md
   - SDK: "https://github.com/lamini-ai/lamini-sdk"
   - Lamini Python reference:
-      - __init__: lamini_python_class/__init__.md
-      - generate: lamini_python_class/__call__.md
-      - train: lamini_python_class/train.md
-      - upload_data: lamini_python_class/upload_data.md
-      - upload_file: lamini_python_class/upload_file.md
-      - check_job_status: lamini_python_class/check_job_status.md
-      - cancel_job: lamini_python_class/cancel_job.md
-      - evaluate: lamini_python_class/evaluate.md
+      - lamini: lamini_python_class/lamini.md
+      # - __init__: lamini_python_class/__init__.md
+      # - generate: lamini_python_class/__call__.md
+      # - train: lamini_python_class/train.md
+      # - upload_data: lamini_python_class/upload_data.md
+      # - upload_file: lamini_python_class/upload_file.md
+      # - check_job_status: lamini_python_class/check_job_status.md
+      # - cancel_job: lamini_python_class/cancel_job.md
+      # - evaluate: lamini_python_class/evaluate.md
   - REST API reference:
       - completions: rest_api/completions.md
       - embed: rest_api/embed.md
