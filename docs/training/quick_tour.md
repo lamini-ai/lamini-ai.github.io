@@ -1,15 +1,17 @@
-When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can train it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
+When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can tune it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
-There are many ways to train your LLM. We'll cover the most common ones here:
+There are many ways to tune your LLM. We'll cover the most common ones here:
 
-- Basic training: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
-- Better training: customize your training call and evaluate your LLM
-- Bigger training: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
+- Basic tuning: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
 
-In combination with a few techniques, we train LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
+- Better tuning: customize your tuning call and evaluate your LLM
+
+- Bigger tuning: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
+
+In combination with a few techniques, we tune LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
 
 This efficiency gain is on and handled by default so you can use the correct model.
-## Basic and better training
+## Basic and better tuning
 
 === "Python SDK"
 
@@ -24,7 +26,7 @@ This efficiency gain is on and handled by default so you can use the correct mod
     }
     ```
 
-    Now, load more data in that format. We recommend at least 1000 examples to see a difference in training.
+    Now, load more data in that format. We recommend at least 1000 examples to see a difference in tuning.
 
     <details>
     <summary>Code for <code>get_data()</code></summary>
@@ -46,7 +48,7 @@ This efficiency gain is on and handled by default so you can use the correct mod
             },
             {
                 "input": "What does it mean to cancel a job using the `cancel_job()` function? Can we stop the machine from doing its task?",
-                "output": "The `cancel_job()` function is used to stop a training job that is currently running.",
+                "output": "The `cancel_job()` function is used to stop a tuning job that is currently running.",
             },
             {
                 "input": "Can Lamini automatically handle hyperparameter tuning during the customization process? How does it optimize the model for a specific use case?",
@@ -54,7 +56,7 @@ This efficiency gain is on and handled by default so you can use the correct mod
             },
             {
                 "input": "Can you explain the CC-BY license mentioned? What does it allow me to do with the customized language model?",
-                "output": "Lamini allows for commercial use of their LLM technology under a permissive Apache 2.0 license unless otherwise specified. You keep access and ownership of your own data, and we don't use your data to train models for anyone else but you. For more information, please reach out to Lamini directly.",
+                "output": "Lamini allows for commercial use of their LLM technology under a permissive Apache 2.0 license unless otherwise specified. You keep access and ownership of your own data, and we don't use your data to tune models for anyone else but you. For more information, please reach out to Lamini directly.",
             },
             {
                 "input": "Can Lamini be used on a regular computer, or do I need specialized hardware or software?",
@@ -66,7 +68,7 @@ This efficiency gain is on and handled by default so you can use the correct mod
             },
             {
                 "input": "Can Lamini help me with tasks like translating text or answering questions, or is it focused on generating text?",
-                "output": "Lamini is primarily focused on generating text, and it can be used for tasks like summarization and paraphrasing. Lamini can also be used to train a LLM for tasks like translation and question answering. You\u2019re talking to a model trained using Lamini right now!",
+                "output": "Lamini is primarily focused on generating text, and it can be used for tasks like summarization and paraphrasing. Lamini can also be used to tune a LLM for tasks like translation and question answering. You\u2019re talking to a model tuned using Lamini right now!",
             },
             {
                 "input": "What is Lamini? Is it like a robot or a computer program?",
@@ -82,21 +84,21 @@ This efficiency gain is on and handled by default so you can use the correct mod
     data = get_data()
     ```
 
-    Next, instantiate the model and train. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+    Next, instantiate the model and tune. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
     ```python
     from lamini import Lamini
 
     llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    llm.train(data_or_dataset_id=data)
+    llm.tune(data_or_dataset_id=data)
     ```
 
-    Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `train` method:
+    Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `tune` method:
     ```python
-    results = llm.train(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
+    results = llm.tune(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
     ```
 
-    More details on overriding default hyperparameters can be found in the [`train` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
+    More details on overriding default hyperparameters can be found in the [`tune` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
 
 === "REST API"
 
@@ -113,13 +115,13 @@ This efficiency gain is on and handled by default so you can use the correct mod
         }'
     ```
 
-    See the [REST API docs](../rest_api/train.md) for more details on training, checking the status of the training job, canceling the job, evaluating the model, loading data, and deleting data.
+    See the [REST API docs](../rest_api/train.md) for more details on tuning, checking the status of the tuning job, canceling the job, evaluating the model, loading data, and deleting data.
 
-## Bigger training
+## Bigger tuning
 
 === "Python SDK"
 
-For training on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
+For tuning on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
 
 Say, you have a csv file `test.csv` with the following format:
 
@@ -130,7 +132,7 @@ user,answer
 ....
 ```
 
-You can use the Lamini to train on this file directly. First, upload the file and specify the input and output keys.
+You can use the Lamini to tune on this file directly. First, upload the file and specify the input and output keys.
 
 ```python
 from lamini import Lamini
@@ -138,7 +140,7 @@ from lamini import Lamini
 llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
 dataset_id = llm.upload_file("test.csv", input_key="user", output_key="answer")
 
-llm.train(data_or_dataset_id=dataset_id)
+llm.tune(data_or_dataset_id=dataset_id)
 ```
 
 Alternatively, you may pass in a `jsonlines` file which may look like this:
@@ -151,7 +153,7 @@ Alternatively, you may pass in a `jsonlines` file which may look like this:
 ....
 ```
 
-Then train on this file using the `train` function.
+Then tune on this file using the `tune` function.
 
 ```python
 from lamini import Lamini
@@ -159,5 +161,5 @@ from lamini import Lamini
 llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
 dataset_id = llm.upload_file("test.jsonl", input_key="user", output_key="answer")
 
-llm.train(data_or_dataset_id=dataset_id)
+llm.tune(data_or_dataset_id=dataset_id)
 ```

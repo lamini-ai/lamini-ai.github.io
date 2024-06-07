@@ -5,9 +5,11 @@ Run an LLM on a large amount of data quickly and efficiently.
 This pipeline first generates questions from a prompt, then generates answers from the questions.
 
 ```python
+import logging
 from lamini.generation.base_prompt_object import PromptObject
 from lamini.generation.generation_node import GenerationNode
 from lamini.generation.generation_pipeline import GenerationPipeline
+logger = logging.getLogger(__name__)
 
 class QuestionAnswerPipeline(GenerationPipeline):
     def __init__(self):
@@ -16,7 +18,7 @@ class QuestionAnswerPipeline(GenerationPipeline):
         self.question_generator = QuestionGenerator(
             "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=200
         )
-        self.asnwer_generator = AnswerGenerator(
+        self.answer_generator = AnswerGenerator(
             "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=100
         )
 
@@ -29,7 +31,7 @@ class QuestionAnswerPipeline(GenerationPipeline):
                 "question_3": "str",
             },
         )
-        x = self.asnwer_generator(x)
+        x = self.answer_generator(x)
         return x
 ```
 
@@ -86,7 +88,7 @@ class QuestionGenerator(GenerationNode):
         prompt += "====================\n\n"
         prompt += obj.data["transcript"]
         prompt += "====================\n\n"
-        prompt += "Consider the numbers in the transscript. "
+        prompt += "Consider the numbers in the transcript. "
         prompt += "Ask three questions about the numbers in the transcript that require precise answers. "
         prompt += "Only ask questions that can be answered using the transcript."
         prompt +="[/INSTR]"
@@ -121,7 +123,7 @@ class AnswerGenerator(GenerationNode):
         prompt += "====================\n\n"
         prompt += obj.data["transcript"] + "\n"
         prompt += "====================\n\n"
-        prompt += "Consider the numbers in the transscript. "
+        prompt += "Consider the numbers in the transcript. "
         prompt += "If the answer to the question cannot be found in the transcript, reply that you do not know. "
         prompt += "Answer the following questions about the numbers in the transcript. "
         prompt += obj.prompt
