@@ -67,7 +67,7 @@ nav:
       - Prompt Tuning: inference/prompt_tuning.md
       - JSON Output: inference/json_output.md
       - Batching: inference/batching.md
-      - Retrieval Augmented Generation (RAG): inference/rag.md
+      - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-sdk/blob/main/03_RAG/rag.md"
   - Tuning:
       - Overview: training/quick_tour.md
       - Evaluation: training/evaluation.md
@@ -79,7 +79,7 @@ nav:
        - Classifier: applications/classifier.md
   #     - RAG: applications/rag.md
   #     - Agent: applications/agent.md
-  - SDK: "https://github.com/lamini-ai/lamini-sdk"
+  - SDK 🔗: "https://github.com/lamini-ai/lamini-sdk"
   - Lamini Python reference:
       - lamini: lamini_python_class/lamini.md
       # - __init__: lamini_python_class/__init__.md

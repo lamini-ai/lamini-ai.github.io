@@ -11,11 +11,11 @@ There are many ways to tune your LLM. We'll cover the most common ones here:
 In combination with a few techniques, we tune LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
 
 This efficiency gain is on and handled by default so you can use the correct model.
-## Basic and better tuning
+## Basic tuning
 
 === "Python SDK"
 
-    First, get data and put it in the format that `Lamini` expects, which includes an `input` and `output`.
+    First, get data and put it into an `input` and `output` format. We recommend at least 1000 examples to see a difference in tuning.
 
     Sample data:
 
@@ -25,8 +25,6 @@ This efficiency gain is on and handled by default so you can use the correct mod
         "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python SDK: https://lamini-ai.github.io/example/",
     }
     ```
-
-    Now, load more data in that format. We recommend at least 1000 examples to see a difference in tuning.
 
     <details>
     <summary>Code for <code>get_data()</code></summary>
@@ -80,27 +78,16 @@ This efficiency gain is on and handled by default so you can use the correct mod
 
     </details>
 
-    ```python
-    data = get_data()
-    ```
-
-    Next, instantiate the model and tune. Track progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
-
+    Next, instantiate and tune the model!
     ```python
     from lamini import Lamini
 
     llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+    data = get_data()
     llm.tune(data_or_dataset_id=data)
     ```
-
-    Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to drop lower, you can do so through the `tune` method:
-    ```python
-    results = llm.tune(data_or_dataset_id=data, finetune_args={'learning_rate': 1.0e-4})
-    ```
-
-    More details on overriding default hyperparameters can be found in the [`tune` method reference](../lamini_python_class/train.md) of the `Lamini` python class.
-
 === "REST API"
+    See the [REST API docs](../rest_api/train.md) for more details on tuning, checking the status of the tuning job, canceling the job, evaluating the model, loading data, and deleting data.
 
     ```bash
     curl --location "https://api.lamini.ai/v1/train" \
@@ -115,15 +102,41 @@ This efficiency gain is on and handled by default so you can use the correct mod
         }'
     ```
 
-    See the [REST API docs](../rest_api/train.md) for more details on tuning, checking the status of the tuning job, canceling the job, evaluating the model, loading data, and deleting data.
+You can track the tuning progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+
+
+## Better tuning
+
+Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to, you can do so through the `tune` method:
+
+```python hl_lines="3"
+results = llm.tune(
+    data_or_dataset_id=data,
+    finetune_args={'learning_rate': 1.0e-4}
+    )
+```
+
+Currently we support most hyper-parameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
+
+Common hyperparameters to tune include:
+
+- `learning_rate` (float) - the learning rate of the model
+
+- `early_stopping` (bool) - whether to use early stopping or not
+
+- `max_steps` (int) - the maximum number of steps to train for
+
+- `optim` (str) - the optimizer to use, e.g. `adam` or `sgd`, a string from HuggingFace
+
+
 
 ## Bigger tuning
 
 === "Python SDK"
 
-For tuning on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
+If you are tuning on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
 
-Say, you have a csv file `test.csv` with the following format:
+Here is an example with a `test.csv` file:
 
 ```csv
 user,answer
@@ -132,7 +145,7 @@ user,answer
 ....
 ```
 
-You can use the Lamini to tune on this file directly. First, upload the file and specify the input and output keys.
+You can use the Lamini to tune on this file directly by uploading the file and specifying the input and output keys.
 
 ```python
 from lamini import Lamini
@@ -143,23 +156,24 @@ dataset_id = llm.upload_file("test.csv", input_key="user", output_key="answer")
 llm.tune(data_or_dataset_id=dataset_id)
 ```
 
-Alternatively, you may pass in a `jsonlines` file which may look like this:
+Alternatively, you can also use `jsonlines` files
 
-`test.jsonl`
+<details>
+    <summary>Using <code>test.jsonl</code></summary>
 
-```json
-{"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
-{"user": "What is the capital of USA?", "answer": "Washington, D.C."}
-....
-```
+    ```json
+    {"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
+    {"user": "What is the capital of USA?", "answer": "Washington, D.C."}
+    ....
+    ```
 
-Then tune on this file using the `tune` function.
+    Then tune on this file using the `tune` function.
 
-```python
-from lamini import Lamini
+    ```python
+    from lamini import Lamini
 
-llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-dataset_id = llm.upload_file("test.jsonl", input_key="user", output_key="answer")
+    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+    dataset_id = llm.upload_file("test.jsonl", input_key="user", output_key="answer")
 
-llm.tune(data_or_dataset_id=dataset_id)
-```
+    llm.tune(data_or_dataset_id=dataset_id)
+    ```
