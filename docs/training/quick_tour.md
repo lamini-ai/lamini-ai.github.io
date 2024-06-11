@@ -132,8 +132,6 @@ Common hyperparameters to tune include:
 
 ## Bigger tuning
 
-=== "Python SDK"
-
 If you are tuning on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
 
 Here is an example with a `test.csv` file:

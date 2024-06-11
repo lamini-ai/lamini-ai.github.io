@@ -85,7 +85,6 @@ Some common config values:
 
 1. `verbose` : Set to true to enable verbose logging
 2. `powerml` : A list of API endpoints.  If you want to run different services on different machines, e.g. in a kubernetes cluster, configure each service's endpoints here.
-3. `disable_auth` : Turn off built in authentication, e.g. if you want to use your own.
 
 ### docker-compose.yaml
 

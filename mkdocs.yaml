@@ -62,6 +62,7 @@ nav:
       - About: about.md
       - Authenticate: get_started/authenticate.md
       - Enterprise Install: enterprise_install.md
+      - FAQ: faq.md
   - Inference:
       - Overview: inference/quick_tour.md
       - Prompt Tuning: inference/prompt_tuning.md
@@ -71,16 +72,14 @@ nav:
   - Tuning:
       - Overview: training/quick_tour.md
       - Evaluation: training/evaluation.md
-  - UI & Website:
-      - Playground: inference/playground.md
-      - Dashboard: training/dashboard.md
+  - Playground: inference/playground.md
   - Applications:
        - Pipeline: applications/pipeline.md
        - Classifier: applications/classifier.md
   #     - RAG: applications/rag.md
   #     - Agent: applications/agent.md
   - SDK 🔗: "https://github.com/lamini-ai/lamini-sdk"
-  - Lamini Python reference:
+  - Python API reference:
       - lamini: lamini_python_class/lamini.md
       # - __init__: lamini_python_class/__init__.md
       # - generate: lamini_python_class/__call__.md
