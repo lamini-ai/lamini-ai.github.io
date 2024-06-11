@@ -19,3 +19,18 @@ import lamini
 lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 ```
 If you want different authentication options, check out [Authenticate](get_started/authenticate).
+
+## How do I design my LLM app?
+Here are some common questions that may help you reason about the design of your
+first LLM app.
+
+1. Who are your intended users?
+
+2. How will this application be deployed?
+
+3. What data is available to train the LLM?
+
+4. What data is available online vs offline?
+
+5. What are the gaps between the out of the box
+   performance of the LLM, and your requirements?
