@@ -2,7 +2,7 @@
 
 Lamini provides the best LLM inference and tuning for the enterprise. Factual LLMs. Up in 10min. Deployed anywhere.
 
-The proprietary Lamini backend orchestrates GPUs to deliver exceptional LLM tuning and inference capabilities, which easily integrate into enterprise applications via the Lamini [REST API](/rest_api/completions/), [web UI](/inference/playground/), and [Python client](/lamini_python_class/__init__/). The backend can run in a customer's enviroment (on your own GPU infrastructure on premise or in your VPC), or you can use Lamini's supply of GPUs via [app.lamini.ai](app.lamini.ai).
+The proprietary Lamini backend orchestrates GPUs to deliver exceptional LLM tuning and inference capabilities, which easily integrate into enterprise applications via the Lamini [REST API](/rest_api/completions/), [web UI](/inference/playground/), and [Python client](/lamini_python_class/lamini/). The backend can run in a customer's enviroment (on your own GPU infrastructure on premise or in your VPC), or you can use Lamini's supply of GPUs via [app.lamini.ai](app.lamini.ai).
 
 ![Lamini overview](/assets/lamini-overview.png)
 

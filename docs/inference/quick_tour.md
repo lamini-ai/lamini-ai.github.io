@@ -1,10 +1,66 @@
-# Inference Overview
+# Inference Quick Start
 Customize inference in many ways:
 
 - Change the prompt, model, and output type.
 - Output multiple values in structured JSON.
 - High-throughput inference, e.g. 10,000 requests per call.
 - Run applications like RAG (Retrieval Augmented Generation).
+
+## Quick start
+Start using LLMs in just 2 steps with Lamini!
+
+First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account). If you want different authentication options, check out [Authenticate](get_started/authenticate).
+
+Next, run Lamini:
+
+=== "Python SDK"
+
+    Install the Python SDK.
+
+    ```python
+    pip install --upgrade lamini
+    ```
+
+    Run an LLM with a few lines of code.
+
+    ```python
+    import lamini
+    lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+
+    llm = lamini.Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
+    print(llm.generate("How are you?", output_type={"Response":"str"}))
+    ```
+
+    <details>
+    <summary>Expected Output</summary>
+        ```
+        {'Response': "I'm doing well, thanks for asking! How about you"}
+        ```
+    </details>
+
+=== "REST API"
+
+    Run an LLM with one CURL command.
+
+    ```bash
+    curl --location "https://api.lamini.ai/v1/completions" \
+        --header "Authorization: Bearer $LAMINI_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data '{
+            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "prompt": "How are you?",
+            "output_type": {"Response": "str"}
+        }'
+    ```
+
+    <details>
+    <summary>Expected Output</summary>
+        ```
+        {"Response":"I'm doing well, thanks for asking! How about you"}
+        ```
+    </details>
+
+That's it! 🎉
 
 ## Running Llama 3
 === "Python SDK"
