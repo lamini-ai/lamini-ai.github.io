@@ -17,12 +17,12 @@ Lamini is an integrated LLM inference and tuning platform, so you can seamlessly
   <tr onclick="location.href='/inference/json_output/'">
     <td>LLM inference that's 100% guaranteed to match your schema 💯</td>
     <td></td>
-    <td><a href="/inference/json_output/">JSON output</a></td>
+    <td><a href="/inference/json_output/">JSON Output</a></td>
   </tr>
   <tr onclick="location.href='/inference/batching/'">
     <td>High throughput inference (52x faster) 🏃💨</td>
     <td></td>
-    <td><a href="/inference/batching/">Iteration batching</a></td>
+    <td><a href="/inference/batching/">Iteration Batching</a></td>
   </tr>
   <tr onclick="location.href='/about'">
     <td>What makes Lamini unique? ✨</td>
