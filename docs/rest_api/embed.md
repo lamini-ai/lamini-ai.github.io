@@ -7,15 +7,15 @@ This endpoint allows you to make a POST request to convert a string into a vecto
 - HTTP Method: POST
 - URL: `https://api.lamini.ai/v1/inference/embedding`
 - Headers:
-  - `Authorization: Bearer <LAMINI_API_KEY>`
-  - `Content-Type: application/json`
+      - `Authorization: Bearer $LAMINI_API_KEY`
+      - `Content-Type: application/json`
 - Example Body (JSON):
 
 
 ```json
 {
-    "prompt": Union[str, List[str]],
-    "model_name": str
+    "prompt": "How old is Carl, the llama with a hat?",
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2"
 }
 ```
 
@@ -45,9 +45,9 @@ Otherwise, the request will return an error code, and the response json will con
 
 ```bash
 curl --location 'https://api.lamini.ai/v1/inference/embedding' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
---header 'Content-Type: application/json' \
---data '{ "prompt": "How are you?  Rate on a scale of 1 to 5." }'
+   --header 'Authorization: Bearer $LAMINI_API_KEY' \
+   --header 'Content-Type: application/json' \
+   --data '{ "prompt": "How are you?  Rate on a scale of 1 to 5." }'
 ```
 
 #### Response

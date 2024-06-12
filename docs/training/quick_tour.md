@@ -89,19 +89,6 @@ This efficiency gain is on and handled by default so you can use the correct mod
 === "REST API"
     See the [REST API docs](../rest_api/train.md) for more details on tuning, checking the status of the tuning job, canceling the job, evaluating the model, loading data, and deleting data.
 
-    ```bash
-    curl --location "https://api.lamini.ai/v1/train" \
-        --header "Authorization: Bearer $LAMINI_API_KEY" \
-        --header "Content-Type: application/json" \
-        --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct"
-            "data": [
-                    {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nAre there any step-by-step tutorials or walkthroughs available in the documentation?[/INST]", "output": "Yes, there are step-by-step tutorials and walkthroughs available in the documentation section. Here\u2019s an example for using Lamini to get insights into any python SDK: https://lamini-ai.github.io/example/"},
-                    {"input": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n<</SYS>>\n\nDoes Lamini have a limit on the number of API requests I can make?", "output": "Lamini provides each user with free tokens up front."}
-                ]
-        }'
-    ```
-
 You can track the tuning progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 

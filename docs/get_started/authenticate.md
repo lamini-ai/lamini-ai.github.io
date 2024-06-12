@@ -75,6 +75,6 @@ If you are [running Lamini in your VPC or on prem](/enterprise_install/installer
         url: "<YOUR-SERVER-URL-HERE>"
     ```
 
-## Advanced Python setup: Google Colab
+## Google Colab
 
 Here's a Colab notebook you can use to get started: [Getting Started with Lamini](https://colab.research.google.com/drive/115OJavk4DE51rUKwfCOyWxWa0LguiuEI#scrollTo=lD391Mcv4lGQ)

@@ -1,4 +1,4 @@
-## Endpoint Documentation: `/v1/lamini/train/jobs/{job_id}/cancel`
+## Endpoint Documentation: `/v1/train/jobs/{job_id}/cancel`
 
 !!! note
 
@@ -8,39 +8,26 @@ Cancel a scheduled or running training job.
 
 ## Request
 
-**HTTP Method:** `POST`
-
-**Path:** `https://api.lamini.ai/v1/lamini/train/jobs/{job_id}/cancel`
-
-**Headers:**
-
-- `Authorization: Bearer <LAMINI_API_KEY>`
-- `Content-Type: application/json`
+- HTTP Method: `POST`
+- URL: `https://api.lamini.ai/v1/train/jobs/{job_id}/cancel`
+- Headers:
+    - `Authorization: Bearer $LAMINI_API_KEY`
+    - `Content-Type: application/json`
 
 **Parameters:**
 
 - `{job_id}` - The unique identifier of the training job to be cancelled.
 
-## Response
-
-**Body (JSON):**
-
-- `message` - A message describing whether the job was successfully cancelled or not
-
-```json
-{ "message": "cancelled 418" }
-```
-
 ## Example
 
-This example cancels the training job with the ID `418`. The request is authenticated using the `LAMINI_API_KEY` bearer token.
+This example cancels the training job with the ID `418`. The request is authenticated using the `$LAMINI_API_KEY` bearer token.
 
 ### Request
 
 ```bash
-curl --location --request POST 'https://api.lamini.ai/v1/lamini/train/jobs/418/cancel' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
---header 'Content-Type: application/json'
+curl --location --request POST 'https://api.lamini.ai/v1/train/jobs/418/cancel' \
+  --header 'Authorization: Bearer $LAMINI_API_KEY' \
+  --header 'Content-Type: application/json'
 ```
 
 ### Response
