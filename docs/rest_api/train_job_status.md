@@ -1,4 +1,4 @@
-## Endpoint Documentation: `/v1/lamini/train/jobs/{job_id}`
+## Endpoint Documentation: `/v1/train/jobs/{job_id}`
 
 !!! note
 
@@ -8,14 +8,11 @@ Get the status of a training job.
 
 ## Request
 
-**HTTP Method:** `GET`
-
-**Path:** `https://api.lamini.ai/v1/lamini/train/jobs/{job_id}`
-
-**Headers:**
-
-- `Authorization: Bearer <LAMINI_API_KEY>`
-- `Content-Type: application/json`
+- HTTP Method: `GET`
+- Path: `https://api.lamini.ai/v1/train/jobs/{job_id}`
+- Headers:
+    - `Authorization: Bearer <LAMINI_API_KEY>`
+    - `Content-Type: application/json`
 
 **Parameters:**
 
@@ -41,28 +38,30 @@ The response will contain the job id, job status, job start time, and model name
 ### When Completed
 
 ```
-{"job_id":2514,"status":"COMPLETED","start_time":"2023-08-09T19:42:46.857931","model_name":"3aa98c32d6e9b10f93cd50023cd4befff2085705c32adedb73d4dc217592ef78","custom_model_name":""}
+{"job_id":2514,"status":"COMPLETED","start_time":"2023-08-09T19:42:46.857931","model_name":"abcde","custom_model_name":""}
 ```
-
-## Example
-
-This example cancels the training job with the ID `418`. The request is authenticated using the `LAMINI_API_KEY` bearer token.
 
 ### Request
 
 ```bash
-curl --location --request GET 'https://api.lamini.ai/v1/lamini/train/jobs/418' \
---header 'Authorization: Bearer <LAMINI_API_KEY>' \
---header 'Content-Type: application/json'
+curl --location --request GET 'https://api.lamini.ai/v1/train/jobs/$JOB_ID' \
+  --header 'Authorization: Bearer $LAMINI_API_KEY' \
+  --header 'Content-Type: application/json'
 ```
 
 ### Response
 
 ```json
 {
-  "job_id": "418",
-  "status": "SCHEDULED" | "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "CANCELED" | "FAILED",
-  "start_time": "",
-  "model_name": "4321dvwgeb9c483750b213afc78b49fe875d43db27d508e821c2e92e2701e018",
+  "job_id": "123",
+  "status": "COMPLETED",
+  "start_time": "2023-08-11T03:16:38.899729",
+  "model_name": "abcde",
+  "custom_model_name": "",
+  "is_public": false,
+  "history": "[{\"loss\": 4.5333, \"learning_rate\": 1e-05, \"epoch\": 0.1, \"iter_time\": 0.0, \"flops\": 0.0, \"remaining_time\": 0.0, \"step\": 10}, ...]",
+  "resume_count": 0,
+  "dataset_id": null,
+  "resume_limit": 1000
 }
 ```
