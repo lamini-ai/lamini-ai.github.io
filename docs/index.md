@@ -14,6 +14,11 @@ Lamini is an integrated LLM inference and tuning platform, so you can seamlessly
     <td></td>
     <td><a href="/inference/quick_tour">Quick Start</a></td>
   </tr>
+  <tr onclick="location.href='/training/memory_tuning/'">
+    <td>95% accuracy and beyond 🧠</td>
+    <td></td>
+    <td><a href="/training/memory_tuning/">Memory Tuning</a></td>
+  </tr>
   <tr onclick="location.href='/inference/json_output/'">
     <td>LLM inference that's 100% guaranteed to match your schema 💯</td>
     <td></td>

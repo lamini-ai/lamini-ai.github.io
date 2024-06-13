@@ -71,6 +71,9 @@ nav:
       - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-sdk/blob/main/03_RAG/rag.md"
   - Tuning:
       - Quick Start: training/quick_tour.md
+      - Memory Tuning: training/memory_tuning.md
+      - Hyper Parameters: training/hyper_parameters.md
+      - Large Data Files: training/large_data_files.md
       - Evaluation: training/evaluation.md
   - Playground: inference/playground.md
   - Applications:

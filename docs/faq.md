@@ -3,6 +3,11 @@
 ## What models are supported?
 We support all [CausalLM models from HuggingFace](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference.
 
+## Does Lamini use LoRAs?
+In combination with a few techniques, we tune LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
+
+This efficiency gain is on and handled by default.
+
 ## Why did my training / tuning job time out?
 We have a time out at 4 hours and a queue for tuning jobs in order to serve all users. If your job times out, you can resume training to restart the training from the last checkpoint. If you would like more throughput, please reach out to info@lamini.ai about an enterprise contract.
 
