@@ -1,17 +1,11 @@
 # Training Quick Start
 When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can tune it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
-There are many ways to tune your LLM. We'll cover the most common ones here:
+There are many ways to tune your LLM. We'll cover two methods here. A traditional tuning method, and memory tuning with our custom formula for photographic memory:
 
 - Basic tuning: build your own LLM for specific domain knowledge or task with finetuning, domain adaptation, and more
+- Memory tuning: build your own LLM for specific domain knowledge or task with memory tuning, eliminating hallucinations
 
-- Better tuning: customize your tuning call and evaluate your LLM
-
-- Bigger tuning: pretrain your LLM on a large dataset, e.g. Wikipedia, to improve its general knowledge
-
-In combination with a few techniques, we tune LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
-
-This efficiency gain is on and handled by default so you can use the correct model.
 ## Basic tuning
 
 === "Python SDK"
@@ -92,74 +86,9 @@ This efficiency gain is on and handled by default so you can use the correct mod
 
 You can track the tuning progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
+## Memory Tuning
+Lamini Memory Tuning is a new way to embed facts into LLMs that improves factual accuracy to previously-unachievable levels.
 
-## Better tuning
+Learn more: [http://www.lamini.ai/blog/lamini-memory-tuning](http://www.lamini.ai/blog/lamini-memory-tuning)
 
-Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to, you can do so through the `tune` method:
-
-```python hl_lines="3"
-results = llm.tune(
-    data_or_dataset_id=data,
-    finetune_args={'learning_rate': 1.0e-4}
-    )
-```
-
-Currently we support most hyper-parameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
-
-Common hyperparameters to tune include:
-
-- `learning_rate` (float) - the learning rate of the model
-
-- `early_stopping` (bool) - whether to use early stopping or not
-
-- `max_steps` (int) - the maximum number of steps to train for
-
-- `optim` (str) - the optimizer to use, e.g. `adam` or `sgd`, a string from HuggingFace
-
-
-
-## Bigger tuning
-
-If you are tuning on a large file of data, you can use the `upload_file` function to first upload the file onto the servers.
-
-Here is an example with a `test.csv` file:
-
-```csv
-user,answer
-"Explain the process of photosynthesis","Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things.
-"What is the capital of USA?", "Washington, D.C."
-....
-```
-
-You can use the Lamini to tune on this file directly by uploading the file and specifying the input and output keys.
-
-```python
-from lamini import Lamini
-
-llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-dataset_id = llm.upload_file("test.csv", input_key="user", output_key="answer")
-
-llm.tune(data_or_dataset_id=dataset_id)
-```
-
-Alternatively, you can also use `jsonlines` files
-
-<details>
-    <summary>Using <code>test.jsonl</code></summary>
-
-    ```json
-    {"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
-    {"user": "What is the capital of USA?", "answer": "Washington, D.C."}
-    ....
-    ```
-
-    Then tune on this file using the `tune` function.
-
-    ```python
-    from lamini import Lamini
-
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    dataset_id = llm.upload_file("test.jsonl", input_key="user", output_key="answer")
-
-    llm.tune(data_or_dataset_id=dataset_id)
-    ```
+![Memory tuning graph](/assets/memory_tuning_graph.png)
