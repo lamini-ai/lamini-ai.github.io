@@ -68,7 +68,7 @@ nav:
       - Prompt Tuning: inference/prompt_tuning.md
       - JSON Output: inference/json_output.md
       - Batching: inference/batching.md
-      - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-sdk/blob/main/03_RAG/rag.md"
+      - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-sdk/blob/main/04_rag_tuning/README.md"
   - Tuning:
       - Quick Start: training/quick_tour.md
       - Memory Tuning: training/memory_tuning.md
