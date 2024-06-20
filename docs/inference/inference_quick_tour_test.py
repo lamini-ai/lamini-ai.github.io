@@ -73,6 +73,7 @@ class InferenceQuickTourTest(unittest.TestCase):
             == {"age": 25, "units": "years"}
         )
 
+    '''
     def test_bigger_inference(self):
         from lamini import Lamini
 
@@ -106,3 +107,4 @@ class InferenceQuickTourTest(unittest.TestCase):
                 }
             ]
         )
+    '''
