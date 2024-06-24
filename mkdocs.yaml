@@ -58,40 +58,32 @@ extra:
 # Page tree
 nav:
   - Introduction:
-      - Overview: index.md
+      - Overview: overview.md
       - About: about.md
-      - Authenticate: get_started/authenticate.md
+      - Authenticate: authenticate.md
       - Enterprise Install: enterprise_install.md
       - FAQ: faq.md
   - Inference:
-      - Quick Start: inference/quick_tour.md
+      - Quick Start: inference/quick_start.md
       - Prompt Tuning: inference/prompt_tuning.md
       - JSON Output: inference/json_output.md
       - Batching: inference/batching.md
       - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-sdk/blob/main/04_rag_tuning/README.md"
   - Tuning:
-      - Quick Start: training/quick_tour.md
-      - Memory Tuning: training/memory_tuning.md
-      - Hyper Parameters: training/hyper_parameters.md
-      - Large Data Files: training/large_data_files.md
-      - Evaluation: training/evaluation.md
+      - Quick Start: tuning/quick_start.md
+      - Memory Tuning: tuning/memory_tuning.md
+      - Hyperparameters: tuning/hyperparameters.md
+      - Large Data Files: tuning/large_data_files.md
+      - Evaluation: tuning/evaluation.md
+      - Dashboard: tuning/dashboard.md
   - Playground: inference/playground.md
   - Applications:
        - Pipeline: applications/pipeline.md
        - Classifier: applications/classifier.md
-  #     - RAG: applications/rag.md
-  #     - Agent: applications/agent.md
   - SDK 🔗: "https://github.com/lamini-ai/lamini-sdk"
   - Python API reference:
       - lamini: lamini_python_class/lamini.md
-      # - __init__: lamini_python_class/__init__.md
-      # - generate: lamini_python_class/__call__.md
-      # - train: lamini_python_class/train.md
-      # - upload_data: lamini_python_class/upload_data.md
-      # - upload_file: lamini_python_class/upload_file.md
-      # - check_job_status: lamini_python_class/check_job_status.md
-      # - cancel_job: lamini_python_class/cancel_job.md
-      # - evaluate: lamini_python_class/evaluate.md
+      - upload_data: lamini_python_class/upload_data.md
   - REST API reference:
       - completions: rest_api/completions.md
       - embed: rest_api/embed.md
@@ -104,4 +96,6 @@ nav:
 plugins:
   - redirects:
       redirect_maps:
-        'get_started/install.md': 'get_started/authenticate.md'
+        'get_started/install.md': 'authenticate.md'
+        'get_started/authenticate.md': 'authenticate.md'
+        'index.md': 'overview.md'

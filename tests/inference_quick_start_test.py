@@ -2,13 +2,13 @@ import unittest
 import os
 import lamini
 
-class InferenceQuickTourTest(unittest.TestCase):
+class InferenceQuickStartTest(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         lamini.api_key = os.environ['STAGING_KEY']
         lamini.api_url = 'https://api.staging.powerml.co'
 
-    def test_quick_tour(self):
+    def test_quick_start(self):
         from lamini import Lamini
         llm = Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
         response = llm.generate("How are you?", output_type={"Response":"str"})
