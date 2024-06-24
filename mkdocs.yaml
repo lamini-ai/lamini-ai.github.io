@@ -83,7 +83,6 @@ nav:
   - SDK 🔗: "https://github.com/lamini-ai/lamini-sdk"
   - Python API reference:
       - lamini: lamini_python_class/lamini.md
-      - upload_data: lamini_python_class/upload_data.md
   - REST API reference:
       - completions: rest_api/completions.md
       - embed: rest_api/embed.md
