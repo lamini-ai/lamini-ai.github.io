@@ -99,6 +99,7 @@ plugins:
         'get_started/install.md': 'authenticate.md'
         'get_started/authenticate.md': 'authenticate.md'
         'index.md': 'overview.md'
+        'training/memory_tuning/': 'tuning/memory_tuning.md'
         'training/quick_start.md': 'tuning/quick_start.md'
         'training/quick_tour.md': 'tuning/quick_start.md'
         'inference/quick_tour.md': 'inference/quick_start.md'
