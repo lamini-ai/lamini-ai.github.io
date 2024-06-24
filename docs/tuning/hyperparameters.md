@@ -1,4 +1,4 @@
-# Hyper Parameters
+# Hyperparameters
 
 Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to, you can do so through the `tune` method:
 
@@ -9,7 +9,7 @@ results = llm.tune(
     )
 ```
 
-Currently we support most hyper-parameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
+Currently we support most hyperparameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.
 
 Common hyperparameters to tune include:
 

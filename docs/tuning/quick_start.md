@@ -1,4 +1,4 @@
-# Training Quick Start
+# Tuning Quick Start
 When running inference, with prompt-engineering and RAG, is not enough for your LLM, you can tune it. This is harder but will result in better performance, better leverage of your data, and increased knowledge and reasoning capabilities.
 
 There are many ways to tune your LLM. We'll cover two methods here. A traditional tuning method, and memory tuning with our custom formula for photographic memory:
