@@ -9,7 +9,7 @@ Customize inference in many ways:
 ## Quick start
 Start using LLMs in just 2 steps with Lamini!
 
-First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account). If you want different authentication options, check out [Authenticate](get_started/authenticate).
+First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account). If you want different authentication options, check out [Authenticate](/authenticate).
 
 Next, run Lamini:
 

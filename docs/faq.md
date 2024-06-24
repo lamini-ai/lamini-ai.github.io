@@ -23,7 +23,7 @@ Next, make sure you set it before calling lamini:
 import lamini
 lamini.api_key = "<YOUR-LAMINI-API-KEY>"
 ```
-If you want different authentication options, check out [Authenticate](get_started/authenticate).
+If you want different authentication options, check out [Authenticate](/authenticate).
 
 ## How do I design my LLM app?
 Here are some common questions that may help you reason about the design of your
