@@ -4,6 +4,6 @@ Memory Tuning is a revolutionary new capability from Lamini that lets you embed 
 
 Memory tuning allows your LLMs to both keep their general reasoning capabilities and commit specific factual data to their weights as memory.
 
-Learn more: [http://www.lamini.ai/blog/lamini-memory-tuning](http://www.lamini.ai/blog/lamini-memory-tuning)
+Learn more from our [blog post](http://www.lamini.ai/blog/lamini-memory-tuning)!
 
 ![Memory tuning playgroung example](/assets/memory_tuning.gif)

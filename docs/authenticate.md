@@ -2,7 +2,7 @@
 
 Welcome to this easy 2-step auth. Estimated time: 2 minutes.
 
-If you want to host Lamini in your VPC or on prem, check out [enterprise installer instructions](/enterprise_install) 🔗.
+If you want to host Lamini in your VPC or on prem, check out the [enterprise installer instructions](/enterprise_install).
 
 ## 1. Get your Lamini API key 🔑
 

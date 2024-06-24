@@ -1,6 +1,6 @@
 # Module `lamini.api.lamini`
 
-Want to go deeper? Check out the full open source repo: [https://github.com/lamini-ai/lamini](https://github.com/lamini-ai/lamini).
+Want to see more? Check out our full open source repo: [https://github.com/lamini-ai/lamini](https://github.com/lamini-ai/lamini).
 
 
 ## Classes
