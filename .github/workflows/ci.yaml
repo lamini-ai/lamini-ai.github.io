@@ -1,4 +1,4 @@
-name: ci 
+name: ci
 on:
   push:
     branches:
@@ -17,5 +17,9 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
+      - uses: tokusumi/markdown-embed-code@main
+        with:
+          markdown: "docs/inference/quick_start.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
       - run: pip install mkdocs-material mkdocs-redirects
       - run: mkdocs gh-deploy --force -f mkdocs.yaml

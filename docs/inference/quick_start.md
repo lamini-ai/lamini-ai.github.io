@@ -23,12 +23,7 @@ Next, run Lamini:
 
     Run an LLM with a few lines of code.
 
-    ```python
-    import lamini
-    lamini.api_key = "<YOUR-LAMINI-API-KEY>"
-
-    llm = lamini.Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate("How are you?", output_type={"Response":"str"}))
+    ```python:quick_start.py
     ```
 
     <details>
