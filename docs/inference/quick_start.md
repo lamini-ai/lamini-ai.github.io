@@ -24,7 +24,7 @@ Next, run Lamini:
     Run an LLM with a few lines of code.
 
     ```py
-    # quick_start.py
+    # code/quick_start.py
     ```
 
     <details>
@@ -62,11 +62,8 @@ That's it! 🎉
 === "Python SDK"
 
     The Python SDK offers higher-level class, `Lamini`, to work with models.
-    ```python hl_lines="3"
-    from lamini import Lamini
-
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    print(llm.generate("How are you?", output_type={"Response":"str"}))
+    ```py
+    # code/llama_3.py
     ```
 
 === "REST API"
@@ -107,16 +104,8 @@ The `{system}` variable is a system prompt that tells your LLM how it should beh
 
 === "Python SDK"
 
-    ```python
-    from lamini import Lamini
-
-    prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    prompt += "You are a pirate. Say arg matey!"
-    prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
-    prompt += "How are you?"
-    prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
-    llm = Lamini("meta-llama/Meta-Llama-3-8B-Instruct")
-    print(llm.generate(prompt, output_type={"Response":"str"}))
+    ```py
+    # code/llama_3_prompt.py
     ```
 
 === "REST API"
@@ -149,11 +138,8 @@ With Lamini, you can easily run inference on any transformer-based model from Hu
 
 === "Python SDK"
 
-    ```python hl_lines="3"
-    from lamini import Lamini
-
-    llm = Lamini(model_name='mistralai/Mistral-7B-Instruct-v0.2')
-    print(llm.generate("<s>[INST] How are you? [/INST]", output_type={"Response":"str"}))
+    ```py
+    # code/mistral.py
     ```
 
 === "REST API"
