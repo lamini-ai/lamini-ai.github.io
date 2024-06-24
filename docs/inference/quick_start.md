@@ -23,7 +23,8 @@ Next, run Lamini:
 
     Run an LLM with a few lines of code.
 
-    ```python:quick_start.py
+    ```py
+    # quick_start.py
     ```
 
     <details>
