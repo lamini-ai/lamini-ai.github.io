@@ -17,9 +17,6 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - uses: tokusumi/markdown-embed-code@main
-        with:
-          markdown: "docs/inference/quick_start.md"
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: npx embedme "docs/inference/quick_start.md"
       - run: pip install mkdocs-material mkdocs-redirects
       - run: mkdocs gh-deploy --force -f mkdocs.yaml
