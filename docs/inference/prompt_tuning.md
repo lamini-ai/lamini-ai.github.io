@@ -50,4 +50,4 @@ Prompt tune using the system prompt.
 
 Definitely check out the expected output here. Because now it's a pirate :)
 
-Check out a longer tutorial here: [https://github.com/lamini-ai/lamini-sdk/blob/main/02_prompt_engineering/prompt_engineering.md](https://github.com/lamini-ai/lamini-sdk/blob/main/02_prompt_engineering/prompt_engineering.md)
+Check out a longer tutorial here: [https://github.com/lamini-ai/lamini-examples/tree/main/03_prompt_tuning](https://github.com/lamini-ai/lamini-examples/tree/main/03_prompt_tuning)
