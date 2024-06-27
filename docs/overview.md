@@ -34,9 +34,9 @@ Lamini is an integrated LLM inference and tuning platform, so you can seamlessly
     <td></td>
     <td><a href="/about">About</a></td>
   </tr>
-  <tr onclick="location.href='https://github.com/lamini-ai/lamini-sdk/';">
+  <tr onclick="location.href='https://github.com/lamini-ai/lamini-examples/';">
     <td>Use cases and recipes 🥘</td>
     <td></td>
-    <td><a href="https://github.com/lamini-ai/lamini-sdk/">Examples</a></td>
+    <td><a href="https://github.com/lamini-ai/lamini-examples/">Examples</a></td>
   </tr>
 </table>

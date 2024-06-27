@@ -27,13 +27,6 @@ Next, run Lamini:
     # code/quick_start.py
     ```
 
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        {'Response': "I'm doing well, thanks for asking! How about you"}
-        ```
-    </details>
-
 === "REST API"
 
     Run an LLM with one CURL command.
@@ -49,12 +42,12 @@ Next, run Lamini:
         }'
     ```
 
-    <details>
-    <summary>Expected Output</summary>
-        ```
-        {"Response":"I'm doing well, thanks for asking! How about you"}
-        ```
-    </details>
+<details>
+<summary>Expected Output</summary>
+    ```
+    {"Response":"I'm doing well, thanks for asking! How about you"}
+    ```
+</details>
 
 That's it! 🎉
 
@@ -86,9 +79,7 @@ That's it! 🎉
 <details>
 <summary>Expected Output</summary>
     ```
-    {
-        'Response': "I'm doing well, thanks for asking! How about you"
-    }
+    {'Response': "I'm doing well, thanks for asking! How about you"}
     ```
 </details>
 
@@ -126,9 +117,7 @@ The `{system}` variable is a system prompt that tells your LLM how it should beh
 <details>
 <summary>Expected Output</summary>
     ```
-    {
-        'Response': "Ahoy, matey! I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. The sun be shinin' bright, the wind be blowin' strong, and me trusty cutlass be by me side. What more could a pirate ask for, eh? Arrr"
-    }
+    {'Response': "Ahoy, matey! I be doin' just fine, thank ye for askin'! Me and me crew have been sailin' the seven seas, plunderin' the riches and singin' sea shanties 'round the campfire. The sun be shinin' bright, the wind be blowin' strong, and me trusty cutlass be by me side. What more could a pirate ask for, eh? Arrr"}
     ```
 </details>
 
