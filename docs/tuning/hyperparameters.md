@@ -2,11 +2,8 @@
 
 Lamini is designed to have good default hyperparameters, so you don't need to tune them. If, however, you would like the flexibility to, you can do so through the `tune` method:
 
-```python hl_lines="3"
-results = llm.tune(
-    data_or_dataset_id=data,
-    finetune_args={'learning_rate': 1.0e-4}
-    )
+```py
+# code/hyperparameters.py#L9-L12
 ```
 
 Currently we support most hyperparameters in [HuggingFace's training arguments](https://huggingface.co/docs/transformers/v4.33.3/en/main_classes/trainer#transformers.TrainingArguments), like max_steps, batch_size, num_train_epochs, early_stopping etc.

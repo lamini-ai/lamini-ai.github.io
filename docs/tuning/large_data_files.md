@@ -4,22 +4,14 @@ If you are tuning on a large file of data, you can use the `upload_file` functio
 
 Here is an example with a `test.csv` file:
 
-```csv
-user,answer
-"Explain the process of photosynthesis","Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things.
-"What is the capital of USA?", "Washington, D.C."
-....
+```txt
+// code/test.csv
 ```
 
 You can use the Lamini to tune on this file directly by uploading the file and specifying the input and output keys.
 
-```python
-from lamini import Lamini
-
-llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-dataset_id = llm.upload_file("test.csv", input_key="user", output_key="answer")
-
-llm.tune(data_or_dataset_id=dataset_id)
+```py
+# code/large_data_files_csv.py
 ```
 
 Alternatively, you can also use `jsonlines` files
@@ -27,19 +19,12 @@ Alternatively, you can also use `jsonlines` files
 <details>
     <summary>Using <code>test.jsonl</code></summary>
 
-    ```json
-    {"user": "Explain the process of photosynthesis", "answer": "Photosynthesis is the process by which plants and some other organisms convert light energy into chemical energy. It is critical for the existence of the vast majority of life on Earth. It is the way in which virtually all energy in the biosphere becomes available to living things."}
-    {"user": "What is the capital of USA?", "answer": "Washington, D.C."}
-    ....
+    ```json5
+    // code/test.jsonl
     ```
 
     Then tune on this file using the `tune` function.
 
-    ```python
-    from lamini import Lamini
-
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
-    dataset_id = llm.upload_file("test.jsonl", input_key="user", output_key="answer")
-
-    llm.tune(data_or_dataset_id=dataset_id)
+    ```py
+    # code/large_data_files_jsonl.py
     ```
