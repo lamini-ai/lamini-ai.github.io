@@ -4,6 +4,12 @@ Run an LLM on a large amount of data quickly and efficiently.
 
 This pipeline first generates questions from a prompt, then generates answers from the questions.
 
+<!---
+TODO: Replace this file with a link to
+https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md
+See Retrieval Augmented Generation (RAG) in mkdocs.yaml
+-->
+
 ```python
 import logging
 from lamini.generation.base_prompt_object import PromptObject

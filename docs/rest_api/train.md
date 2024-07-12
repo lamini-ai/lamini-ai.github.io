@@ -1,6 +1,6 @@
 ## Endpoint Documentation: `/v1/train`
 
-Use this API endpoint to train a model. This will train a model with the `dataset_id`. The response will include a job id, dataset id, and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
+Use this API endpoint to train a model. This will train a model with the `upload_file_path`. The response will include a job id, dataset id, and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ## Request
 
@@ -16,14 +16,14 @@ To train on an already uploaded dataset
 ```json
 {
   "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-  "dataset_id": "$YOUR_DATASET_ID"
+  "upload_file_path": "$YOUR_DATASET_PATH"
 }
 ```
 
 ## Parameters:
 
 - model_name (string): The model you'd like to train on.
-- data_or_dataset_id (string): The dataset id you'd like to train on.
+- upload_file_path (string): The path to the uploaded data.
 ## Response:
 
 The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train). There are a number of statuses possible, each representing a different stage in the tuning process.
@@ -45,7 +45,7 @@ curl --location 'https://api.lamini.ai/v1/train' \
   --header 'Content-Type: application/json' \
   --data '{
       "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
-      "data_or_dataset_id": "$YOUR_DATASET_ID",
+      "upload_file_path": "$YOUR_DATASET_PATH"
   }'
 ```
 
