@@ -61,6 +61,7 @@ nav:
       - Overview: overview.md
       - About: about.md
       - API Auth: authenticate.md
+      - Models: models.md
       - FAQ: faq.md
   - Inference:
       - Quick Start: inference/quick_start.md
