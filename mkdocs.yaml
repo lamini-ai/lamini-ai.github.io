@@ -60,8 +60,7 @@ nav:
   - Introduction:
       - Overview: overview.md
       - About: about.md
-      - Authenticate: authenticate.md
-      - Enterprise Install: enterprise_install.md
+      - API Auth: authenticate.md
       - FAQ: faq.md
   - Inference:
       - Quick Start: inference/quick_start.md
@@ -76,6 +75,9 @@ nav:
       - Large Data Files: tuning/large_data_files.md
       - Evaluation: tuning/evaluation.md
       - Dashboard: tuning/dashboard.md
+  - Self-Managed:
+      - Installation: enterprise_install.md
+      - OIDC User Auth: self_managed/OIDC.md
   - Playground: inference/playground.md
   - Applications:
        - Pipeline: applications/pipeline.md
