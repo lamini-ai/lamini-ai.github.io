@@ -81,7 +81,7 @@ nav:
       - OIDC User Auth: self_managed/OIDC.md
   - Playground: inference/playground.md
   - Applications:
-       - Pipeline: applications/pipeline.md
+       - Generation Pipeline 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md"
        - Classifier: applications/classifier.md
   - Examples 🔗: "https://github.com/lamini-ai/lamini-examples"
   - Python API reference:
