@@ -1,12 +1,10 @@
-# Authenticate
-
-Welcome to this easy 2-step auth. Estimated time: 2 minutes.
-
-If you want to host Lamini in your VPC or on prem, check out the [enterprise installer instructions](/enterprise_install).
+# API Authentication
 
 ## 1. Get your Lamini API key 🔑
 
 Your API key is at [https://app.lamini.ai/account](https://app.lamini.ai/account). If it's your first time, create a free account by logging in.
+
+If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC authentication docs](/self_managed/OIDC) for setting up user auth.
 
 ## 2. Authenticate
 
