@@ -59,9 +59,8 @@ extra:
 nav:
   - Introduction:
       - Overview: overview.md
+      - Examples 🔗: "https://github.com/lamini-ai/lamini-examples"
       - About: about.md
-      - API Auth: authenticate.md
-      - Models: models.md
       - FAQ: faq.md
   - Inference:
       - Quick Start: inference/quick_start.md
@@ -75,15 +74,17 @@ nav:
       - Hyperparameters: tuning/hyperparameters.md
       - Large Data Files: tuning/large_data_files.md
       - Evaluation: tuning/evaluation.md
-      - Dashboard: tuning/dashboard.md
+  - Platform Concepts:
+      - API Auth: authenticate.md
+      - Models: models.md
+      - Playground: inference/playground.md
+      - Tuning Dashboard: tuning/dashboard.md
   - Self-Managed:
       - Installation: enterprise_install.md
       - OIDC User Auth: self_managed/OIDC.md
-  - Playground: inference/playground.md
   - Applications:
        - Generation Pipeline 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md"
        - Classifier: applications/classifier.md
-  - Examples 🔗: "https://github.com/lamini-ai/lamini-examples"
   - Python API reference:
       - lamini: lamini_python_class/lamini.md
   - REST API reference:
