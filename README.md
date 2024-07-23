@@ -17,6 +17,6 @@
 python -m venv .venv
 source .venv/bin/activate
 pip install mkdocs mkdocs-material mkdocs-redirects
+npx embedme "docs/**/*.md"
 mkdocs serve
 ```
-

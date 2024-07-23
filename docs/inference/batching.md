@@ -24,18 +24,8 @@ Inference batching with Lamini is simple: just pass in a list of inputs—no con
 
 === "Python SDK"
 
-    ```python hl_lines="5-9"
-    from lamini import Lamini
-
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
-    llm.generate(
-        [
-           "How old are you?",
-           "What is the meaning of life?",
-           "What is the hottest day of the year?",
-        ],
-        output_type={"response": "str", "explanation": "str"}
-    )
+    ```py
+    # code/batching.py
     ```
 
 === "REST API"
