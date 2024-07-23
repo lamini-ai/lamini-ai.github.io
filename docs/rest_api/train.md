@@ -31,7 +31,7 @@ The response will include a job id and the status of the job. You can monitor th
 ```
 {
     "job_id": "<JOB_ID>",
-    "status": "SCHEDULED" | "CREATED" | "LOADING DATA" | "TRAINING MODEL" | "EVALUATING MODEL" | "SAVING MODEL" | "COMPLETED" | "PARTIALLY COMPLETED" | "FAILED"
+    "status": "CREATED" | "LOADING DATA" | "TRAINING MODEL" | "EVALUATING MODEL" | "SAVING MODEL" | "COMPLETED" | "PARTIALLY COMPLETED" | "FAILED"
 }
 ```
 
@@ -54,6 +54,6 @@ curl --location 'https://api.lamini.ai/v1/train' \
 ```json
 {
   "job_id": "55555",
-  "status": "SCHEDULED"
+  "status": "CREATED"
 }
 ```
