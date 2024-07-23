@@ -40,3 +40,5 @@ Lamini is an integrated LLM inference and tuning platform, so you can seamlessly
     <td><a href="https://github.com/lamini-ai/lamini-examples/">Examples</a></td>
   </tr>
 </table>
+
+Having trouble? [Contact us](https://www.lamini.ai/contact)!
