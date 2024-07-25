@@ -9,7 +9,7 @@ Batching inference requests (submitting multiple prompts simultaneously) provide
 
 ### A better way to batch
 
-Lamini Platform implements approaches similar to iteration-level scheduling and selective batching (as described in [the Orca paper](https://www.usenix.org/system/files/osdi22-yu.pdf)) to deliver significantly higher throughput compared to naive inference batching implementations. 
+Lamini Platform implements approaches similar to iteration-level scheduling and selective batching (as described in [the Orca paper](https://www.usenix.org/system/files/osdi22-yu.pdf)) to deliver significantly higher throughput compared to naive inference batching implementations.
 
 Naive batching has two major drawbacks:
 

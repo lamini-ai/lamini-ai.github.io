@@ -45,3 +45,14 @@ Lamini Memory Tuning is a new way to embed facts into LLMs that improves factual
 Learn more: [http://www.lamini.ai/blog/lamini-memory-tuning](http://www.lamini.ai/blog/lamini-memory-tuning)
 
 ![Memory tuning graph](/assets/memory_tuning_graph.png)
+
+## Known issue: Tuning on a previously tuned model
+Submitting a tuning job on a model is not supported.
+
+### Workaround
+To include additional data, submit a new tuning job with the new data on the base model instead of adding the data to a previously tuned model. If your use case requires more than 500 data points, [reach out to us for support](https://www.lamini.ai/contact).
+
+### Future support
+We are evaluating the feasibility of supporting continued tuning on previously tuned models. If we decide to support this feature, we will update our documentation and notify users.
+
+Feel free to [contact us](https://www.lamini.ai/contact) with any questions or concerns.

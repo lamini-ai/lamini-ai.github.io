@@ -122,3 +122,16 @@ You can also add multiple output types in one call. The output is a JSON schema 
 </details>
 
 Great! You've successfully run an LLM with structured JSON schema outputs.
+
+## Known issue: Long JSON output times out
+To ensure that requests complete in a reasonable amount of time, there is a time limit on all requests including json requests. If your requests exceeds the time limit, try guiding the model to generate a shorter json object, e.g. write a description in 3 sentences or less. Timed out requests may result in failed, incomplete, or missing output.
+
+### Workaround
+* Reduce the size of the output by limiting the number of fields or the prompt.
+* Break down the JSON output into separate smaller requests.
+* [Contact us](https://www.lamini.ai/contact) to discuss alternative solutions or workarounds for your use case.
+
+### Future support
+We are evaluating the feasibility of improving our system to handle large JSON output in the future. If we decide to support this feature, we will update our documentation and notify users.
+
+Feel free to [contact us](https://www.lamini.ai/contact) with any questions or concerns.
