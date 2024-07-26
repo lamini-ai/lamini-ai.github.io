@@ -10,8 +10,6 @@ Lamini(
     model_name: str,
     api_key: Optional[str] = None,
     api_url: Optional[str] = None,
-    local_cache_file: Optional[str] = None,
-    config: dict = {}
 )
 ```
 
@@ -30,31 +28,19 @@ class Lamini:
         model_name: str,
         api_key: Optional[str] = None,
         api_url: Optional[str] = None,
-        local_cache_file: Optional[str] = None,
-        config: dict = {},
     ):
-        self.config = get_config(config)
+        self.config = get_config()
         self.model_name = model_name
-        if sys.version_info >= (3, 10):
-            logger.info("Using 3.10 InferenceQueue Interface")
-            from lamini.api.utils.async_inference_queue_3_10 import (
-                AsyncInferenceQueue as AsyncInferenceQueue310,
-            )
-
-            self.async_inference_queue = AsyncInferenceQueue310(
-                api_key, api_url, config=config
-            )
-        else:
-            self.async_inference_queue = AsyncInferenceQueue(
-                api_key, api_url, config=config
-            )
-
-        self.completion = Completion(api_key, api_url, config=config)
-        self.trainer = Train(api_key, api_url, config=config)
+        self.api_key = api_key
+        self.api_url = api_url
+        self.async_inference_queue = None
+        self.completion = Completion(api_key, api_url)
+        self.trainer = Train(api_key, api_url)
         self.upload_file_path = None
         self.upload_base_path = None
-        self.local_cache_file = local_cache_file
-        self.model_config = self.config.get("model_config", None)
+
+    def version(self):
+        return get_version(self.api_key, self.api_url, self.config)
 
     def generate(
         self,
@@ -63,18 +49,15 @@ class Lamini:
         output_type: Optional[dict] = None,
         max_tokens: Optional[int] = None,
         max_new_tokens: Optional[int] = None,
-        callback: Optional[Callable] = None,
-        metadata: Optional[List] = None,
     ):
         if isinstance(prompt, str) or (isinstance(prompt, list) and len(prompt) == 1):
-            req_data = self.make_llm_req_map(
+            result = self.completion.generate(
                 prompt=prompt,
                 model_name=model_name or self.model_name,
                 output_type=output_type,
                 max_tokens=max_tokens,
                 max_new_tokens=max_new_tokens,
             )
-            result = self.completion.generate(req_data)
             if output_type is None:
                 if isinstance(prompt, list) and len(prompt) == 1:
                     result = [single_result["output"] for single_result in result]
@@ -90,8 +73,6 @@ class Lamini:
                 output_type=output_type,
                 max_tokens=max_tokens,
                 max_new_tokens=max_new_tokens,
-                callback=callback,
-                metadata=metadata,
             )
         )
 
@@ -102,10 +83,8 @@ class Lamini:
         output_type: Optional[dict] = None,
         max_tokens: Optional[int] = None,
         max_new_tokens: Optional[int] = None,
-        callback: Optional[Callable] = None,
-        metadata: Optional[List] = None,
     ):
-        req_data = self.make_llm_req_map(
+        req_data = self.completion.make_llm_req_map(
             prompt=prompt,
             model_name=model_name or self.model_name,
             output_type=output_type,
@@ -123,14 +102,14 @@ class Lamini:
             return result
 
         assert isinstance(prompt, list)
-        if metadata is not None:
-            assert isinstance(metadata, list)
-            assert len(metadata) == len(prompt)
+        if sys.version_info >= (3, 10):
+            self.async_inference_queue = AsyncInferenceQueue310(
+                self.api_key, self.api_url
+            )
+        else:
+            self.async_inference_queue = AsyncInferenceQueue(self.api_key, self.api_url)
         results = await self.async_inference_queue.submit(
             req_data,
-            self.local_cache_file,
-            callback,
-            metadata,
             token_optimizer=TokenOptimizer(model_name or self.model_name),
         )
 
@@ -257,12 +236,12 @@ class Lamini:
         else:
             dataset_id = self.upload_data(data_or_dataset_id, is_public=is_public)
         assert dataset_id is not None
-        output = self.trainer.get_upload_base_path()
-        self.upload_base_path = output["upload_base_path"]
-        output = self.trainer.get_existing_dataset(
+        base_path = self.trainer.get_upload_base_path()
+        self.upload_base_path = base_path["upload_base_path"]
+        existing_dataset = self.trainer.get_existing_dataset(
             dataset_id, self.upload_base_path, is_public
         )
-        self.upload_file_path = output["dataset_location"]
+        self.upload_file_path = existing_dataset["dataset_location"]
 
         job = self.trainer.train(
             model_name=self.model_name,
@@ -278,6 +257,9 @@ class Lamini:
         )
         job["dataset_id"] = dataset_id
         return job
+
+    # Add alias for tune
+    tune = train
 
     # continuously poll until the job is completed
     def train_and_wait(
@@ -336,6 +318,9 @@ class Lamini:
 
         return status
 
+    # Add alias for tune
+    tune_and_wait = train_and_wait
+
     def cancel_job(self, job_id=None):
         return self.trainer.cancel_job(job_id)
 
@@ -355,25 +340,6 @@ class Lamini:
 
     def evaluate(self, job_id=None):
         return self.trainer.evaluate(job_id)
-
-    def make_llm_req_map(
-        self,
-        model_name,
-        prompt,
-        output_type,
-        max_tokens,
-        max_new_tokens,
-    ):
-        req_data = {}
-        req_data["model_name"] = model_name
-        req_data["prompt"] = prompt
-        req_data["output_type"] = output_type
-        req_data["max_tokens"] = max_tokens
-        if max_new_tokens is not None:
-            req_data["max_new_tokens"] = max_new_tokens
-        if self.model_config:
-            req_data["model_config"] = self.model_config.as_dict()
-        return req_data
 ```
 
 </details>
@@ -448,23 +414,6 @@ def check_job_status(self, job_id=None):
 
 </details>
 
-#### `evaluate`
-> Get the resulting evaluation of the trained model against the test set.
-<details class="source">
-
-<summary>
-
-<span>Expand source code</span>
-
-</summary>
-
-``` python
-def evaluate(self, job_id=None):
-    return self.trainer.evaluate(job_id)
-```
-
-</details>
-
 #### `generate`
 > Run inference on the model or a given model.
 
@@ -484,18 +433,15 @@ def generate(
     output_type: Optional[dict] = None,
     max_tokens: Optional[int] = None,
     max_new_tokens: Optional[int] = None,
-    callback: Optional[Callable] = None,
-    metadata: Optional[List] = None,
 ):
     if isinstance(prompt, str) or (isinstance(prompt, list) and len(prompt) == 1):
-        req_data = self.make_llm_req_map(
+        result = self.completion.generate(
             prompt=prompt,
             model_name=model_name or self.model_name,
             output_type=output_type,
             max_tokens=max_tokens,
             max_new_tokens=max_new_tokens,
         )
-        result = self.completion.generate(req_data)
         if output_type is None:
             if isinstance(prompt, list) and len(prompt) == 1:
                 result = [single_result["output"] for single_result in result]
@@ -511,8 +457,6 @@ def generate(
             output_type=output_type,
             max_tokens=max_tokens,
             max_new_tokens=max_new_tokens,
-            callback=callback,
-            metadata=metadata,
         )
     )
 ```
@@ -585,12 +529,12 @@ def train(
     else:
         dataset_id = self.upload_data(data_or_dataset_id, is_public=is_public)
     assert dataset_id is not None
-    output = self.trainer.get_upload_base_path()
-    self.upload_base_path = output["upload_base_path"]
-    output = self.trainer.get_existing_dataset(
+    base_path = self.trainer.get_upload_base_path()
+    self.upload_base_path = base_path["upload_base_path"]
+    existing_dataset = self.trainer.get_existing_dataset(
         dataset_id, self.upload_base_path, is_public
     )
-    self.upload_file_path = output["dataset_location"]
+    self.upload_file_path = existing_dataset["dataset_location"]
 
     job = self.trainer.train(
         model_name=self.model_name,
@@ -788,4 +732,3 @@ def upload_file(
 
 </details>
 
-Generated by [pdoc 0.10.0](https://pdoc3.github.io/pdoc "pdoc: Python API documentation generator").
