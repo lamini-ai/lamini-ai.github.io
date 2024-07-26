@@ -48,16 +48,13 @@ If you are [running Lamini in your VPC or on prem](/enterprise_install/installer
 
 === "Python script"
 
-    ```python
-    config = {
-        "production.key": "<YOUR-LAMINI-API-KEY>",
-        "production.url" : "<YOUR-SERVER-URL-HERE>"
-    }
-    ```
-
     Test that it works:
     ```python
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct', config=config)
+    llm = Lamini(
+        model_name="meta-llama/Meta-Llama-3-8B-Instruct",
+        api_key="<YOUR-LAMINI-API-KEY>",
+        api_url="<YOUR-SERVER-URL-HERE>",
+    )
     response = llm.generate("Tell me a story about llamas.")
 
     print(response)
