@@ -21,7 +21,7 @@ prompts={
 
 llm.prompt_train(prompts)
 
-llm.save("models/my_model.lamini")
+llm.save("my_model.lamini")
 ```
 
 Then, predict!
