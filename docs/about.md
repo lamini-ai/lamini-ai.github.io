@@ -19,7 +19,7 @@ See for yourself: take a [quick tour (with free API access!)](/inference/quick_s
 
 ## Who are we?
 
-Lamini's team has been finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students about [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3, Google’s PaLM, and NVIDIA’s Megatron.
+Lamini's team has been finetuning LLMs over the past two decades: we invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students about [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3.1, Google’s PaLM, and NVIDIA’s Megatron.
 
 ## What's new?
 
