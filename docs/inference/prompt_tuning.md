@@ -4,7 +4,7 @@ When you're trying a [new model](../models.md), it's a good idea to review the m
 
 ## Llama 3
 
-The [Llama 3](https://huggingface.co/meta-llama/Meta-Llama-3-8B) prompt template looks like this:
+The [Llama 3.1](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) prompt template looks like this:
 ```python
 <|begin_of_text|><|start_header_id|>system<|end_header_id|>
 

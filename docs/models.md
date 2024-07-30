@@ -1,6 +1,6 @@
 # Supported Models
 
-Lamini supports [CausalLM models from Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference, including [Llama 3](https://huggingface.co/docs/transformers/v4.42.0/en/model_doc/llama3), [Mistral 2](https://huggingface.co/docs/transformers/v4.42.0/en/model_doc/mistral), [Phi-3](https://huggingface.co/docs/transformers/main/en/model_doc/phi3), [Qwen 2](https://huggingface.co/docs/transformers/main/en/model_doc/qwen2), and many more.
+Lamini supports [CausalLM models from Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference, including [Llama 3.1](https://huggingface.co/docs/transformers/v4.42.0/en/model_doc/llama3), [Mistral 3](https://huggingface.co/docs/transformers/v4.42.0/en/model_doc/mistral), [Phi-3](https://huggingface.co/docs/transformers/main/en/model_doc/phi3), [Qwen 2](https://huggingface.co/docs/transformers/main/en/model_doc/qwen2), and many more.
 
 Note: Flash Attention 2 and 3 are not yet supported. Please [contact us](https://www.lamini.ai/contact) if you need them.
 
@@ -8,8 +8,8 @@ Note: Flash Attention 2 and 3 are not yet supported. Please [contact us](https:/
 
 Free plan users on [Lamini Cloud](https://app.lamini.ai) can use the following models:
 
-- Llama 3: [`meta-llama/Meta-Llama-3-8B-Instruct`](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)
-- Mistral v2 - [`mistralai/Mistral-7B-Instruct-v0.2`](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
+- Llama 3: [`meta-llama/Meta-Llama-3.1-8B-Instruct`](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)
+- Mistral v2 - [`mistralai/Mistral-7B-Instruct-v0.3`](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
 - Phi 3 - [`microsoft/Phi-3-mini-4k-instruct`](https://huggingface.co/Phi-3-mini-4k-instruct)
 - Qwen 2- [`Qwen/Qwen2-7B-Instruct`](https://huggingface.co/Qwen/Qwen2-7B-Instruct)
 - Tiny Random GPT-2 [`hf-internal-testing/tiny-random-gpt2`](https://huggingface.co/hf-internal-testing/tiny-random-gpt2)
