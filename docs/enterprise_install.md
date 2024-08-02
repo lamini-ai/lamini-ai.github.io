@@ -62,7 +62,7 @@ import lamini
 lamini.api_url = "http://localhost:5001"
 lamini.api_key = "test_token"
 
-llm = lamini.Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+llm = lamini.Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
 print(llm.generate("How are you?", output_type={"Response":"str"}))
 ```
 
