@@ -87,6 +87,6 @@ The list of all Lamini services is available in the docker-compose.yaml file
 
 Some common config values:
 
-1`volumes.slurm-volume`: where do you want fine-tuned models to be stored (they are saved in pytorch format)
+1. `volumes.slurm-volume`: where do you want fine-tuned models to be stored (they are saved in pytorch format)
 
 <br><br>
