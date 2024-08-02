@@ -22,10 +22,10 @@ class QuestionAnswerPipeline(GenerationPipeline):
         super(QuestionAnswerPipeline, self).__init__()
 
         self.question_generator = QuestionGenerator(
-            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=200
+            "meta-llama/Meta-Llama-3.1-8B-Instruct", max_new_tokens=200
         )
         self.answer_generator = AnswerGenerator(
-            "meta-llama/Meta-Llama-3-8B-Instruct", max_new_tokens=100
+            "meta-llama/Meta-Llama-3.1-8B-Instruct", max_new_tokens=100
         )
 
     def forward(self, x):
