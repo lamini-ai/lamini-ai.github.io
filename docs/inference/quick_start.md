@@ -30,7 +30,7 @@ Next, run Lamini:
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
             "prompt": "How are you?",
             "output_type": {"Response": "str"}
         }'

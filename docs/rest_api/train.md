@@ -15,7 +15,7 @@ To train on an already uploaded dataset
 
 ```json
 {
-  "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
   "upload_file_path": "$YOUR_DATASET_PATH"
 }
 ```
@@ -44,7 +44,7 @@ curl --location 'https://api.lamini.ai/v1/train' \
   --header 'Authorization: Bearer $LAMINI_API_KEY' \
   --header 'Content-Type: application/json' \
   --data '{
-      "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
       "upload_file_path": "$YOUR_DATASET_PATH"
   }'
 ```

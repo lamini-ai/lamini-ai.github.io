@@ -1,10 +1,10 @@
-Different models have different system prompt templates. Using the correct template when prompt tuning can have a large effect on model performance.
+Different models have different system prompt templates. Using the correct template when prompt tuning can have a large effect on model performance. 
 
 When you're trying a [new model](../models.md), it's a good idea to review the model card on Hugging Face to understand what (if any) system prompt template it uses.
 
-## Llama 3
+## Llama 3.1
 
-The [Llama 3](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) prompt template looks like this:
+The [Llama 3.1](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) prompt template looks like this:
 ```python
 <|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
@@ -27,7 +27,7 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
         --header "Authorization: Bearer $LAMINI_API_KEY" \
         --header "Content-Type: application/json" \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+            "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
             "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n You are a pirate. Say arg matey! <|eot_id|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
             "output_type": {
                 "Response": "str"
@@ -42,9 +42,9 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
     ```
 </details>
 
-## Mistral v2
+## Mistral v3
 
-[Mistral v2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) uses a different format. In order to leverage instruction fine-tuning, your prompt should be surrounded by [INST] and [/INST] tokens.
+[Mistral v3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3) uses a different format. In order to leverage instruction fine-tuning, your prompt should be surrounded by [INST] and [/INST] tokens.
 
 === "Python SDK"
 
@@ -59,7 +59,7 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "mistralai/Mistral-7B-Instruct-v0.2",
+        "model_name": "mistralai/Mistral-7B-Instruct-v0.3",
         "prompt": "<s>[INST] How are you? [/INST]",
         "output_type": {
             "Response": "str"
@@ -75,3 +75,4 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
     }
     ```
 </details>
+
