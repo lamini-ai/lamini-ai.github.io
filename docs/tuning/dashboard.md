@@ -1,4 +1,4 @@
-Your tuning dashboard makes it easy to see all your tuning jobs (finetuning, LoRAs, pretraining, etc.) at [https://app.lamini.ai/tune](https://app.lamini.ai/tune).
+Your tuning dashboard makes it easy to see all your tuning jobs (finetuning, LoRAs, pretraining, etc.) at [https://app.lamini.ai/tune](https://app.lamini.ai/train).
 
 
 ![Tuning Dashboard](/assets/dashboard.png)
