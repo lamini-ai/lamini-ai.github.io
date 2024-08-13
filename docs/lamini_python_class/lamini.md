@@ -33,7 +33,6 @@ class Lamini:
         self.model_name = model_name
         self.api_key = api_key
         self.api_url = api_url
-        self.async_inference_queue = None
         self.completion = Completion(api_key, api_url)
         self.trainer = Train(api_key, api_url)
         self.upload_file_path = None
@@ -50,31 +49,19 @@ class Lamini:
         max_tokens: Optional[int] = None,
         max_new_tokens: Optional[int] = None,
     ):
-        if isinstance(prompt, str) or (isinstance(prompt, list) and len(prompt) == 1):
-            result = self.completion.generate(
-                prompt=prompt,
-                model_name=model_name or self.model_name,
-                output_type=output_type,
-                max_tokens=max_tokens,
-                max_new_tokens=max_new_tokens,
-            )
-            if output_type is None:
-                if isinstance(prompt, list) and len(prompt) == 1:
-                    result = [single_result["output"] for single_result in result]
-                else:
-                    result = result["output"]
-            return result
-
-        assert isinstance(prompt, list)
-        return sync(
-            self.async_generate(
-                prompt=prompt,
-                model_name=model_name,
-                output_type=output_type,
-                max_tokens=max_tokens,
-                max_new_tokens=max_new_tokens,
-            )
+        result = self.completion.generate(
+            prompt=prompt,
+            model_name=model_name or self.model_name,
+            output_type=output_type,
+            max_tokens=max_tokens,
+            max_new_tokens=max_new_tokens,
         )
+        if output_type is None:
+            if isinstance(prompt, list):
+                result = [single_result["output"] for single_result in result]
+            else:
+                result = result["output"]
+        return result
 
     async def async_generate(
         self,
@@ -91,32 +78,13 @@ class Lamini:
             max_tokens=max_tokens,
             max_new_tokens=max_new_tokens,
         )
-
-        if isinstance(prompt, str) or (isinstance(prompt, list) and len(prompt) == 1):
-            result = await self.completion.async_generate(req_data)
-            if output_type is None:
-                if isinstance(prompt, list) and len(prompt) == 1:
-                    result = [single_result["output"] for single_result in result]
-                else:
-                    result = result["output"]
-            return result
-
-        assert isinstance(prompt, list)
-        if sys.version_info >= (3, 10):
-            self.async_inference_queue = AsyncInferenceQueue310(
-                self.api_key, self.api_url
-            )
-        else:
-            self.async_inference_queue = AsyncInferenceQueue(self.api_key, self.api_url)
-        results = await self.async_inference_queue.submit(
-            req_data,
-            token_optimizer=TokenOptimizer(model_name or self.model_name),
-        )
-
+        result = await self.completion.async_generate(req_data)
         if output_type is None:
-            results = [single_result["output"] for single_result in results]
-
-        return results
+            if isinstance(prompt, list):
+                result = [single_result["output"] for single_result in result]
+            else:
+                result = result["output"]
+        return result
 
     def upload_data(
         self,
@@ -137,37 +105,36 @@ class Lamini:
         output = self.trainer.get_upload_base_path()
         self.upload_base_path = output["upload_base_path"]
 
-        dataset_id = get_dataset_name()
-
         try:
             if self.upload_base_path == "azure":
                 data_str = get_data_str(data)
-                output = self.trainer.create_blob_dataset_location(
-                    self.upload_base_path, dataset_id, is_public
+                response = self.trainer.create_blob_dataset_location(
+                    self.upload_base_path, is_public
                 )
-                self.upload_file_path = output["dataset_location"]
+                self.upload_file_path = response["dataset_location"]
                 upload_to_blob(data_str, self.upload_file_path)
                 self.trainer.update_blob_dataset_num_datapoints(
-                    dataset_id, num_datapoints
+                    response["dataset_id"], num_datapoints
                 )
                 print("Data pairs uploaded to blob.")
             else:
-                output = self.trainer.upload_dataset_locally(
-                    self.upload_base_path, dataset_id, is_public, data
+                response = self.trainer.upload_dataset_locally(
+                    self.upload_base_path, is_public, data
                 )
-                self.upload_file_path = output["dataset_location"]
+                self.upload_file_path = response["dataset_location"]
                 print("Data pairs uploaded to local.")
 
+            print(response)
             print(
-                f"\nYour dataset id is: {dataset_id} . Consider using this in the future to train using the same data. \nEg: "
-                f"llm.train(dataset_id='{dataset_id}')"
+                f"\nYour dataset id is: {response['dataset_id']} . Consider using this in the future to train using the same data. \nEg: "
+                f"llm.train(data_or_dataset_id='{response['dataset_id']}')"
             )
 
         except Exception as e:
             print(f"Error uploading data pairs: {e}")
             raise e
 
-        return dataset_id
+        return response["dataset_id"]
 
     def upload_file(
         self, file_path: str, input_key: str = "input", output_key: str = "output"
@@ -225,11 +192,8 @@ class Lamini:
         ],
         finetune_args: Optional[dict] = None,
         gpu_config: Optional[dict] = None,
-        enable_peft: Optional[bool] = None,
-        peft_args: Optional[dict] = None,
         is_public: Optional[bool] = None,
-        use_cached_model: Optional[bool] = None,
-        multi_node: Optional[bool] = None,
+        **kwargs,
     ):
         if isinstance(data_or_dataset_id, str):
             dataset_id = data_or_dataset_id
@@ -239,7 +203,7 @@ class Lamini:
         base_path = self.trainer.get_upload_base_path()
         self.upload_base_path = base_path["upload_base_path"]
         existing_dataset = self.trainer.get_existing_dataset(
-            dataset_id, self.upload_base_path, is_public
+            dataset_id, self.upload_base_path
         )
         self.upload_file_path = existing_dataset["dataset_location"]
 
@@ -249,11 +213,7 @@ class Lamini:
             upload_file_path=self.upload_file_path,
             finetune_args=finetune_args,
             gpu_config=gpu_config,
-            enable_peft=enable_peft,
-            peft_args=peft_args,
             is_public=is_public,
-            use_cached_model=use_cached_model,
-            multi_node=multi_node,
         )
         job["dataset_id"] = dataset_id
         return job
@@ -269,22 +229,14 @@ class Lamini:
         ],
         finetune_args: Optional[dict] = None,
         gpu_config: Optional[dict] = None,
-        enable_peft: Optional[bool] = None,
-        peft_args: Optional[dict] = None,
         is_public: Optional[bool] = None,
-        use_cached_model: Optional[bool] = None,
-        multi_node: Optional[bool] = None,
         **kwargs,
     ):
         job = self.train(
             data_or_dataset_id,
             finetune_args=finetune_args,
             gpu_config=gpu_config,
-            enable_peft=enable_peft,
-            peft_args=peft_args,
             is_public=is_public,
-            use_cached_model=use_cached_model,
-            multi_node=multi_node,
         )
 
         try:
@@ -434,31 +386,19 @@ def generate(
     max_tokens: Optional[int] = None,
     max_new_tokens: Optional[int] = None,
 ):
-    if isinstance(prompt, str) or (isinstance(prompt, list) and len(prompt) == 1):
-        result = self.completion.generate(
-            prompt=prompt,
-            model_name=model_name or self.model_name,
-            output_type=output_type,
-            max_tokens=max_tokens,
-            max_new_tokens=max_new_tokens,
-        )
-        if output_type is None:
-            if isinstance(prompt, list) and len(prompt) == 1:
-                result = [single_result["output"] for single_result in result]
-            else:
-                result = result["output"]
-        return result
-
-    assert isinstance(prompt, list)
-    return sync(
-        self.async_generate(
-            prompt=prompt,
-            model_name=model_name,
-            output_type=output_type,
-            max_tokens=max_tokens,
-            max_new_tokens=max_new_tokens,
-        )
+    result = self.completion.generate(
+        prompt=prompt,
+        model_name=model_name or self.model_name,
+        output_type=output_type,
+        max_tokens=max_tokens,
+        max_new_tokens=max_new_tokens,
     )
+    if output_type is None:
+        if isinstance(prompt, list):
+            result = [single_result["output"] for single_result in result]
+        else:
+            result = result["output"]
+    return result
 ```
 
 </details>
@@ -518,11 +458,8 @@ def train(
     ],
     finetune_args: Optional[dict] = None,
     gpu_config: Optional[dict] = None,
-    enable_peft: Optional[bool] = None,
-    peft_args: Optional[dict] = None,
     is_public: Optional[bool] = None,
-    use_cached_model: Optional[bool] = None,
-    multi_node: Optional[bool] = None,
+    **kwargs,
 ):
     if isinstance(data_or_dataset_id, str):
         dataset_id = data_or_dataset_id
@@ -532,7 +469,7 @@ def train(
     base_path = self.trainer.get_upload_base_path()
     self.upload_base_path = base_path["upload_base_path"]
     existing_dataset = self.trainer.get_existing_dataset(
-        dataset_id, self.upload_base_path, is_public
+        dataset_id, self.upload_base_path
     )
     self.upload_file_path = existing_dataset["dataset_location"]
 
@@ -542,11 +479,7 @@ def train(
         upload_file_path=self.upload_file_path,
         finetune_args=finetune_args,
         gpu_config=gpu_config,
-        enable_peft=enable_peft,
-        peft_args=peft_args,
         is_public=is_public,
-        use_cached_model=use_cached_model,
-        multi_node=multi_node,
     )
     job["dataset_id"] = dataset_id
     return job
@@ -589,22 +522,14 @@ def train_and_wait(
     ],
     finetune_args: Optional[dict] = None,
     gpu_config: Optional[dict] = None,
-    enable_peft: Optional[bool] = None,
-    peft_args: Optional[dict] = None,
     is_public: Optional[bool] = None,
-    use_cached_model: Optional[bool] = None,
-    multi_node: Optional[bool] = None,
     **kwargs,
 ):
     job = self.train(
         data_or_dataset_id,
         finetune_args=finetune_args,
         gpu_config=gpu_config,
-        enable_peft=enable_peft,
-        peft_args=peft_args,
         is_public=is_public,
-        use_cached_model=use_cached_model,
-        multi_node=multi_node,
     )
 
     try:
@@ -672,37 +597,35 @@ def upload_data(
     output = self.trainer.get_upload_base_path()
     self.upload_base_path = output["upload_base_path"]
 
-    dataset_id = get_dataset_name()
-
     try:
         if self.upload_base_path == "azure":
             data_str = get_data_str(data)
-            output = self.trainer.create_blob_dataset_location(
-                self.upload_base_path, dataset_id, is_public
+            response = self.trainer.create_blob_dataset_location(
+                self.upload_base_path, is_public
             )
-            self.upload_file_path = output["dataset_location"]
+            self.upload_file_path = response["dataset_location"]
             upload_to_blob(data_str, self.upload_file_path)
             self.trainer.update_blob_dataset_num_datapoints(
-                dataset_id, num_datapoints
+                response["dataset_id"], num_datapoints
             )
             print("Data pairs uploaded to blob.")
         else:
-            output = self.trainer.upload_dataset_locally(
-                self.upload_base_path, dataset_id, is_public, data
+            response = self.trainer.upload_dataset_locally(
+                self.upload_base_path, is_public, data
             )
-            self.upload_file_path = output["dataset_location"]
+            self.upload_file_path = response["dataset_location"]
             print("Data pairs uploaded to local.")
 
         print(
-            f"\nYour dataset id is: {dataset_id} . Consider using this in the future to train using the same data. \nEg: "
-            f"llm.train(dataset_id='{dataset_id}')"
+            f"\nYour dataset id is: {response['dataset_id']} . Consider using this in the future to train using the same data. \nEg: "
+            f"llm.train(data_or_dataset_id='{response['dataset_id']}')"
         )
 
     except Exception as e:
         print(f"Error uploading data pairs: {e}")
         raise e
 
-    return dataset_id
+    return response["dataset_id"]
 ```
 
 </details>
