@@ -29,6 +29,11 @@ Lamini is an integrated LLM inference and tuning platform, so you can seamlessly
     <td></td>
     <td><a href="/inference/batching/">Iteration Batching</a></td>
   </tr>
+  <tr onclick="location.href='/self_managed/kubernetes_install'">
+    <td>Run Lamini on your own GPUs 🔒</td>
+    <td></td>
+    <td><a href="/self_managed/kubernetes_install">Kubernetes Installation</a></td>
+  </tr>
   <tr onclick="location.href='/about'">
     <td>What makes Lamini unique? ✨</td>
     <td></td>

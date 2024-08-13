@@ -1,8 +1,14 @@
-# Enterprise Install
+# Installing Lamini Platform on Docker
 
-Looking to get an installer and host Lamini on-premise or on a GPU VM in your VPC? [Contact us](https://www.lamini.ai/contact)! We're happy to advise you on purchasing and configuring the right machines for your needs, picking the right model, handling your data volume and number of users, and the other challenges of running an LLM application.
+Lamini Platform on Docker enables single-node inference and training. Looking to host Lamini on Kubernetes instead? [See here](self_managed/kubernetes_install.md).
 
-## System requirements
+## Prerequisites
+
+### Lamini Enterprise access
+
+[Contact us](https://www.lamini.ai/contact) for access to the Docker installer to host Lamini Platform on your own GPUs or in your cloud VPC.
+
+### System requirements
 Before getting started, make sure your machine is set up to run Lamini smoothly. Check that your machine has ***at least***:
 
 - 64 GB CPU memory
@@ -14,14 +20,14 @@ Before getting started, make sure your machine is set up to run Lamini smoothly.
 
 You can run Lamini on your laptop for dev and testing. CPUs can run LLMs with hundreds of millions of parameters (like [`hf-internal-testing/tiny-random-gpt2`](https://huggingface.co/hf-internal-testing/tiny-random-gpt2)) just fine.
 
-## Dependencies
+### Dependencies
 
 Lamini is entirely self contained and can run on any machine that can run Docker or OCI containers.  In addition to the operating system, provisioning involves installing Docker, and installing the GPU driver.
 
-### Docker
+#### Docker
 Install Docker by following [the instructions here](https://docs.docker.com/engine/install/ubuntu/) 🔗.
 
-### GPU Driver
+#### GPU Driver
 1. Install the GPU driver for the operating system following the manufacturer's instructions.
     1. Note that the driver version must be compatible with PyTorch: [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/).
 1. Run system management interface (SMI) tests inside of a GPU enabled docker container to verify the installation.
@@ -34,23 +40,15 @@ Install Docker by following [the instructions here](https://docs.docker.com/engi
 1. Add execute permissions: `$ chmod +x lamini-installer.sh`.
 1. Run the installer: `$ ./lamini-installer.sh`.
 
-### Kubernetes
-
-Docs coming soon! [Contact us](https://www.lamini.ai/contact) for help.
-
-## Running Lamini
-Congrats and welcome to the herd!!
-
-Go to the lamini installer directory: `$ cd build-lamini-installer/lamini-installer`
-
-Get your Hugging Face Access Token from: https://huggingface.co/settings/tokens
-
-Enter the token in the config file, `configs/llama_config_edits.yaml`, under the huggingface token field:
+### Running Lamini
+1. Go to the lamini installer directory: `$ cd build-lamini-installer/lamini-installer`
+1. Get your Hugging Face Access Token from: https://huggingface.co/settings/tokens
+1. Enter the token in the config file, `configs/llama_config_edits.yaml`, under the huggingface token field:
 ```
 huggingface: # This is the Hugging Face API token, it will default to offline mode if no token is provided
     token: ""
 ```
-Start Lamini with `$ ./lamini-up`.
+1. Start Lamini with `$ ./lamini-up`.
 
 Once running, you can view the UI at [http://localhost:5001](http://localhost:5001)!
 
