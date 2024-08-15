@@ -73,7 +73,7 @@ type: "amd"
       catchall: 1
    }
    ```
-   The example above would create 4 pods using 4 GPUs in total. Each pod has 1 GPU. The example shows 1 inference pod allocated to `batch` inference, 1 pod dedicated only to `streaming` inference, 1 dedicated only to `embedding` inference (also used in classification), and 1 for the `catchall` pod, which is intended to handle requests for models that have not been preloaded on the `batch` pod. 
+   The example above would create 4 pods using 4 GPUs in total. Each pod has 1 GPU. The example shows 1 inference pod allocated to `batch` inference, 1 pod dedicated only to `streaming` inference, 1 dedicated only to `embedding` inference (also used in classification), and 1 for the `catchall` pod, which is intended to handle requests for models that have not been preloaded on the `batch` pod. See [Model Management](../model_management) for more details.
 
 1. Update the number of training pods and number of GPUs per pod:
    ```yaml title="helm_config.yaml"

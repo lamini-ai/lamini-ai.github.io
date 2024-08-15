@@ -81,8 +81,9 @@ nav:
       - Tuning Dashboard: tuning/dashboard.md
   - Self-Managed:
       - Kubernetes Install: self_managed/kubernetes_install.md
-      - Docker Install: enterprise_install.md
+      - Docker Install: self_managed/docker_install.md
       - OIDC User Auth: self_managed/OIDC.md
+      - Model Management: self_managed/model_management.md
   - Applications:
        - Generation Pipeline 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md"
        - Classifier: applications/classifier.md
@@ -106,4 +107,5 @@ plugins:
         'training/quick_start.md': 'tuning/quick_start.md'
         'training/quick_tour.md': 'tuning/quick_start.md'
         'inference/quick_tour.md': 'inference/quick_start.md'
+        'enterprise_install.md': 'self_managed/docker_install.md'
   - search
