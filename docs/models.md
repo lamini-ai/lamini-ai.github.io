@@ -28,4 +28,8 @@ Some factors to consider when thinking about model size:
 
 ## Model loading
 
-The most popular models are preloaded on Lamini Cloud. Other models will be loaded from Hugging Face when requested - because models are large, this can take a few minutes.
+The most popular models are preloaded on Lamini Cloud. Other models will be loaded from Hugging Face when requested in an inference or tuning call. Because models are large (usually tens of GBs), downloading them from Hugging Face and then loading them into GPU memory takes time. 
+
+**Please allow 20-30 minutes for the model to load.** Requests for models that have not yet loaded will return an error.
+
+We recommend focusing development on one model or a small set of models, and preloading them. We've seen the highest accuracy and performance gains come from improving data quality and tuning recipes, rather than testing many models hoping to find one that works significantly better out of the box.

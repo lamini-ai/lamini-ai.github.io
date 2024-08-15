@@ -17,3 +17,6 @@ Common hyperparameters to tune include:
 - `max_steps` (int) - the maximum number of steps to train for
 
 - `optim` (str) - the optimizer to use, e.g. `adam` or `sgd`, a string from HuggingFace
+
+
+See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case specific suggestions.
