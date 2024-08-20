@@ -27,6 +27,8 @@ Tuning hyperparameters can be a bit of an art. We've found that the following se
 ### Text-to-SQL (100 queries)
 `"max_steps": 500, "learning_rate": 0.00001`
 
+See [Hyperparameters](hyperparameters.md) for the complete list of options.
+
 ## Specifying GPUs and nodes
 
 `llm.train` takes an optional `gpu_config` argument that lets you specify the number of GPUs and nodes to use for tuning.
