@@ -7,7 +7,7 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 ### Lamini Enterprise access
 
 [Contact us](https://www.lamini.ai/contact) for access to the Kubernetes installer to host Lamini Platform on your own GPUs or in your cloud VPC.
- 
+
 ### NFS Provisioner
    Lamini requires a RWX NFS provisioner. For example, you can set up a simple provisioner using `nfs-subdir-external-provisioner`:
 
@@ -46,7 +46,7 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 1. Set the `name` of the PVC provisioner being used for the Lamini cluster. If the PVC has been created beforehand, ensure the `name` is correct, that it is in the `lamini` namespace, and set `create` to `False`:
    ```yaml title="helm_config.yaml"
    pvcLamini: {
-      name: lamini-volume, 
+      name: lamini-volume,
       size: 200Gi,
       create: True
    }
@@ -63,10 +63,10 @@ nfs_provisioner: nfs-client
 type: "amd"
 ```
 
-1. Update the distribution of inference pods. 
+1. Update the distribution of inference pods.
    ```yaml title="helm_config.yaml"
    inference: {
-      type: ClusterIP, 
+      type: ClusterIP,
       batch: 1,
       streaming: 1,
       embedding: 1,
@@ -77,10 +77,10 @@ type: "amd"
 
 1. Update the number of training pods and number of GPUs per pod:
    ```yaml title="helm_config.yaml"
-   training: { 
-      type: ClusterIP, 
-      num_pods: 1, 
-      num_gpus_per_pod: 8 
+   training: {
+      type: ClusterIP,
+      num_pods: 1,
+      num_gpus_per_pod: 8
    }
    ```
    We recommend minimizing the number of pods per node. For example, instead of 2 pods with 4 GPUs, it's better to create 1 pod with all 8 GPUs.
@@ -113,3 +113,11 @@ The Lamini Platform Kubernetes deployment consists of 2 Helm charts:
    Run `./upgrade.sh` - This recreates the Helm charts and redeploys `lamini` without touching `persistent-lamini`.
 
 That's it! You're up and running with Lamini Platform on Kubernetes.
+
+## Get Lamini version
+
+Run the following command to find the tag of the container image:
+```
+kubectl get deployments -o wide -n lamini
+```
+Look for the tag of the images listed in the **IMAGES** column
