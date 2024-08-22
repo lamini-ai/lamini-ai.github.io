@@ -31,15 +31,14 @@ Next, run Lamini:
         --header "Content-Type: application/json" \
         --data '{
             "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-            "prompt": "How are you?",
-            "output_type": {"Response": "str"}
+            "prompt": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nHow are you?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
         }'
     ```
 
 <details>
 <summary>Expected Output</summary>
     ```
-    {"Response":"I'm doing well, thanks for asking! How about you"}
+    "I'm just a language model, I don't have feelings or emotions like humans do, but I'm functioning properly and ready to help with any questions or tasks you have! How can I assist you today?"
     ```
 </details>
 
@@ -47,7 +46,7 @@ That's it! 🎉
 
 Now you can try:
 
-- Changing the prompt, model, and output type.
+- Learn more about the [prompt, model, and output type](./prompt_tuning.md).
 - Output multiple values in [structured JSON](./json_output.md).
 - [Batching your inference calls](./batching.md) to get high throughput.
 - Run applications like [RAG (Retrieval Augmented Generation)](https://github.com/lamini-ai/lamini-examples/blob/main/04_rag_tuning/README.md).
