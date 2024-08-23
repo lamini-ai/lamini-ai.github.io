@@ -36,7 +36,12 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
     - Default: `10`
     - Total number of training epochs to perform (if not an integer, will perform the decimal part percents of the last epoch before stopping training).
     - Will be overridden by `max_steps` if both are set.
-    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.num_train_epochs).
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments).
+
+- **save_steps** (int or float, optional)
+    - Default: `60`
+    - Number of update steps between two checkpoint saves.
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.save_steps).
 
 - **max_length** (int, optional)
     - Default: `2048`
