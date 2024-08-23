@@ -2,7 +2,7 @@ Start using LLMs in just 2 steps with Lamini!
 
 ## 1. Authenticate
 
-First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account). Need help? Check out [API Auth](/authenticate).
+First, get `<YOUR-LAMINI-API-KEY>` at [https://app.lamini.ai/account](https://app.lamini.ai/account). Need help? Check out [API Auth](../authenticate.md).
 
 ## 2. Run inference
 Next, run Lamini:

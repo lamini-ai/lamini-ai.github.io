@@ -1,6 +1,6 @@
 # Installing Lamini Platform on Docker
 
-Lamini Platform on Docker enables single-node inference and training. Looking to host Lamini on Kubernetes instead? [See here](self_managed/kubernetes_install.md).
+Lamini Platform on Docker enables single-node inference and training. Looking to host Lamini on Kubernetes instead? [See here](kubernetes_install.md).
 
 ## Prerequisites
 

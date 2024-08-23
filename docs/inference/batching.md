@@ -2,7 +2,7 @@ Batching inference requests (submitting multiple prompts simultaneously) provide
 
 ### Use cases
 
-- [Memory Tuning](/tuning/memory_tuning) using both evaluation and data-generation agents
+- [Memory Tuning](../tuning/memory_tuning.md) using both evaluation and data-generation agents
 - Evaluation agents that enable rapid feedback loops during model development by automatically measuring model performance
 - Data-generation agents for expanding tuning and evaluation data sets without tedious manual effort
 - Async inference for enriching or updating data in the background
