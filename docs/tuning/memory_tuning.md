@@ -62,9 +62,9 @@ llm.train(data_or_dataset_id=data*10, finetune_args={"max_steps": 100, "learning
 }
 ```
 
-## Example code to run a parameter sweep
+## Experiment with learning rate
 
-grid search approach on training jobs less than 300 steps. Essentially you would run jobs with a range of learning_rates and find which learning rate has a better loss curve and once that is found you would then conduct the larger training jobs with this best learning_rate found.
+For training jobs with less than 300 steps, a grid search approach can be effective. You can run multiple jobs on a subset of the data with a range of learning_rates to find which learning rate has a better loss curve. Once that is found, you can expand the training to the larger dataset with this best learning_rate.
 
 ```python
 from lamini import Lamini
@@ -89,7 +89,7 @@ def main():
 
     for lr in learning_rates:
         print(f"Training with lr={lr}")
-        
+
         try:
             results = llm.train(
                 dataset_id,
