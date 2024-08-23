@@ -4,7 +4,7 @@
 
 Your API key is at [https://app.lamini.ai/account](https://app.lamini.ai/account). If it's your first time, create a free account by logging in.
 
-If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC authentication docs](/self_managed/OIDC) for setting up user auth.
+If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC authentication docs](self_managed/OIDC.md) for setting up user auth.
 
 ## 2. Authenticate
 
@@ -44,7 +44,7 @@ If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC au
 
 ## Advanced Python setup: VPC or on premise
 
-If you are [running Lamini in your VPC or on prem](/enterprise_install/installer.md), you can change the URL from Lamini's hosted service to your own server URL:
+If you are [running Lamini in your VPC or on prem](self_managed/kubernetes_install.md), you can change the URL from Lamini's hosted service to your own server URL:
 
 === "Python script"
 

@@ -10,24 +10,107 @@ We partnered with Meta to create a [notebook](https://github.com/meta-llama/llam
 
 Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini Free plan.
 
-## Memory Tuning settings
+## Example Memory Tuning settings
 
-Tuning hyperparameters can be a bit of an art. We've found that the following settings work well for common use cases:
+Tuning hyperparameters can be a bit of an art. Where should you start experimenting?
+
+- `learning rate`
+- `max_finetuning_examples`
+- `max_steps`
+- `gradient_accumulation_steps`
+
+See [Hyperparameters](hyperparameters.md) for the complete list of options.
 
 ### When experimenting with a small dataset (<100 facts):
 
-`llm.train(data_or_dataset_id=data*10, finetune_args={"max_steps": 100, "learning_rate": 0.0003}, gpu_config={"gpus": 8, "nodes": 1})`
+```python
+llm.train(data_or_dataset_id=data*10, finetune_args={"max_steps": 100, "learning_rate": 0.0003}, gpu_config={"gpus": 8, "nodes": 1})
+```
 
 - Note that we're multiplying the dataset by 10
 - We recommend increasing `max_steps` when working with a larger dataset.
 
 ### Factual Q/A from PDFs (20 PDFs, 800+ facts)
- `"max_steps": 500, "learning_rate": 0.00009`
+```json
+{
+  "max_steps": 500,
+  "learning_rate": 0.00009
+}
+```
 
 ### Text-to-SQL (100 queries)
-`"max_steps": 500, "learning_rate": 0.00001`
+```json
+{
+  "max_steps": 500,
+  "learning_rate": 0.00001
+}
+```
 
-See [Hyperparameters](hyperparameters.md) for the complete list of options.
+### Factual Q/A on 10,000 facts:
+```json
+{
+  "gradient_accumulation_steps": 4,
+  "index_k": 2,
+  "index_max_size": 65536,
+  "index_method": "IndexFlatL2",
+  "learning_rate": 0.0003,
+  "max_length": 512,
+  "max_steps": 10000,
+  "index_ivf_nlist": 2048,
+  "max_finetuning_examples": 10000,
+  "r_value": 64
+}
+```
+
+## Example code to run a parameter sweep
+
+grid search approach on training jobs less than 300 steps. Essentially you would run jobs with a range of learning_rates and find which learning rate has a better loss curve and once that is found you would then conduct the larger training jobs with this best learning_rate found.
+
+```python
+from lamini import Lamini
+
+lamini.api_key = "<key>"
+
+def main():
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+
+    dataset = your_dataset_goes_here
+
+    try:
+        start = time.time()
+        dataset_id = llm.upload_data(dataset)
+        end = time.time()
+        print(f"Uploaded dataset in {end - start} seconds")
+    except Exception as e:
+        print(f"Failed to upload dataset: {e}")
+        return
+
+    learning_rates = [0.0009, 0.0003, 0.00009,  0.00003, 0.000003, 0.000009]
+
+    for lr in learning_rates:
+        print(f"Training with lr={lr}")
+        
+        try:
+            results = llm.train(
+                dataset_id,
+                use_cached_model=False,
+                finetune_args={
+                    "learning_rate": lr,
+                    "max_steps":300,
+                },
+                gpu_config={
+                    "gpus": 2,
+                    "nodes": 1,
+                }
+            )
+            print(f"Training results: {results}")
+        except Exception as e:
+            print(f"Failed to train model: {e}")
+            continue
+
+def load_training_data():
+    <——code to gather data——>
+```
 
 ## Specifying GPUs and nodes
 

@@ -18,7 +18,7 @@ Free plan users on [Lamini Cloud](https://app.lamini.ai) can use the following m
 
 On [Lamini Cloud](https://app.lamini.ai) we recommend using models <=17B parameters for inference and <=8B parameters for tuning for the best performance. Lamini Platform supports larger models. Please [contact us](https://www.lamini.ai/contact) if you need them.
 
-With [Memory Tuning](/tuning/memory_tuning) you can achieve very high factual accuracy with 8B models, without giving up fluent generalization. Using smaller models lowers operating costs and improves latency.
+With [Memory Tuning](tuning/memory_tuning.md) you can achieve very high factual accuracy with 8B models, without giving up fluent generalization. Using smaller models lowers operating costs and improves latency.
 
 Some factors to consider when thinking about model size:
 

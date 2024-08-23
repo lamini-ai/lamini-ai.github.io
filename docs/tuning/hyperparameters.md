@@ -19,62 +19,37 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
 - **max_steps** (int, optional)
     - Default: `100`
     - Specifies the total number of training steps to perform.
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.max_steps).
 
 - **gradient_accumulation_steps** (int, optional)
     - Default: `2`
     - Number of update steps to accumulate the gradients for, before performing a backward/update pass.
+    - Usage note: a higher setting can improve memory efficiency and thus reduce training time, often with a neutral effect on model accuracy.
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.gradient_accumulation_steps).
 
 - **learning_rate** (float, optional)
     - Default: `9.0e-4`
     - The initial learning rate for the fine-tuning.
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.learning_rate).
 
-- **batch_size** (int, optional)
-    - Default: `1`
-    - The batch size per device used for training. Chunks are used during fine-tuning. Each chunk has max_length of tokens. Multiple datapoints can make up a single chunk. As chunking is position invariant it leads to stabler model training and has the ability to generalize better. The default batch_size is set to 1, allowing the model to effectively batches data points. Setting this to a value other than 1 will result in an error.
+- **num_train_epochs** (float, optional)
+    - Default: `10`
+    - Total number of training epochs to perform (if not an integer, will perform the decimal part percents of the last epoch before stopping training).
+    - Will be overridden by `max_steps` if both are set.
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.num_train_epochs).
 
 - **max_length** (int, optional)
     - Default: `2048`
     - Specifies the maximum sequence length for the forward pass, acting as the block size for the model.
 
-- **layer_size** (int, optional)
-    - Default: `128`
-    - Defines the size of each layer in the model.
-
-- **attention_dropout** (float, optional)
-    - Default: `0.0`
-    - The dropout ratio for the attention probabilities.
-
-- **hidden_dropout** (float, optional)
-    - Default: `0.0`
-    - Dropout ratio applied to hidden states to prevent overfitting and improve generalization.
-
-- **attention_heads** (int, optional)
-    - Default: `4`
-    - Number of attention heads for each attention layer in the encoder.
-
-- **layers** (int, optional)
-    - Default: `4`
-    - Specifies the number of layers in the model.
-
-- **num_train_epochs** (float, optional)
-    - Default: `10`
-    - Total number of training epochs to perform (if not an integer, will perform the decimal part percents of the last epoch before stopping training).
-
 - **optim** (str, optional)
     - Default: `"adafactor"`
     - The optimizer to use: `adamw_hf`, `adamw_torch`, `adamw_torch_fused`, `adamw_apex_fused`, `adamw_anyprecision` or `adafactor`.
+    - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/main/en/main_classes/trainer#transformers.TrainingArguments.optim).
 
-- **early_stopping** (bool, optional)
-    - Default: `False`
-    - Stops beam search when at least num_beams sentences are finished per batch.
-
-- **num_hidden_layers** (int, optional)
-    - Default: `32`
-    - Number of hidden layers in the encoder.
-
-- **hidden_size** (int, optional)
-    - Default: `4096`
-    - Dimension of the hidden representations.
+- **r_value** (int, optional)
+    - Default: `64`
+    - Specifies the size of the LoRA (Low-Rank Adaptation) component.
 
 - **index_method** (str, optional)
     - Default: `"IndexIVFPQ"`
@@ -115,10 +90,6 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
 - **index_hnsw_efSearch** (int, optional)
     - Default: `8`
     - Expansion factor at search time for HNSW.
-
-- **r_value** (int, optional)
-    - Default: `64`
-    - Specifies the size of the LoRA (Low-Rank Adaptation) component.
 
 ## gpu_config
 
