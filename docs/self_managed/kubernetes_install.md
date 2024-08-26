@@ -1,6 +1,6 @@
 # Installing Lamini Platform on Kubernetes
 
-Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and training. Looking for Docker installation instead? [See here](docker_install.md).
+Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and training running on your own GPUs, in the environment of your choice.
 
 ## Prerequisites
 
@@ -121,3 +121,10 @@ Run the following command to find the tag of the container image:
 kubectl get deployments -o wide -n lamini
 ```
 Look for the tag of the images listed in the **IMAGES** column
+
+
+## POC only: Docker deployment
+
+Lamini Platform on Docker is available for limited Proof-of-Concept projects, but the only supported production deployment option is Kubernetes. Docker deployment only supports single-node inference and training.
+
+For Docker instructions [see here](docker_install.md).

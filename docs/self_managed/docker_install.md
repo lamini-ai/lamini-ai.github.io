@@ -1,6 +1,6 @@
 # Installing Lamini Platform on Docker
 
-Lamini Platform on Docker enables single-node inference and training. Looking to host Lamini on Kubernetes instead? [See here](kubernetes_install.md).
+Lamini Platform on Docker is available for limited Proof-of-Concept projects, but the only supported production deployment option is [Kubernetes](kubernetes_install.md). Docker deployment only supports single-node inference and training.
 
 ## Prerequisites
 
@@ -86,5 +86,3 @@ The list of all Lamini services is available in the docker-compose.yaml file
 Some common config values:
 
 1. `volumes.slurm-volume`: where do you want fine-tuned models to be stored (they are saved in pytorch format)
-
-<br><br>
