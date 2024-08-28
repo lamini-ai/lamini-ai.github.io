@@ -53,9 +53,9 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
    ```
    We recommend at least >200Gi (and the more, the better!) for `lamini-volume`. Base models, trained weights, and datasets will all be stored on this volume.
 
-1. Update the PVC provisioner classname by changing the `nfs_provisioner` field.
+1. Update the PVC provisioner classname by changing the `pvc_provisioner` field.
 ```yaml title="helm_config.yaml"
-nfs_provisioner: nfs-client
+pvc_provisioner: nfs-client
 ```
 
 1. Confirm the top-level platform `type` (one of: `amd`, `nvidia`, or `cpu`) matches your hardware.
