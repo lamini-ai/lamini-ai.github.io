@@ -31,6 +31,7 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
     - Default: `9.0e-4`
     - The initial learning rate for the fine-tuning.
     - This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.learning_rate).
+    - Usage note: see the [Memory Tuning](./memory_tuning.md/#example-memory-tuning-settings) section for tips on setting learning rate.
 
 - **save_steps** (int or float, optional)
     - Default: `60`
@@ -40,6 +41,8 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
 - **max_length** (int, optional)
     - Default: `2048`
     - Specifies the maximum sequence length for the forward pass, acting as the block size for the model.
+    - Should be a power of 2, no larger than `8192`.
+    - Usage note: `max_length` should be at least as large as the size of your datapoints. If training with large datapoints is not converging, increasing this value may help. However, larger values of `max_length` increase training time, and very large values will exhaust GPU memory. There's often room to reduce the size of your datapoints so a smaller `max_length` can be used.
 
 - **optim** (str, optional)
     - Default: `"adafactor"`
@@ -52,7 +55,7 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
 
 - **index_method** (str, optional)
     - Default: `"IndexIVFPQ"`
-    - The index method used for ANN search of high-dimensional vectors. IndexIVFPQ is a popular algorithm for approximate nearest neighbor search.
+    - The index method used for approximate nearest neighbor search of high-dimensional vectors: `IndexIVFPQ`, `IndexHNSWPQ`,`IndexHNSWFlat`, `IndexFlatL2`, `IndexPQ`
 
 - **index_k** (int, optional)
     - Default: `2`
@@ -65,30 +68,37 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
 - **index_pq_m** (int, optional)
     - Default: `8`
     - Number of factors of product quantization.
+    - Only used when `index_method` is `IndexIVFPQ` or `IndexPQ`. Ignored otherwise.
 
 - **index_pq_nbits** (int, optional)
     - Default: `8`
     - Number of bits in which each low-dimensional vector is stored. Range: [1, 16]
+    - Only used when `index_method` is `IndexIVFPQ` or `IndexPQ`. Ignored otherwise.
 
 - **index_ivf_nlist** (int, optional)
     - Default: `2048`
     - Number of buckets during clustering for IVFLAT.
+    - Only used when `index_method` is `IndexIVFPQ`. Ignored otherwise.
 
 - **index_ivf_nprobe** (int, optional)
     - Default: `48`
     - Number of buckets to search during the first step of IVFLAT.
+    - Only used when `index_method` is `IndexIVFPQ`. Ignored otherwise.
 
 - **index_hnsw_m** (int, optional)
     - Default: `32`
     - Range: [4, 64]. Used in HNSW (Hierarchical Navigable Small World Graph) algorithm.
+    - Only used when `index_method` is `IndexHNSWPQ` or `HNSWFlat`. Ignored otherwise.
 
 - **index_hnsw_efConstruction** (int, optional)
     - Default: `16`
     - Expansion factor at construction time for HNSW. Range: [8, 512]
+    - Only used when `index_method` is `IndexHNSWPQ` or `HNSWFlat`. Ignored otherwise.
 
 - **index_hnsw_efSearch** (int, optional)
     - Default: `8`
     - Expansion factor at search time for HNSW.
+    - Only used when `index_method` is `IndexHNSWPQ` or `HNSWFlat`. Ignored otherwise.
 
 ## gpu_config
 

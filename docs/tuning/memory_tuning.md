@@ -10,6 +10,32 @@ We partnered with Meta to create a [notebook](https://github.com/meta-llama/llam
 
 Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini Free plan.
 
+## Principles for Memory Tuning
+
+Andrej Karpathy's [A Recipe for Training Neural Networks](https://karpathy.github.io/2019/04/25/recipe/) is a great summary of the phased, iterative approach you should take to Memory Tuning (even though many of the specific examples in that article don't apply to Memory Tuning).
+
+1. Become one with the data
+    - Deeply understand your dataset and your eval, and refine them to high quality
+
+1. Set up the end-to-end training/evaluation skeleton
+    
+    Before you start Memory Tuning, measure the baseline accuracy on:
+    
+    1. the base model
+    1. base model + prompt tuning
+    1. base model + prompt tuning + RAG
+
+1. Overfit
+    - Find a Memory Tuning recipe that's accurate on your facts, even just for one example, before scaling up your data
+
+1. Regularize
+    - Scale up your data and check generalization performance
+
+1. Optimize
+    - Continue iterating now that you have a solid foundation
+
+Don't skip any of these steps!
+
 ## Example Memory Tuning settings
 
 Tuning hyperparameters can be a bit of an art. Where should you start experimenting?
