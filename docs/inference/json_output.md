@@ -46,7 +46,7 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 
 ### Values other than strings
 
-You can change the output type to be a different type, e.g. `int` or `float`. This typing is strictly enforced.
+You can change the output type to be a different type. This typing is strictly enforced.  We currently support `str`, `int`, `float`, and `bool`.
 
 Please let us know if there are specific types you'd like to see supported.
 
