@@ -1,8 +1,8 @@
 # Supported Models
 
-Lamini Cloud supports [CausalLM models from Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference, including [Llama 3.1](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct), [Mistral 3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), [Phi-3](https://huggingface.co/Phi-3-mini-4k-instruct), [Qwen 2](https://huggingface.co/Qwen/Qwen2-7B-Instruct), and many more.
+Lamini On-demand supports [CausalLM models from Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference, including [Llama 3.1](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct), [Mistral 3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), [Phi-3](https://huggingface.co/Phi-3-mini-4k-instruct), [Qwen 2](https://huggingface.co/Qwen/Qwen2-7B-Instruct), and many more.
 
-Lamini Enterprise supports more and larger models. Please [contact us](https://www.lamini.ai/contact) if you need them.
+Lamini Reserved and Self-managed supports more models. Please [contact us](https://www.lamini.ai/contact) if you need them.
 
 Note: Flash Attention 2 and 3 are not yet supported.
 
@@ -17,7 +17,7 @@ Some factors to consider when thinking about model size:
 
 ## Model loading
 
-The most popular models are preloaded on Lamini Cloud. Other models will be loaded from Hugging Face when requested in an inference or tuning call. Because models are large (usually tens of GBs), downloading them from Hugging Face and then loading them into GPU memory takes time.
+The most popular models are preloaded on Lamini On-demand. Other models will be loaded from Hugging Face when requested in an inference or tuning call. Because models are large (usually tens of GBs), downloading them from Hugging Face and then loading them into GPU memory takes time.
 
 **Please allow 20-30 minutes for the model to load.** Requests for models that have not yet loaded will return an error.
 

@@ -8,7 +8,7 @@ Memory tuning allows your LLMs to keep their general reasoning capabilities whil
 
 We partnered with Meta to create a [notebook](https://github.com/meta-llama/llama-recipes/blob/main/recipes/3p_integrations/lamini/text2sql_memory_tuning/README.md) that shows how to use Memory Tuning to improve a text-to-SQL model from 30% to 95% accuracy.
 
-Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini Free plan.
+Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini On-demand plan.
 
 ## Principles for Memory Tuning
 
@@ -18,9 +18,9 @@ Andrej Karpathy's [A Recipe for Training Neural Networks](https://karpathy.githu
     - Deeply understand your dataset and your eval, and refine them to high quality
 
 1. Set up the end-to-end training/evaluation skeleton
-    
+
     Before you start Memory Tuning, measure the baseline accuracy on:
-    
+
     1. the base model
     1. base model + prompt tuning
     1. base model + prompt tuning + RAG
@@ -50,10 +50,9 @@ See [Hyperparameters](hyperparameters.md) for the complete list of options.
 ### When experimenting with a small dataset (<100 facts):
 
 ```python
-llm.train(data_or_dataset_id=data*10, finetune_args={"max_steps": 100, "learning_rate": 0.0003}, gpu_config={"gpus": 8, "nodes": 1})
+llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32, "learning_rate": 0.0003})
 ```
 
-- Note that we're multiplying the dataset by 10
 - We recommend increasing `max_steps` when working with a larger dataset.
 
 ### Factual Q/A from PDFs (20 PDFs, 800+ facts)
@@ -140,11 +139,9 @@ def load_training_data():
 
 ## Specifying GPUs and nodes
 
-`llm.train` takes an optional `gpu_config` argument that lets you specify the number of GPUs and nodes to use for tuning.
+Specifying additional GPUs and/or nodes can significantly reduce model tuning time, which is especially beneficial when working with large datasets.
 
-Unless explicitly specified, the default is 1 GPU and 1 node.
-
-On the Lamini Free plan, you can specify up to 4 GPUs and 1 node.
+`llm.train` takes an optional `gpu_config` argument that lets you specify the number of GPUs and nodes to use for tuning. See [/tuning/hyperparameters/](/tuning/hyperparameters/#gpu_config) for more details.
 
 If you are self-managing Lamini Platform, you can specify any number of GPUs and nodes within the cluster size you've provisioned.
 

@@ -7,7 +7,7 @@ The [Models](models.md) page has details on the (many) models you can use with L
 We have a default 4-hour timeout for all tuning jobs. If your job times out, you can resume training from the last checkpoint - Lamini automatically saves checkpoints so your progress isn't lost. If you need to run longer jobs, [contact us](https://www.lamini.ai/contact).
 
 ## Why is my job queued?
-Our Free plan uses shared resources. We queue tuning jobs in order to serve all users. To reserve your own dedicated compute or run on your own GPUs, please [contact us](https://www.lamini.ai/contact).
+Our On-demand plan uses shared resources. We queue tuning jobs in order to serve all users. To reserve your own dedicated compute or run on your own GPUs, please [contact us](https://www.lamini.ai/contact).
 
 ## I'm getting a missing key error! What do I do?
 The [Authenticate](authenticate.md) page has details on getting and setting your Lamini API key.
@@ -17,6 +17,17 @@ Lamini has not been tested on Windows and is not officially supported. While it 
 
 ## What systems can run Lamini?
 Lamini is tested and developed on Linux-based systems. Specifically, we recommend using Ubuntu 22.04 or later with Python 3.10, 3.11, or 3.12.
+
+## Can I turn off memory tuning / MoME?
+Yes, if your use case needs a more qualitative output, like summarization where there are many possible answers, then memory tuning may be hurting performance (but still worth trying). You can set the following finetuning args to disable MoME:
+```python
+finetune_args={
+  "batch_size": 1,
+  "index_ivf_nlist": 1,
+  "index_method": "IndexFlatL2",
+  "index_max_size": 1,
+}
+```
 
 ## Does Lamini use LoRAs?
 Yes, Lamini tunes LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching. Read [our blog post](https://www.lamini.ai/blog/one-billion-times-faster-finetuning-with-lamini-peft) for more details.
