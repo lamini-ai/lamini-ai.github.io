@@ -1,7 +1,7 @@
 # Overview
 ## Welcome to Lamini 🦙
 
-Lamini is an integrated LLM inference and tuning platform, so you can seamlessly tune models that achieve exceptional factual accuracy while minimizing latency and cost. Lamini Enterprise runs in your environment - even air-gapped - or you can use our GPUs in Lamini Cloud.
+Lamini is an integrated LLM inference and tuning platform, so you can seamlessly tune models that achieve exceptional factual accuracy while minimizing latency and cost. Lamini Self-managed runs in your environment - even air-gapped - or you can use our GPUs in Lamini On-demand and Reserved.
 
 <table>
   <tr>
@@ -10,7 +10,7 @@ Lamini is an integrated LLM inference and tuning platform, so you can seamlessly
     <th>Go to 🔗</th>
   </tr>
   <tr onclick="location.href='/inference/quick_start'">
-    <td>2 steps to start using LLMs on Lamini Cloud ☁️</td>
+    <td>2 steps to start using LLMs on Lamini On-demand ☁️</td>
     <td></td>
     <td><a href="/inference/quick_start">Quick Start</a></td>
   </tr>

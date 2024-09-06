@@ -116,7 +116,7 @@ gpu_config = {
 }
 ```
 
-The Lamini Free plan allows a maximum of 4 GPUs and 1 node. If you are self-managing the Lamini Platform, you can specify any number of GPUs and nodes within your provisioned cluster size. Your job will be queued until the requested number of GPUs and nodes is available.
+The Lamini On-demand allows a maximum of GPUs and nodes based on our server availability. If you are on Lamini Reserved or Self-managed, you can specify any number of GPUs and nodes within your provisioned cluster size. Your job will be queued until the requested number of GPUs and nodes is available.
 
 If the required GPUs and nodes are not available, the configuration defaults to the system limit, and the job is queued until the resources become available. When using multiple nodes, specify the number of GPUs required per node.
 
@@ -125,7 +125,7 @@ Examples:
 gpu_config = {"gpus": 8, "nodes": 1}  # total 8 GPUs
 gpu_config = {"gpus": 8, "nodes": 2}  # total 16 GPUs
 gpu_config = {"gpus": 4, "nodes": 2}  # total 8 GPUs
-gpu_config = {"gpus": 9, "nodes": 1}  # total 8 GPUs, assuming max GPUs per node is 8
+gpu_config = {"gpus": 9, "nodes": 1}  # error, assuming max GPUs per node is 8
 ```
 
 ## data_or_dataset_id
