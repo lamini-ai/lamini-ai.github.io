@@ -100,6 +100,13 @@ See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case spe
     - Expansion factor at search time for HNSW.
     - Only used when `index_method` is `IndexHNSWPQ` or `HNSWFlat`. Ignored otherwise.
 
+### Immutables
+The following configs are only supported at their default values:
+- **batch_size: 1**
+- **early_stopping: false**
+- **num_train_epochs**: Will be overriden by `max_steps`
+- **temperature: 0**
+
 ## gpu_config
 
 - **gpus**: (int, optional)
