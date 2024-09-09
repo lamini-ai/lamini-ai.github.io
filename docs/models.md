@@ -5,20 +5,20 @@ Lamini On-demand supports [CausalLM models from Hugging Face](https://huggingfac
 Lamini Reserved and Self-managed supports more models. Please [contact us](https://www.lamini.ai/contact) if you need them.
 
 Models available on Lamini On-demand for inference and tuning:
-  - `EleutherAI/pythia-410m`
-  - `EleutherAI/pythia-70m`
-  - `hf-internal-testing/tiny-random-gpt2`
-  - `meta-llama/Llama-2-13b-chat-hf`
-  - `meta-llama/Llama-2-7b-chat-hf`
-  - `meta-llama/Llama-2-7b-hf`
-  - `meta-llama/Meta-Llama-3-8B-Instruct`
-  - `meta-llama/Meta-Llama-3.1-8B-Instruct`
-  - `microsoft/phi-2`
-  - `microsoft/Phi-3-mini-4k-instruct`
-  - `mistralai/Mistral-7B-Instruct-v0.1`
-  - `mistralai/Mistral-7B-Instruct-v0.2`
-  - `mistralai/Mistral-7B-Instruct-v0.3`
-  - `Qwen/Qwen2-7B-Instruct`
+- `EleutherAI/pythia-410m`
+- `EleutherAI/pythia-70m`
+- `hf-internal-testing/tiny-random-gpt2`
+- `meta-llama/Llama-2-13b-chat-hf`
+- `meta-llama/Llama-2-7b-chat-hf`
+- `meta-llama/Llama-2-7b-hf`
+- `meta-llama/Meta-Llama-3-8B-Instruct`
+- `meta-llama/Meta-Llama-3.1-8B-Instruct`
+- `microsoft/phi-2`
+- `microsoft/Phi-3-mini-4k-instruct`
+- `mistralai/Mistral-7B-Instruct-v0.1`
+- `mistralai/Mistral-7B-Instruct-v0.2`
+- `mistralai/Mistral-7B-Instruct-v0.3`
+- `Qwen/Qwen2-7B-Instruct`
 
 Note: Flash Attention 2 and 3 are not yet supported.
 
