@@ -5,6 +5,7 @@ Lamini On-demand supports [CausalLM models from Hugging Face](https://huggingfac
 Lamini Reserved and Self-managed supports more models. Please [contact us](https://www.lamini.ai/contact) if you need them.
 
 Models available on Lamini On-demand for inference and tuning:
+
 - `EleutherAI/pythia-410m`
 - `EleutherAI/pythia-70m`
 - `hf-internal-testing/tiny-random-gpt2`
