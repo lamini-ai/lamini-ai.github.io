@@ -33,3 +33,6 @@ finetune_args={
 Yes, Lamini tunes LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching. Read [our blog post](https://www.lamini.ai/blog/one-billion-times-faster-finetuning-with-lamini-peft) for more details.
 
 Lamini applies this optimization (and others) automatically - you don't have to configure anything.
+
+## Can I run my job on an MI300?
+Yes! Lamini On-demand currently uses MI250s, but we have MI300s available for our Lamini Reserved plans. Please [contact us](https://www.lamini.ai/contact) to learn more about Lamini Reserved and our MI300 cluster.
