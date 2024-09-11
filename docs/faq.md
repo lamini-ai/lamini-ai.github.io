@@ -3,8 +3,8 @@
 ## What models are supported?
 The [Models](models.md) page has details on the (many) models you can use with Lamini.
 
-## Why did my training / tuning job time out?
-We have a default 4-hour timeout for all tuning jobs. If your job times out, you can resume training from the last checkpoint - Lamini automatically saves checkpoints so your progress isn't lost. If you need to run longer jobs, [contact us](https://www.lamini.ai/contact).
+## Will my training / tuning job time out?
+We have a default 4-hour timeout for all tuning jobs. If your job times out, it will be automatically added back to the queue and run from the last checkpoint - Lamini automatically saves checkpoints so your progress isn't lost. This is to allow other jobs to run. If you want to run longer jobs, consider requesting more GPUs via `gpu_config` for a speed up or [contact us](https://www.lamini.ai/contact) for a dedicated instance.
 
 ## Why is my job queued?
 Our On-demand plan uses shared resources. We queue tuning jobs in order to serve all users. To reserve your own dedicated compute or run on your own GPUs, please [contact us](https://www.lamini.ai/contact).

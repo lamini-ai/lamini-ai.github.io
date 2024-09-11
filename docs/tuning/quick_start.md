@@ -10,7 +10,7 @@ There are many ways to tune your LLM. We'll cover two methods here. A traditiona
 
 === "Python SDK"
 
-    First, get data and put it into an `input` and `output` format. We recommend at least 1000 examples to see a difference in tuning.
+    First, get data and put it into an `input` and `output` format. We recommend at least 20-40 examples.
 
     Sample data:
 
