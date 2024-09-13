@@ -4,7 +4,7 @@ Lamini Platform supports a [variety of models](../models.md). When self-managing
 
 ## Preloaded models
 
-To edit the list of preloaded models for your self-managed Lamini deployment, you need to modify the `llama_config.yaml` file.
+To edit the list of preloaded models for your Lamini Self-Managed deployment, you need to modify the `llama_config.yaml` file.
 
 To edit the list of preloaded models:
 
@@ -27,4 +27,3 @@ Downloading and loading a model takes significant time. We recommend allowing 20
 If you are experimenting with many different models, make sure to allocate enough `catchall` pods to handle the load without disrupting your other inference pods.
 
 We recommend focusing development on one model or a small set of models, and preloading them. We've seen the highest accuracy and performance gains come from improving data quality and tuning recipes, rather than testing many models hoping to find one that works significantly better out of the box.
-

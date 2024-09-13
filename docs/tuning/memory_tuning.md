@@ -8,7 +8,7 @@ Memory tuning allows your LLMs to keep their general reasoning capabilities whil
 
 We partnered with Meta to create a [notebook](https://github.com/meta-llama/llama-recipes/blob/main/recipes/3p_integrations/lamini/text2sql_memory_tuning/README.md) that shows how to use Memory Tuning to improve a text-to-SQL model from 30% to 95% accuracy.
 
-Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini On-demand plan.
+Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini On-Demand plan.
 
 ## Principles for Memory Tuning
 
