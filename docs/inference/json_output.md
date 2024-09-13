@@ -46,9 +46,11 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 
 ### Values other than strings
 
-You can change the output type to be a different type. This typing is strictly enforced.  We currently support `str`, `int`, `float`, `bool`, and enums structured as lists (for example `"answer": ["A","B","C","D"]` would always return one of `A`, `B`, `C`, or `D` for the `answer` field).
+You can change the output type to be a different type. This typing is strictly enforced.  We currently support `str`, `int`, `float`, `bool`, and enums structured as str lists, or int lists. For example, `"answer": ["A","B","C","D"]` would always return one of `A`, `B`, `C`, or `D` for the `answer` field. `"answer": [1, 2, 3]` would always return one of `1`, `2`, or `3` for the `answer` field. 
 
 Please let us know if there are additional types you'd like to see supported.
+
+Examples
 
 === "Python SDK"
 
@@ -58,6 +60,25 @@ Please let us know if there are additional types you'd like to see supported.
         output_type={"age": "int"}
     )
     ```
+    
+=== "Python SDK"
+
+    ```python hl_lines="3"
+    llm.generate(
+        "Pick a color.",
+        output_type={"name": ["red", "white", "blue"]}
+    )
+    ```
+
+=== "Python SDK"
+
+    ```python hl_lines="3"
+    llm.generate(
+        "Pick an odd digit",
+        output_type={"name": [1, 3, 5, 7, 9]}
+    )
+    ```
+
 === "REST API"
 
     ```sh hl_lines="7-9"
