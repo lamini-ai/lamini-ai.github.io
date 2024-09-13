@@ -8,6 +8,15 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 
 [Contact us](https://www.lamini.ai/contact) for access to the Kubernetes installer to host Lamini Platform on your own GPUs or in your cloud VPC.
 
+### Hardware system requirements
+
+- 64 GB CPU memory
+- 1 TB disk
+- GPU memory: 2xHBM per GPU
+
+   - Example: AMD MI250 has 64GB of HBM, so Lamini requires 128GB of RAM per GPU.
+   - Example: AMD MI300 has 192GB HBM, so Lamini requires 384GB of RAM per GPU.
+
 ### NFS Provisioner
    Lamini requires a RWX NFS provisioner. For example, you can set up a simple provisioner using `nfs-subdir-external-provisioner`:
 
@@ -121,10 +130,3 @@ Run the following command to find the tag of the container image:
 kubectl get deployments -o wide -n lamini
 ```
 Look for the tag of the images listed in the **IMAGES** column
-
-
-## POC only: Docker deployment
-
-Lamini Platform on Docker is available for limited Proof-of-Concept projects, but the only supported production deployment option is Kubernetes. Docker deployment only supports single-node inference and training.
-
-For Docker instructions [see here](docker_install.md).

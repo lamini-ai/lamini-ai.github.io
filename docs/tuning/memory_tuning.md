@@ -141,7 +141,7 @@ def load_training_data():
 
 Specifying additional GPUs and/or nodes can significantly reduce model tuning time, which is especially beneficial when working with large datasets.
 
-`llm.train` takes an optional `gpu_config` argument that lets you specify the number of GPUs and nodes to use for tuning. See [/tuning/hyperparameters/](/tuning/hyperparameters/#gpu_config) for more details.
+`llm.train` takes an optional `gpu_config` argument that lets you specify the number of GPUs and nodes to use for tuning. See [Hyperparameters](hyperparameters.md/#gpu_config) for more details.
 
 If you are self-managing Lamini Platform, you can specify any number of GPUs and nodes within the cluster size you've provisioned.
 
