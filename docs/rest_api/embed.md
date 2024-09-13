@@ -19,7 +19,7 @@ This endpoint allows you to make a POST request to convert a string into a vecto
 }
 ```
 
-#### Parameters:
+#### Parameters
 
 -   `prompt` : `str` or `List[str]`, the string to embed
 -   `model_name` (optional): `str`, the name of a base or finetuned model. Default is `sentence-transformers/all-MiniLM-L6-v2`.

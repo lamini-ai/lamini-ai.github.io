@@ -21,7 +21,7 @@ This endpoint allows you to make a POST request to complete a task or answer a q
 }
 ```
 
-#### Parameters:
+#### Parameters
 
 - Required
     -   `model_name`: `str`, the name of your base or finetuned model

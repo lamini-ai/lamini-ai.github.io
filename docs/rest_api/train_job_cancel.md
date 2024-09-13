@@ -14,7 +14,7 @@ Cancel a scheduled or running training job.
     - `Authorization: Bearer $LAMINI_API_KEY`
     - `Content-Type: application/json`
 
-**Parameters:**
+**Parameters**
 
 - `{job_id}` - The unique identifier of the training job to be cancelled.
 

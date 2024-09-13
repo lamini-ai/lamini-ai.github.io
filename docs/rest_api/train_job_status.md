@@ -14,7 +14,7 @@ Get the status of a training job.
     - `Authorization: Bearer <LAMINI_API_KEY>`
     - `Content-Type: application/json`
 
-**Parameters:**
+**Parameters**
 
 - `{job_id}` - The unique identifier of the training job to be cancelled.
 
@@ -22,7 +22,7 @@ Get the status of a training job.
 
 The response will contain the job id, job status, job start time, and model name.
 
-**Body (JSON):**
+**Body (JSON)**
 
 - `job_id`: The job id
 - `status`: "CREATED" | "QUEUED" | "LOADING DATA" | "TRAINING MODEL" | "SAVING MODEL" | "EVALUATING MODEL" | "COMPLETED" | "PARTIALLY COMPLETED" | "CANCELED" | "FAILED"
