@@ -46,9 +46,9 @@ For an in-depth technical deep dive of how we implemented this feature, see [our
 
 ### Values other than strings
 
-You can change the output type to be a different type. This typing is strictly enforced.  We currently support `str`, `int`, `float`, and `bool`.
+You can change the output type to be a different type. This typing is strictly enforced.  We currently support `str`, `int`, `float`, `bool`, and enums structured as lists (for example `"answer": ["A","B","C","D"]` would always return one of `A`, `B`, `C`, or `D` for the `answer` field).
 
-Please let us know if there are specific types you'd like to see supported.
+Please let us know if there are additional types you'd like to see supported.
 
 === "Python SDK"
 

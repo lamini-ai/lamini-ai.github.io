@@ -20,11 +20,12 @@ To train on an already uploaded dataset
 }
 ```
 
-## Parameters:
+## Parameters
 
 - model_name (string): The model you'd like to train on.
 - upload_file_path (string): The path to the uploaded data.
-## Response:
+
+## Response
 
 The response will include a job id and the status of the job. You can monitor the job at [https://app.lamini.ai/train](https://app.lamini.ai/train). There are a number of statuses possible, each representing a different stage in the tuning process.
 
