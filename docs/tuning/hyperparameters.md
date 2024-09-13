@@ -8,7 +8,7 @@ These can be set in the `tune` method:
 # code/hyperparameters.py#L9-L12
 ```
 
-See [Memory Tuning](./memory_tuning.md/#memory-tuning-settings) for use-case specific suggestions.
+See [Memory Tuning](./memory_tuning.md/#example-memory-tuning-settings) for use-case specific suggestions.
 
 ## finetune_args
 

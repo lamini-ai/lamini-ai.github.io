@@ -107,4 +107,5 @@ plugins:
         'training/quick_tour.md': 'tuning/quick_start.md'
         'inference/quick_tour.md': 'inference/quick_start.md'
         'enterprise_install.md': 'self_managed/kubernetes_install.md'
+        'self_managed/docker_install.md': 'self_managed/kubernetes_install.md'
   - search
