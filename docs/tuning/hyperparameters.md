@@ -123,7 +123,7 @@ gpu_config = {
 }
 ```
 
-The Lamini On-demand allows a maximum of GPUs and nodes based on our server availability. If you are on Lamini Reserved or Self-managed, you can specify any number of GPUs and nodes within your provisioned cluster size. Your job will be queued until the requested number of GPUs and nodes is available.
+The Lamini On-Demand allows a maximum of GPUs and nodes based on our server availability. If you are on Lamini Reserved or Self-managed, you can specify any number of GPUs and nodes within your provisioned cluster size. Your job will be queued until the requested number of GPUs and nodes is available.
 
 If the required GPUs and nodes are not available, the configuration defaults to the system limit, and the job is queued until the resources become available. When using multiple nodes, specify the number of GPUs required per node.
 
