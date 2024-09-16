@@ -35,4 +35,4 @@ Yes, Lamini tunes LoRAs (low-rank adapters) on top of a pretrained LLM to get th
 Lamini applies this optimization (and others) automatically - you don't have to configure anything.
 
 ## Can I run my job on an MI300?
-Yes! Lamini On-Demand currently uses MI250s, but we have MI300s available for our Lamini Reserved plans. Please [contact us](https://www.lamini.ai/contact) to learn more about Lamini Reserved and our MI300 cluster.
+Yes! Lamini On-Demand currently runs on MI250s and we have MI300s available for our Lamini Reserved plans. Please [contact us](https://www.lamini.ai/contact) to learn more about Lamini Reserved and our MI300 cluster.
