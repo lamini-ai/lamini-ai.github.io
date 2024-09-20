@@ -7,5 +7,5 @@ llm.generate(
         "What is the meaning of life?",
         "What is the hottest day of the year?",
     ],
-    output_type={"response": "str", "explanation": "str"}
+    output_type={"response": "str", "explanation": "str"},
 )
