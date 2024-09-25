@@ -1,8 +1,8 @@
-# Supported Models
+## Supported Models
 
-Lamini On-Demand supports [CausalLM models from Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference, including [Llama 3.1](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct), [Mistral 3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), [Phi-3](https://huggingface.co/Phi-3-mini-4k-instruct), [Qwen 2](https://huggingface.co/Qwen/Qwen2-7B-Instruct), and many more.
+### Lamini On-Demand
 
-Lamini Reserved and Self-Managed supports more models. Please [contact us](https://www.lamini.ai/contact) if you need them.
+Lamini On-Demand supports a variety of the most popular open source LLMs, including [Llama 3.1](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct), [Mistral 3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), [Phi-3](https://huggingface.co/Phi-3-mini-4k-instruct), [Qwen 2](https://huggingface.co/Qwen/Qwen2-7B-Instruct), and many more.
 
 Models available on Lamini On-Demand for inference and tuning:
 
@@ -21,9 +21,11 @@ Models available on Lamini On-Demand for inference and tuning:
 - `mistralai/Mistral-7B-Instruct-v0.3`
 - `Qwen/Qwen2-7B-Instruct`
 
-Note: Flash Attention 2 and 3 are not yet supported.
+### Lamini Reserved and Self-Managed
 
-## Model size
+Lamini Reserved and Self-Managed support all [CausalLM models from Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) (excluding those requiring Flash Attention 2 or 3). Roughly 95% of all models on HF are supported. If you're interested in using models that aren't available in Lamini On-Demand, please [contact us](https://www.lamini.ai/contact).
+
+## Model size and performance
 With [Memory Tuning](tuning/memory_tuning.md) you can achieve very high factual accuracy with 8B models, without giving up fluent generalization. Using smaller models lowers operating costs and improves latency.
 
 Some factors to consider when thinking about model size:
@@ -34,8 +36,12 @@ Some factors to consider when thinking about model size:
 
 ## Model loading
 
-The most popular models are preloaded on Lamini On-Demand. Other models will be loaded from Hugging Face when requested in an inference or tuning call. Because models are large (usually tens of GBs), downloading them from Hugging Face and then loading them into GPU memory takes time.
+Lamini On-Demand only allows use of the models listed above.
 
-**Please allow 20-30 minutes for the model to load.** Requests for models that have not yet loaded will return an error.
+If you're using Lamini Reserved or Self-Managed, you can configure your cluster to use any supported Hugging Face model.
+
+The `batch_model_list` in `llama_config.yaml` lets you specify which models to preload onto your allocated inference GPUs. Inference requests for all other models will be handled by your allocated `catchall` GPUs, and those models will be loaded from Hugging Face when requested. 
+
+Because models are large (usually tens of GBs), downloading them from Hugging Face and then loading them into GPU memory takes time. **Please allow 20-30 minutes for non-preloaded models to load.** Requests for models that have not yet loaded will return an error.
 
 We recommend focusing development on one model or a small set of models, and preloading them. We've seen the highest accuracy and performance gains come from improving data quality and tuning recipes, rather than testing many models hoping to find one that works significantly better out of the box.
