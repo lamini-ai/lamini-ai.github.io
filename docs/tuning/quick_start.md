@@ -40,9 +40,7 @@ There are many ways to tune your LLM. We'll cover two methods here. A traditiona
 You can track the tuning progress and view eval results at [https://app.lamini.ai/train](https://app.lamini.ai/train).
 
 ## Memory Tuning
-Lamini Memory Tuning is a new way to embed facts into LLMs that improves factual accuracy to previously-unachievable levels.
-
-Learn more: [http://www.lamini.ai/blog/lamini-memory-tuning](http://www.lamini.ai/blog/lamini-memory-tuning)
+Lamini Memory Tuning is a new way to embed facts into LLMs that improves factual accuracy to previously-unachievable levels. Learn how in the [Memory Tuning section](./memory_tuning.md) or check out our blog post: [http://www.lamini.ai/blog/lamini-memory-tuning](http://www.lamini.ai/blog/lamini-memory-tuning).
 
 ![Memory tuning graph](../assets/memory_tuning_graph.png)
 
