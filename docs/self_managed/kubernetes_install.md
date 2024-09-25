@@ -4,7 +4,7 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 
 ## Prerequisites
 
-### Lamini Enterprise access
+### Lamini Self-Managed license
 
 [Contact us](https://www.lamini.ai/contact) for access to the Kubernetes installer to host Lamini Platform on your own GPUs or in your cloud VPC.
 
