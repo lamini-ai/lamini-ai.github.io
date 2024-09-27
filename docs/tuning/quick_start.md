@@ -32,7 +32,7 @@ There are many ways to tune your LLM. We'll cover two methods here. A traditiona
 
     Next, instantiate and tune the model!
     ```py
-    # code/quick_start.py#L46-L50
+    # code/quick_start.py#L47-L51
     ```
 === "REST API"
     See the [REST API docs](../rest_api/train.md) for more details on tuning, checking the status of the tuning job, canceling the job, evaluating the model, loading data, and deleting data.
