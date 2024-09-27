@@ -5,7 +5,7 @@ Lamini tuning supports most hyperparameters in [HuggingFace's training arguments
 These can be set in the `tune` method:
 
 ```py
-# code/hyperparameters.py#L9-L12
+# code/hyperparameters.py
 ```
 
 See [Memory Tuning](./memory_tuning.md/#example-memory-tuning-settings) for use-case specific suggestions.
