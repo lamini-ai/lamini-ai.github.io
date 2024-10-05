@@ -1,11 +1,11 @@
-## `/v1/inference/embedding`
+## `/v1/embedding`
 
 This endpoint allows you to make a POST request to convert a string into a vector embedding (a List[float]).
 
 ### Request
 
 - HTTP Method: POST
-- URL: `https://api.lamini.ai/v1/inference/embedding`
+- URL: `https://api.lamini.ai/v1/embedding`
 - Headers:
       - `Authorization: Bearer $LAMINI_API_KEY`
       - `Content-Type: application/json`
@@ -44,7 +44,7 @@ Otherwise, the request will return an error code, and the response json will con
 #### Request
 
 ```bash
-curl --location 'https://api.lamini.ai/v1/inference/embedding' \
+curl --location 'https://api.lamini.ai/v1/embedding' \
    --header 'Authorization: Bearer $LAMINI_API_KEY' \
    --header 'Content-Type: application/json' \
    --data '{ "prompt": "How are you?  Rate on a scale of 1 to 5." }'
