@@ -8,7 +8,7 @@ Lamini Platform orchestrates GPUs to deliver exceptional LLM tuning and inferenc
 
 ![Lamini overview](assets/lamini-overview.png)
 
-See for yourself: take a [quick tour (with free API access!)](inference/quick_start.md) to see how Lamini works, or [contact us](https://www.lamini.ai/contact) to run in your own environment.
+See for yourself: take a [quick tour (with free API access!)](quick_start.md) to see how Lamini works, or [contact us](https://www.lamini.ai/contact) to run in your own environment.
 
 ## Deployment Models
 

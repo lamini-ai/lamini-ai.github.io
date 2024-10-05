@@ -49,7 +49,7 @@ See [Hyperparameters](hyperparameters.md) for the complete list of options.
 
 ### When experimenting with a small dataset (<100 facts):
 
-```python
+```py
 llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32, "learning_rate": 0.0003})
 ```
 
@@ -91,7 +91,7 @@ llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32
 
 For training jobs with less than 300 steps, a grid search approach can be effective. You can run multiple jobs on a subset of the data with a range of learning_rates to find which learning rate has a better loss curve. Once that is found, you can expand the training to the larger dataset with this best learning_rate.
 
-```python
+```py
 from lamini import Lamini
 
 lamini.api_key = "<key>"
@@ -151,3 +151,12 @@ Your job will be queued until the requested number of nodes and GPUs are availab
 
 - See how a Fortune 500 company used Memory Tuning in our [case study](https://www.lamini.ai/blog/llm-text-to-sql)
 - Read more in our [blog post](http://www.lamini.ai/blog/lamini-memory-tuning)
+
+### Known issue: Tuning on a previously tuned model
+Submitting a tuning job on a model is not currently supported. 
+We are evaluating the feasibility of supporting continued tuning on previously tuned models. Feel free to [contact us](https://www.lamini.ai/contact) 
+
+#### Workaround
+To include additional data, submit a new tuning job with the new data on the base model instead of adding the data to a previously tuned model. If your use case requires more than 500 data points, [reach out to us for support](https://www.lamini.ai/contact).
+with any questions or concerns.
+

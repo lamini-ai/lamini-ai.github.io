@@ -6,6 +6,19 @@ These can be set in the `tune` method:
 
 ```py
 # code/hyperparameters.py
+
+from lamini import Lamini
+
+llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+data = [
+    {
+        "input": "What is Lamini? Is it like a robot or a computer program?",
+        "output": "Lamini is a program for the execution of LLMs called a large language model engine. It is not a robot, but rather a tool for building and executing LLMs.",
+    }
+]
+
+results = llm.tune(data_or_dataset_id=data, finetune_args={"learning_rate": 1.0e-4})
+
 ```
 
 See [Memory Tuning](./memory_tuning.md/#example-memory-tuning-settings) for use-case specific suggestions.
@@ -102,6 +115,7 @@ See [Memory Tuning](./memory_tuning.md/#example-memory-tuning-settings) for use-
 
 ### Immutables
 The following configs are only supported at their default values:
+
 - **batch_size: 1**
 - **early_stopping: false**
 - **num_train_epochs**: Will be overriden by `max_steps`
@@ -116,7 +130,7 @@ The following configs are only supported at their default values:
     - Default: `1`
     - Number of nodes (machines containing multiple GPUs) to use for the tuning job.
 
-```python
+```py
 gpu_config = {
     "gpus": 4,
     "nodes": 1,
@@ -128,7 +142,7 @@ The Lamini On-Demand allows a maximum of GPUs and nodes based on our server avai
 If the required GPUs and nodes are not available, the configuration defaults to the system limit, and the job is queued until the resources become available. When using multiple nodes, specify the number of GPUs required per node.
 
 Examples:
-```python
+```py
 gpu_config = {"gpus": 8, "nodes": 1}  # total 8 GPUs
 gpu_config = {"gpus": 8, "nodes": 2}  # total 16 GPUs
 gpu_config = {"gpus": 4, "nodes": 2}  # total 8 GPUs

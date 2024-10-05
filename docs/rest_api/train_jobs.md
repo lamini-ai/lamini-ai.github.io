@@ -1,4 +1,4 @@
-## Endpoint Documentation: `/v1/train/jobs`
+## `/v1/train/jobs`
 
 !!! note
 

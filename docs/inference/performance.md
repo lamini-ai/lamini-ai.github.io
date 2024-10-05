@@ -4,7 +4,7 @@ Inference performance is a function of model size, prompt size, response size, a
 
 Inference responses can be truncated (cut off, or appear incomplete) because the request could not be completed in the time allotted (timeout), or because the response size exceeded the `max_new_tokens` parameter (length).
 
-1. First, review your prompt and requested responses: can you shorten them? When you're experimenting, it's easy to accumulate extraneous information in the prompt, or to request more output than you actually need. [Prompt tuning](prompt_tuning.md) is often a quick win, especially when combined with [structured output](json_output.md).
+1. First, review your prompt and requested responses: can you shorten them? When you're experimenting, it's easy to accumulate extraneous information in the prompt, or to request more output than you actually need. Prompt tuning is often a quick win, especially when combined with [structured output](json_output.md).
 
 1. Try using [Generation Pipelines](https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md) for more efficient execution.
 

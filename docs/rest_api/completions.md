@@ -1,4 +1,4 @@
-## Endpoint Documentation: `/v2/completions`
+## `/v2/completions`
 
 The v2 completions endpoint allows you to make a POST request to get an LLM inference response to a prompt, optionally with a specified JSON output structure, and provides a `finish_reason` field in the response indicating why each inference request finished.
 
@@ -118,7 +118,7 @@ Note the result is a hash, so the order of keys may be different from below.
 ```
 
 
-## Endpoint Documentation: `/v1/completions`
+## `/v1/completions`
 
 This endpoint allows you to make a POST request to complete a task or answer a question with a JSON output.
 
