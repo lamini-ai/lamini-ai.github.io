@@ -1,4 +1,4 @@
-## Endpoint Documentation: `/v1/inference/embedding`
+## `/v1/inference/embedding`
 
 This endpoint allows you to make a POST request to convert a string into a vector embedding (a List[float]).
 
