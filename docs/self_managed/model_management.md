@@ -27,3 +27,14 @@ Downloading and loading a model takes significant time. We recommend allowing 20
 If you are experimenting with many different models, make sure to allocate enough `catchall` pods to handle the load without disrupting your other inference pods.
 
 We recommend focusing development on one model or a small set of models, and preloading them. We've seen the highest accuracy and performance gains come from improving data quality and tuning recipes, rather than testing many models hoping to find one that works significantly better out of the box.
+
+## Model downloading
+
+You can use the following curl command to request Lamini Platform to download a model:
+
+```shell
+curl -X POST "[YOUR_API]/v1/downloaded_models/" \
+    --header "Authorization: Bearer [YOUR_API_KEY]" \
+    --header "Content-Type: application/json" \
+    --data '{"hf_model_name": "[YOUR_MODEL]"}'
+```
