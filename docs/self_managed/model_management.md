@@ -30,6 +30,8 @@ We recommend focusing development on one model or a small set of models, and pre
 
 ## Model downloading
 
+Model downloading is allowed only for Lamini Platform operator.
+Free user on [Lamini Cloud](https://app.lamini.ai/) is not allowed to make such calls.
 You can use the following curl command to request Lamini Platform to download a model:
 
 ```shell
@@ -38,3 +40,6 @@ curl -X POST "[YOUR_API]/v1/downloaded_models/" \
     --header "Content-Type: application/json" \
     --data '{"hf_model_name": "[YOUR_MODEL]"}'
 ```
+
+You can also use the `Lamini.download_model()`, see [model_download.py](../code_examples/model_download.py)
+for an example.
