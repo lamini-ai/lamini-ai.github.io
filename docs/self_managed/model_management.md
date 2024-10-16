@@ -14,7 +14,6 @@ To edit the list of preloaded models:
 
 1. Edit the `batch_model_list` to add or remove models as needed. Each model must be specified by its Hugging Face model identifier (e.g. `meta-llama/Meta-Llama-3.1-8B-Instruct` for Llama 3.1).
 
-The added models will be downloaded from HuggingFace, and loaded into all inference instances.
 Be conservative with the number of models you preload - each model requires a significant amount of memory.
 
 ## Dynamic model loading

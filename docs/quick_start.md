@@ -115,7 +115,7 @@ A llama!
 
 That's much better!
 
-[Learn more about tuning](tuning/quick_start.md)
+[Learn more about tuning](tuning/memory_tuning.md)
 
 ## Next steps
 
