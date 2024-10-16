@@ -6,7 +6,9 @@ Memory tuning allows your LLMs to keep their general reasoning capabilities whil
 
 ## Notebook example
 
-We partnered with Meta to create a [notebook](https://github.com/meta-llama/llama-recipes/blob/main/recipes/3p_integrations/lamini/text2sql_memory_tuning/README.md) that shows how to use Memory Tuning to improve a text-to-SQL model from 30% to 95% accuracy.
+Check out our [notebook example](https://github.com/lamini-ai/lamini-examples/blob/main/06_memory_tuning/Memory_Tuning.ipynb) that answers questions about a Python class!
+
+We've also partnered with Meta to create a [notebook](https://github.com/meta-llama/llama-recipes/blob/main/recipes/3p_integrations/lamini/text2sql_memory_tuning/README.md) that shows how to use Memory Tuning to improve a text-to-SQL model from 30% to 95% accuracy.
 
 Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini On-Demand plan.
 
@@ -47,7 +49,7 @@ Tuning hyperparameters can be a bit of an art. Where should you start experiment
 
 See [Hyperparameters](hyperparameters.md) for the complete list of options.
 
-### When experimenting with a small dataset (<100 facts):
+### When experimenting with a small dataset (<100 facts)
 
 ```py
 llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32, "learning_rate": 0.0003})
@@ -56,6 +58,7 @@ llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32
 - We recommend increasing `max_steps` when working with a larger dataset.
 
 ### Factual Q/A from PDFs (20 PDFs, 800+ facts)
+
 ```json
 {
   "max_steps": 500,
@@ -64,6 +67,7 @@ llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32
 ```
 
 ### Text-to-SQL (100 queries)
+
 ```json
 {
   "max_steps": 500,
@@ -71,7 +75,8 @@ llm.train(data_or_dataset_id=data, finetune_args={"max_steps": 50, "r_value": 32
 }
 ```
 
-### Factual Q/A on 10,000 facts:
+### Factual Q/A on 10,000 facts
+
 ```json
 {
   "gradient_accumulation_steps": 4,
@@ -153,10 +158,11 @@ Your job will be queued until the requested number of nodes and GPUs are availab
 - Read more in our [blog post](http://www.lamini.ai/blog/lamini-memory-tuning)
 
 ### Known issue: Tuning on a previously tuned model
-Submitting a tuning job on a model is not currently supported. 
-We are evaluating the feasibility of supporting continued tuning on previously tuned models. Feel free to [contact us](https://www.lamini.ai/contact) 
+
+Submitting a tuning job on a model is not currently supported.
+We are evaluating the feasibility of supporting continued tuning on previously tuned models. Feel free to [contact us](https://www.lamini.ai/contact)
 
 #### Workaround
+
 To include additional data, submit a new tuning job with the new data on the base model instead of adding the data to a previously tuned model. If your use case requires more than 500 data points, [reach out to us for support](https://www.lamini.ai/contact).
 with any questions or concerns.
-
