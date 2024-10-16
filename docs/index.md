@@ -1,6 +1,6 @@
 # Welcome to Lamini 🦙
 
-Lamini is an integrated LLM inference and tuning platform. You can tune models that achieve exceptional factual accuracy while minimizing latency and cost. 
+Lamini is an integrated LLM inference and tuning platform. You can tune models that achieve exceptional factual accuracy while minimizing latency and cost.
 
 Lamini Self-Managed runs in your environment - even air-gapped - or you can use our GPUs with our On-Demand and Reserved options.
 
@@ -24,11 +24,6 @@ Lamini Self-Managed runs in your environment - even air-gapped - or you can use 
     <td>LLM inference that's 100% guaranteed to match your schema 💯</td>
     <td></td>
     <td><a href="/inference/json_output/">JSON Output</a></td>
-  </tr>
-  <tr onclick="location.href='/inference/batching/'">
-    <td>High throughput inference (52x faster) 🏃💨</td>
-    <td></td>
-    <td><a href="/inference/batching/">Iteration Batching</a></td>
   </tr>
   <tr onclick="location.href='/self_managed/kubernetes_install'">
     <td>Run Lamini on your own GPUs 🔒</td>
