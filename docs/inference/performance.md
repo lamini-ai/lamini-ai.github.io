@@ -10,7 +10,7 @@ Inference responses can be truncated (cut off, or appear incomplete) because the
 
 1. If you're still having trouble, check whether your request set a value for `max_new_tokens`.
 
-Lamini's [completions API](../rest_api/completions.md) has an optional `max_new_tokens` parameter that limits the response size. Lamini uses this parameter to efficiently allocate GPU memory. However, this comes with risks:
+Lamini's [completions API](../api.md) has an optional `max_new_tokens` parameter that limits the response size. Lamini uses this parameter to efficiently allocate GPU memory. However, this comes with risks:
 
   - If you set the token limit too short, your requests may get truncated. The LLM is not aware of the token limit.
   - Very large token limits consume substantial memory, which slows down processing, which may cause timeouts.

@@ -39,6 +39,7 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/oad.css
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -93,13 +94,7 @@ nav:
           - Model Management: self_managed/model_management.md
   - Python SDK:
       - lamini: lamini_python_class/lamini.md
-  - REST API Reference:
-      - completions: rest_api/completions.md
-      - embed: rest_api/embed.md
-      - train: rest_api/train.md
-      - train_jobs: rest_api/train_jobs.md
-      - train_job_status: rest_api/train_job_status.md
-      - train_job_cancel: rest_api/train_job_cancel.md
+  - REST API: api.md
 
 plugins:
   - redirects:
@@ -112,9 +107,16 @@ plugins:
         'inference/quick_tour.md': 'quick_start.md'
         'inference/prompt_tuning.md': 'inference/prompt_templates.md'
         'overview.md': 'index.md'
+        'rest_api/completions.md': 'api.md'
+        'rest_api/embed.md': 'api.md'
+        'rest_api/train.md': 'api.md'
+        'rest_api/train_jobs.md': 'api.md'
+        'rest_api/train_job_status.md': 'api.md'
+        'rest_api/train_job_cancel.md': 'api.md'
         'self_managed/docker_install.md': 'self_managed/kubernetes_install.md'
         'training/memory_tuning.md': 'tuning/memory_tuning.md'
         'training/quick_start.md': 'quick_start.md'
         'training/quick_tour.md': 'quick_start.md'
         'tuning/quick_start.md': 'quick_start.md'
   - search
+  - swagger-ui-tag

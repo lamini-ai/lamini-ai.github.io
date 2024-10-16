@@ -4,7 +4,7 @@ Lamini provides the best LLM inference and tuning for the enterprise. Factual LL
 
 ## Lamini Platform
 
-Lamini Platform orchestrates GPUs to deliver exceptional LLM tuning and inference capabilities, which easily integrate into enterprise applications via the Lamini [REST API](rest_api/completions.md), [web UI](inference/playground.md), and [Python client](lamini_python_class/lamini.md). 
+Lamini Platform orchestrates GPUs to deliver exceptional LLM tuning and inference capabilities, which easily integrate into enterprise applications via the Lamini [Python client](lamini_python_class/lamini.md),[REST API](api.md), and [web UI](inference/playground.md).
 
 ![Lamini overview](assets/lamini-overview.png)
 
@@ -23,8 +23,7 @@ Lamini Platform is available in [three different deployment models](https://www.
 | Area | Problem | Lamini's solution |
 |-|-|-|
 | Tuning | Hallucinations | [95% accuracy on factual tasks: memory tuning](tuning/memory_tuning.md) |
-| Tuning | High infrastructure costs | [32x model compression: efficient LoRAs](tuning/quick_start.md) |
-| Inference | Rate limits | [52x faster than open source: iteration batching](https://www.usenix.org/conference/osdi22/presentation/yu) |
+| Tuning | High infrastructure costs | [32x model compression: Memory Tuning with efficient LoRAs](tuning/memory_tuning.md) |
 | Inference | Unreliable app integrations | [100% accurate JSON schema output: structured output](inference/json_output.md)|
 
 ## Who are we?
