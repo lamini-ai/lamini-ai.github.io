@@ -42,5 +42,5 @@ curl -X POST "[YOUR_API]/v1/downloaded_models/" \
     --data '{"hf_model_name": "[YOUR_MODEL]"}'
 ```
 
-You can also use the `Lamini.download_model()`, see [model_download.py](../code_examples/model_download.py)
-for an example.
+You can also use the `Lamini` API to request downloading a model,
+see [model_download.py](../code_examples/model_download.py) for an example.
