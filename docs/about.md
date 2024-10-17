@@ -18,7 +18,7 @@ Lamini Platform is available in [three different deployment models](https://www.
 - Reserved: dedicated GPUs for your organization, hosted on Lamini's infrastructure, with per-GPU pricing.
 - Self-Managed: run Lamini Platform in your environment on your GPUs (on premise, in your VPC, even air-gapped deployments), with per-GPU pricing.
 
-## What is unique about Lamini?
+## What's unique about Lamini?
 
 | Area | Problem | Lamini's solution |
 |-|-|-|
