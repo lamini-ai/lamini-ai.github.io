@@ -90,6 +90,7 @@ nav:
           - Tuning Dashboard: tuning/dashboard.md
       - Self-Managed:
           - Kubernetes Install: self_managed/kubernetes_install.md
+          - EKS Cluster Config Example: self_managed/aws_eks_setup.md
           - OIDC User Auth: self_managed/OIDC.md
           - Model Management: self_managed/model_management.md
   - Python SDK:
