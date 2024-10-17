@@ -1,21 +1,44 @@
-## Bigger inference
+Batching inference requests (submitting multiple prompts simultaneously) provides [dramatically higher throughput](https://www.lamini.ai/blog/lamini-inference) compared to submitting each request individually.
 
-Batching requests is the way to get more throughput. It's easy: simply pass in a list of inputs to any of the classes and it will be handled.
+### Use cases
+
+- [Memory Tuning](../tuning/memory_tuning.md) using both evaluation and data-generation agents
+- Evaluation agents that enable rapid feedback loops during model development by automatically measuring model performance
+- Data-generation agents for expanding tuning and evaluation data sets without tedious manual effort
+- Async inference for enriching or updating data in the background
+
+### A better way to batch
+
+Lamini Platform implements approaches similar to iteration-level scheduling and selective batching (as described in [the Orca paper](https://www.usenix.org/system/files/osdi22-yu.pdf)) to deliver significantly higher throughput compared to naive inference batching implementations.
+
+Naive batching has two major drawbacks:
+
+1. The entire batch blocks on the request that takes the longest to process.
+1. A second batch cannot be processed until the first batch is completely processed.
+
+Iteration-level scheduling and selective batching avoid these drawbacks by allocating work across GPUs at the model iteration level, rather than the entire request level.
+
+### Example
+
+Inference batching with Lamini is simple: just pass in a list of inputs—no configuration required.
 
 === "Python SDK"
 
-    ```python hl_lines="5-9"
+    ```py
+    # code/batching.py
+    
     from lamini import Lamini
-
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3-8B-Instruct")
+    
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
     llm.generate(
         [
-           "How old are you?",
-           "What is the meaning of life?",
-           "What is the hottest day of the year?",
+            "How old are you?",
+            "What is the meaning of life?",
+            "What is the hottest day of the year?",
         ],
-        output_type={"response": "str", "explanation": "str"}
+        output_type={"response": "str", "explanation": "str"},
     )
+    
     ```
 
 === "REST API"
@@ -26,7 +49,7 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Meta-Llama-3-8B-Instruct",
+        "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
         "prompt": [
             "How old are you?",
             "What is the meaning of life?",
@@ -58,5 +81,3 @@ Batching requests is the way to get more throughput. It's easy: simply pass in a
     ]
     ```
 </details>
-
-Great! You submitted a batch inference request. You're well on your way to building a production application that uses high-throughput pipelines of LLMs.

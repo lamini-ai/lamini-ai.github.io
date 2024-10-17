@@ -43,8 +43,9 @@ def get_data():
     ]
     return data
 
+
 from lamini import Lamini
 
-llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct')
+llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
 data = get_data()
 llm.tune(data_or_dataset_id=data)

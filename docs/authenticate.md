@@ -1,12 +1,10 @@
-# Authenticate
-
-Welcome to this easy 2-step auth. Estimated time: 2 minutes.
-
-If you want to host Lamini in your VPC or on prem, check out the [enterprise installer instructions](/enterprise_install).
+# API Authentication
 
 ## 1. Get your Lamini API key 🔑
 
 Your API key is at [https://app.lamini.ai/account](https://app.lamini.ai/account). If it's your first time, create a free account by logging in.
+
+If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC authentication docs](self_managed/OIDC.md) for setting up user auth.
 
 ## 2. Authenticate
 
@@ -46,20 +44,17 @@ Your API key is at [https://app.lamini.ai/account](https://app.lamini.ai/account
 
 ## Advanced Python setup: VPC or on premise
 
-If you are [running Lamini in your VPC or on prem](/enterprise_install/installer.md), you can change the URL from Lamini's hosted service to your own server URL:
+If you are [running Lamini in your VPC or on prem](self_managed/kubernetes_install.md), you can change the URL from Lamini's hosted service to your own server URL:
 
 === "Python script"
 
-    ```python
-    config = {
-        "production.key": "<YOUR-LAMINI-API-KEY>",
-        "production.url" : "<YOUR-SERVER-URL-HERE>"
-    }
-    ```
-
     Test that it works:
     ```python
-    llm = Lamini(model_name='meta-llama/Meta-Llama-3-8B-Instruct', config=config)
+    llm = Lamini(
+        model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
+        api_key="<YOUR-LAMINI-API-KEY>",
+        api_url="<YOUR-SERVER-URL-HERE>",
+    )
     response = llm.generate("Tell me a story about llamas.")
 
     print(response)

@@ -1,41 +1,38 @@
 # FAQ
 
 ## What models are supported?
-We support all [CausalLM models from HuggingFace](https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoModelForCausalLM) for tuning and inference.
+The [Models](models.md) page has details on the (many) models you can use with Lamini.
 
-## Does Lamini use LoRAs?
-In combination with a few techniques, we tune LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching.
-
-This efficiency gain is on and handled by default.
-
-## Why did my training / tuning job time out?
-We have a time out at 4 hours and a queue for tuning jobs in order to serve all users. If your job times out, you can resume training to restart the training from the last checkpoint. If you would like more throughput, please reach out to info@lamini.ai about an enterprise contract.
+## Will my training / tuning job time out?
+We have a default 4-hour timeout for all tuning jobs. If your job times out, it will be automatically added back to the queue and run from the last checkpoint - Lamini automatically saves checkpoints so your progress isn't lost. This is to allow other jobs to run. If you want to run longer jobs, consider requesting more GPUs via `gpu_config` for a speed up or [contact us](https://www.lamini.ai/contact) for a dedicated instance.
 
 ## Why is my job queued?
-We have a time out at 4 hours and a queue for tuning jobs in order to serve all users. If your job times out, you can resume training to restart the training from the last checkpoint. If you would like more throughput, please reach out to info@lamini.ai about an enterprise contract.
+Lamini On-Demand plan uses shared resources. We queue tuning jobs in order to serve all users. To reserve your own dedicated compute or run on your own GPUs, please [contact us](https://www.lamini.ai/contact).
 
-## I'm getting a missing key error!
-You can get your API key from [https://app.lamini.ai/account](https://app.lamini.ai/account).
+## I'm getting a missing key error! What do I do?
+The [Authenticate](authenticate.md) page has details on getting and setting your Lamini API key.
 
-Next, make sure you set it before calling lamini:
+## Does Lamini run on Windows?
+Lamini has not been tested on Windows and is not officially supported. While it may be possible to run Lamini on Windows, we cannot guarantee its functionality or stability. If you are using Windows, we strongly recommend using Docker to run Lamini on a Linux-based image.
 
+## What systems can run Lamini?
+Lamini is tested and developed on Linux-based systems. Specifically, we recommend using Ubuntu 22.04 or later with Python 3.10, 3.11, or 3.12.
+
+## Can I turn off memory tuning / MoME?
+Yes, if your use case needs a more qualitative output, like summarization where there are many possible answers, then memory tuning may be hurting performance (but still worth trying). You can set the following finetuning args to disable MoME:
 ```python
-import lamini
-lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+finetune_args={
+  "batch_size": 1,
+  "index_ivf_nlist": 1,
+  "index_method": "IndexFlatL2",
+  "index_max_size": 1,
+}
 ```
-If you want different authentication options, check out [Authenticate](/authenticate).
 
-## How do I design my LLM app?
-Here are some common questions that may help you reason about the design of your
-first LLM app.
+## Does Lamini use LoRAs?
+Yes, Lamini tunes LoRAs (low-rank adapters) on top of a pretrained LLM to get the same performance as finetuning the entire model, but with 266x fewer parameters and 1.09 billion times faster model switching. Read [our blog post](https://www.lamini.ai/blog/one-billion-times-faster-finetuning-with-lamini-peft) for more details.
 
-1. Who are your intended users?
+Lamini applies this optimization (and others) automatically - you don't have to configure anything.
 
-2. How will this application be deployed?
-
-3. What data is available to train the LLM?
-
-4. What data is available online vs offline?
-
-5. What are the gaps between the out of the box
-   performance of the LLM, and your requirements?
+## Can I run my job on an MI300?
+Yes! Lamini On-Demand currently runs on MI250s and we have MI300s available for our Lamini Reserved plans. Please [contact us](https://www.lamini.ai/contact) to learn more about Lamini Reserved and our MI300 cluster.
