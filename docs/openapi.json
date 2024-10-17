@@ -5,6 +5,12 @@
     "description": "LLM inference and tuning for the enterprise. Factual LLMs. Deployed anywhere in 10 min.",
     "version": "1.13.1"
   },
+  "servers": [
+    {
+      "url": "https://api.lamini.ai",
+      "description": "Lamini On Demand API"
+    }
+  ],
   "paths": {
     "/v1/train": {
       "post": {
