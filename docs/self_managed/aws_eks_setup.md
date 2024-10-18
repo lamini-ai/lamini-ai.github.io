@@ -1,4 +1,41 @@
-_# AWS EKS Installation
+# AWS EKS Installation
+
+## Summary
+
+This installation example covers the steps involved in setting up an AWS EKS cluster, configuring NFS storage, creating a node group, installing the AWS CLI, accessing the EKS cluster, and finally installing the Lamini platform on the EKS cluster.
+
+### 1. Create EKS Cluster
+- Search for EKS on AWS console
+- Create a new cluster
+  - Configure cluster details (name, IAM role, networking)
+- Create the cluster
+
+### 2. Set Up NFS
+- Create AWS S3 File Gateway
+  - Configure gateway settings (name, timezone, instance key pair)
+  - Launch gateway instance
+- Activate and configure gateway
+- Create file share and note the NFS IP and path
+
+### 3. Create Node Group
+- Select the created EKS cluster
+- Add a node group
+  - Create an instance role with necessary policies
+  - Configure node group details (name, role, instance type, disk size)
+- Create the node group and note the node names
+
+### 4. Install AWS CLI
+- Follow AWS instructions to install the AWS CLI
+- Verify installation
+
+### 5. Access EKS Cluster
+- Create AWS Access Key ID and Secret Access Key
+- Configure AWS credentials
+- Update kubeconfig for the EKS cluster
+
+### 6. Install Lamini Installer
+- Follow the "Installing Lamini Platform on Kubernetes" guide
+- Complete Lamini installation on EKS
 
 ## Create EKS Cluster
 
@@ -139,7 +176,7 @@ AmazonEKS_CNI_Policy
 
 ![screenshot-20241016-142247](../assets/eks_nodegroup.png)
 
-9. Set Amazon Linux 2 CPU Enabled AMI type, select the desired instance type with GPU, typically the G and P type. Set disk size to at least 100 G.
+9. Set Amazon Linux 2 GPU Enabled AMI type, select the desired instance type with GPU, typically the G and P types. Set disk size to at least 100 G.
 
 ![screenshot-20241016-142340](../assets/eks_ec2_type.png)
 
