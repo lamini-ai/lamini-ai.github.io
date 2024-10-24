@@ -1,5 +1,8 @@
 # Installing Lamini Platform on Kubernetes
 
+!!! note
+    The Lamini installer is only available when self-managing Lamini Platform. [Contact us](https://www.lamini.ai/contact) to learn more.
+
 Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and training running on your own GPUs, in the environment of your choice.
 
 ## Prerequisites
@@ -14,10 +17,11 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 - 1 TB disk
 - GPU memory: 2xHBM per GPU
 
-   - Example: AMD MI250 has 64GB of HBM, so Lamini requires 128GB of RAM per GPU.
-   - Example: AMD MI300 has 192GB HBM, so Lamini requires 384GB of RAM per GPU.
+  - Example: AMD MI250 has 64GB of HBM, so Lamini requires 128GB of RAM per GPU.
+  - Example: AMD MI300 has 192GB HBM, so Lamini requires 384GB of RAM per GPU.
 
 ### NFS Provisioner
+
    Lamini requires a RWX NFS provisioner. For example, you can set up a simple provisioner using `nfs-subdir-external-provisioner`:
 
    ```bash
@@ -28,12 +32,16 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
    ```
 
 ### GPU Operator
-   - For AMD:
+
+- For AMD:
+
      ```bash
      git clone https://github.com/ROCm/k8s-device-plugin.git
      kubectl create -f k8s-device-plugin/k8s-ds-amdgpu-dp.yaml
      ```
-   - For NVIDIA:
+
+- For NVIDIA:
+
      ```bash
      helm repo add nvidia https://helm.ngc.nvidia.com/nvidia \
        && helm repo update
@@ -53,6 +61,7 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 ### 1. Update `helm_config.yaml`
 
 1. Set the `name` of the PVC provisioner being used for the Lamini cluster. If the PVC has been created beforehand, ensure the `name` is correct, that it is in the `lamini` namespace, and set `create` to `False`:
+
    ```yaml title="helm_config.yaml"
    pvcLamini: {
       name: lamini-volume,
@@ -60,19 +69,23 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
       create: True
    }
    ```
+
    We recommend at least >200Gi (and the more, the better!) for `lamini-volume`. Base models, trained weights, and datasets will all be stored on this volume.
 
 1. Update the PVC provisioner classname by changing the `pvc_provisioner` field.
+
 ```yaml title="helm_config.yaml"
 pvc_provisioner: nfs-client
 ```
 
 1. Confirm the top-level platform `type` (one of: `amd`, `nvidia`, or `cpu`) matches your hardware.
+
 ```yaml title="helm_config.yaml"
 type: "amd"
 ```
 
 1. Update the distribution of inference pods.
+
    ```yaml title="helm_config.yaml"
    inference: {
       type: ClusterIP,
@@ -82,9 +95,11 @@ type: "amd"
       catchall: 1
    }
    ```
+
    The example above would create 4 pods using 4 GPUs in total. Each pod has 1 GPU. The example shows 1 inference pod allocated to `batch` inference, 1 pod dedicated only to `streaming` inference, 1 dedicated only to `embedding` inference (also used in classification), and 1 for the `catchall` pod, which is intended to handle requests for models that have not been preloaded on the `batch` pod. See [Model Management](model_management.md) for more details.
 
 1. Update the number of training pods and number of GPUs per pod:
+
    ```yaml title="helm_config.yaml"
    training: {
       type: ClusterIP,
@@ -92,9 +107,11 @@ type: "amd"
       num_gpus_per_pod: 8
    }
    ```
+
    We recommend minimizing the number of pods per node. For example, instead of 2 pods with 4 GPUs, it's better to create 1 pod with all 8 GPUs.
 
 1. Update the node affinity for the Lamini deployment. These are the nodes where Lamini pods will be deployed:
+
    ```yaml title="helm_config.yaml"
    nodes: [
       "node0"
@@ -102,6 +119,7 @@ type: "amd"
    ```
 
 1. (Optional) If you want to use a custom ingress pathway, update the `ingress` field:
+
    ```yaml title="helm_config.yaml"
    ingress: 'ingress/pathway'
    ```
@@ -126,7 +144,9 @@ That's it! You're up and running with Lamini Platform on Kubernetes.
 ## Get Lamini version
 
 Run the following command to find the tag of the container image:
+
 ```
 kubectl get deployments -o wide -n lamini
 ```
+
 Look for the tag of the images listed in the **IMAGES** column

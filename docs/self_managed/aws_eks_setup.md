@@ -1,5 +1,8 @@
 # AWS EKS Installation
 
+!!! note
+    The Lamini installer is only available when self-managing Lamini Platform. [Contact us](https://www.lamini.ai/contact) to learn more.
+
 ## Summary
 
 This installation covers the steps involved in setting up an AWS EKS cluster, configuring NFS storage, creating a node group, installing the AWS CLI, accessing the EKS cluster, and finally installing the Lamini platform on the EKS cluster.
@@ -68,6 +71,7 @@ This installation covers the steps involved in setting up an AWS EKS cluster, co
 - Enter the role name.
 
 ![screenshot-20241016-125246](../assets/eks_role_name.png)
+
 - Select networking and specify the default security groups.
 
 ![screenshot-20241016-125510](../assets/eks_networking.png)
@@ -200,7 +204,7 @@ AmazonEKS_CNI_Policy
 ## Install AWS CLI
 
 - Follow the AWS instruction to install the AWS CLI
-https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+<https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>
 
 - Check the AWS CLI installation.
 
