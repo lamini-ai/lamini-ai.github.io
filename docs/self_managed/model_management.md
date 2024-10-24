@@ -1,12 +1,13 @@
 # Model Management
 
+!!! note
+    Editing the list of available models is allowed only when self-managing Lamini Platform. The list of models on [Lamini On Demand](https://app.lamini.ai/) is managed by Lamini. [Contact us](https://www.lamini.ai/contact) to learn more.
+
 Lamini Platform supports a [variety of models](../models.md). When self-managing Lamini, you control which models are preloaded, and how dynamic model loading will work.
 
-## Preloaded models
+## Preloading models
 
-To edit the list of preloaded models for your Lamini Self-Managed deployment, you need to modify the `llama_config.yaml` file.
-
-To edit the list of preloaded models:
+To edit the list of preloaded models for your Lamini Self-Managed deployment, you need to modify the `llama_config.yaml` file:
 
 1. Locate the `llama_config.yaml` file in your Lamini deployment's configuration directory.
 
@@ -30,8 +31,6 @@ We recommend focusing development on one model or a small set of models, and pre
 
 ## Model downloading
 
-Model downloading is allowed only for Lamini Platform operator.
-Free user on [Lamini Cloud](https://app.lamini.ai/) is not allowed to make such calls.
 You can use the following curl command to request Lamini Platform to download a model:
 
 ```shell
