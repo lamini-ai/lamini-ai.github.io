@@ -71,7 +71,6 @@ nav:
       - Applications:
           - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/04_rag_tuning/README.md"
           - Generation Pipeline 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md"
-          - Classifier 🔗: "https://github.com/lamini-ai/lamini-examples/tree/main/11_classify"
       - Tuning:
           - Memory Tuning: tuning/memory_tuning.md
           - Hyperparameters: tuning/hyperparameters.md
@@ -100,7 +99,6 @@ nav:
 plugins:
   - redirects:
       redirect_maps:
-        'applications/classifier.md': 'https://github.com/lamini-ai/lamini-examples/tree/main/11_classify'
         'enterprise_install.md': 'self_managed/kubernetes_install.md'
         'get_started/authenticate.md': 'authenticate.md'
         'get_started/install.md': 'authenticate.md'
