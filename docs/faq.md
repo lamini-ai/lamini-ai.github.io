@@ -36,3 +36,17 @@ Lamini applies this optimization (and others) automatically - you don't have to 
 
 ## Can I run my job on an MI300?
 Yes! Lamini On-Demand currently runs on MI250s and we have MI300s available for our Lamini Reserved plans. Please [contact us](https://www.lamini.ai/contact) to learn more about Lamini Reserved and our MI300 cluster.
+
+## Does model loading happens for every inference request?
+
+Loading model weights to GPU memory takes time that is proportional to model parameter count.
+Loading tokenizer (to CPU memory, not confident about the destination of loading tokenizer) is similar, although tokenzier is small enough that it's negligable compared to LLM model weights
+
+Model loading to GPU only happens once, and will be kept in GPU memory except for failure or other unexpected events.
+Tokenizer loading (to CPU, again, not sure) is the same.
+
+Thus model loading wont happen repeatedly for each and every inference request.
+
+The above descriptions applies to only base model (if there is any).
+
+MoME adapter cache is not available yet.
