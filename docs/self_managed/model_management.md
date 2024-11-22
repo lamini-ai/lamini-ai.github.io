@@ -34,7 +34,7 @@ We recommend focusing development on one model or a small set of models, and pre
 You can use the following curl command to request Lamini Platform to download a model:
 
 ```shell
-curl -X POST "[YOUR_API]/v1/downloaded_models/" \
+curl -X POST "[YOUR_API_URL]/v1alpha/downloaded_models/" \
     --header "Authorization: Bearer [YOUR_API_KEY]" \
     --header "Content-Type: application/json" \
     --data '{"hf_model_name": "[YOUR_MODEL]"}'
