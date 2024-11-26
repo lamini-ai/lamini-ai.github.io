@@ -3,7 +3,7 @@ hide:
   - navigation
 ---
 
-# Module `lamini.api.lamini`
+# Module `lamini.api.lamini` (lamini-3.1.3)
 
 Want to see more? Check out our full open source repo: [https://github.com/lamini-ai/lamini](https://github.com/lamini-ai/lamini).
 
