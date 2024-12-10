@@ -3,10 +3,9 @@ hide:
   - navigation
 ---
 
-# Module `lamini.api.lamini` (lamini-3.1.3)
+# Module `lamini.api.lamini` (lamini-3.2.3)
 
 Want to see more? Check out our full open source repo: [https://github.com/lamini-ai/lamini](https://github.com/lamini-ai/lamini).
-
 
 ## Classes
 
@@ -304,6 +303,7 @@ class Lamini:
 ### Methods
 
 #### `cancel_all_jobs`
+>
 > Cancel all jobs associated with your key.
 
 <details class="source">
@@ -324,6 +324,7 @@ def cancel_all_jobs(
 </details>
 
 #### `cancel_job`
+>
 > Cancel the job or specify a job id to cancel.
 
 <details class="source">
@@ -342,6 +343,7 @@ def cancel_job(self, job_id=None):
 </details>
 
 #### `check_job_status`
+>
 > Check the status of the job or a given job id.
 
 <details class="source">
@@ -372,6 +374,7 @@ def check_job_status(self, job_id=None):
 </details>
 
 #### `generate`
+>
 > Run inference on the model or a given model.
 
 <details class="source">
@@ -409,6 +412,7 @@ def generate(
 </details>
 
 #### `get_jobs`
+>
 > Get information on all jobs associated with your key.
 
 <details class="source">
@@ -427,6 +431,7 @@ def get_jobs(self):
 </details>
 
 #### `resume_job`
+>
 > Resume `CANCELLED`, `PARTIALLY COMPLETED`, `FAILED`, or `COMPLETED` job.
 
 <details class="source">
@@ -445,6 +450,7 @@ def resume_job(self, job_id=None):
 </details>
 
 #### `train`
+>
 > Train a job.
 
 <details class="source">
@@ -493,6 +499,7 @@ def train(
 </details>
 
 #### `tune`
+>
 > Aliases to `train`.
 <details class="source">
 
@@ -509,6 +516,7 @@ tune = train
 </details>
 
 #### `train_and_wait`
+>
 > Train a job, synchronous.
 
 <details class="source">
@@ -572,6 +580,7 @@ def train_and_wait(
 </details>
 
 #### `upload_data`
+>
 > Upload data, most commonly a list of dictionaries with `input` and `output` keys.
 
 <details class="source">
@@ -636,6 +645,7 @@ def upload_data(
 </details>
 
 #### `upload_file`
+>
 > Upload data as a file, can be `csv` or `jsonl`.
 <details class="source">
 
@@ -660,3 +670,220 @@ def upload_file(
 
 </details>
 
+## lamini.classify.lamini_classifier
+
+### initialize
+
+Creates a new classifier project and kicks off the initial data generation and training process.
+
+```python
+def initialize(
+    name: str,
+    classes: List[str],
+    examples: Dict[str, List[str]],
+    model_name: Optional[str] = None
+) -> Dict[str, str]
+```
+
+#### Parameters
+
+- `name`: Name for the classifier project. Must be unique for the user.
+- `classes`: List of class names that the classifier will be trained to identify.
+- `examples`: Dictionary mapping class names to lists of example texts for each class.
+- `model_name`: Optional name of base model to use for classification.
+
+#### Returns
+
+Dictionary containing:
+
+- `name`: Name of the created project
+- `job_id`: ID of the training job that was initiated
+
+#### Raises
+
+- `HTTPException(497)`: If a project with the given name already exists
+- `HTTPException(499)`: If project creation fails
+
+#### Example
+
+```python
+from lamini.classify.lamini_classifier import LaminiClassifier
+classifier = Classifier()
+result = classifier.initialize(
+    name="sentiment_classifier",
+    classes=["positive", "negative"],
+    examples={
+        "positive": ["great movie!", "loved it"],
+        "negative": ["terrible film", "waste of time"]
+    }
+)
+print(f"Created project {result['name']} with job {result['job_id']}")
+```
+
+### train
+
+Train a classifier model on provided data.
+
+```python
+def train(
+    data_or_dataset_id: Union[str, List[Dict]],
+    finetune_args: Optional[dict] = None,
+    gpu_config: Optional[dict] = None,
+    is_public: Optional[bool] = None,
+    **kwargs
+) -> Dict[str, str]
+```
+
+#### Parameters
+
+- `data_or_dataset_id`: Either a dataset ID string or list of training examples
+- `finetune_args`: Optional dictionary of fine-tuning parameters
+- `gpu_config`: Optional GPU configuration settings
+- `is_public`: Whether to make the trained model public
+
+#### Returns
+
+Dictionary containing job information including:
+
+- `job_id`: ID of the training job
+- `dataset_id`: ID of the dataset used for training
+
+### classify
+
+Run classification on input text using a trained model.
+
+```python
+def classify(
+    prompt: Union[str, List[str]], 
+    top_n: Optional[int] = None,
+    threshold: Optional[float] = None,
+    metadata: Optional[bool] = None
+) -> Union[str, List[str]]
+```
+
+#### Parameters
+
+- `prompt`: Input text or list of texts to classify
+- `top_n`: Optional number of top predictions to return
+- `threshold`: Optional confidence threshold for predictions
+- `metadata`: Whether to return prediction metadata
+
+#### Returns
+
+Predicted class(es) for the input text(s)
+
+#### Example
+
+```python
+cls.classify("woof")
+```
+
+```json
+{
+  "classification": [
+    [
+      {
+        "class_id": 1,
+        "class_name": "dog",
+        "prob": 0.9263275590881269
+      },
+      {
+        "class_id": 0,
+        "class_name": "cat",
+        "prob": 0.2736724409118731
+      }
+    ]
+  ]
+}
+```
+
+### add
+
+Add additional training examples to an existing classifier project.
+
+```python
+def add(
+    project_name: str,
+    dataset_name: str,
+    data: Dict[str, List[str]]
+) -> Dict[str, bool]
+```
+
+#### Parameters
+
+- `project_name`: Name of the existing classifier project
+- `dataset_name`: Name for the new dataset being added
+- `data`: Dictionary mapping class names to lists of example texts
+
+#### Returns
+
+Dictionary containing:
+
+- `success`: Boolean indicating if examples were added successfully
+
+#### Example
+
+```python
+classifier.add(
+    project_name="sentiment_classifier",
+    dataset_name="additional_examples",
+    data={
+        "positive": ["excellent work", "fantastic results"],
+        "negative": ["poor quality", "disappointing outcome"]
+    }
+)
+```
+
+## lamini.one_evaler.one_evaler
+
+### run
+
+Run evaluation on a model using provided test data.
+
+```python
+def run() -> Dict[str, Union[str, List, Dict, str]]
+```
+
+#### Parameters
+
+- `test_model_id`: ID of the model to evaluate
+- `eval_data`: List of dictionaries with `input` and `target` keys
+- `eval_data_id`: name or ID for the evaluation dataset
+- `base_model_id`: ID of the base model to compare against (optional)
+- `fuzzy`: Whether to perform fuzzy matching of predictions (optional)
+- `sbs`: Whether to perform side-by-side comparison with the base model (optional)
+
+#### Returns
+
+Dictionary containing:
+
+- `eval_job_id`: Unique identifier for the evaluation job
+- `eval_data_id`: ID of the evaluation dataset used
+- `metrics`: Evaluation metrics results
+- `status`: Status of the evaluation job ("COMPLETED" or "FAILED")
+- `predictions`: List of actual model outputs
+
+#### Example
+
+```python
+from lamini.one_evaler import LaminiOneEvaler
+
+evaluator = LaminiOneEvaler(
+    test_model_id="my-model-id",
+    eval_data=[
+        {"input": "text1", "output": "label1"},
+        {"input": "text2", "output": "label2"}
+    ],
+    test_eval_type="classifier"
+)
+
+result = evaluator.run()
+print(f"Evaluation completed with job ID: {result['eval_job_id']}")
+print(f"Metrics: {result['metrics']}")
+```
+
+#### Notes
+
+- The evaluation compares model predictions against provided ground truth labels
+- Can optionally perform side-by-side (sbs) comparison with a base model
+- Supports fuzzy matching of predictions when fuzzy=True
