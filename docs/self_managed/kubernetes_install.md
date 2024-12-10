@@ -58,7 +58,7 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 
 ## Installation Steps
 
-### 1. Update `helm_config.yaml`
+### Update `helm_config.yaml`
 
 1. Set the `name` of the PVC provisioner being used for the Lamini cluster. If the PVC has been created beforehand, ensure the `name` is correct, that it is in the `lamini` namespace, and set `create` to `False`:
 
@@ -124,20 +124,25 @@ type: "amd"
    ingress: 'ingress/pathway'
    ```
 
-### 2. Generate and Deploy Helm Charts
+### Generate Helm Charts
 
 The Lamini Platform Kubernetes deployment consists of 2 Helm charts:
 
 - `lamini`: Most Lamini services. Will be upgraded when updating to a new version of Lamini Platform.
 - `persistent-lamini`: Components that are meant to be persistent and unchanging across Lamini Platform upgrades. These include the Lamini database, PVC, and the Kubernetes secret to download new Lamini images.
 
-#### First time install
+#### Deploy with helm
 
-   Run  `./install.sh` - This takes helm_config.yaml and dynamically creates the Helm charts to deploy `lamini` & `persistent-lamini`.
+```shell
+# Setup your namespace
+NAMESPACE=<namespace>
 
-#### Upgrade
+# Install persistent lamini
+helm upgrade --install persistent-lamini persistent-lamini/ --namespace ${NAMESPACE} --create-namespace
 
-   Run `./upgrade.sh` - This recreates the Helm charts and redeploys `lamini` without touching `persistent-lamini`.
+# Install lamini
+helm upgrade --install lamini lamini/ --namespace ${NAMESPACE} --create-namespace
+```
 
 That's it! You're up and running with Lamini Platform on Kubernetes.
 
