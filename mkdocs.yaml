@@ -71,6 +71,7 @@ nav:
       - Applications:
           - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/04_rag_tuning/README.md"
           - Generation Pipeline 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md"
+      - Classifier Agent Toolkit: cat/index.md
       - Tuning:
           - Memory Tuning: tuning/memory_tuning.md
           - Hyperparameters: tuning/hyperparameters.md
