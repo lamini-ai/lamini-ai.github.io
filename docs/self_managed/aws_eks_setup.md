@@ -44,10 +44,13 @@ Configure AWS credential.
 ```bash
 aws configure
 ```
+
 ![screenshot-20241016-150214](../assets/eks_configure.png)
+
 ```bash
 aws eks update-kubeconfig --name <eks-cluster-name>
 ```
+
 ![screenshot-20241016-150748](../assets/eks_update_config.png)
 
 ## Create Key Pair
@@ -162,6 +165,11 @@ Select the S3 that was just created.
 Create the file share.
 
 ![screenshot-20241016-133849](../assets/eks_create_fileshare.png)
+
+Add the file share client access restriction as needed.
+
+![screenshot](../assets/eks_fileshare1.png)
+![screenshot](../assets/eks_fileshare2.png)
 
 Note down the NFS IP and path that will be used in the NFS setup for Lamini installation.
 They are used as NFS_IP in NFS_SUBFOLDER_PATH for installing NFS provisioner when
