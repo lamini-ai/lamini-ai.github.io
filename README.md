@@ -13,10 +13,18 @@
 
 ## Launch local preview server
 
-```
+```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 npx embedme "docs/**/*.md"
 mkdocs serve
 ```
+
+## Add an analytics tracker
+
+* Add tracker code to `overrides/partials/integrations/analytics/custom.html`
+* Add any secret keys to Github secrets
+* Pass the secrets to mkdocs by adding them here:
+  * `.github/workflows/ci.yaml`
+  * `mkdocs.yaml`
