@@ -20,3 +20,5 @@ jobs:
       - run: npx embedme "docs/**/*.md"
       - run: pip install mkdocs-material mkdocs-redirects mkdocs-swagger-ui-tag
       - run: mkdocs gh-deploy --force -f mkdocs.yaml
+        env:
+          HUBSPOT_TRACKING_URL: ${{ secrets.HUBSPOT_TRACKING_URL }}
