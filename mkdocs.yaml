@@ -56,8 +56,7 @@ markdown_extensions:
 
 extra:
   analytics:
-    provider: google
-    property: G-6ZQD4KPE0G
+    provider: custom
 
 # Page tree
 nav:
