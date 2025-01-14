@@ -6,6 +6,70 @@
         "version": "1.13.6"
     },
     "paths": {
+        "/alpha/memory-rag/add-index": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Append to an existing an Memory RAG index.",
+                "description": "Append to an existing an Memory RAG index with the provided prompt.",
+                "operationId": "memory_rag_add_index_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MemoryRagAddIndexPayload"
+                            },
+                            "example": {
+                                "prompt": "Content to input into the index.", 
+                                "job_id": "1"
+                            }                        
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "job_id": 1,
+                                    "status": "success"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
         "/alpha/memory-rag/completions": {
             "post": {
                 "tags": [
