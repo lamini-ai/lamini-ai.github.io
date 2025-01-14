@@ -6,6 +6,258 @@
         "version": "1.13.6"
     },
     "paths": {
+        "/alpha/memory-rag/completions": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Generate Memory RAG completions for prompts",
+                "description": "Generate a Memory RAG inference response to a prompt, optionally with a specified JSON output structure, with a `finish_reason` field in the response indicating the end state for each inference request.",
+                "operationId": "memory_rag_completions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MemoryRagCompletionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompletionsWithFinishReasonResponse"
+                                },
+                                "example": {
+                                    "outputs": [
+                                        {
+                                            "text": "This is one inference output."
+                                        },
+                                        {
+                                            "text": "This is another output."
+                                        }
+                                    ],
+                                    "finish_reason": "stop"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/status": {
+            "get": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Get the status of a Memory RAG training job.",
+                "description": "Get the status of the Memory RAG training job. Results in either 'created', 'running', 'failed', or 'completed'.",
+                "operationId": "memory_rag_job_status",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        },
+                        "name": "job_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            },
+                            "example": {
+                                "outputs": {
+                                    "status": "completed"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/suggestions": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Retrieve a sample from a Memory RAG Index",
+                "description": "Retrieve a sample of 5 examples from a Memory RAG Index for the provided job id.",
+                "operationId": "memory_rag_suggestions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MemoryRagSuggestionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {"Question 1": "Example Question 1", "Answer 1": "Example Answer 1"},
+                                    {"Question 2": "Example Question 2", "Answer 2": "Example Answer 2"}
+                                ]
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/train": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Start a Memory RAG job using the provided files.",
+                "description": "Start a Memory RAG job using the provided files, resulting in a Memory RAG Index available for Completion calls.",
+                "operationId": "memory_rag_train_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                            },
+                            "example": {
+                                "files": "{path/to/document}.pdf", 
+                                "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct"
+                            }                        
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "job_id": 1,
+                                    "status": "CREATED"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
         "/v1/batch_completions": {
             "post": {
                 "tags": [
