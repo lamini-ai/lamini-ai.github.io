@@ -70,31 +70,27 @@ nav:
       - Get Started:
           - Introduction: index.md
           - Quick Start: quick_start.md
-          - Examples 🔗: "https://github.com/lamini-ai/lamini-examples"
-          - About: about.md
           - FAQ: faq.md
-      - Applications:
-          - Retrieval Augmented Generation (RAG) 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/04_rag_tuning/README.md"
-          - Generation Pipeline 🔗: "https://github.com/lamini-ai/lamini-examples/blob/main/05_data_pipeline/README.md"
-      - Classifier Agent Toolkit: cat/index.md
-      - Memory RAG: memory_rag/index.md
-      - Tuning:
-          - Memory Tuning: tuning/memory_tuning.md
+      - Memory RAG:
+          - Quick Start: memory_rag/index.md
+          # - Playground: memory_rag/playground.md
+      - Classifier Agent Toolkit:
+          - Quick Start: cat/index.md
+      - Memory Tuning:
+          - Quick Start: tuning/memory_tuning.md
           - Hyperparameters: tuning/hyperparameters.md
           - Large Data Files: tuning/large_data_files.md
-          - Evaluation: tuning/evaluation.md
+          - Evaluation UI: tuning/evaluation.md
       - Inference:
           - Prompt Templates: inference/prompt_templates.md
           - JSON Output: inference/json_output.md
           - Batching: inference/batching.md
           - Streaming: inference/streaming.md
           - Performance: inference/performance.md
-      - Platform Concepts:
-          - API Auth: authenticate.md
-          - Models: models.md
-          - Playground: inference/playground.md
-          - Tuning Dashboard: tuning/dashboard.md
-      - Self-Managed:
+      - Platform:
+          - API Authentication: authenticate.md
+          - Supported Models: models.md
+      - Self-Hosted Lamini:
           - Kubernetes Install: self_managed/kubernetes_install.md
           - AWS EKS Setup: self_managed/aws_eks_setup.md
           - OIDC User Auth: self_managed/OIDC.md
