@@ -1,8 +1,16 @@
 # Memory Tuning
 
-Memory Tuning is a revolutionary new capability from Lamini that lets you embed precise, factual data inside the LLM’s memory by tuning the LLM with millions of adapters. Memory Tuning turns any open LLM, such as Llama 3.1 or Mistral 3, into a Mixture of Memory Experts (MoME) that can recall your facts with photographic memory by selectively routing across its experts. With a MoME, frequent hallucinations become a thing of the past.
+Memory Tuning is a research capability from Lamini that transforms how LLMs learn and recall information, with precise memory. It enables:
 
-Memory tuning allows your LLMs to keep their general reasoning capabilities while committing specific factual data to their weights as memory.
+1. **Extreme Accuracy (95%+)**: Eliminate hallucinations by injecting precise facts directly into the model's memory, removing accuracy ceilings on many tasks
+2. **Efficient Scaling**: Start with just 10 examples and scale to 100,000+ facts, handling both far fewer and more examples than fine-tuning
+3. **Cost-Effective Mini-Agents**: Use smaller, memory-tuned models instead of large foundation models, while maintaining high accuracy
+4. **Universal Compatibility**: Works with any open source LLM through a single, simple API
+5. **Low Latency**: Achieve fast inference times by leveraging efficient memory access patterns
+
+Memory Tuning works by embedding precise, factual data inside the LLM's memory, through millions of adapters in a mixture of expert adapters. This transforms any open foundation model into a Mixture of Memory Experts (MoME, pronounced "mommy") that can recall facts with photographic accuracy, by selectively routing across a team of specialized experts. The result is a model that maintains its general reasoning capabilities, while having near-perfect recall of your specific data — to 95% or 99%+ accuracy on tasks that routinely get as low as 0% or 50% on state-of-the-art models like GPT-4 + RAG.
+
+Memory-tuned models can perform factual reasoning: Memory Tuning allows your LLMs to keep their general reasoning capabilities, while committing specific factual data to their weights as memory.
 
 ## Notebook example
 
@@ -13,6 +21,10 @@ We've also partnered with Meta to create a [notebook](https://github.com/meta-ll
 Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini On-Demand plan.
 
 ## Principles for Memory Tuning
+
+*[Talk to our team](https://www.lamini.ai/contact): We're happy to help you get started with the best recipe for your use case.*
+
+Memory Tuning is a research capability. We've found that the following best practices help:
 
 Andrej Karpathy's [A Recipe for Training Neural Networks](https://karpathy.github.io/2019/04/25/recipe/) is a great summary of the phased, iterative approach you should take to Memory Tuning (even though many of the specific examples in that article don't apply to Memory Tuning).
 

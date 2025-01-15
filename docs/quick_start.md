@@ -1,4 +1,4 @@
-Let's get you started running inference and tuning with Lamini!
+Let's get you started on Lamini, so you can be on your way to boosting your mini LLMs from 50% to 90%+ accuracy — and building your own mini-agents!
 
 ## Setup
 
@@ -15,7 +15,7 @@ Export your key as an environment variable so it's easy to use later.
 export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
 ```
 
-## Run inference
+## Run inference to check it's running
     
 <!-- embedme code_examples/qs_inference.py -->  
 ```py
@@ -28,8 +28,6 @@ print(
         "<|begin_of_text|><|start_header_id|>user<|end_header_id|>Which animal remembers facts the best?<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
     )
 )
-
-from lamini import Lamini
 
 ```
 #### Expected Output
@@ -119,6 +117,7 @@ That's much better!
 
 ## Next steps
 
+- Try out the [Playground with Memory RAG](inference/playground.md)
+- Build a [Classifier Agent](cat/index.md)
 - Read how [an AI novice got 95% LLM accuracy](https://www.lamini.ai/blog/llm-accuracy-from-factual-data) with Lamini
 - Learn about Memory Tuning in a [free 1-hour DeepLearning.ai course](https://www.deeplearning.ai/short-courses/improving-accuracy-of-llm-applications/)
-- Get example code for applications like [RAG (Retrieval Augmented Generation)](https://github.com/lamini-ai/lamini-examples/blob/main/04_rag_tuning/README.md).
