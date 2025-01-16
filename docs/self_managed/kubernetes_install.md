@@ -7,6 +7,10 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
 
 ## Prerequisites
 
+### Tools
+
+You need to have a working Kubernetes cluster, and [`python`](https://www.python.org/downloads/), [`helm`](https://helm.sh/docs/intro/install/), [`kubectl`](https://kubernetes.io/docs/tasks/tools/) installed.
+
 ### Lamini Self-Managed license
 
 [Contact us](https://www.lamini.ai/contact) for access to the Kubernetes installer to host Lamini Platform on your own GPUs or in your cloud VPC.
@@ -20,9 +24,12 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
   - Example: AMD MI250 has 64GB of HBM, so Lamini requires 128GB of RAM per GPU.
   - Example: AMD MI300 has 192GB HBM, so Lamini requires 384GB of RAM per GPU.
 
-### NFS Provisioner
+### PVC
 
-   Lamini requires a RWX NFS provisioner. For example, you can set up a simple provisioner using `nfs-subdir-external-provisioner`:
+   Lamini requires a RWX PVC for storing all runtime data.
+   
+   You can use NFS and other storage solutions.
+   For example, you can set up a simple provisioner using `nfs-subdir-external-provisioner`:
 
    ```bash
    helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
@@ -30,6 +37,8 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
        --set nfs.server=<NFS_IP> \
        --set nfs.path=<NFS_SUBFOLDER_PATH>
    ```
+
+   Then proceed to create a PVC `lamini-volume` with `ReadWriteMany` access for installing Lamini Platform.
 
 ### GPU Operator
 
@@ -50,17 +59,47 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
        nvidia/gpu-operator
      ```
 
-### Docker
-
-   We recommend using [Docker](https://docs.docker.com/engine/install/) to generate the Helm charts as described below.
-
-   Make sure to switch to a user with sufficient RBAC privieges to deploy the Helm charts in the Kubernetes cluster. Typically that's root (`sudo su`).
-
 ## Installation Steps
+
+### Obtain the installer
+
+Ask your Sales Engineer for the installer.
+The installer is a `.tar.gz` compressed file with all helm charts and scripts for installing Lamini Platform.
+You should work with your Sales Engineer for each installation or upgrade of Lamini Platform.
+
+You should keep any changes to the installer in a private repository for tracking purposes.
+Also ask your Sales Engineer to keep track of such changes.
+
+After obtaining the installer, extract it to a directory of your choice:
+
+```shell
+# Make sure the installer name is used for directory name
+# so that you can track the version of the installer.
+INSTALLER_NAME="<name>"
+mkdir -p ${INSTALLER_NAME}
+tar -xzf ${INSTALLER_NAME}.tar.gz -C ${INSTALLER_NAME}
+```
+
+The rest of the instructions are in the INSTALL.md file in the installer.
+You should operate under the directory of the installer.
+
+```shell
+# Change to the installer directory
+cd ${INSTALLER_NAME}/lamini-kube-installer
+
+# Read the INSTALL.md file, open with your favorite editor
+vi INSTALL.md
+```
 
 ### Update `helm_config.yaml`
 
-1. Set the `name` of the PVC provisioner being used for the Lamini cluster. If the PVC has been created beforehand, ensure the `name` is correct, that it is in the `lamini` namespace, and set `create` to `False`:
+1. **Optional**: If you already have `nfssubdir-external-provisioner` installed, set the `pvc_provisioner` to the `storageclass` name of defined by your installed `nfs-subdir-external-provisioner`.
+
+   ```yaml title="helm_config.yaml"
+   pvc_provisioner: nfs-client
+   ```
+
+1. If you opt to use Lamini Platform provided NFS pvc provisioner, set the `pvcLamini.name` to the name of the PVC you want to use, and set `create` to `True`, and set `size` to the recommended `200Gi`, or work with your Sales Engineer to determine the size:
 
    ```yaml title="helm_config.yaml"
    pvcLamini: {
@@ -70,19 +109,21 @@ Lamini Platform on Kubernetes enables multi-node, multi-GPU inference and traini
    }
    ```
 
-   We recommend at least >200Gi (and the more, the better!) for `lamini-volume`. Base models, trained weights, and datasets will all be stored on this volume.
+   if you have already created a PVC, set `name` to the name of the PVC, set `create` to `False`, you can
+   omit `size`:
 
-1. Update the PVC provisioner classname by changing the `pvc_provisioner` field.
-
-```yaml title="helm_config.yaml"
-pvc_provisioner: nfs-client
-```
+   ```yaml title="helm_config.yaml"
+   pvcLamini: {
+      name: lamini-volume,
+      create: False
+   }
+   ```
 
 1. Confirm the top-level platform `type` (one of: `amd`, `nvidia`, or `cpu`) matches your hardware.
 
-```yaml title="helm_config.yaml"
-type: "amd"
-```
+   ```yaml title="helm_config.yaml"
+   type: "amd"
+   ```
 
 1. Update the distribution of inference pods.
 
@@ -124,34 +165,10 @@ type: "amd"
    ingress: 'ingress/pathway'
    ```
 
-### Generate Helm Charts
+### Generate Helm Charts and install Lamini Platform
 
-The Lamini Platform Kubernetes deployment consists of 2 Helm charts:
+Follow the **INSTALL.md** included in the installer for the detailed steps.
+The general steps are:
 
-- `lamini`: Most Lamini services. Will be upgraded when updating to a new version of Lamini Platform.
-- `persistent-lamini`: Components that are meant to be persistent and unchanging across Lamini Platform upgrades. These include the Lamini database, PVC, and the Kubernetes secret to download new Lamini images.
-
-#### Deploy with helm
-
-```shell
-# Setup your namespace
-NAMESPACE=<namespace>
-
-# Install persistent lamini
-helm upgrade --install persistent-lamini persistent-lamini/ --namespace ${NAMESPACE} --create-namespace
-
-# Install lamini
-helm upgrade --install lamini lamini/ --namespace ${NAMESPACE} --create-namespace
-```
-
-That's it! You're up and running with Lamini Platform on Kubernetes.
-
-## Get Lamini version
-
-Run the following command to find the tag of the container image:
-
-```
-kubectl get deployments -o wide -n lamini
-```
-
-Look for the tag of the images listed in the **IMAGES** column
+1. Generate Helm charts with the provided shell script
+1. Install Lamini Platform with `helm install` or upgrade with `helm upgrade`
