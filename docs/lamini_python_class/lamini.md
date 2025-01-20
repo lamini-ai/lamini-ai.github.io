@@ -300,6 +300,132 @@ class Lamini:
 
 </details>
 
+``` python
+MemoryRAG(
+    job_id: int = None,
+    api_key: Optional[str] = None,
+    api_url: Optional[str] = None,
+    model_name: str = "meta-llama/Llama-3.2-3B-Instruct",
+)
+```
+
+<details class="source">
+
+<summary>
+
+<span>Expand source code</span>
+
+</summary>
+
+```python
+class MemoryRAG:
+
+    def __init__(
+        self,
+        job_id: int = None,
+        api_key: Optional[str] = None,
+        api_url: Optional[str] = None,
+        model_name: str = "meta-llama/Llama-3.2-3B-Instruct",
+    ):
+        self.job_id = job_id
+        self.config = get_config()
+        self.api_key = api_key or lamini.api_key or get_configured_key(self.config)
+        self.api_url = api_url or lamini.api_url or get_configured_url(self.config)
+        self.api_prefix = self.api_url + "/alpha/memory-rag"
+        self.model_name = model_name
+
+    def memory_index(
+        self,
+        documents: List,
+    ) -> str:
+        if self.model_name is None:
+            raise Exception("model_name must be set in order to use memory_index")
+        payload = {"model_name": self.model_name}
+
+        files = [
+            (
+                "files",
+                (
+                    file_path,
+                    open(file_path, "rb"),
+                ),
+            )
+            for file_path in documents
+        ]
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+        }
+        response = requests.request(
+            "POST",
+            self.api_prefix + f"/train",
+            headers=headers,
+            data=payload,
+            files=files,
+        )
+
+        json_response = response.json()
+        self.job_id = json_response["job_id"]
+        return json_response
+
+    def status(self) -> str:
+        if self.job_id is None:
+            raise Exception("job_id must be set in order to get status")
+        params = {"job_id": self.job_id}
+        resp = make_web_request(
+            self.api_key, self.api_prefix + f"/status", "post", params
+        )
+        return resp
+
+    def query(self, prompt: str, k: int = 3) -> str:
+        if self.job_id is None:
+            raise Exception("job_id must be set in order to query")
+        params = {
+            "prompt": prompt,
+            "model_name": self.model_name,
+            "job_id": self.job_id,
+            "rag_query_size": k,
+        }
+        resp = make_web_request(
+            self.api_key,
+            self.api_prefix + f"/completions",
+            "post",
+            params,
+        )
+        return resp
+
+    def add_index(self, prompt: str) -> str:
+        if self.job_id is None:
+            raise Exception("job_id must be set in order to add to index")
+        params = {"prompt": prompt, "job_id": self.job_id}
+        resp = make_web_request(
+            self.api_key,
+            self.api_prefix + f"/add-index",
+            "post",
+            params,
+        )
+        return resp
+
+    def get_logs(self) -> List[str]:
+        """Get training logs for a memory RAG job.
+
+        Args:
+            job_id: The ID of the memory RAG job
+
+        Returns:
+            List of log lines
+        """
+        if self.job_id is None:
+            raise Exception("job_id must be set in order to get job logs")
+        resp = make_web_request(
+            self.api_key,
+            self.api_prefix + f"/training_log/{self.job_id}",
+            "get",
+        )
+        return resp
+```
+
+</details>
+
 ### Methods
 
 #### `cancel_all_jobs`
@@ -669,6 +795,63 @@ def upload_file(
 ```
 
 </details>
+
+## lamini.api.memory_rag
+
+### initialize
+
+Creates a Memory RAG object.
+
+```python
+from lamini import MemoryRAG
+client = MemoryRAG(job_id=1,model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+```
+
+
+#### Parameters
+
+- `job_id`: Name of an existing memory rag index.
+- `api_key`: Lamini API key.
+- `api_url`: Lamini API URL.
+- `model_name`: Optional name of base model to use for Memory RAG Index building or inference.
+
+
+### Build Memory RAG Index
+
+Start a Memory RAG build job.
+
+```python
+lamini_wikipedia_page_pdf = "<path-to-file>.pdf"
+response = client.memory_index(documents=[lamini_wikipedia_page_pdf])
+
+print(response)
+### {'job_id': 27666, 'status': 'created'}
+```
+
+Wait for Memory RAG train job to finish.
+
+```python
+while status["status"] == "running":
+    time.sleep(5)
+    status = client.status(job_id)
+    print(status["status"])
+### running
+### running
+### running
+### completed
+```
+
+#### Parameters
+
+- `documents`: List of paths (strings)to local files for building the Memory Rag index.
+
+#### Returns
+
+Dictionary containing job information including:
+
+- `job_id`: ID of the training job
+- `status`: Job ENUM status: {"created", "running", "completed", "failed"}
+
 
 ## lamini.classify.lamini_classifier
 

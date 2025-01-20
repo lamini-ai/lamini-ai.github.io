@@ -38,6 +38,8 @@ print(
     )
 )
 
+from lamini import Lamini
+
 ```
 #### Expected Output
 ```
