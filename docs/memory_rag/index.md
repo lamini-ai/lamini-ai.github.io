@@ -68,8 +68,7 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
 
     ```sh
 
-    curl --location 'https://huggingface.co/datasets/lamini/lamini-wikipedia-page/blob/main/Lamini-wikipedia-page.pdf' \
-        --output lamini_wikipedia.pdf
+    curl --location 'https://huggingface.co/datasets/lamini/lamini-wikipedia-page/resolve/main/Lamini-wikipedia-page.pdf' --output lamini_wikipedia.pdf
 
     curl --location 'https://api.lamini.ai/alpha/memory-rag/train' \
         --header 'Authorization: Bearer $LAMINI_API_KEY' \
