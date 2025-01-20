@@ -11,9 +11,18 @@ Get your [Lamini API key](authenticate.md) (with $300 in free credits) at [https
 
 Export your key as an environment variable so it's easy to use later.
 
-```bash
-export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
-```
+=== "Terminal"
+    ```sh
+    export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
+    ```
+
+=== "Python SDK"
+    ```py
+    import lamini
+    import os
+
+    lamini.api_key = os.environ["LAMINI_API_KEY"]
+    ```
 
 ## Run inference to check it's running
     
@@ -101,8 +110,6 @@ print(
         "<|begin_of_text|><|start_header_id|>user<|end_header_id|>Which animal remembers facts the best?<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
     )
 )
-
-from lamini import Lamini
 
 ```
 

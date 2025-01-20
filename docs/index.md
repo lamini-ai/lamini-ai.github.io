@@ -88,15 +88,6 @@ Build what matters to you:
 3. Use our SDKs or API
 4. Monitor through our dashboard
 
-```python
-# It's really this simple
-from lamini import Lamini
-
-model = Lamini(open_source_model_on_huggingface)
-model.tune(your_data)
-response = model.generate(your_prompt)
-```
-
 ## Who are we?
 
 Lamini's team has been training, fine-tuning, and preference-tuning LLMs over the past two decades. We invented core LLM research like LLM scaling laws, shipped LLMs in production to over 1 billion users, taught nearly a quarter million students about [Finetuning LLMs](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/), and mentored the tech leads that went on to build the major foundation models: OpenAI’s GPT-3 and GPT-4, Anthropic’s Claude, Meta’s Llama 3.1, Google’s PaLM, and NVIDIA’s Megatron.

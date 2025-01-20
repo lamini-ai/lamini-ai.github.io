@@ -8,9 +8,56 @@ Memory Tuning is a research capability from Lamini that transforms how LLMs lear
 4. **Universal Compatibility**: Works with any open source LLM through a single, simple API
 5. **Low Latency**: Achieve fast inference times by leveraging efficient memory access patterns
 
-Memory Tuning works by embedding precise, factual data inside the LLM's memory, through millions of adapters in a mixture of expert adapters. This transforms any open foundation model into a Mixture of Memory Experts (MoME, pronounced "mommy") that can recall facts with photographic accuracy, by selectively routing across a team of specialized experts. The result is a model that maintains its general reasoning capabilities, while having near-perfect recall of your specific data — to 95% or 99%+ accuracy on tasks that routinely get as low as 0% or 50% on state-of-the-art models like GPT-4 + RAG.
-
 Memory-tuned models can perform factual reasoning: Memory Tuning allows your LLMs to keep their general reasoning capabilities, while committing specific factual data to their weights as memory.
+
+## Quick Start with Python
+
+First, make sure your API key is set (get yours at [app.lamini.ai](https://app.lamini.ai)):
+
+=== "Terminal"
+    ```sh
+    export LAMINI_API_KEY="<YOUR-LAMINI-API-KEY>"
+    ```
+
+=== "Python SDK"
+    ```py
+    import lamini
+    import os
+
+    lamini.api_key = os.environ["LAMINI_API_KEY"]
+    ```
+
+Then, you can use the `tune` method to train your model:
+
+=== "Python SDK"
+    ```py
+    from lamini import Lamini
+
+    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+    data = [
+        {
+            "input": "What is Lamini? Is it like a robot or a computer program?",
+            "output": "Lamini is a program for the execution of LLMs called a large language model engine. It is not a robot, but rather a tool for building and executing LLMs.",
+        }
+    ]
+
+    results = llm.tune(data_or_dataset_id=data)
+    ```
+=== "REST API"
+    ```
+    curl --location 'https://api.lamini.ai/v1/train' \
+        --header 'Authorization: Bearer $LAMINI_API_KEY' \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+            "data": [
+                {
+                    "input": "What is Lamini? Is it like a robot or a computer program?",
+                    "output": "Lamini is a program for the execution of LLMs called a large language model engine. It is not a robot, but rather a tool for building and executing LLMs."
+                }
+            ]
+        }'
+    ```
 
 ## Notebook example
 
@@ -18,7 +65,12 @@ Check out our [notebook example](https://github.com/lamini-ai/lamini-examples/bl
 
 We've also partnered with Meta to create a [notebook](https://github.com/meta-llama/llama-recipes/blob/main/recipes/3p_integrations/lamini/text2sql_memory_tuning/README.md) that shows how to use Memory Tuning to improve a text-to-SQL model from 30% to 95% accuracy.
 
-Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within the Lamini On-Demand plan.
+Working through the notebook will give you a good sense of how to use Memory Tuning, and you can do it all within Lamini, on-demand or on-prem.
+
+## What's happening under the hood?
+
+Memory Tuning works by embedding precise, factual data inside the LLM's memory, through millions of adapters in a mixture of expert adapters. This transforms any open foundation model into a Mixture of Memory Experts (MoME, pronounced "mommy") that can recall facts with photographic accuracy, by selectively routing across a team of specialized experts. The result is a model that maintains its general reasoning capabilities, while having near-perfect recall of your specific data — to 95% or 99%+ accuracy on tasks that routinely get as low as 0% or 50% on state-of-the-art models like GPT-4 + RAG.
+
 
 ## Principles for Memory Tuning
 

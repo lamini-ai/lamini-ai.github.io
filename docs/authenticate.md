@@ -33,12 +33,13 @@ If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC au
         key: <YOUR-LAMINI-API-KEY>
     ```
 
-=== "Python Client"
+=== "Python SDK"
 
     For convenience, you can also authenticate directly in a python environment after importing lamini. It's recommended to use the other two methods.
 
     ```python
     import lamini
+
     lamini.api_key = "<YOUR-LAMINI-API-KEY>"
     ```
 
