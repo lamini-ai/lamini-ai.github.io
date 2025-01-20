@@ -138,3 +138,10 @@ Finally, run the Memory RAG model:
     ```json
     {"detail":"Trained memory rag model 15505 status is not COMPLETED, current status: CREATED."}
     ```
+
+## Iteration
+
+You are now ready to run evaluation of this model. To do so, build out an evaluation set that consists of Question/Answer pairs for the expected answers you have for the
+provided question. The more representative your questions and answer pairs are to your production use case, the better the model is evaluated. Rate the models performance 
+in reference to this evaluation set. If the model performs poorly, try iterating on the Memory Rag job with additional data. If the model performs well enough, then you
+can consider it ready for production!
