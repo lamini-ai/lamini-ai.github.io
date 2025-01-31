@@ -181,3 +181,12 @@ installing Lamini Platform.
 
 Follow the [Kubernetes installation guide](kubernetes_install.md)
 to install Lamini Platform with the installer.
+
+## AWS instance types recommendation
+
+We recommend the following AWS instance types for running the Lamini Platform:
+- G6 series: Sufficient for running models with fewer than 10B parameters.
+- P4 series: Recommended as a general-purpose option.
+
+For specific use cases or requirements, please reach out to us.
+

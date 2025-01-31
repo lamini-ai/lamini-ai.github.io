@@ -172,11 +172,3 @@ The general steps are:
 
 1. Generate Helm charts with the provided shell script
 1. Install Lamini Platform with `helm install` or upgrade with `helm upgrade`
-
-## AWS instance tpyes recommendation
-
-We recommend the following AWS instance types for running the Lamini Platform:
-- G6 series: Sufficient for running models with fewer than 10B parameters.
-- P4 series: Recommended as a general-purpose option.
-
-For specific use cases or requirements, please reach out to us.
