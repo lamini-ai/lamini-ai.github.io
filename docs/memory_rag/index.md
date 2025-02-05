@@ -51,7 +51,7 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
 === "REST API"
 
     ```sh
-  curl --location 'https://api.lamini.ai/alpha/memory-rag/train' \
+    curl --location 'https://api.lamini.ai/alpha/memory-rag/train' \
         --header 'Authorization: Bearer $LAMINI_API_KEY' \
         --form 'files=@"your-pdf-file-path"' \
         --form 'model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"'
