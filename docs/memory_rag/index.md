@@ -31,26 +31,10 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
 
     client = MemoryRAG("meta-llama/Meta-Llama-3.1-8B-Instruct")
     ```
-
+    
     Find a PDF file to embed:
     ```py
-    lamini_wikipedia_page_pdf = ("https://huggingface.co/datasets/lamini/"
-                                "lamini-wikipedia-page/blob/main/"
-                                "Lamini-wikipedia-page.pdf")
-    ```
-    
-    Download the PDF file:
-    ```python
-    import requests
-    import os
-
-    # Download the PDF file
-    response = requests.get(lamini_wikipedia_page_pdf)
-    
-    # Save locally
-    pdf_path = "lamini_wikipedia.pdf"
-    with open(pdf_path, "wb") as f:
-        f.write(response.content)
+    pdf_path = "your-PDF-file-path"
 
     ```
     
@@ -67,12 +51,9 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
 === "REST API"
 
     ```sh
-
-    curl --location 'https://huggingface.co/datasets/lamini/lamini-wikipedia-page/resolve/main/Lamini-wikipedia-page.pdf' --output lamini_wikipedia.pdf
-
-    curl --location 'https://api.lamini.ai/alpha/memory-rag/train' \
+  curl --location 'https://api.lamini.ai/alpha/memory-rag/train' \
         --header 'Authorization: Bearer $LAMINI_API_KEY' \
-        --form 'files=@"lamini_wikipedia.pdf"' \
+        --form 'files=@"your-pdf-file-path"' \
         --form 'model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"'
     ```
 
