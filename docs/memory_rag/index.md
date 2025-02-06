@@ -88,7 +88,7 @@ Next, Memory embedding and indexing will complete. Poll for status:
     ```py
     job_id = response['job_id']
 
-    status = client.status()
+    status = client.status(job_id)
     ```
 
 === "REST API"
