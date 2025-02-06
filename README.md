@@ -1,3 +1,5 @@
+**Changes to the docs must be done in the `lamini-platform` repo.**
+
 # Lamini documentation 🦙
 
 ## Links
