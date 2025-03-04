@@ -87,6 +87,8 @@ nav:
           - Batching: inference/batching.md
           - Streaming: inference/streaming.md
           - Performance: inference/performance.md
+      - Memory Experiments:
+          - Quick Start: memory_experiments/index.md
       - Platform:
           - API Authentication: authenticate.md
           - Supported Models: models.md
