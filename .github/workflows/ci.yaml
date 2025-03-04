@@ -9,11 +9,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           key: ${{ github.ref }}
           path: .cache
@@ -22,3 +22,7 @@ jobs:
       - run: mkdocs gh-deploy --force -f mkdocs.yaml
         env:
           HUBSPOT_TRACKING_URL: ${{ secrets.HUBSPOT_TRACKING_URL }}
+          UNIFY_TRACKING_URL: ${{ secrets.UNIFY_TRACKING_URL }}
+          UNIFY_TRACKING_KEY: ${{ secrets.UNIFY_TRACKING_KEY }}
+          RB2B_TRACKING_KEY: ${{ secrets.RB2B_TRACKING_KEY }}
+          GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}

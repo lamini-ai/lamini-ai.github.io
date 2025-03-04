@@ -1,4 +1,4 @@
-**Changes to the docs must be done in the `lamini-platform` repo.**
+**Changes to the docs must be done in the `lamini-platform` repo. Any changes to the docs in this repo will be overwritten.**
 
 # Lamini documentation 🦙
 
