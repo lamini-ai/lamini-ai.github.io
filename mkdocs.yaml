@@ -82,6 +82,8 @@ nav:
           - Large Data Files: tuning/large_data_files.md
           - Evaluation UI: tuning/evaluation.md
       - Inference:
+          - Quick Start: inference/quick_start.md
+          - OpenAI API: inference/infv2.md
           - Prompt Templates: inference/prompt_templates.md
           - JSON Output: inference/json_output.md
           - Batching: inference/batching.md
@@ -107,7 +109,7 @@ plugins:
         "enterprise_install.md": "self_managed/kubernetes_install.md"
         "get_started/authenticate.md": "authenticate.md"
         "get_started/install.md": "authenticate.md"
-        "inference/quick_start.md": "quick_start.md"
+        # "inference/quick_start.md": "quick_start.md"
         "inference/quick_tour.md": "quick_start.md"
         "inference/prompt_tuning.md": "inference/prompt_templates.md"
         "overview.md": "index.md"
