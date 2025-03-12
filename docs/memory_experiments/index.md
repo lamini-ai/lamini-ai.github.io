@@ -25,7 +25,7 @@ To use Memory Experiment, you'll need to set up your pipeline components and cre
     Set up your generators:
     ```python
     from lamini.experiment.generators import QuestionsToConceptsGenerator
-    from lamini.experiment.base_agentic_pipeline import BaseAgenticPipeline
+    from lamini.experiment.pipeline.base_agentic_pipeline import BaseAgenticPipeline
 
     # Create a generator
     concept_generator = QuestionsToConceptsGenerator(
