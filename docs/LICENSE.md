@@ -1,7 +1,8 @@
 Code for self-hosted inference models adapted from
 <https://github.com/vllm-project/vllm/tree/main>. Modified
-`vllm/entrypoints/openai/protocol.py` and
-`vllm/entrypoints/openai/serving_completion.py` to support
+`vllm/entrypoints/openai/protocol.py`,
+`vllm/entrypoints/openai/serving_completion.py`, and
+`vllm/entrypoints/openai/serving_chat.py` to support
 implicit LoRA adapter loading. Modified `requirements-common.txt`
 to pin xgrammar version.
 
