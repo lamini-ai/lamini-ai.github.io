@@ -1,0 +1,2754 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Lamini",
+        "description": "LLM inference and tuning for the enterprise. Factual LLMs. Classifier and embeddings. Deployed anywhere in 10 min.",
+        "version": "1.13.6"
+    },
+    "paths": {
+        "/alpha/memory-rag/add-index": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Append to an existing an Memory RAG index.",
+                "description": "Append to an existing an Memory RAG index with the provided prompt.",
+                "operationId": "memory_rag_add_index_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MemoryRagAddIndexPayload"
+                            },
+                            "example": {
+                                "prompt": "Content to input into the index.", 
+                                "job_id": "1"
+                            }                        
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "job_id": 1,
+                                    "status": "success"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/completions": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Generate Memory RAG completions for prompts",
+                "description": "Generate a Memory RAG inference response to a prompt, optionally with a specified JSON output structure, with a `finish_reason` field in the response indicating the end state for each inference request.",
+                "operationId": "memory_rag_completions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MemoryRagCompletionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompletionsWithFinishReasonResponse"
+                                },
+                                "example": {
+                                    "outputs": [
+                                        {
+                                            "text": "This is one inference output."
+                                        },
+                                        {
+                                            "text": "This is another output."
+                                        }
+                                    ],
+                                    "finish_reason": "stop"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/status": {
+            "get": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Get the status of a Memory RAG training job.",
+                "description": "Get the status of the Memory RAG training job. Results in either 'created', 'running', 'failed', or 'completed'.",
+                "operationId": "memory_rag_job_status",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        },
+                        "name": "job_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            },
+                            "example": {
+                                "outputs": {
+                                    "status": "completed"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/suggestions": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Retrieve a sample from a Memory RAG Index",
+                "description": "Retrieve a sample of 5 examples from a Memory RAG Index for the provided job id.",
+                "operationId": "memory_rag_suggestions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MemoryRagSuggestionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {"Question 1": "Example Question 1", "Answer 1": "Example Answer 1"},
+                                    {"Question 2": "Example Question 2", "Answer 2": "Example Answer 2"}
+                                ]
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/alpha/memory-rag/train": {
+            "post": {
+                "tags": [
+                    "memory rag"
+                ],
+                "summary": "Start a Memory RAG job using the provided files.",
+                "description": "Start a Memory RAG job using the provided files, resulting in a Memory RAG Index available for Completion calls.",
+                "operationId": "memory_rag_train_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                            },
+                            "example": {
+                                "files": "{path/to/document}.pdf", 
+                                "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct"
+                            }                        
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "job_id": 1,
+                                    "status": "CREATED"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v1/batch_completions": {
+            "post": {
+                "tags": [
+                    "completions"
+                ],
+                "summary": "Make a batch inference request.",
+                "description": "Kicks off batch inference for multiple prompts. Results can be retrieved using the job id returned on success.",
+                "operationId": "batch_completion_v1_batch_completions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BatchCompletionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BatchInitialResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v1/batch_completions/{id}/result": {
+            "get": {
+                "tags": [
+                    "completions"
+                ],
+                "summary": "Get the inference results for a batch request.",
+                "description": "Get the inference results for a batch request by passing in the ID of the batch request.",
+                "operationId": "batch_completion_result_v1_batch_completions__id__result_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        },
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompletionsWithFinishReasonResponse"
+                                },
+                                "example": {
+                                    "outputs": [
+                                        {
+                                            "text": "This is one inference output."
+                                        },
+                                        {
+                                            "text": "This is another output."
+                                        }
+                                    ],
+                                    "finish_reason": "stop"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v1/train": {
+            "post": {
+                "tags": [
+                    "train"
+                ],
+                "summary": "Create a tuned model by kicking off a fine-tuning job on a base model.",
+                "description": "Read more about how to use Memory Tuning to achieve very high accuracy on your evals: [Memory Tuning docs](https://docs.lamini.ai/tuning/memory_tuning/).",
+                "operationId": "train_v1_train_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/TrainPayload"
+                                    }
+                                ],
+                                "title": "Payload",
+                                "description": "Details of the training job to be created."
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrainResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v1/train/jobs/{job_id}": {
+            "get": {
+                "tags": [
+                    "train"
+                ],
+                "summary": "Get the status of a training job.",
+                "description": "You can see your jobs at [https://app.lamini.ai/train](https://app.lamini.ai/train)",
+                "operationId": "train_status_v1_train_jobs__job_id__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Job Id"
+                        },
+                        "name": "job_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrainStatusResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v1/train/jobs/{job_id}/cancel": {
+            "post": {
+                "tags": [
+                    "train"
+                ],
+                "summary": "Cancel a training job.",
+                "description": "Cancelling a training job is reversible - jobs are automatically checkpointed and you can resume them later. Canceled jobs don't affect other jobs. You can see all training jobs at [https://app.lamini.ai/train](https://app.lamini.ai/train)",
+                "operationId": "cancel_training_job_v1_train_jobs__job_id__cancel_post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Job Id"
+                        },
+                        "name": "job_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrainStatusResponse"
+                                },
+                                "example": {
+                                    "status": "CANCELLED"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v1/train/jobs/{job_id}/resume": {
+            "post": {
+                "tags": [
+                    "train"
+                ],
+                "summary": "Resume a training job.",
+                "description": "Jobs are resumable until they run for all `max_steps`. You can see all training jobs at [https://app.lamini.ai/train](https://app.lamini.ai/train)",
+                "operationId": "resume_training_job_v1_train_jobs__job_id__resume_post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Job Id"
+                        },
+                        "name": "job_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrainStatusResponse"
+                                },
+                                "example": {
+                                    "status": "TRAINING MODEL"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/completions": {
+            "post": {
+                "tags": [
+                    "completions"
+                ],
+                "summary": "Generate completions for prompts",
+                "description": "Generate an LLM inference response to a prompt, optionally with a specified JSON output structure, with a `finish_reason` field in the response indicating the end state for each inference request.",
+                "operationId": "completions_v2_completions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CompletionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompletionsWithFinishReasonResponse"
+                                },
+                                "example": {
+                                    "outputs": [
+                                        {
+                                            "text": "This is one inference output."
+                                        },
+                                        {
+                                            "text": "This is another output."
+                                        }
+                                    ],
+                                    "finish_reason": "stop"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v3/streaming_completions": {
+            "post": {
+                "tags": [
+                    "completions"
+                ],
+                "summary": "Create a streaming inference completion",
+                "description": "Generate an LLM inference response to a prompt, optionally with a specified JSON output structure, with a `finish_reason` field in the response indicating the end state for each inference request.",
+                "operationId": "streaming_completions_v3_streaming_completions_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/V3StreamingCompletionsPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "The streaming inference completion.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BatchInitialResponse"
+                                },
+                                "example": {
+                                    "id": "2af8bd94f5118480a0c7be525c26d1a9"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v3/streaming_completions/{id}/result": {
+            "get": {
+                "tags": [
+                    "completions"
+                ],
+                "summary": "Get the latest output of a streaming inference completion",
+                "description": "Get the result of a streaming completion by ID",
+                "operationId": "streaming_completion_result_v3_streaming_completions__id__result_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        },
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompletionsWithFinishReasonResponse"
+                                },
+                                "example": {
+                                    "outputs": [
+                                        {
+                                            "text": "This is one inference output."
+                                        },
+                                        {
+                                            "text": "This is another output."
+                                        }
+                                    ],
+                                    "finish_reason": "stop"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v1/embedding": {
+            "post": {
+                "tags": [
+                    "embeddings"
+                ],
+                "summary": "Get the vector embedding for a given prompt.",
+                "operationId": "embedding_v1_embedding_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmbeddingParams"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmbeddingResponse"
+                                },
+                                "example": {
+                                    "embedding": [
+                                        0.013080810196697712,
+                                        -0.05404408276081085,
+                                        0.0183291956782341,
+                                        -0.03727744519710541
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v1alpha/downloaded_models/": {
+            "get": {
+                "tags": [
+                    "model management"
+                ],
+                "summary": "All Models",
+                "operationId": "all_models_v1alpha_downloaded_models__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "model management"
+                ],
+                "summary": "Start Download Models",
+                "operationId": "start_download_models_v1alpha_downloaded_models__post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v1alpha/downloaded_models": {
+            "get": {
+                "tags": [
+                    "model management"
+                ],
+                "summary": "All Models",
+                "operationId": "all_models_v1alpha_downloaded_models_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "model management"
+                ],
+                "summary": "Start Download Models",
+                "operationId": "start_download_models_v1alpha_downloaded_models_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/initialize": {
+            "post": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Initialize",
+                "description": "Create the project,\nkickoff generate data,\ncreate the project data directory",
+                "operationId": "initialize_v2_classifier_initialize_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClassifierV2InitializePayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/add": {
+            "post": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Add",
+                "operationId": "add_v2_classifier_add_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClassifierV2AddPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/train": {
+            "post": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Train",
+                "operationId": "train_v2_classifier_train_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClassifierV2TrainPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/register": {
+            "post": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Register",
+                "operationId": "register_v2_classifier_register_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClassifierV2RegisterPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/update_job": {
+            "post": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Update Job",
+                "operationId": "update_job_v2_classifier_update_job_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClassifierV2UpdateJobPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{job_id}/status": {
+            "get": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Status",
+                "operationId": "status_v2_classifier__job_id__status_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        },
+                        "name": "job_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{model_id}/classify": {
+            "post": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Classify",
+                "operationId": "classify_v2_classifier__model_id__classify_post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Model Id"
+                        },
+                        "name": "model_id",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClassifierV2ClassifyPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{project_name}/models": {
+            "get": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "List Models With Metadata For Project",
+                "operationId": "list_models_with_metadata_for_project_v2_classifier__project_name__models_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Project Name"
+                        },
+                        "name": "project_name",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{project_name}/datasets": {
+            "get": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "List Datasets For Project",
+                "operationId": "list_datasets_for_project_v2_classifier__project_name__datasets_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Project Name"
+                        },
+                        "name": "project_name",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{project_name}/{dataset_name}/download": {
+            "get": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Download Dataset For Project",
+                "operationId": "download_dataset_for_project_v2_classifier__project_name___dataset_name__download_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Project Name"
+                        },
+                        "name": "project_name",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Dataset Name"
+                        },
+                        "name": "dataset_name",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{project_name}/{dataset_name}": {
+            "delete": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "Delete Datasets For Project",
+                "operationId": "delete_datasets_for_project_v2_classifier__project_name___dataset_name__delete",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Project Name"
+                        },
+                        "name": "project_name",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Dataset Name"
+                        },
+                        "name": "dataset_name",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/projects": {
+            "get": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "List Projects For User",
+                "operationId": "list_projects_for_user_v2_classifier_projects_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ]
+            }
+        },
+        "/v2/classifier/{project_name}/jobs": {
+            "get": {
+                "tags": [
+                    "classifier"
+                ],
+                "summary": "List Jobs For Project",
+                "operationId": "list_jobs_for_project_v2_classifier__project_name__jobs_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Project Name"
+                        },
+                        "name": "project_name",
+                        "in": "path"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "API key for authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "API Key Auth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BatchCompletionsPayload": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of your base model.",
+                        "example": "meta-llama/Llama-3.2-3B-Instruct"
+                    },
+                    "prompt": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Prompt",
+                        "description": "Multiple prompts for the model, presented as a list of strings for batch processing.",
+                        "example": [
+                            "What is the hottest day of the year?",
+                            "What is the coldest day of the year?"
+                        ]
+                    },
+                    "output_type": {
+                        "additionalProperties": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "items": {
+                                        "type": "integer"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            ]
+                        },
+                        "type": "object",
+                        "title": "Output Type",
+                        "example": {
+                            "answer": "str"
+                        },
+                        "summary": "Type schema of the output. Valid types are 'str', 'int', 'float', and 'bool'."
+                    },
+                    "max_new_tokens": {
+                        "type": "integer",
+                        "title": "Max New Tokens",
+                        "description": "The maximum number of tokens to generate. Should be just large enough to accommodate the output you need - a lower value allows better pipeline execution speed and quality of service for batched requests.",
+                        "example": 500
+                    },
+                    "max_tokens": {
+                        "type": "integer",
+                        "title": "Max Tokens"
+                    },
+                    "reservation_id": {
+                        "type": "integer",
+                        "title": "Reservation Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name",
+                    "prompt"
+                ],
+                "title": "BatchCompletionsPayload"
+            },
+            "BatchInitialResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id",
+                        "description": "The ID of the batch request.",
+                        "example": "2af8bd94f5118480a0c7be525c26d1a9"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "BatchInitialResponse"
+            },
+            "ClassifierV2AddPayload": {
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "title": "Data"
+                    },
+                    "dataset_name": {
+                        "type": "string",
+                        "title": "Dataset Name"
+                    },
+                    "project_name": {
+                        "type": "string",
+                        "title": "Project Name"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "data",
+                    "dataset_name",
+                    "project_name"
+                ],
+                "title": "ClassifierV2AddPayload"
+            },
+            "ClassifierV2ClassifyPayload": {
+                "properties": {
+                    "prompt": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        ],
+                        "title": "Prompt"
+                    },
+                    "top_n": {
+                        "type": "integer",
+                        "title": "Top N"
+                    },
+                    "threshold": {
+                        "type": "number",
+                        "title": "Threshold"
+                    },
+                    "metadata": {
+                        "type": "boolean",
+                        "title": "Metadata"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "prompt"
+                ],
+                "title": "ClassifierV2ClassifyPayload"
+            },
+            "ClassifierV2InitializePayload": {
+                "properties": {
+                    "classes": {
+                        "type": "object",
+                        "title": "Classes"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name"
+                    },
+                    "examples": {
+                        "type": "object",
+                        "title": "Examples"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "classes",
+                    "name",
+                    "model_name"
+                ],
+                "title": "ClassifierV2InitializePayload"
+            },
+            "ClassifierV2RegisterPayload": {
+                "properties": {
+                    "project_id": {
+                        "type": "string",
+                        "title": "Project Id"
+                    },
+                    "model_id": {
+                        "type": "string",
+                        "title": "Model Id"
+                    },
+                    "job_id": {
+                        "type": "string",
+                        "title": "Job Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "project_id",
+                    "model_id",
+                    "job_id"
+                ],
+                "title": "ClassifierV2RegisterPayload"
+            },
+            "ClassifierV2TrainPayload": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "classifier_train_job_id": {
+                        "type": "string",
+                        "title": "Classifier Train Job Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "ClassifierV2TrainPayload"
+            },
+            "ClassifierV2UpdateJobPayload": {
+                "properties": {
+                    "job_id": {
+                        "type": "string",
+                        "title": "Job Id"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "job_id",
+                    "status"
+                ],
+                "title": "ClassifierV2UpdateJobPayload"
+            },
+            "CompletionsPayload": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of your base model.",
+                        "example": "meta-llama/Llama-3.2-3B-Instruct"
+                    },
+                    "prompt": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        ],
+                        "title": "Prompt",
+                        "description": "The prompt for the model. Can be a single string or a list of strings for batch processing.",
+                        "example": "What is the hottest day of the year?"
+                    },
+                    "output_type": {
+                        "additionalProperties": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "items": {
+                                        "type": "integer"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            ]
+                        },
+                        "type": "object",
+                        "title": "Output Type",
+                        "example": {
+                            "answer": "str"
+                        },
+                        "summary": "Type schema of the output. Valid types are 'str', 'int', 'float', and 'bool'."
+                    },
+                    "max_tokens": {
+                        "type": "integer",
+                        "title": "Max Tokens",
+                        "description": "The maximum number of tokens to generate."
+                    },
+                    "max_new_tokens": {
+                        "type": "integer",
+                        "title": "Max New Tokens",
+                        "description": "The maximum number of tokens to generate. Should be just large enough to accommodate the output you need - a lower value allows better pipeline execution speed and quality of service for batched requests.",
+                        "example": 500
+                    },
+                    "reservation_id": {
+                        "type": "integer",
+                        "title": "Reservation Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name",
+                    "prompt"
+                ],
+                "title": "CompletionsPayload"
+            },
+            "CompletionsWithFinishReasonResponse": {
+                "properties": {
+                    "outputs": {
+                        "items": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        "type": "array",
+                        "title": "Outputs",
+                        "description": "The inference outputs for the given prompt(s)."
+                    },
+                    "finish_reason": {
+                        "items": {
+                            "$ref": "#/components/schemas/FinishReason"
+                        },
+                        "type": "array",
+                        "title": "Finish Reason",
+                        "description": "The final state for each inference request."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "outputs",
+                    "finish_reason"
+                ],
+                "title": "CompletionsWithFinishReasonResponse"
+            },
+            "EmbeddingParams": {
+                "properties": {
+                    "prompt": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        ],
+                        "title": "Prompt",
+                        "description": "The input text to embed. Can be a single string or a list of strings.",
+                        "example": "What is the capital of France?"
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of the embedding model to use. If not provided, a default model will be used.",
+                        "default": "sentence-transformers/all-MiniLM-L6-v2"
+                    },
+                    "latency_sensitive": {
+                        "type": "boolean",
+                        "title": "Latency Sensitive",
+                        "description": "Whether the request is latency-sensitive. If true, faster processing may be prioritized.",
+                        "default": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "prompt"
+                ],
+                "title": "EmbeddingParams"
+            },
+            "EmbeddingResponse": {
+                "properties": {
+                    "embedding": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "number"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "items": {
+                                    "items": {
+                                        "type": "number"
+                                    },
+                                    "type": "array"
+                                },
+                                "type": "array"
+                            }
+                        ],
+                        "title": "Embedding"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "embedding"
+                ],
+                "title": "EmbeddingResponse"
+            },
+            "FinetuneArgs": {
+                "properties": {
+                    "max_steps": {
+                        "type": "integer",
+                        "title": "Max Steps",
+                        "description": "Specifies the total number of training steps to perform. This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.max_steps).",
+                        "default": 100
+                    },
+                    "learning_rate": {
+                        "type": "number",
+                        "title": "Learning Rate",
+                        "description": "The initial learning rate for the fine-tuning job. Usage note: see the [Memory Tuning docs](https://docs.lamini.ai/tuning/memory_tuning/) for tips on setting learning rate. This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.learning_rate).",
+                        "default": 0.0009
+                    },
+                    "save_steps": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ],
+                        "title": "Save Steps",
+                        "description": "Number of update steps between two checkpoint saves. This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.save_steps).",
+                        "default": 60
+                    },
+                    "max_finetuning_examples": {
+                        "type": "integer",
+                        "title": "Max Finetuning Examples",
+                        "description": "Sets the maximum number of data points for fine-tuning. If not set, the model is fine-tuned on the entire dataset."
+                    },
+                    "gradient_accumulation_steps": {
+                        "type": "integer",
+                        "title": "Gradient Accumulation Steps",
+                        "description": "Number of update steps to accumulate the gradients for, before performing a backward/update pass. Usage note: a higher setting can improve memory efficiency and thus reduce training time, often with a neutral effect on model accuracy. This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/v4.44.2/en/main_classes/trainer#transformers.TrainingArguments.gradient_accumulation_steps).",
+                        "default": 2
+                    },
+                    "max_length": {
+                        "type": "integer",
+                        "title": "Max Length",
+                        "description": "Specifies the maximum sequence length for the forward pass, acting as the block size for the model.Should be a power of 2, no larger than 8192. Usage note: `max_length` should be at least as large as the size of your datapoints. If training with large datapoints is not converging, increasing this value may help. However, larger values of `max_length` increase training time, and very large values will exhaust GPU memory. There's often room to reduce the size of your datapoints so a smaller `max_length` can be used.",
+                        "default": 2048
+                    },
+                    "optim": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/OptimizerType"
+                            }
+                        ],
+                        "description": "The optimizer to use. This parameter is passed to [HuggingFace's Transformers TrainingArguments](https://huggingface.co/docs/transformers/main/en/main_classes/trainer#transformers.TrainingArguments.optim).",
+                        "default": "adafactor"
+                    },
+                    "r_value": {
+                        "type": "integer",
+                        "title": "R Value",
+                        "description": "Specifies the size of the LoRA (Low-Rank Adaptation) component.",
+                        "default": 64
+                    },
+                    "index_method": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/IndexType"
+                            }
+                        ],
+                        "description": "The index method used for approximate nearest neighbor search of high-dimensional vectors.",
+                        "default": "IndexIVFPQ"
+                    },
+                    "index_k": {
+                        "type": "integer",
+                        "title": "Index K",
+                        "description": "Determines the number of nearest neighbors to consider.",
+                        "default": 2
+                    },
+                    "index_max_size": {
+                        "type": "integer",
+                        "title": "Index Max Size",
+                        "description": "Maximum size of the index.",
+                        "default": 65536
+                    },
+                    "index_pq_m": {
+                        "type": "integer",
+                        "title": "Index Pq M",
+                        "description": "Number of factors of product quantization. Only used when `index_method` is `IndexIVFPQ` or `IndexPQ`, ignored otherwise.",
+                        "default": 8
+                    },
+                    "index_pq_nbits": {
+                        "type": "integer",
+                        "title": "Index Pq Nbits",
+                        "description": "Number of bits in which each low-dimensional vector is stored. Range: [1, 16]. Only used when `index_method` is `{IndexType.IVFPQ}` or `{IndexType.PQ}`, ignored otherwise.",
+                        "default": 8
+                    },
+                    "index_ivf_nlist": {
+                        "type": "integer",
+                        "title": "Index Ivf Nlist",
+                        "description": "Number of buckets during clustering for IVFLAT. Only used when `index_method` is `{IndexType.IVFPQ}`, ignored otherwise.",
+                        "default": 2048
+                    },
+                    "index_ivf_nprobe": {
+                        "type": "integer",
+                        "title": "Index Ivf Nprobe",
+                        "description": "Number of buckets to search during the first step of IVFLAT. Only used when `index_method` is `{IndexType.IVFPQ}`, ignored otherwise.",
+                        "default": 48
+                    },
+                    "index_hnsw_m": {
+                        "type": "integer",
+                        "title": "Index Hnsw M",
+                        "description": "Range: [4, 64]. Used in HNSW (Hierarchical Navigable Small World Graph) algorithm. Only used when `index_method` is `{IndexType.HNSWPQ}` or `{IndexType.HNSWFlat}`, ignored otherwise.",
+                        "default": 32
+                    },
+                    "index_hnsw_efConstruction": {
+                        "type": "integer",
+                        "title": "Index Hnsw Efconstruction",
+                        "description": "Expansion factor at construction time for HNSW. Range: [8, 512]. Only used when `index_method` is `{IndexType.HNSWPQ}` or `{IndexType.HNSWFlat}`, ignored otherwise.",
+                        "default": 16
+                    },
+                    "index_hnsw_efSearch": {
+                        "type": "integer",
+                        "title": "Index Hnsw Efsearch",
+                        "description": "Expansion factor at search time for HNSW. Only used when `index_method` is `{IndexType.HNSWPQ}` or `{IndexType.HNSWFlat}`, ignored otherwise.",
+                        "default": 8
+                    }
+                },
+                "type": "object",
+                "title": "FinetuneArgs"
+            },
+            "FinishReason": {
+                "type": "string",
+                "enum": [
+                    "stop",
+                    "length",
+                    "timeout"
+                ],
+                "title": "FinishReason",
+                "description": "Indicates the ending state of the inference request.\n\n`stop`: The model completed the response with an EOS or equivalent token. This means the model finished generating the response.\n\n`length`: The response reached the maximum number of tokens as set by max_new_tokens or other token limit.\n\n`timeout`: The time taken to generate the response exceeded the configured Lamini Platform inference timeout. See [Performance](https://docs.lamini.ai/inference/performance/) for how to use this information to debug problems and improve performance."
+            },
+            "GPUConfig": {
+                "properties": {
+                    "gpus": {
+                        "type": "integer",
+                        "title": "Gpus",
+                        "description": "Number of GPUs per node to use for the tuning job.",
+                        "default": 0
+                    },
+                    "nodes": {
+                        "type": "integer",
+                        "title": "Nodes",
+                        "description": "Number of nodes (machines containing multiple GPUs) to use for the tuning job.",
+                        "default": 0
+                    }
+                },
+                "type": "object",
+                "title": "GPUConfig",
+                "description": "GPU configuration for the training job.\n\nLamini On-Demand allows a maximum of GPUs and nodes based on our server availability. If you are on Lamini Reserved or Self-Managed, you can specify any number of GPUs and nodes within your provisioned cluster size. Your job will be queued until the requested number of GPUs and nodes is available.\n\nIf the required GPUs and nodes are not available, the configuration defaults to the system limit, and the job is queued until the resources become available. When using multiple nodes, specify the number of GPUs required per node."
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "IndexType": {
+                "type": "string",
+                "enum": [
+                    "IndexIVFPQ",
+                    "IndexHNSWPQ",
+                    "IndexHNSWFlat",
+                    "IndexFlatL2",
+                    "IndexPQ"
+                ],
+                "title": "IndexType",
+                "description": "Available indexes for MoME model tuning."
+            },
+            "ModelType": {
+                "enum": [
+                    "transformer",
+                    "embedding"
+                ],
+                "title": "ModelType",
+                "description": "This must be consistent with the db/migrations table definition's MODEL_TYPE type."
+            },
+            "OptimizerType": {
+                "type": "string",
+                "enum": [
+                    "adamw_hf",
+                    "adamw_torch",
+                    "adamw_torch_fused",
+                    "adamw_apex_fused",
+                    "adamw_anyprecision",
+                    "adafactor"
+                ],
+                "title": "OptimizerType",
+                "description": "Available optimizers for MoME model tuning."
+            },
+            "PostPayload": {
+                "properties": {
+                    "hf_model_name": {
+                        "type": "string",
+                        "title": "Hf Model Name"
+                    },
+                    "model_type": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ModelType"
+                            }
+                        ],
+                        "default": "transformer"
+                    },
+                    "private_hf_token": {
+                        "type": "string",
+                        "title": "Private Hf Token"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hf_model_name"
+                ],
+                "title": "PostPayload",
+                "description": "The payload of the POST request to downloaded_models API"
+            },
+            "PostResponse": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name"
+                    },
+                    "model_type": {
+                        "$ref": "#/components/schemas/ModelType"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name",
+                    "model_type",
+                    "status"
+                ],
+                "title": "PostResponse",
+                "description": "The payload of the POST request to downloaded_models API"
+            },
+            "TrainPayload": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "Name of the base model to use for training. Must be a valid Hugging Face model name.",
+                        "example": "meta-llama/Llama-3.2-3B-Instruct"
+                    },
+                    "dataset_id": {
+                        "type": "string",
+                        "title": "Dataset Id",
+                        "description": "Previously uploaded dataset to use for training.",
+                        "example": "xyz123"
+                    },
+                    "finetune_args": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FinetuneArgs"
+                            }
+                        ],
+                        "title": "Finetune Args",
+                        "description": "Fine-tuning arguments for the training job.",
+                        "example": {
+                            "max_steps": 50,
+                            "r_value": 32,
+                            "learning_rate": 0.0003
+                        }
+                    },
+                    "gpu_config": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/GPUConfig"
+                            }
+                        ],
+                        "title": "Gpu Config",
+                        "description": "GPU configuration for the training job.",
+                        "default": {
+                            "gpus": 0,
+                            "nodes": 0
+                        },
+                        "example": {
+                            "gpus": 2,
+                            "nodes": 1
+                        }
+                    },
+                    "custom_model_name": {
+                        "type": "string",
+                        "title": "Custom Model Name",
+                        "description": "Descriptive name for the model.",
+                        "example": "my-custom-model-name"
+                    },
+                    "upload_file_path": {
+                        "type": "string",
+                        "title": "Upload File Path",
+                        "description": "Base path to the filestore where the training dataset is stored."
+                    },
+                    "is_public": {
+                        "type": "boolean",
+                        "title": "Is Public",
+                        "description": "Allow public access to the model and dataset.",
+                        "default": false
+                    },
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "source": {
+                        "type": "object",
+                        "title": "Source",
+                        "default": {}
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name"
+                ],
+                "title": "TrainPayload"
+            },
+            "TrainResponse": {
+                "properties": {
+                    "job_id": {
+                        "type": "integer",
+                        "title": "Job Id",
+                        "description": "ID of the newly created training job.",
+                        "example": 123
+                    },
+                    "status": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TrainStatus"
+                            }
+                        ],
+                        "description": "Status of the training job.",
+                        "example": "TRAINING MODEL"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "job_id",
+                    "status"
+                ],
+                "title": "TrainResponse"
+            },
+            "TrainStatus": {
+                "type": "string",
+                "enum": [
+                    "CREATED",
+                    "QUEUED",
+                    "COMPLETED",
+                    "FAILED",
+                    "CANCELLED",
+                    "TIMED OUT",
+                    "LOADING DATA",
+                    "TRAINING MODEL",
+                    "EVALUATING MODEL",
+                    "SAVING MODEL"
+                ],
+                "title": "TrainStatus",
+                "description": "Indicates the state of the training job.\n\n`CREATED`: The training job has been created, but no training has started yet.\n\n`QUEUED`: The training job has been queued and is waiting for resources to become available.\n\n`LOADING_DATA`: Data is being loaded onto the GPUs for this training job.\n\n`TRAINING`: The model is being trained and adapter weights are being updated.\n\n`EVALUATING`: The model is being evaluated against the eval dataset.\n\n`SAVING_MODEL`: A model checkpoint is being saved.\n\n`COMPLETED`: The training job has completed successfully.\n\n`FAILED`: The training job has failed. The job may be resumeable.\n\n`CANCELLED`: The training job has been cancelled. The job may be resumeable.\n\n`TIMED_OUT`: The training job has timed out. The job may be resumeable."
+            },
+            "TrainStatusResponse": {
+                "properties": {
+                    "status": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TrainStatus"
+                            }
+                        ],
+                        "description": "Status of the training job.",
+                        "example": "TRAINING MODEL"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status"
+                ],
+                "title": "TrainStatusResponse"
+            },
+            "V3StreamingCompletionsPayload": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of your base model.",
+                        "example": "meta-llama/Llama-3.2-3B-Instruct"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "title": "Prompt",
+                        "description": "A single prompt for the model.",
+                        "example": "What is the hottest day of the year?"
+                    },
+                    "output_type": {
+                        "additionalProperties": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "items": {
+                                        "type": "integer"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            ]
+                        },
+                        "type": "object",
+                        "title": "Output Type",
+                        "example": {
+                            "answer": "str"
+                        },
+                        "summary": "Type schema of the output. Valid types are 'str', 'int', 'float', and 'bool'."
+                    },
+                    "max_new_tokens": {
+                        "type": "integer",
+                        "title": "Max New Tokens",
+                        "description": "The maximum number of tokens to generate. Should be just large enough to accommodate the output you need - a lower value allows better pipeline execution speed and quality of service for batched requests.",
+                        "example": 500
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name",
+                    "prompt"
+                ],
+                "title": "V3StreamingCompletionsPayload"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        },
+        "securitySchemes": {
+            "APIKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization",
+                "description": "Enter your API token. Get your API key from http://localhost:5001/account"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "train",
+            "description": "Create and manage model training jobs."
+        },
+        {
+            "name": "completions",
+            "description": "Run inference on your tuned models or base open source models."
+        },
+        {
+            "name": "embeddings",
+            "description": "Get vector embeddings for your data."
+        },
+        {
+            "name": "classifier",
+            "description": "Classify text into categories."
+        },
+        {
+            "name": "model management",
+            "description": "Manages models stored on your Lamini Platform."
+        }
+    ],
+    "security": [
+        {
+            "APIKeyAuth": []
+        }
+    ]
+}
