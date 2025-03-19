@@ -52,7 +52,7 @@ If you are [running Lamini in your VPC or on prem](self_managed/kubernetes_insta
     Test that it works:
     ```python
     llm = Lamini(
-        model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
+        model_name="meta-llama/Llama-3.1-8B-Instruct",
         api_key="<YOUR-LAMINI-API-KEY>",
         api_url="<YOUR-SERVER-URL-HERE>",
     )

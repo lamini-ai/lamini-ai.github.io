@@ -33,7 +33,7 @@ Then, you can use the `tune` method to train your model:
     ```py
     from lamini import Lamini
 
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+    llm = Lamini(model_name="meta-llama/Llama-3.1-8B-Instruct")
     data = [
         {
             "input": "What is Lamini? Is it like a robot or a computer program?",
@@ -49,7 +49,7 @@ Then, you can use the `tune` method to train your model:
         --header 'Authorization: Bearer $LAMINI_API_KEY' \
         --header 'Content-Type: application/json' \
         --data '{
-            "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+            "model_name": "meta-llama/Llama-3.1-8B-Instruct",
             "data": [
                 {
                     "input": "What is Lamini? Is it like a robot or a computer program?",
@@ -70,7 +70,6 @@ Working through the notebook will give you a good sense of how to use Memory Tun
 ## What's happening under the hood?
 
 Memory Tuning works by embedding precise, factual data inside the LLM's memory, through millions of adapters in a mixture of expert adapters. This transforms any open foundation model into a Mixture of Memory Experts (MoME, pronounced "mommy") that can recall facts with photographic accuracy, by selectively routing across a team of specialized experts. The result is a model that maintains its general reasoning capabilities, while having near-perfect recall of your specific data — to 95% or 99%+ accuracy on tasks that routinely get as low as 0% or 50% on state-of-the-art models like GPT-4 + RAG.
-
 
 ## Principles for Memory Tuning
 
@@ -166,7 +165,7 @@ from lamini import Lamini
 lamini.api_key = "<key>"
 
 def main():
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+    llm = Lamini(model_name="meta-llama/Llama-3.1-8B-Instruct")
 
     dataset = your_dataset_goes_here
 

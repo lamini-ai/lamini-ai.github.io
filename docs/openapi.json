@@ -21,9 +21,9 @@
                                 "$ref": "#/components/schemas/MemoryRagAddIndexPayload"
                             },
                             "example": {
-                                "prompt": "Content to input into the index.", 
+                                "prompt": "Content to input into the index.",
                                 "job_id": "1"
-                            }                        
+                            }
                         }
                     },
                     "required": true
@@ -273,9 +273,9 @@
                             "schema": {
                             },
                             "example": {
-                                "files": "{path/to/document}.pdf", 
-                                "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct"
-                            }                        
+                                "files": "{path/to/document}.pdf",
+                                "model_name": "meta-llama/Llama-3.1-8B-Instruct"
+                            }
                         }
                     },
                     "required": true

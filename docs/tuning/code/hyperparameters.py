@@ -1,6 +1,6 @@
 from lamini import Lamini
 
-llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+llm = Lamini(model_name="meta-llama/Llama-3.1-8B-Instruct")
 data = [
     {
         "input": "What is Lamini? Is it like a robot or a computer program?",
