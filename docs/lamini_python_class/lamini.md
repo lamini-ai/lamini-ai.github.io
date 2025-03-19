@@ -804,9 +804,8 @@ Creates a Memory RAG object.
 
 ```python
 from lamini import MemoryRAG
-client = MemoryRAG(job_id=1,model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+client = MemoryRAG(job_id=1,model_name="meta-llama/Llama-3.1-8B-Instruct")
 ```
-
 
 #### Parameters
 
@@ -814,7 +813,6 @@ client = MemoryRAG(job_id=1,model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
 - `api_key`: Lamini API key.
 - `api_url`: Lamini API URL.
 - `model_name`: Optional name of base model to use for Memory RAG Index building or inference.
-
 
 ### Build Memory RAG Index
 
@@ -851,7 +849,6 @@ Dictionary containing job information including:
 
 - `job_id`: ID of the training job
 - `status`: Job ENUM status: {"created", "running", "completed", "failed"}
-
 
 ## lamini.classify.lamini_classifier
 
@@ -937,7 +934,7 @@ Run classification on input text using a trained model.
 
 ```python
 def classify(
-    prompt: Union[str, List[str]], 
+    prompt: Union[str, List[str]],
     top_n: Optional[int] = None,
     threshold: Optional[float] = None,
     metadata: Optional[bool] = None

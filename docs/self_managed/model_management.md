@@ -13,7 +13,7 @@ To edit the list of preloaded models for your Lamini Self-Managed deployment, yo
 
 1. Look for the `batch_model_list` key under `multi_node_inference`. This list contains the models that are preloaded.
 
-1. Edit the `batch_model_list` to add or remove models as needed. Each model must be specified by its Hugging Face model identifier (e.g. `meta-llama/Meta-Llama-3.1-8B-Instruct` for Llama 3.1).
+1. Edit the `batch_model_list` to add or remove models as needed. Each model must be specified by its Hugging Face model identifier (e.g. `meta-llama/Llama-3.1-8B-Instruct` for Llama 3.1).
 
 Be conservative with the number of models you preload - each model requires a significant amount of memory.
 

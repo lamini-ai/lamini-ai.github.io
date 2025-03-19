@@ -21,15 +21,14 @@ First, make sure your API key is set (get yours at [app.lamini.ai](https://app.l
 
 To use Memory RAG, build an index by uploading documents and selecting a base open-source LLM. This is the model you'll use to query over your documents.
 
-
 === "Python SDK"
     Initialize the Memory RAG client:
 
     ```py
-    
+
     from lamini import MemoryRAG
 
-    client = MemoryRAG("meta-llama/Meta-Llama-3.1-8B-Instruct")
+    client = MemoryRAG("meta-llama/Llama-3.1-8B-Instruct")
     ```
 
     Find a PDF file to embed:
@@ -38,7 +37,7 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
                                 "lamini-wikipedia-page/blob/main/"
                                 "Lamini-wikipedia-page.pdf")
     ```
-    
+
     Download the PDF file:
     ```python
     import requests
@@ -46,14 +45,14 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
 
     # Download the PDF file
     response = requests.get(lamini_wikipedia_page_pdf)
-    
+
     # Save locally
     pdf_path = "lamini_wikipedia.pdf"
     with open(pdf_path, "wb") as f:
         f.write(response.content)
 
     ```
-    
+
     Embed and build the Memory RAG Index:
     ```py
     response = client.memory_index(documents=[pdf_path])
@@ -73,7 +72,7 @@ To use Memory RAG, build an index by uploading documents and selecting a base op
     curl --location 'https://api.lamini.ai/alpha/memory-rag/train' \
         --header 'Authorization: Bearer $LAMINI_API_KEY' \
         --form 'files=@"lamini_wikipedia.pdf"' \
-        --form 'model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"'
+        --form 'model_name="meta-llama/Llama-3.1-8B-Instruct"'
     ```
 
     Expected response:
@@ -129,7 +128,7 @@ Finally, run the Memory RAG model:
             "prompt": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n How are you? <|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
             "job_id": 1,
             "rag_query_size": 3,
-            "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct"
+            "model_name": "meta-llama/Llama-3.1-8B-Instruct"
         }'
     ```
 
@@ -141,6 +140,6 @@ Finally, run the Memory RAG model:
 ## Iteration
 
 You are now ready to run evaluation of this model. To do so, build out an evaluation set that consists of Question/Answer pairs for the expected answers you have for the
-provided question. The more representative your questions and answer pairs are to your production use case, the better the model is evaluated. Rate the models performance 
+provided question. The more representative your questions and answer pairs are to your production use case, the better the model is evaluated. Rate the models performance
 in reference to this evaluation set. If the model performs poorly, try iterating on the Memory Rag job with additional data. If the model performs well enough, then you
 can consider it ready for production!

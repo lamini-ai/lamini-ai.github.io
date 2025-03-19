@@ -26,10 +26,10 @@ Inference batching with Lamini is simple: just pass in a list of inputs—no con
 
     ```py
     # code/batching.py
-    
+
     from lamini import Lamini
-    
-    llm = Lamini(model_name="meta-llama/Meta-Llama-3.1-8B-Instruct")
+
+    llm = Lamini(model_name="meta-llama/Llama-3.1-8B-Instruct")
     llm.generate(
         [
             "How old are you?",
@@ -38,7 +38,7 @@ Inference batching with Lamini is simple: just pass in a list of inputs—no con
         ],
         output_type={"response": "str", "explanation": "str"},
     )
-    
+
     ```
 
 === "REST API"
@@ -49,7 +49,7 @@ Inference batching with Lamini is simple: just pass in a list of inputs—no con
     --header "Authorization: Bearer $LAMINI_API_KEY" \
     --header "Content-Type: application/json" \
     --data '{
-        "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        "model_name": "meta-llama/Llama-3.1-8B-Instruct",
         "prompt": [
             "How old are you?",
             "What is the meaning of life?",
