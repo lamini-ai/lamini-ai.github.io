@@ -91,6 +91,7 @@ nav:
           - Performance: inference/performance.md
       - Memory Experiments:
           - Quick Start: memory_experiments/index.md
+          - Text to SQL: memory_experiments/txt2sql.md
       - Platform:
           - API Authentication: authenticate.md
           - Supported Models: models.md
