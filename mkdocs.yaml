@@ -71,11 +71,16 @@ nav:
           - Introduction: index.md
           - Quick Start: quick_start.md
           - FAQ: faq.md
-      - Memory RAG:
-          - Quick Start: memory_rag/index.md
-          # - Playground: memory_rag/playground.md
-      - Classifier Agent Toolkit:
-          - Quick Start: cat/index.md
+      - Memory Experiments:
+          - Quick Start: memory_experiments/index.md
+          - Best Practices: memory_experiments/best_practices.md
+          - Generators: memory_experiments/generators.md
+          - Validators: memory_experiments/validators.md
+          - Pipelines: memory_experiments/pipelines.md
+          - Prompt Formatting: memory_experiments/prompt_formatting.md
+          - Evaluation: memory_experiments/evaluation.md
+          - Text to SQL: memory_experiments/txt2sql.md
+          - Factual QA: memory_experiments/factual_qa.md
       - Memory Tuning:
           - Quick Start: tuning/memory_tuning.md
           - Hyperparameters: tuning/hyperparameters.md
@@ -89,9 +94,6 @@ nav:
           - Batching: inference/batching.md
           - Streaming: inference/streaming.md
           - Performance: inference/performance.md
-      - Memory Experiments:
-          - Quick Start: memory_experiments/index.md
-          - Text to SQL: memory_experiments/txt2sql.md
       - Platform:
           - API Authentication: authenticate.md
           - Supported Models: models.md

@@ -26,9 +26,9 @@ Inference batching with Lamini is simple: just pass in a list of inputs—no con
 
     ```py
     # code/batching.py
-
+    
     from lamini import Lamini
-
+    
     llm = Lamini(model_name="meta-llama/Llama-3.1-8B-Instruct")
     llm.generate(
         [
@@ -38,7 +38,7 @@ Inference batching with Lamini is simple: just pass in a list of inputs—no con
         ],
         output_type={"response": "str", "explanation": "str"},
     )
-
+    
     ```
 
 === "REST API"
