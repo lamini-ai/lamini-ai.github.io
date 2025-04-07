@@ -20,9 +20,9 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
 
     ```py
     # code/llama_3_prompt.py
-
+    
     from lamini import Lamini
-
+    
     prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
     prompt += "You are a pirate. Say arg matey!"
     prompt += "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
@@ -30,7 +30,7 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
     prompt += "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
     llm = Lamini("meta-llama/Llama-3.1-8B-Instruct")
     print(llm.generate(prompt, output_type={"Response": "str"}))
-
+    
     ```
 
 === "REST API"
@@ -63,12 +63,12 @@ The `{system_prompt}` variable is a system prompt that tells your LLM how it sho
 
     ```py
     # code/mistral.py
-
+    
     from lamini import Lamini
-
+    
     llm = Lamini(model_name="mistralai/Mistral-7B-Instruct-v0.3")
     print(llm.generate("<s>[INST] How are you? [/INST]", output_type={"Response": "str"}))
-
+    
     ```
 
 === "REST API"
