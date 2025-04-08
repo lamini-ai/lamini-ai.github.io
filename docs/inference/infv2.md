@@ -85,6 +85,25 @@ ChatCompletion(id='chatcmpl-e4b07deb82264bb28fb786b67769538b', choices=[Choice(f
 
 </details>
 
+### Caching
+
+By default, the inference requests are cached for 60 seconds. You can override this by passing an `extra_body` parameter with the request.
+
+```python
+response2 = client.chat.completions.create(
+    model="meta-llama/Llama-3.2-3B-Instruct",
+    messages=[{"role": "user", "content": "What is the best llama?"}],
+    temperature=0.5,
+    max_tokens=100,
+    extra_body = {
+        "cache": {
+          "ttl": 600 # seconds, caches response for 10 minutes
+      }
+    }
+)
+print(response)
+```
+
 ## Get available models
 
 Get the list of available models for OpenAI-compatible inference.
