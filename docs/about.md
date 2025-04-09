@@ -4,7 +4,7 @@ Lamini provides the best LLM inference and tuning for the enterprise. Factual LL
 
 ## Lamini Platform
 
-Lamini Platform orchestrates GPUs to deliver exceptional LLM tuning and inference capabilities, which easily integrate into enterprise applications via the Lamini [Python client](lamini_python_class/lamini.md),[REST API](api.md), and [web UI](inference/playground.md).
+Lamini Platform orchestrates GPUs to deliver exceptional LLM tuning, inference capabilities and agentic pipelines which easily integrate into enterprise applications via the Lamini [Python client](lamini_python_class/lamini.md),[REST API](api.md), and [web UI](inference/playground.md).
 
 ![Lamini overview](assets/lamini-overview.png)
 

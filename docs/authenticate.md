@@ -47,19 +47,35 @@ If you're self-managing Lamini Platform on your own GPUs, check out the [OIDC au
 
 If you are [running Lamini in your VPC or on prem](self_managed/kubernetes_install.md), you can change the URL from Lamini's hosted service to your own server URL:
 
-=== "Python script"
+=== "Python SDK"
 
     Test that it works:
+    ```python
+    import lamini
+
+    lamini.api_key = "<YOUR-LAMINI-API-KEY>"
+    lamini.api_url = "<YOUR-SERVER-URL-HERE>" # e.g. "https://app.lamini.ai"
+    ```
+
+    Then create a Lamini object:
+    ```python
+    from lamini import Lamini
+    llm = Lamini(
+        model_name="meta-llama/Llama-3.1-8B-Instruct",
+    )
+    response = llm.generate("Tell me a story about llamas.")
+
+    print(response)
+    ```
+    Or directly add api key and url to the Lamini object:
     ```python
     llm = Lamini(
         model_name="meta-llama/Llama-3.1-8B-Instruct",
         api_key="<YOUR-LAMINI-API-KEY>",
         api_url="<YOUR-SERVER-URL-HERE>",
     )
-    response = llm.generate("Tell me a story about llamas.")
-
-    print(response)
     ```
+
 
 === "In `~/.lamini/configure.yaml`"
 

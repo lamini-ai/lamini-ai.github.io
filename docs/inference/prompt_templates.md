@@ -16,6 +16,8 @@ The [Llama 3.1](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) and [Ll
 
 The `{system_prompt}` variable is a system prompt that tells your LLM how it should behave and what persona to take on. By default, it is that of a helpful assistant. The `{user_message}` variable is the instruction prompt that tells your LLM what to do. This is typically what you view as the prompt, e.g. the question you want to ask the LLM.
 
+You need to apply the `{{ system_prompt }}` and `{{ user_message }}` to prompts used for both inference and memory tuning jobs.
+
 === "Python SDK"
 
     ```py

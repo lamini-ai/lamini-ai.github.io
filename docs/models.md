@@ -2,7 +2,7 @@
 
 ### Lamini On-Demand
 
-Lamini On-Demand supports a variety of the most popular open source LLMs, including [Llama 3.1](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct), [Mistral 3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), [Phi-3](https://huggingface.co/Phi-3-mini-4k-instruct), [Qwen 2](https://huggingface.co/Qwen/Qwen2-7B-Instruct), and many more.
+Lamini On-Demand supports a variety of the most popular open source LLMs, including [Llama 3.2](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct), [Mistral 3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3), [Phi-3](https://huggingface.co/Phi-3-mini-4k-instruct), [Qwen 2](https://huggingface.co/Qwen/Qwen2-7B-Instruct), and many more.
 
 Models available on Lamini On-Demand for inference and tuning:
 
@@ -14,6 +14,7 @@ Models available on Lamini On-Demand for inference and tuning:
 - `meta-llama/Llama-2-7b-hf`
 - `meta-llama/Meta-Llama-3-8B-Instruct`
 - `meta-llama/Llama-3.1-8B-Instruct`
+- `meta-llama/Llama-3.2-3B-Instruct`
 - `microsoft/phi-2`
 - `microsoft/Phi-3-mini-4k-instruct`
 - `mistralai/Mistral-7B-Instruct-v0.1`
