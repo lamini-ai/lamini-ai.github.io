@@ -21,7 +21,7 @@ Install the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install).
 Modify profile to update your $PATH and enable shell command completion?
 Do you want to continue (Y/n)? Y
 
-Enter a path to an rc file to update, or leave blank to use 
+Enter a path to an rc file to update, or leave blank to use
 /Users/{userName}/.bash_profile: /Users/{userName}/.bash_profile
 
 Start a new shell for the changes to take effect.
@@ -113,7 +113,24 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
 Use the enclosed filestore-pvc.yaml
 
 ```bash
-kubectl apply -f filestore-pvc.yaml
+# filestore-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lamini-volume
+  annotations:
+    volume.beta.kubernetes.io/storage-class: nfs-client
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-client
+  resources:
+    requests:
+      storage: 200Gi
+```
+
+```bash
+kubectl -n lamini apply -f filestore-pvc.yaml
 ```
 
 - Verify the installation
@@ -156,7 +173,7 @@ database:
 - Generate the Helm charts for Lamini
 
 ```bash
-./generate_helm)charts.sh
+./generate_helm_charts.sh
 ```
 
 - Install the Persistent Lamini
@@ -189,7 +206,7 @@ The Lamini portal should open and display corrctly.
 Create a new tuning job with the Tiny Random Mistral model and Llama 3.1 model, under the Tune tab in the Lamini portal. The jobs should finish with the `completed` status.
 
 - Verify the inference
-    
+
 Run a simple inference test. The inference should return a prompt response without any errors or timeout.
 
 ```python
