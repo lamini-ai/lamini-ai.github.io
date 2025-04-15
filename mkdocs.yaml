@@ -100,6 +100,7 @@ nav:
       - Self-Hosted Lamini:
           - Kubernetes Install: self_managed/kubernetes_install.md
           - AWS EKS Setup: self_managed/aws_eks_setup.md
+          - GCP GKE Setup: self_managed/gcp_gke_setup.md
           - OIDC User Auth: self_managed/OIDC.md
           - Model Management: self_managed/model_management.md
       - License: LICENSE.md
