@@ -17,12 +17,9 @@ You need to have a working Kubernetes cluster, and [`python`](https://www.python
 
 ### Hardware system requirements
 
-- 64 GB CPU memory
-- 1 TB disk
-- GPU memory: 2xHBM per GPU
-
-  - Example: AMD MI250 has 64GB of HBM, so Lamini requires 128GB of RAM per GPU.
-  - Example: AMD MI300 has 192GB HBM, so Lamini requires 384GB of RAM per GPU.
+- Storage: 1 TB or more of high-speed network storage with low latency (around 1 ms), such as a Network File System (NFS).
+- GPU: 40 GB or more of VRAM.
+- CPU: 64 GB or more of RAM.
 
 ### PVC
 
