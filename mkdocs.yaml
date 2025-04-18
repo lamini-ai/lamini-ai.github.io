@@ -80,6 +80,7 @@ nav:
           - Prompt Formatting: memory_experiments/prompt_formatting.md
           - Evaluation: memory_experiments/evaluation.md
           - Text to SQL: memory_experiments/txt2sql.md
+          - Text to SQL Debugging: memory_experiments/best_debugging_practices.md
           - Factual QA: memory_experiments/factual_qa.md
       - Memory Tuning:
           - Quick Start: tuning/memory_tuning.md
