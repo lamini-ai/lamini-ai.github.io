@@ -8,22 +8,29 @@ import time
 import lamini
 
 api = lamini.StreamingCompletion()
+
+
+"""
+If you want to use the async version, you can do the following:
+
 async def main():
-    prompt = f"[INST]{random.random()} What is a pickle? [/INST]"
+    prompt = f"What is AI?"
     result = await api.async_create(
         prompt,
-        "meta-llama/Llama-3.2-1B-Instruct",
+        "meta-llama/Llama-3.2-3B-Instruct",
         max_new_tokens=256,
     )
 
     async for r in result:
         print(r)
 
+"""
+
 def main():
-    prompt = f"What is A?"
+    prompt = f"What is AI?"
     result = api.create(
         prompt,
-        "hf-internal-testing/tiny-random-gpt2",
+        "meta-llama/Llama-3.2-3B-Instruct",
         max_new_tokens=256,
     )
 
