@@ -15,6 +15,7 @@ Here are Pre-requistics:
 Install the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install).
 
 ```bash
+# Install the Google Cloud SDK
 ./google-cloud-sdk/install.sh
 ```
 
@@ -29,6 +30,7 @@ Start a new shell for the changes to take effect.
 Run gcloud init to initialize the SDK
 
 ```bash
+# Initialize the Google Cloud SDK
 gcloud init
 ```
 
@@ -43,6 +45,12 @@ gcloud components install gke-gcloud-auth-plugin
 Follow the instructions here to install the [GKE plugins](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
 
 ```bash
+# Install the GKE authentication plugin for kubectl
+gcloud components install gke-gcloud-auth-plugin
+```
+
+```bash
+# Install the GKE authentication plugin (if not already installed)
 gcloud components install gke-gcloud-auth-plugin
 ```
 
@@ -51,6 +59,7 @@ gcloud components install gke-gcloud-auth-plugin
 - Create a K8s cluster, example:
 
 ```bash
+# Create a GKE cluster with NVIDIA L4 GPUs and specified configurations
 gcloud container clusters create l4-gpu-cluster \
    --zone=us-west4-c \
    --machine-type=g2-standard-96 \
@@ -71,6 +80,7 @@ gcloud container clusters create l4-gpu-cluster \
 - Verify the installation
 
 ```bash
+# Verify the GKE cluster nodes are running
 kubectl get nodes
 ```
 
@@ -79,12 +89,14 @@ kubectl get nodes
 - Enable the Google Cloud FileStore
 
 ```bash
+# Enable the Google Cloud FileStore API
 gcloud services enable file.googleapis.com
 ```
 
 - Create the FileStore, example:
 
 ```bash
+# Create a FileStore instance with 1TB capacity
 gcloud filestore instances create nfs-share \
    --zone=us-west4-c \
    --tier=BASIC_HDD \
@@ -95,6 +107,7 @@ gcloud filestore instances create nfs-share \
 - Install NFS provisioner
 
 ```bash
+# Add and update the NFS provisioner Helm repository
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 helm repo update
 ```
@@ -102,6 +115,7 @@ helm repo update
 - Create the Storage Class, example:
 
 ```bash
+# Install the NFS provisioner with specified configurations
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
    --set nfs.server=10.217.139.170 \
    --set nfs.path=/share1 \
@@ -110,10 +124,8 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
 
 - Create the PVC
 
-Use the enclosed filestore-pvc.yaml
-
-```bash
-# filestore-pvc.yaml
+```yaml
+# Example: filestore-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -130,12 +142,14 @@ spec:
 ```
 
 ```bash
+# Apply the FileStore PVC configuration
 kubectl -n lamini apply -f filestore-pvc.yaml
 ```
 
 - Verify the installation
 
 ```bash
+# Verify the PVC was created successfully
 kubectl -n lamini get pvc
 ```
 
@@ -152,7 +166,6 @@ inference.offline = 1
 training.worker.num_pods = 1
 training.worker.resources.gpu.request = 1
 ```
-
 - Enable local database, persistent-lamini/values.yaml
 
 Uncomment the followings:
@@ -173,12 +186,14 @@ database:
 - Generate the Helm charts for Lamini
 
 ```bash
+# Generate Helm charts for Lamini deployment
 ./generate_helm_charts.sh
 ```
 
 - Install the Persistent Lamini
 
 ```bash
+# Install the persistent Lamini components
 NAMESPACE=lamini
 helm install persistent-lamini ./persistent-lamini --namespace ${NAMESPACE} --create-namespace --debug
 ```
@@ -186,12 +201,14 @@ helm install persistent-lamini ./persistent-lamini --namespace ${NAMESPACE} --cr
 - Install the Lamini
 
 ```bash
+# Install the main Lamini components
 helm install lamini ./lamini --namespace ${NAMESPACE} --create-namespace --debug
 ```
 
 - Port forwarding the service
 
 ```bash
+# Forward the API service port to localhost
 kubectl -n lamini port-forward svc/api 8000:8000
 ```
 
@@ -221,4 +238,5 @@ print(llm.generate(prompt=prompt))
 ```
 
 Replace `hf-internal-testing/tiny-random-MistralForCausalLM` with `meta-llama/Llama-3.1-8B-Instruct`, and try again.
+
 
