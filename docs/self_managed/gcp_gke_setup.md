@@ -4,9 +4,9 @@
 
 Here are Pre-requistics:
 
-- A GPU machine with a minimum of 40 GB of GPU memory. For GCP, we recommend using the a2-highgpu machine types, such as a2-highgpu-8g. For reference, [GCP GPU machine types](https://cloud.google.com/compute/docs/gpus).
+- A GPU machine with a minimum of 40 GB of GPU memory is required, such as the a2-highgpu machine types. For reference, see [GCP GPU machine types](https://cloud.google.com/compute/docs/gpus).
 
-- A high-performance network drive, such as Network File System (NFS), is recommended for storing models, datasets, and fine-tuned parameters to enable sharing across different pods. On GCP, we recommend using [FileStore NFS](https://cloud.google.com/filestore?hl=en).
+- A high-performance network drive, such as a Network File System (NFS), is necessary for storing models, datasets, and fine-tuned parameters, enabling sharing across different pods, such as the FileStore NFS on GCP.
 
 ## Setup
 
@@ -36,27 +36,23 @@ gcloud init
 
 - Install GKE plugins
 
-Install the kubectl if not installed. Example:
+Install the kubectl if not installed. Follow the instructions here to install the [GKE plugins](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
+
+- Install gcloud auth plugin.
 
 ```bash
 gcloud components install gke-gcloud-auth-plugin
 ```
 
-Follow the instructions here to install the [GKE plugins](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
+- Login via gloud auth.
 
 ```bash
-# Install the GKE authentication plugin for kubectl
-gcloud components install gke-gcloud-auth-plugin
-```
-
-```bash
-# Install the GKE authentication plugin (if not already installed)
-gcloud components install gke-gcloud-auth-plugin
-```
+gcloud auth login
+````
 
 ## Setup GKE Cluster
 
-- Create a K8s cluster, example:
+- Create an GKE cluster, example:
 
 ```bash
 # Create a GKE cluster with NVIDIA L4 GPUs and specified configurations
@@ -82,6 +78,26 @@ gcloud container clusters create l4-gpu-cluster \
 ```bash
 # Verify the GKE cluster nodes are running
 kubectl get nodes
+```
+
+- Access the GKE cluster
+
+```bash
+gcloud container clusters get-credentials l4-gpu-cluster --zone us-west4-c
+```
+
+- Scaling the GKE
+
+Scale down:
+
+```bash
+gcloud container clusters resize l4-gpu-cluster --node-pool gpu-pool --num-nodes 0 --zone us-west4-c
+```
+
+Scale up:
+
+```bash
+gcloud container clusters resize l4-gpu-cluster --node-pool gpu-pool --num-nodes 1 --zone us-west4-c
 ```
 
 ## Setup the NFS
@@ -166,6 +182,7 @@ inference.offline = 1
 training.worker.num_pods = 1
 training.worker.resources.gpu.request = 1
 ```
+
 - Enable local database, persistent-lamini/values.yaml
 
 Uncomment the followings:
@@ -238,5 +255,3 @@ print(llm.generate(prompt=prompt))
 ```
 
 Replace `hf-internal-testing/tiny-random-MistralForCausalLM` with `meta-llama/Llama-3.1-8B-Instruct`, and try again.
-
-
