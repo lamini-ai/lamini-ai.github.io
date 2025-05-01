@@ -41,17 +41,28 @@ ChatCompletion(id='chatcmpl-a5d61c89c0b64bfcbda823f1205f89ff', choices=[Choice(f
 ### JSON Output
 
 ```python
-from pydantic import BaseModel
+SCHEMA = {
+    "type": "object",
+    "properties": {
+        "answer": {"type": "string"},
+    },
+    "required": ["answer"],
+}
 
-class LlamaType(BaseModel):
-    name: str
-    description: str
-
-response = client.beta.chat.completions.parse(
+response = client.chat.completions.create(
     model="meta-llama/Llama-3.2-3B-Instruct",
-    messages=[{"role": "user", "content": "What is the best llama?"}],
-    response_format=LlamaType,
+    messages=[
+        {"role": "user", "content": "What is the best llama?"},
+    ],
+    response_format={
+        "type": "json_schema",
+        "json_schema": {
+            "name": "json_response",
+            "schema": SCHEMA,
+        },
+    },
 )
+
 print(response)
 ```
 
@@ -59,7 +70,7 @@ print(response)
   <summary>Example Response</summary>
 
 ```text
-ParsedChatCompletion[LlamaType](id='chatcmpl-fa84117790324edbbe38782f05c05cc1', choices=[ParsedChoice[LlamaType](finish_reason='stop', index=0, logprobs=None, message=ParsedChatCompletionMessage[LlamaType](content='{\n"name": "Suri",\n"description": "Greater size with multiple fleece registration levels,"\n\n}', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None, parsed=LlamaType(name='Suri', description='Greater size with multiple fleece registration levels,')))], created=1741380276, model='hosted_vllm/meta-llama/Llama-3.2-3B-Instruct', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=27, prompt_tokens=41, total_tokens=68, completion_tokens_details=None, prompt_tokens_details=None), prompt_logprobs=None)
+ChatCompletion(id='meta-llama/Llama-3.2-3B-Instruct-20364893-cbd0-45af-84ff-b4f51a7864fd', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='{"answer" : "It is difficult to pinpoint the \'best\' llama as they can vary in temperament, purpose, and physical characteristics. However, some popular and well-known breeds of llamas include:* Suri llamas: Known for their stunning, silky fleece and slender build, suri llamas are popular for their beauty and are often used for fiber production.* Huacaya llamas: With their fluffy, soft coats and medium build, huacaya llamas are prized for their fiber and are often used for wool production.* Suri Angora llamas: A cross between a suri and an Angora rabbit, Suri Angora llamas inherit the rabbit\'s Angora fiber, which is highly prized for its softness and warmth.* Pacaya-Llama: A rare and unique breed, Pacaya-Llamas are known for their striking appearance, intelligence, and friendly temperament.Each llama is an individual with its unique characteristics, and what one person considers the \'best\' may not be the same for another. Ultimately, the \'best\' llama is one that is well-suited to its purpose and lifestyle. It\'s recommended to research and find a llama that meets your specific needs and preferences."}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=[], reasoning_content=None), stop_reason=None)], created=1745873448, model='meta-llama/Llama-3.2-3B-Instruct', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=250, prompt_tokens=42, total_tokens=292, completion_tokens_details=None, prompt_tokens_details=None), prompt_logprobs=None)
 ```
 
 </details>
@@ -87,11 +98,13 @@ ChatCompletion(id='chatcmpl-e4b07deb82264bb28fb786b67769538b', choices=[Choice(f
 
 ### Caching
 
-By default, the inference requests are cached for 60 seconds. You can override this by passing an `extra_body` parameter with the request.
+Inference requests to hosted models are not cached.
+
+For third-party models, inference requests are cached for 60 seconds and can be overridden by passing an `extra_body` parameter with the request.
 
 ```python
-response2 = client.chat.completions.create(
-    model="meta-llama/Llama-3.2-3B-Instruct",
+response = client.chat.completions.create(
+    model="gpt-4o-mini", # third-party model
     messages=[{"role": "user", "content": "What is the best llama?"}],
     temperature=0.5,
     max_tokens=100,
