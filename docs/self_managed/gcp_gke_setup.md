@@ -4,9 +4,9 @@
 
 Here are Pre-requistics:
 
-- A GPU machine with a minimum of 40 GB of GPU memory is required, such as the a2-highgpu machine types. For reference, see [GCP GPU machine types](https://cloud.google.com/compute/docs/gpus).
+- A GPU machine with 40 GB or more GPU memory is required, For example, the a2-highgpu machine types. For reference, see [GCP GPU machine types](https://cloud.google.com/compute/docs/gpus).
 
-- A high-performance network drive, such as a Network File System (NFS), is necessary for storing models, datasets, and fine-tuned parameters, enabling sharing across different pods, such as the FileStore NFS on GCP.
+- A high-performance network drive, such as a Network File System (NFS), is necessary for storing models, datasets, and fine-tuned parameters. This setup enables sharing across different pods. For instance, you can use FileStore NFS on GCP.
 
 ## Setup
 
