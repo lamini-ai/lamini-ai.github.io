@@ -104,6 +104,7 @@ nav:
           - GCP GKE Setup: self_managed/gcp_gke_setup.md
           - OIDC User Auth: self_managed/OIDC.md
           - Model Management: self_managed/model_management.md
+          - Auth Setup: self_managed/auth_setup.md
       - License: LICENSE.md
   - Python SDK:
       - lamini: lamini_python_class/lamini.md
