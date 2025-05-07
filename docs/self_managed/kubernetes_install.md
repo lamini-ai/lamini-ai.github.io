@@ -18,13 +18,11 @@ You need to have a working Kubernetes cluster, and [`python`](https://www.python
 ### Hardware system requirements
 
 - Storage: 1 TB or more of high-speed network storage with low latency (around 1 ms), such as a Network File System (NFS).
-- GPU: 40 GB or more of VRAM.
-- CPU: 64 GB or more of RAM.
+- GPU: 48 GB or more of memory per GPU.
 
 ### PVC
 
    Lamini requires a RWX PVC for storing all runtime data.
-   
    You can use NFS and other storage solutions.
    For example, you can set up a simple provisioner using `nfs-subdir-external-provisioner`:
 
