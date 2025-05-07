@@ -18,7 +18,7 @@ and creating a S3-backed NFS storage gateway for installing Lamini Platform.
 
 ## Prerequisites
 
-An AWS account with GPU instances available, such as the [G type](https://aws.amazon.com/ec2/instance-types/). We recommend having sufficient resources with 8-GPU instance, such as the g6e.48xlarge.
+An AWS account with GPU instances available, such as the [G6e type](https://aws.amazon.com/ec2/instance-types/g6e/) or higher.
 
 ## Install AWS CLI
 
@@ -181,12 +181,3 @@ installing Lamini Platform.
 
 Follow the [Kubernetes installation guide](kubernetes_install.md)
 to install Lamini Platform with the installer.
-
-## AWS instance types recommendation
-
-We recommend the following AWS instance types for running the Lamini Platform:
-- G6 series: Sufficient for running models with fewer than 10B parameters.
-- P4 series: Recommended as a general-purpose option.
-
-For specific use cases or requirements, please reach out to us.
-
