@@ -5,7 +5,7 @@ You can run the command below to generate training data for the memory experimen
 ```sh
 lamini generate \
 --experiment-name <my_exp> \
---pipeline-json <path_to_pipeline.json> \
+--pipeline-yml <path_to_pipeline.yml> \
 --seed-data-jsonl <path_to_seed_data.jsonl> \
 --sqlite-file <path_to_db.sqlite> \
 --output-parquet <path_to_res.parquet> \
@@ -15,7 +15,7 @@ lamini generate \
 ## Options
 
 * `--experiment-name` (required) - name for the experiment
-* `--pipeline-json` (required) - path to pipeline config json file
+* `--pipeline-yml` (required) - path to pipeline config yml file
 * `--seed-data-jsonl` (required) - path to seed data jsonl file
 * `--sqlite-file` (required) - path to sqlite file
 * `--output-parquet` (required) - path to save the generated data in parquet format
